@@ -1,0 +1,176 @@
+prodtype: fedora,ol7,ol8,ol9,rhel7,rhel8,rhel9,sle12,sle15
+description: 'The idle time-out value for inactivity in the GNOME3 desktop is configured
+    via the <tt>idle-delay</tt>
+
+    setting must be set under an appropriate configuration file(s) in the <tt>/etc/dconf/db/local.d</tt>
+    directory
+
+    and locked in <tt>/etc/dconf/db/local.d/locks</tt> directory to prevent user modification.
+
+    <br /><br />
+
+    For example, to configure the system for a 15 minute delay, add the following
+    to
+
+    <tt>/etc/dconf/db/local.d/00-security-settings</tt>:
+
+    <pre>[org/gnome/desktop/session]
+
+    idle-delay=uint32 900</pre>'
+rationale: 'A session time-out lock is a temporary action taken when a user stops
+    work and moves away from
+
+    the immediate physical vicinity of the information system but does not logout
+    because of the
+
+    temporary nature of the absence. Rather than relying on the user to manually lock
+    their operating
+
+    system session prior to vacating the vicinity, GNOME3 can be configured to identify
+    when
+
+    a user''s session has idled and take action to initiate a session lock.'
+severity: medium
+references:
+    cis-csc: 1,12,15,16
+    cjis: 5.5.5
+    cobit5: DSS05.04,DSS05.10,DSS06.10
+    cui: 3.1.10
+    disa: CCI-000057,CCI-000060
+    isa-62443-2009: 4.3.3.6.1,4.3.3.6.2,4.3.3.6.3,4.3.3.6.4,4.3.3.6.5,4.3.3.6.6,4.3.3.6.7,4.3.3.6.8,4.3.3.6.9
+    isa-62443-2013: SR 1.1,SR 1.10,SR 1.2,SR 1.5,SR 1.7,SR 1.8,SR 1.9
+    iso27001-2013: A.18.1.4,A.9.2.1,A.9.2.4,A.9.3.1,A.9.4.2,A.9.4.3
+    nist: AC-11(a),AC-11.1 (ii)
+    nist-csf: PR.AC-7
+    ospp: FMT_MOF_EXT.1
+    pcidss: Req-8.1.8
+    pcidss4: 8.2.8
+    srg: SRG-OS-000029-GPOS-00010,SRG-OS-000031-GPOS-00012
+    stigid: SLES-15-010120
+    stigref: SV-234812r622137_rule
+identifiers:
+    cce: CCE-85669-0
+ocil_clause: idle-delay is set to 0 or a value greater than <sub idref="inactivity_timeout_value"
+    />
+ocil: 'To check the current idle time-out value, run the following command:
+
+    <pre>$ gsettings get org.gnome.desktop.session idle-delay</pre>
+
+    If properly configured, the output should be <tt>''uint32 <sub idref="inactivity_timeout_value"
+    />''</tt>.
+
+    To ensure that users cannot change the screensaver inactivity timeout setting,
+    run the following:
+
+    <pre>$ grep idle-delay /etc/dconf/db/local.d/locks/*</pre>
+
+    If properly configured, the output should be <tt>/org/gnome/desktop/session/idle-delay</tt>'
+oval_external_content: null
+fixtext: 'The dconf settings can be edited in the /etc/dconf/db/* location.
+
+
+    First, add or update the [org/gnome/desktop/session] section of the "/etc/dconf/db/local.d/00-security-settings"
+    database file and add or update the following lines:
+
+
+    [org/gnome/desktop/session]
+
+    idle-delay=uint32 <sub idref="inactivity_timeout_value" />
+
+
+    Then, add the following line to "/etc/dconf/db/local.d/locks/00-security-settings-lock"
+    to prevent user modification:
+
+
+    /org/gnome/desktop/session/idle-delay
+
+
+    Finally, update the dconf system databases:
+
+
+    $ sudo dconf update'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: SUSE Linux Enterprise 15 must automatically lock graphical user sessions
+    after 15 minutes of inactivity.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: SUSE Linux Enterprise 15 must automatically lock graphical
+            user sessions after 15 minutes of inactivity.
+        vuldiscussion: 'A session time-out lock is a temporary action taken when a
+            user stops work and moves away from
+
+            the immediate physical vicinity of the information system but does not
+            logout because of the
+
+            temporary nature of the absence. Rather than relying on the user to manually
+            lock their operating
+
+            system session prior to vacating the vicinity, GNOME3 can be configured
+            to identify when
+
+            a user''s session has idled and take action to initiate a session lock.'
+        checktext: 'Verify SUSE Linux Enterprise 15 initiates a session lock after
+            a 15-minute period of inactivity for graphical user interfaces with the
+            following command:
+
+
+            Note: This requirement assumes the use of the SUSE Linux Enterprise 15
+            default graphical user interface, Gnome Shell. If the system does not
+            have any graphical user interface installed, this requirement is Not Applicable.
+
+
+            $ sudo gsettings get org.gnome.desktop.session idle-delay
+
+
+            uint32 900
+
+
+            If "idle-delay" is set to "0" or a value greater than "900", this is a
+            finding.'
+        fixtext: 'Configure SUSE Linux Enterprise 15 to initiate a screensaver after
+            a 15-minute period of inactivity for graphical user interfaces.
+
+
+            Create a database to contain the system-wide screensaver settings (if
+            it does not already exist) with the following command:
+
+
+            $ sudo touch /etc/dconf/db/local.d/00-screensaver
+
+
+            Edit /etc/dconf/db/local.d/00-screensaver and add or update the following
+            lines:
+
+
+            [org/gnome/desktop/session]
+
+            # Set the lock time out to 900 seconds before the session is considered
+            idle
+
+            idle-delay=uint32 900
+
+
+            Update the system databases:
+
+
+            $ sudo dconf update'
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set
+    package[gdm]: null
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set
+    package_gdm: null
+bash_conditional: null
+fixes: {}
+title: Set GNOME3 Screensaver Inactivity Timeout
+definition_location: /home/oscap/content/linux_os/guide/system/software/gnome/gnome_screen_locking/dconf_gnome_screensaver_idle_delay/rule.yml
+template: null
+documentation_complete: true

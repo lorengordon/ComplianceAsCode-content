@@ -1,0 +1,44 @@
+# platform = multi_platform_all
+# reboot = true
+# strategy = disable
+# complexity = low
+# disruption = medium
+
+- name: List /etc/sysctl.d/*.conf files
+
+  find:
+    paths:
+      - "/etc/sysctl.d/"
+      - "/run/sysctl.d/"
+
+
+      - "/usr/lib/sysctl.d/"
+
+    contains: '^[\s]*kernel.modules_disabled.*$'
+    patterns: "*.conf"
+    file_type: any
+  register: find_sysctl_d
+
+- name: Comment out any occurrences of kernel.modules_disabled from config files
+  replace:
+    path: "{{ item.path }}"
+    regexp: '^[\s]*kernel.modules_disabled'
+    replace: '#kernel.modules_disabled'
+  loop: "{{ find_sysctl_d.files }}"
+
+
+- name: Comment out any occurrences of kernel.modules_disabled from /etc/sysctl.conf
+  replace:
+    path: "/etc/sysctl.conf"
+    regexp: '^[\s]*kernel.modules_disabled'
+    replace: '#kernel.modules_disabled'
+
+- name: Ensure sysctl kernel.modules_disabled is set to 1
+  sysctl:
+    name: "kernel.modules_disabled"
+    value: "1"
+
+    sysctl_file: "/etc/sysctl.d/kernel_modules_disabled.conf"
+
+    state: present
+    reload: yes

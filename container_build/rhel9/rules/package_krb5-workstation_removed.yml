@@ -1,0 +1,55 @@
+prodtype: fedora,ol7,ol8,ol9,rhel7,rhel8,rhel9
+description: 'The <code>krb5-workstation</code> package can be removed with the following
+    command:
+
+    <pre>
+
+    $ sudo dnf erase krb5-workstation</pre>'
+rationale: 'Kerberos is a network authentication system. The <tt>krb5-workstation</tt>
+    package contains the basic
+
+    Kerberos programs (<tt>kinit</tt>, <tt>klist</tt>, <tt>kdestroy</tt>, <tt>kpasswd</tt>).'
+severity: medium
+references:
+    disa: CCI-000803
+    srg: SRG-OS-000095-GPOS-00049,SRG-OS-000120-GPOS-00061
+identifiers:
+    cce: CCE-83520-7
+ocil_clause: the package is installed
+ocil: 'Run the following command to determine if the <code>krb5-workstation</code>
+    package is installed:
+
+    <pre>$ rpm -q krb5-workstation</pre>'
+oval_external_content: null
+fixtext: 'The <code>krb5-workstation</code> package can be removed with the following
+    command:
+
+    <pre>
+
+    $ sudo dnf erase krb5-workstation</pre>'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: The krb5-workstation package must not be installed on Red Hat Enterprise
+    Linux 9.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set
+    no_ovirt and krb5_workstation_older_than_1_17-18: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    krb5_workstation_older_than_1_17-18_and_no_ovirt: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Uninstall krb5-workstation Package
+definition_location: /home/oscap/content/linux_os/guide/system/software/system-tools/package_krb5-workstation_removed/rule.yml
+template:
+    name: package_removed
+    vars:
+        pkgname: krb5-workstation
+    backends: {}
+documentation_complete: true

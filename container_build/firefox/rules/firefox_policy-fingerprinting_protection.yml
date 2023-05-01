@@ -1,0 +1,60 @@
+prodtype: firefox
+description: 'Fingerprinting protection may be enabled by setting
+
+    <tt>Fingerprinting</tt> to <tt>true</tt> under <tt>EnableTrackingProtection</tt>
+
+    in the policies file.'
+rationale: 'The Content Blocking/Tracking Protection feature stops Firefox from loading
+    content from malicious sites. The content might be a script or an image, for example.
+    If a site is on one of the tracker lists you set Firefox to use, then the fingerprinting
+    script (or other tracking script/image) will not be loaded from that site.
+
+    Fingerprinting scripts collect information about your browser and device configuration,
+    such as your operating system, screen resolution, and other settings. By compiling
+    these pieces of data, fingerprinters create a unique profile of you that can be
+    used to track you around the Web.'
+severity: medium
+references:
+    disa: CCI-000381
+    nist: CM-7
+    stigid: FFOX-00-000023
+identifiers: {}
+ocil_clause: null
+ocil: 'To verify that fingerprinting protection is enabled,
+
+    type the following into the browser address bar:
+
+    <pre>about:policies</pre>
+
+    The output should have the following under EnableTrackingProtection:
+
+    <pre>"Fingerprinting": true</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Enabled Firefox Fingerprinting Protection
+definition_location: /home/oscap/content/products/firefox/guide/firefox/firefox_policy-fingerprinting_protection/rule.yml
+template:
+    name: firefox_policy-setting
+    vars:
+        name: Enable tracking protection for fingerprinting
+        policies:
+        -   path: EnableTrackingProtection
+            parameter: Fingerprinting
+            value: 'true'
+    backends: {}
+documentation_complete: true

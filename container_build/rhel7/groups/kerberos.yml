@@ -1,0 +1,27 @@
+prodtype: all
+description: 'The Kerberos protocol is used for authentication across
+
+    non-secure network. Authentication can happen between
+
+    various types of principals -- users, service, or hosts.
+
+    Their identity and encryption keys can be stored in keytab
+
+    files.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- kerberos_disable_no_keytab
+- package_krb5-server_removed
+platform: machine
+platforms: !!set
+    machine: null
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+title: Kerberos
+definition_location: /home/oscap/content/linux_os/guide/services/kerberos/group.yml
+documentation_complete: true

@@ -1,0 +1,50 @@
+prodtype: ol7,ol8,rhel7
+description: 'Verify that pam is configured to use <tt>/etc/pam.d/system-auth</tt>
+
+    when changing passwords. Look for the following line in <tt>/etc/pam.d/passwd</tt>:
+
+    <pre>password substack system-auth</pre>'
+rationale: 'Including system-auth from the passwd module ensures that the user must
+    pass through
+
+    the PAM configuration for system authentication as found in /etc/pam.d/system-auth
+
+    when changing passwords.'
+severity: medium
+references:
+    disa: CCI-000192
+    nist: IA-5(1)(a),IA-5(1).1(v),IA-5(1)(a)
+    srg: SRG-OS-000069-GPOS-00037
+    stigid: OL07-00-010118
+    stigref: SV-221667r603260_rule
+identifiers: {}
+ocil_clause: /etc/pam.d/passwd does not implement /etc/pam.d/system-auth
+ocil: 'To verify that PAM implements <tt>system-auth</tt> when changing passwords
+
+    run the following command:
+
+    <pre># cat /etc/pam.d/passwd | grep -i substack | grep -i system-auth
+
+    password substack system-auth</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Configure PAMs passwd Module To Implement system-auth Substack When Changing
+    Passwords
+definition_location: /home/oscap/content/linux_os/guide/system/accounts/accounts-pam/password_quality/passwd_system-auth_substack/rule.yml
+template: null
+documentation_complete: true

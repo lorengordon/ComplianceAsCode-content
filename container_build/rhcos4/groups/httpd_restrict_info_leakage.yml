@@ -1,0 +1,20 @@
+prodtype: all
+description: 'The <tt>ServerTokens</tt> and <tt>ServerSignature</tt> directives determine
+    how
+
+    much information the web server discloses about the configuration of the
+
+    system.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules: {}
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Restrict Web Server Information Leakage
+definition_location: /home/oscap/content/linux_os/guide/services/http/securing_httpd/httpd_restrict_info_leakage/group.yml
+documentation_complete: true

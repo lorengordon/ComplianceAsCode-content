@@ -1,0 +1,59 @@
+prodtype: all
+description: 'If a file server (FTP, TFTP...) is hosted locally, create a separate
+    partition
+
+    for <tt>/srv</tt> at installation time (or migrate it later using LVM). If
+
+    <tt>/srv</tt> will be mounted from another system such as an NFS server, then
+
+    creating a separate partition is not necessary at installation time, and the
+
+    mountpoint can instead be configured later.'
+rationale: 'Srv deserves files for local network file server such as FTP. Ensuring
+
+    that <tt>/srv</tt> is mounted on its own partition enables the setting of
+
+    more restrictive mount options, and also helps ensure that
+
+    users cannot trivially fill partitions used for log or audit data storage.'
+severity: unknown
+references:
+    anssi: BP28(R12)
+identifiers:
+    cce: CCE-83376-4
+ocil_clause: '"/srv is not a mountpoint" is returned'
+ocil: 'Verify that a separate file system/partition has been created for <code>/srv</code>
+    with the following command:
+
+
+    <pre>$ mountpoint /srv</pre>
+
+    '
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Ensure /srv Located On Separate Partition
+definition_location: /home/oscap/content/linux_os/guide/system/software/disk_partitioning/partition_for_srv/rule.yml
+template:
+    name: mount
+    vars:
+        mountpoint: /srv
+        min_size: 1073741824
+    backends: {}
+documentation_complete: true

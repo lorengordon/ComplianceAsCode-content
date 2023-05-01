@@ -1,0 +1,30 @@
+prodtype: all
+description: "By default, Samba utilizes the CUPS printing service to enable\nprinter\
+    \ sharing with Microsoft Windows workstations. If there are no printers\non the\
+    \ local system, or if printer sharing with Microsoft Windows is not\nrequired,\
+    \ disable the printer sharing capability by commenting out the\nfollowing lines,\
+    \ found in <tt>/etc/samba/smb.conf</tt>:\n<pre>[global]\n  load printers = yes\n\
+    \  cups options = raw\n[printers]\n  comment = All Printers\n  path = /usr/spool/samba\n\
+    \  browseable = no\n  guest ok = no\n  writable = no\n  printable = yes</pre>\n\
+    There may be other options present, but these are the only options enabled and\n\
+    uncommented by default. Removing the <tt>[printers]</tt> share should be enough\n\
+    for most users.  If the Samba printer sharing capability is needed, consider\n\
+    disabling the Samba network browsing capability or restricting access to a\nparticular\
+    \ set of users or network addresses. Set the <tt>valid users</tt>\nparameter to\
+    \ a small subset of users or restrict it to a particular group of\nusers with\
+    \ the shorthand <tt>@</tt>. Separate each user or group of users with\na space.\
+    \ For example, under the <tt>[printers]</tt> share:\n<pre>[printers]\n  valid\
+    \ users = user @printerusers</pre>"
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules: {}
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Restrict Printer Sharing
+definition_location: /home/oscap/content/linux_os/guide/services/smb/configuring_samba/smb_disable_printing/group.yml
+documentation_complete: true

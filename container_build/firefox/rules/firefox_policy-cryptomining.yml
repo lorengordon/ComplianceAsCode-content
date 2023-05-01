@@ -1,0 +1,55 @@
+prodtype: firefox
+description: 'Cryptomining protection may be enabled by setting
+
+    <tt>privacy.trackingprotection.cryptomining.enabled</tt> to <tt>true</tt>.'
+rationale: "The Content Blocking/Tracking Protection feature stops Firefox from loading\
+    \ content from malicious sites. The content might be a script or an image, for\
+    \ example. If a site is on one of the tracker lists you set Firefox to use, then\
+    \ the fingerprinting script (or other tracking script/image) will not be loaded\
+    \ from that site.\nCryptomining scripts use your computer\u2019s central processing\
+    \ unit (CPU) to invisibly mine cryptocurrency."
+severity: medium
+references:
+    disa: CCI-000381
+    nist: CM-7
+    stigid: FFOX-00-000024
+identifiers: {}
+ocil_clause: null
+ocil: 'To verify that cryptomining protection is enabled,
+
+    type the following into the browser address bar:
+
+    <pre>about:policies</pre>
+
+    The output should have the following under EnableTrackingProtection:
+
+    <pre>"Cryptomining": true</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Enabled Firefox Cryptomining protection
+definition_location: /home/oscap/content/products/firefox/guide/firefox/firefox_policy-cryptomining/rule.yml
+template:
+    name: firefox_policy-setting
+    vars:
+        name: Enable tracking protection for cryptomining
+        policies:
+        -   path: EnableTrackingProtection
+            parameter: Cryptomining
+            value: 'true'
+    backends: {}
+documentation_complete: true

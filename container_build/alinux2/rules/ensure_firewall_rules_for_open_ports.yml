@@ -1,0 +1,73 @@
+prodtype: alinux2,sle15
+description: 'Any ports that have been opened on non-loopback addresses need firewall
+    rules to govern
+
+    traffic.'
+rationale: 'Without a firewall rule configured for open ports default firewall policy
+    will drop all
+
+    packets to these ports.'
+severity: medium
+references:
+    pcidss: Req-1.4
+    pcidss4: 1.5.1
+    cis: 3.5.1.4
+identifiers: {}
+ocil_clause: Verify all open ports listening on non-localhost addresses have at least
+    one firewall rule.
+ocil: "Inspect the list of open listening ports with the following command:\n\n<pre>$\
+    \ sudo ss -tuln</pre>\n\n<pre>$ sudo ss -tuln\nNetid        State         Recv-Q\
+    \        Send-Q               Local Address:Port                Peer Address:Port\
+    \        Process\nudp          UNCONN        3584          0                 \
+    \    0.0.0.0%eth0:68                       0.0.0.0:*\ntcp          LISTEN    \
+    \    0             100                      127.0.0.1:25                     \
+    \  0.0.0.0:*\ntcp          LISTEN        0             128                   \
+    \     0.0.0.0:22                       0.0.0.0:*\ntcp          LISTEN        0\
+    \             100                          [::1]:25                          [::]:*\n\
+    tcp          LISTEN        0             128                           [::]:22\
+    \                          [::]:*\n</pre>\nVerify for the above output that rules\
+    \ exist for tcp port 22 and udp port 68\n<pre>\n$ sudo firewall-cmd --get-active-zones\n\
+    public\n  interfaces: eth0 eth1\n$ sudo firewall-cmd --info-zone public |grep\
+    \ services\n  services: ssh\n$ sudo firewall-cmd --info-service ssh|grep ports\n\
+    \  ssh\n    ports: 22/tcp\n</pre>\nWhich shows that rule for port 68, opened most\
+    \ probably by a dhcp client, is missing."
+oval_external_content: null
+fixtext: 'For each port identified in the audit which does not have a firewall rule
+    establish a proper
+
+    rule for accepting inbound connections:
+
+
+    $ sudo firewall-cmd --permanent --add-service=service_name
+
+    or
+
+    $ sudo firewall-cmd --permanent  --family=inet|inet6 --add-port=port_number/(tcp|udp)'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings:
+-   general: 'To prevent denying any access to the system, automatic remediation
+
+        of this control is not available. Remediation must be automated as
+
+        a component of machine provisioning, or followed manually as outlined
+
+        above.'
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Ensure firewall rules exist for all open ports
+definition_location: /home/oscap/content/linux_os/guide/system/network/network-firewalld/ruleset_modifications/ensure_firewall_rules_for_open_ports/rule.yml
+template: null
+documentation_complete: true

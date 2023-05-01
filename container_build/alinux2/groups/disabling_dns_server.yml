@@ -1,0 +1,25 @@
+prodtype: all
+description: 'DNS software should be disabled on any systems which does not
+
+    need to be a nameserver. Note that the BIND DNS server software is
+
+    not installed on Alibaba Cloud Linux 2 by default. The remainder of this section
+
+    discusses secure configuration of systems which must be
+
+    nameservers.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- package_bind_removed
+- service_named_disabled
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Disable DNS Server
+definition_location: /home/oscap/content/linux_os/guide/services/dns/disabling_dns_server/group.yml
+documentation_complete: true

@@ -1,0 +1,41 @@
+# platform = multi_platform_all
+# reboot = true
+# strategy = disable
+# complexity = low
+# disruption = medium
+
+- name: List /etc/sysctl.d/*.conf files
+      
+  find:
+    paths:
+      - "/etc/sysctl.d/"
+      - "/run/sysctl.d/"
+      - "/usr/local/lib/sysctl.d/"
+
+
+      - "/usr/lib/sysctl.d/"
+
+    contains: '^[\s]*net.ipv4.conf.default.shared_media.*$'
+    patterns: "*.conf"
+    file_type: any
+  register: find_sysctl_d
+
+- name: Comment out any occurrences of net.ipv4.conf.default.shared_media from config files
+  replace:
+    path: "{{ item.path }}"
+    regexp: '^[\s]*net.ipv4.conf.default.shared_media'
+    replace: '#net.ipv4.conf.default.shared_media'
+  loop: "{{ find_sysctl_d.files }}"
+
+
+- (xccdf-var sysctl_net_ipv4_conf_default_shared_media_value)
+
+- name: Ensure sysctl net.ipv4.conf.default.shared_media is set
+  sysctl:
+    name: "net.ipv4.conf.default.shared_media"
+    value: "{{ sysctl_net_ipv4_conf_default_shared_media_value }}"
+
+    sysctl_file: "/etc/sysctl.conf"
+
+    state: present
+    reload: yes

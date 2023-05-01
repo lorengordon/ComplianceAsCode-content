@@ -1,0 +1,47 @@
+prodtype: fedora,ol7,ol8,ol9,rhel7,rhel8,rhel9,rhv4,sle12,sle15
+description: "The <tt>noexec</tt> mount option can be used to prevent binaries from\
+    \ being\nexecuted out of <tt>/boot</tt>. \nAdd the <code>noexec</code> option\
+    \ to the fourth column of\n<tt>/etc/fstab</tt> for the line which controls mounting\
+    \ of\n<code>/boot</code>."
+rationale: 'The <tt>/boot</tt> partition contains the kernel and the bootloader. No
+
+    binaries should be executed from this partition after the booting process
+
+    finishes.'
+severity: medium
+references:
+    anssi: BP28(R12)
+identifiers:
+    cce: CCE-83892-0
+ocil_clause: the "/boot" file system does not have the "noexec" option set
+ocil: "Verify the <tt>noexec</tt> option is configured for the <tt>/boot</tt> mount\
+    \ point,\n    run the following command:\n    <pre>$ sudo mount | grep '\\s/boot\\\
+    s'</pre>\n    <pre>. . . /boot . . . noexec . . .</pre>\n"
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Add noexec Option to /boot
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/partitions/mount_option_boot_noexec/rule.yml
+template:
+    name: mount_option
+    vars:
+        mountpoint: /boot
+        mountoption: noexec
+    backends: {}
+documentation_complete: true

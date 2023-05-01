@@ -1,0 +1,132 @@
+prodtype: ol8,ol9,rhcos4,rhel8,rhel9
+description: 'Configure kernel to prevent modification of login UIDs once they are
+    set.
+
+    Changing login UIDs while this configuration is enforced requires special capabilities
+    which
+
+    are not available to unprivileged users.
+
+
+    The following rules configure audit as described above:
+
+    <pre>## Make the loginuid immutable. This prevents tampering with the auid.
+
+    --loginuid-immutable    </pre>
+
+
+    Load new Audit rules into kernel by running:
+
+    <pre>augenrules --load</pre>'
+rationale: 'If modification of login UIDs is not prevented, they can be changed by
+    unprivileged users and
+
+    make auditing complicated or impossible.'
+severity: medium
+references:
+    disa: CCI-000162,CCI-000163,CCI-000164
+    nist: AU-2(a)
+    ospp: FAU_GEN.1.2
+    srg: SRG-OS-000462-GPOS-00206,SRG-OS-000475-GPOS-00220,SRG-OS-000057-GPOS-00027,SRG-OS-000058-GPOS-00028,SRG-OS-000059-GPOS-00029
+identifiers:
+    cce: CCE-83673-4
+ocil_clause: the file does not exist or the content differs
+ocil: 'To verify that the <tt>Audit</tt> is correctly configured according to recommended
+    rules, check the content of the file with the following command:
+
+    <pre>$ sudo cat /etc/audit/rules.d/11-loginuid.rules</pre>
+
+    The output has to be exactly as follows:
+
+    <pre>## Make the loginuid immutable. This prevents tampering with the auid.
+
+    --loginuid-immutable    </pre>'
+oval_external_content: null
+fixtext: 'Configure Red Hat Enterprise Linux 9 kernel to prevent modification of login
+    UIDs once they are set.
+
+
+    Make sure the file "/etc/audit/rules.d/11-loginuid.rules" contains the following
+    content:
+
+
+    <pre>--loginuid-immutable</pre>
+
+
+    If the file doesn''t exist, it can be copied from <tt>/usr/share/audit/sample-rules</tt>
+
+    using the next command
+
+
+    <pre>
+
+    cp /usr/share/audit/sample-rules/11-loginuid.rules /etc/audit/rules.d/
+
+    </pre>
+
+
+    Then, run the following commands:
+
+
+    $ sudo chmod o-rwx "/etc/audit/rules.d/11-loginuid.rules"
+
+    $ sudo augenrules --load'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Red Hat Enterprise Linux 9 audit system must protect logon UIDs from
+    unauthorized change.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Red Hat Enterprise Linux 9 audit system must protect logon
+            UIDs from unauthorized change.
+        vuldiscussion: If modification of login UIDs is not prevented, they can be
+            changed by unprivileged users and make auditing complicated or impossible.
+        checktext: 'Verify the audit system prevents unauthorized changes to logon
+            UIDs with the following command:
+
+
+            $ sudo grep -i immutable /etc/audit/audit.rules
+
+
+            --loginuid-immutable
+
+
+            If the "--loginuid-immutable" option is not returned in the "/etc/audit/audit.rules",
+            or the line is commented out, this is a finding.'
+        fixtext: 'Configure Red Hat Enterprise Linux 9 auditing to prevent modification
+            of login UIDs once they are set by adding the following line to /etc/audit/rules.d/audit.rules:
+
+
+
+            --loginuid-immutable
+
+
+
+            The audit daemon must be restarted for the changes to take effect.'
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Configure immutable Audit login UIDs
+definition_location: /home/oscap/content/linux_os/guide/system/auditing/policy_rules/audit_immutable_login_uids/rule.yml
+template:
+    name: audit_file_contents
+    vars:
+        filepath: /etc/audit/rules.d/11-loginuid.rules
+        contents: '## Make the loginuid immutable. This prevents tampering with the
+            auid.
+
+            --loginuid-immutable
+
+            '
+    backends: {}
+documentation_complete: true

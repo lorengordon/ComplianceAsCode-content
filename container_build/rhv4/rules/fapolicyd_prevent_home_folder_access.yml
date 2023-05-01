@@ -1,0 +1,85 @@
+prodtype: all
+description: fapolicyd needs be configured so that users cannot give access to their
+    home folders to other users.
+rationale: 'Users'' home directories/folders may contain information of a sensitive
+    nature.
+
+    Non-privileged users should coordinate any sharing of information with a System
+    Administrator (SA) through shared resources.
+
+    fapolicyd can confine users to their home directory, not allowing them to make
+    any changes outside of their own home directories.
+
+    Confining users to their home directory will minimize the risk of sharing information.'
+severity: medium
+references:
+    disa: CCI-000366
+    nist: CM-6 b
+    srg: SRG-OS-000480-GPOS-00230
+identifiers: {}
+ocil_clause: null
+ocil: null
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings:
+-   general: 'This rule is deprecated and there is no replacement at this time.
+
+        Previous versions of this rule provided fixtext that would cause fapolicyd
+        not to start.'
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Red Hat Virtualization 4 must limit the ability of non-privileged
+            users to grant other users direct access to the contents of their home
+            directories/folders.
+        vuldiscussion: 'Users'' home directories/folders may contain information of
+            a sensitive nature.
+
+            Non-privileged users should coordinate any sharing of information with
+            a System Administrator (SA) through shared resources.
+
+            fapolicyd can confine users to their home directory, not allowing them
+            to make any changes outside of their own home directories.
+
+            Confining users to their home directory will minimize the risk of sharing
+            information.'
+        checktext: 'Verify that fapolicyd on Red Hat Virtualization 4 prevents ability
+            of non-privileged users to grant other users direct access to the contents
+            of their home directories/folders.
+
+
+            Run the following command:
+
+
+            grep -r "deny_audit perm=chmod path=/home" /etc/fapolicyd/rules.d'
+        fixtext: 'Configure fapolicyd to ability of non-privileged users to grant
+            other users direct access to the contents of their home directories/folders.
+
+
+            Add or edit the following lines in /etc/fapolicyd/rules.d/90-deny-home.
+
+
+            deny_audit perm=chmod path=/home all : all
+
+
+            Note: That fapolicyd must have correctly configured rules. All configurations
+            will be based on the actual system setup and organizational polices and
+            practices.'
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: fapolicyd Must be Configured to Limit Access to Users Home Folders
+definition_location: /home/oscap/content/linux_os/guide/services/fapolicyd/fapolicyd_prevent_home_folder_access/rule.yml
+template: null
+documentation_complete: true

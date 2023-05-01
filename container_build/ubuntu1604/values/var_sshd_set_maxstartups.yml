@@ -1,0 +1,12 @@
+description: Configure parameters for maximum concurrent unauthenticated connections
+    to the SSH daemon.
+type: string
+operator: equals
+interactive: true
+options:
+    default: 10:30:100
+    10:30:60: 10:30:60
+warnings: []
+title: SSH MaxStartups setting
+definition_location: /home/oscap/content/linux_os/guide/services/ssh/ssh_server/var_sshd_set_maxstartups.var
+documentation_complete: true

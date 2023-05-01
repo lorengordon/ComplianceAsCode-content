@@ -1,0 +1,12 @@
+description: Specify the authselect profile to select
+type: string
+operator: equals
+interactive: false
+options:
+    default: minimal
+    minimal: minimal
+    sssd: sssd
+warnings: []
+title: Authselect  profile
+definition_location: /home/oscap/content/linux_os/guide/system/accounts/var_authselect_profile.var
+documentation_complete: true

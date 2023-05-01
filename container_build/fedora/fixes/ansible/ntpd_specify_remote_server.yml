@@ -1,0 +1,70 @@
+# platform = multi_platform_fedora,Red Hat Enterprise Linux 7
+# reboot = false
+# strategy = configure
+# complexity = low
+# disruption = low
+- name: Gather the package facts
+  package_facts:
+    manager: auto
+  tags:
+  - NIST-800-53-AU-8(1)(a)
+  - NIST-800-53-CM-6(a)
+  - PCI-DSS-Req-10.4.1
+  - PCI-DSS-Req-10.4.3
+  - PCI-DSSv4-10.6.1
+  - PCI-DSSv4-10.6.2
+  - configure_strategy
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+  - ntpd_specify_remote_server
+- (xccdf-var var_multiple_time_servers)
+
+- name: Detect if ntp is already configured with pools or servers
+  find:
+    path: /etc
+    patterns: ntp.conf
+    contains: ^[\s]*(?:server|pool)[\s]+[\w]+
+  register: ntp_servers
+  when:
+  - ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  - '"ntp" in ansible_facts.packages'
+  tags:
+  - NIST-800-53-AU-8(1)(a)
+  - NIST-800-53-CM-6(a)
+  - PCI-DSS-Req-10.4.1
+  - PCI-DSS-Req-10.4.3
+  - PCI-DSSv4-10.6.1
+  - PCI-DSSv4-10.6.2
+  - configure_strategy
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+  - ntpd_specify_remote_server
+
+- name: Configure remote time servers
+  lineinfile:
+    path: /etc/ntp.conf
+    line: server {{ item }}
+    state: present
+    create: true
+  loop: '{{ var_multiple_time_servers.split(",") }}'
+  when:
+  - ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  - '"ntp" in ansible_facts.packages'
+  - ntp_servers.matched == 0
+  tags:
+  - NIST-800-53-AU-8(1)(a)
+  - NIST-800-53-CM-6(a)
+  - PCI-DSS-Req-10.4.1
+  - PCI-DSS-Req-10.4.3
+  - PCI-DSSv4-10.6.1
+  - PCI-DSSv4-10.6.2
+  - configure_strategy
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+  - ntpd_specify_remote_server

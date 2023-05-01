@@ -1,0 +1,160 @@
+# platform = multi_platform_all
+# reboot = false
+# complexity = low
+# strategy = configure
+# disruption = low
+- (xccdf-var firewalld_sshd_zone)
+
+- name: Enable SSH Server firewalld Firewall Exception - Ensure firewalld and NetworkManager
+    packages are installed
+  ansible.builtin.package:
+    name: '{{ item }}'
+    state: present
+  with_items:
+  - firewalld
+  - NetworkManager
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-80820-4
+  - NIST-800-171-3.1.12
+  - NIST-800-53-AC-17(a)
+  - NIST-800-53-CM-6(b)
+  - NIST-800-53-CM-7(a)
+  - NIST-800-53-CM-7(b)
+  - configure_strategy
+  - firewalld_sshd_port_enabled
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Enable SSH Server firewalld Firewall Exception - Collect facts about system
+    services
+  ansible.builtin.service_facts: null
+  register: result_services_states
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-80820-4
+  - NIST-800-171-3.1.12
+  - NIST-800-53-AC-17(a)
+  - NIST-800-53-CM-6(b)
+  - NIST-800-53-CM-7(a)
+  - NIST-800-53-CM-7(b)
+  - configure_strategy
+  - firewalld_sshd_port_enabled
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Enable SSH Server firewalld Firewall Exception - Remediation is applicable
+    if firewalld and NetworkManager services are running
+  block:
+
+  - name: Enable SSH Server firewalld Firewall Exception - Collect NetworkManager
+      connections names
+    ansible.builtin.shell:
+      cmd: nmcli -f UUID,TYPE con | grep ethernet | awk '{ print $1 }'
+    register: result_nmcli_cmd_connections_names
+    changed_when: false
+
+  - name: Enable SSH Server firewalld Firewall Exception - Collect NetworkManager
+      connections zones
+    ansible.builtin.shell:
+      cmd: nmcli -f connection.zone connection show {{ item | trim }} | awk '{ print
+        $2}'
+    register: result_nmcli_cmd_connections_zones
+    changed_when: false
+    with_items:
+    - '{{ result_nmcli_cmd_connections_names.stdout_lines }}'
+
+  - name: Enable SSH Server firewalld Firewall Exception - Ensure NetworkManager connections
+      are assigned to a firewalld zone
+    ansible.builtin.command:
+      cmd: nmcli connection modify {{ item.0 }} connection.zone {{ firewalld_sshd_zone
+        }}
+    register: result_nmcli_cmd_connections_assignment
+    with_together:
+    - '{{ result_nmcli_cmd_connections_names.stdout_lines }}'
+    - '{{ result_nmcli_cmd_connections_zones.results }}'
+    when:
+    - item.1.stdout == '--'
+
+  - name: Enable SSH Server firewalld Firewall Exception - Ensure NetworkManager connections
+      changes are applied
+    ansible.builtin.service:
+      name: NetworkManager
+      state: restarted
+    when:
+    - result_nmcli_cmd_connections_assignment is changed
+
+  - name: Enable SSH Server firewalld Firewall Exception - Collect firewalld active
+      zones
+    ansible.builtin.shell:
+      cmd: firewall-cmd --get-active-zones | grep -v interfaces
+    register: result_firewall_cmd_zones_names
+    changed_when: false
+
+  - name: Enable SSH Server firewalld Firewall Exception - Ensure firewalld zones
+      allow SSH
+    ansible.builtin.command:
+      cmd: firewall-cmd --permanent --zone={{ item }} --add-service=ssh
+    register: result_nmcli_cmd_connections_assignment
+    changed_when:
+    - '''ALREADY_ENABLED'' not in result_nmcli_cmd_connections_assignment.stderr'
+    with_items:
+    - '{{ result_firewall_cmd_zones_names.stdout_lines }}'
+
+  - name: Enable SSH Server firewalld Firewall Exception - Ensure firewalld changes
+      are applied
+    ansible.builtin.service:
+      name: firewalld
+      state: reloaded
+    when:
+    - result_nmcli_cmd_connections_assignment is changed
+  when:
+  - ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  - ansible_facts.services['firewalld.service'].state == 'running'
+  - ansible_facts.services['NetworkManager.service'].state == 'running'
+  tags:
+  - CCE-80820-4
+  - NIST-800-171-3.1.12
+  - NIST-800-53-AC-17(a)
+  - NIST-800-53-CM-6(b)
+  - NIST-800-53-CM-7(a)
+  - NIST-800-53-CM-7(b)
+  - configure_strategy
+  - firewalld_sshd_port_enabled
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Enable SSH Server firewalld Firewall Exception - Informative message based
+    on services states
+  ansible.builtin.assert:
+    that:
+    - ansible_facts.services['firewalld.service'].state == 'running'
+    - ansible_facts.services['NetworkManager.service'].state == 'running'
+    fail_msg:
+    - firewalld and NetworkManager services are not active. Remediation aborted!
+    - This remediation could not be applied because it depends on firewalld and NetworkManager
+      services running.
+    - The service is not started by this remediation in order to prevent connection
+      issues.
+    success_msg:
+    - Enable SSH Server firewalld Firewall Exception remediation successfully executed
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-80820-4
+  - NIST-800-171-3.1.12
+  - NIST-800-53-AC-17(a)
+  - NIST-800-53-CM-6(b)
+  - NIST-800-53-CM-7(a)
+  - NIST-800-53-CM-7(b)
+  - configure_strategy
+  - firewalld_sshd_port_enabled
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed

@@ -1,0 +1,40 @@
+prodtype: all
+description: 'Network interfaces expand the attack surface of the
+
+    system.  Unused interfaces are not monitored or controlled, and
+
+    should be disabled.
+
+    <br /><br />
+
+    If the system does not require network communications but still
+
+    needs to use the loopback interface, remove all files of the form
+
+    <tt>ifcfg-<i>interface</i></tt> except for <tt>ifcfg-lo</tt> from
+
+    <tt>/etc/sysconfig/network-scripts</tt>:
+
+    <pre>$ sudo rm /etc/sysconfig/network-scripts/ifcfg-<i>interface</i></pre>
+
+    If the system is a standalone machine with no need for network access or even
+
+    communication over the loopback device, then disable this service.
+
+
+    The <code>network</code> service can be disabled with the following command:
+
+    <pre>$ sudo systemctl mask --now network.service</pre>'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules: {}
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Disable Unused Interfaces
+definition_location: /home/oscap/content/linux_os/guide/system/network/network_disable_unused_interfaces/group.yml
+documentation_complete: true

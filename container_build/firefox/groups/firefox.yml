@@ -1,0 +1,56 @@
+prodtype: all
+description: "Firefox is an open-source web browser and developed by Mozilla.\nWeb\
+    \ browsers such as Firefox are used for a number of reasons. This section\nprovides\
+    \ settings for configuring Firefox policies to meet compliance\nsettings for Firefox\
+    \ running on Red Hat Enterprise Linux systems.\n\n<ul>Refer to <li>\n    <a xmlns='http://www.w3.org/1999/xhtml'\
+    \ href='http://kb.mozillazine.org/Firefox_:_FAQs_:_About:config_Entries'>http://kb.mozillazine.org/Firefox_:_FAQs_:_About:config_Entries</a></li>\n\
+    for a list of currently supported Firefox settings.</ul>"
+warnings: []
+requires: []
+conflicts: []
+values:
+- var_default_home_page
+- var_required_file_types
+groups:
+- firefox_preferences-dod_root_certificate
+rules:
+- firefox_policy-addons_permission
+- firefox_policy-autoplay_video
+- firefox_policy-cryptomining
+- firefox_policy-development_tools
+- firefox_policy-disable_deprecated_ciphers
+- firefox_policy-disable_form_history
+- firefox_policy-disable_pocket
+- firefox_policy-disable_studies
+- firefox_policy-dns_over_https
+- firefox_policy-encrypted_media_extensions
+- firefox_policy-enhanced_tracking
+- firefox_policy-extension_recommendation
+- firefox_policy-extension_update
+- firefox_policy-feedback_reporting
+- firefox_policy-fingerprinting_protection
+- firefox_policy-forget_button
+- firefox_policy-javascript_window_changes
+- firefox_policy-javascript_window_resizing
+- firefox_policy-network_prediction
+- firefox_policy-no_sanitize_on_shutdown
+- firefox_policy-nonessential_capabilities
+- firefox_policy-password_manager
+- firefox_policy-pop-up_windows
+- firefox_policy-private_browsing
+- firefox_policy-search_suggestion
+- firefox_policy-search_update
+- firefox_policy-ssl_minimum_version
+- firefox_policy-sync
+- firefox_policy-telemetry
+- firefox_policy-user_messaging
+- firefox_policy-verification
+- firefox_preferences-auto-download_actions
+- installed_firefox_version_supported
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Firefox
+definition_location: /home/oscap/content/products/firefox/guide/firefox/group.yml
+documentation_complete: true

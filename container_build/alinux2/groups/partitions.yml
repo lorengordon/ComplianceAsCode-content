@@ -1,0 +1,33 @@
+prodtype: all
+description: 'System partitions can be mounted with certain options
+
+    that limit what files on those partitions can do. These options
+
+    are set in the <tt>/etc/fstab</tt> configuration file, and can be
+
+    used to make certain types of malicious behavior more difficult.'
+warnings: []
+requires: []
+conflicts: []
+values:
+- var_mount_option_proc_hidepid
+- var_removable_partition
+groups: {}
+rules:
+- mount_option_dev_shm_nodev
+- mount_option_dev_shm_noexec
+- mount_option_dev_shm_nosuid
+- mount_option_home_nodev
+- mount_option_tmp_nodev
+- mount_option_tmp_noexec
+- mount_option_tmp_nosuid
+- mount_option_var_tmp_nodev
+- mount_option_var_tmp_noexec
+- mount_option_var_tmp_nosuid
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Restrict Partition Mount Options
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/partitions/group.yml
+documentation_complete: true

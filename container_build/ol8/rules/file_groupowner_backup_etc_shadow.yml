@@ -1,0 +1,81 @@
+prodtype: all
+description: ' To properly set the group owner of <code>/etc/shadow-</code>, run the
+    command: <pre>$ sudo chgrp root /etc/shadow-</pre>'
+rationale: 'The <tt>/etc/shadow-</tt> file is a backup file of <tt>/etc/shadow</tt>,
+    and as such,
+
+    it contains the list of local system accounts and password hashes.
+
+    Protection of this file is critical for system security.'
+severity: medium
+references:
+    pcidss: Req-8.7
+    pcidss4: 7.2.6
+    srg: SRG-OS-000480-GPOS-00227
+identifiers: {}
+ocil_clause: /etc/shadow- does not have a group owner of root
+ocil: 'To check the group ownership of <code>/etc/shadow-</code>,
+
+    run the command:
+
+    <pre>$ ls -lL /etc/shadow-</pre>
+
+    If properly configured, the output should indicate the following group-owner:
+
+    <code>root</code>'
+oval_external_content: null
+fixtext: ' Change the group of the file /etc/shadow- to root by running the following
+    command:
+
+    $ sudo chgrp root /etc/shadow-'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ' The Oracle Linux 8 /etc/shadow- file must be group-owned by root.'
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: The Oracle Linux 8 /etc/shadow- file must be group-owned
+            by root.
+        vuldiscussion: 'The "/etc/shadow-" file is a backup file of "/etc/shadow",
+            and as such,
+
+            it contains the list of local system accounts and password hashes.
+
+            Protection of this file is critical for system security.'
+        checktext: 'Verify the group ownership of the "/etc/shadow-" file with the
+            following command:
+
+
+            $ sudo stat -c "%G %n" /etc/shadow-
+
+
+            root /etc/shadow-
+
+
+            If "/etc/shadow-" file does not have a group owner of "root", this is
+            a finding.'
+        fixtext: 'Change the group of the file /etc/shadow- to root by running the
+            following command:
+
+
+            $ sudo chgrp root /etc/shadow-'
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Verify User Who Owns Backup shadow File
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/files/permissions_important_account_files/file_groupowner_backup_etc_shadow/rule.yml
+template:
+    name: file_groupowner
+    vars:
+        filepath: /etc/shadow-
+        filegid: '0'
+        missing_file_pass: 'true'
+    backends: {}
+documentation_complete: true

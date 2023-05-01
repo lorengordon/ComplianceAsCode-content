@@ -1,0 +1,55 @@
+prodtype: firefox
+description: "Firefox provides development tools which identify detailed information\
+    \ \nabout the browser and its configuration. These details are often also \nrecorded\
+    \ into a log file, giving an attacker the ability to capture \ndetailed information\
+    \ about the system.\nThis can be disabled by setting <tt>DisableDeveloperTools</tt>\
+    \ to\n<tt>true</tt> in <tt>policies.json</tt>"
+rationale: 'In order to protect privacy and sensitive data, Mozilla provides
+
+    the ability to configure Firefox so that development tools are prevented from
+    being used.'
+severity: low
+references:
+    disa: CCI-001312
+    nist: SI-11 b
+    stigid: FFOX-00-000015
+identifiers: {}
+ocil_clause: it is not disabled
+ocil: 'To verify that Firefox Development Tools are disabled,
+
+    type the following into the browser address bar:
+
+    <pre>about:policies</pre>
+
+    The output should have the following:
+
+    <pre>"DisableDeveloperTools": true,</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Disable Firefox Development Tools
+definition_location: /home/oscap/content/products/firefox/guide/firefox/firefox_policy-development_tools/rule.yml
+template:
+    name: firefox_policy-setting
+    vars:
+        name: Disable developer tools
+        policies:
+        -   path: policies
+            parameter: DisableDeveloperTools
+            value: 'true'
+    backends: {}
+documentation_complete: true

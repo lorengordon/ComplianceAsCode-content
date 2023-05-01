@@ -1,0 +1,62 @@
+prodtype: fedora,ol7,ol8,rhcos4,rhel7,rhel8,rhel9,rhv4,sle12,sle15
+description: 'To disable IPv6 protocol support in the Linux kernel,
+
+    add the argument <tt>ipv6.disable=1</tt> to the default
+
+    GRUB2 command line for the Linux operating system.
+
+    Configure the default Grub2 kernel command line to contain ipv6.disable=1 as follows:
+
+    <pre># grub2-editenv - set "$(grub2-editenv - list | grep kernelopts) ipv6.disable=1"</pre>'
+rationale: 'Any unnecessary network stacks, including IPv6, should be disabled to
+    reduce
+
+    the vulnerability to exploitation.'
+severity: low
+references:
+    pcidss: Req-1.3.1,Req-1.3.2
+    pcidss4: 1.4.2
+    cis: 3.1.1
+identifiers:
+    cce: CCE-91548-8
+ocil_clause: IPv6 is not disabled
+ocil: 'Inspect the form of default GRUB 2 command line for the Linux operating system
+
+    in <tt>grubenv</tt> that can be found either in <tt>/boot/grub2</tt> in case of
+    legacy BIOS systems, or in <tt>/boot/efi/EFI/sles</tt> in case of UEFI systems.
+
+    If they include <tt>ipv6.disable=1</tt>, then the parameter
+
+    is configured at boot time.
+
+    <pre>$ sudo grep ''kernelopts.*ipv6.disable=1.*'' GRUBENV_FILE_LOCATION</pre>
+
+    Fill in <tt>GRUBENV_FILE_LOCATION</tt> based on information above.'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: grub2
+platforms: !!set
+    grub2: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    grub2: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Ensure IPv6 is disabled through kernel boot parameter
+definition_location: /home/oscap/content/linux_os/guide/system/network/network-ipv6/disabling_ipv6/grub2_ipv6_disable_argument/rule.yml
+template:
+    name: grub2_bootloader_argument
+    vars:
+        arg_name: ipv6.disable
+        arg_value: '1'
+    backends: {}
+documentation_complete: true

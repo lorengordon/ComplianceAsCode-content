@@ -1,0 +1,48 @@
+<def-group>
+  <definition class="compliance" id="rpm_verify_permissions" version="3">
+    <metadata>
+        <title>Verify and Correct File Permissions with RPM</title>
+        
+    <affected family="unix">
+    <platform>Red Hat Enterprise Linux CoreOS 4</platform>
+      <platform>Red Hat Enterprise Linux 8</platform>
+      <platform>Anolis OS 8</platform>
+      <platform>UnionTech OS Server 20</platform>
+      <platform>Red Hat Enterprise Linux 9</platform>
+      <platform>Red Hat Enterprise Linux 7</platform>
+      <platform>Alibaba Cloud Linux 2</platform>
+      <platform>Alibaba Cloud Linux 3</platform>
+      <platform>Oracle Linux 9</platform>
+      <platform>Oracle Linux 7</platform>
+      <platform>Oracle Linux 8</platform>
+      <platform>Red Hat Virtualization 4</platform>
+      <platform>SUSE Linux Enterprise 12</platform>
+      <platform>Fedora</platform>
+      <platform>SUSE Linux Enterprise 15</platform>
+    </affected>
+        <description>Verify the permissions of installed packages
+      by comparing the installed files with information about the
+      files taken from the package metadata stored in the RPM
+      database.</description>
+    </metadata>
+    <criteria>
+      <criterion test_ref="test_verify_all_rpms_mode" comment="mode of all files matches local rpm database" />
+    </criteria>
+  </definition>
+  <linux:rpmverifyfile_test check_existence="none_exist" id="test_verify_all_rpms_mode" version="1" check="all" comment="mode of all files matches local rpm database">
+    <linux:object object_ref="object_files_fail_mode"/>
+  </linux:rpmverifyfile_test>
+  <linux:rpmverifyfile_object id="object_files_fail_mode" version="1" comment="rpm verify of all files">
+    <linux:behaviors nomd5="true" noghostfiles="true"/>
+    <linux:name operation="pattern match">.*</linux:name>
+    <linux:epoch operation="pattern match">.*</linux:epoch>
+    <linux:version operation="pattern match">.*</linux:version>
+    <linux:release operation="pattern match">.*</linux:release>
+    <linux:arch operation="pattern match">.*</linux:arch>
+    <linux:filepath operation="pattern match">.*</linux:filepath>
+    <filter action="include">state_files_fail_mode</filter>
+  </linux:rpmverifyfile_object>
+  <linux:rpmverifyfile_state id="state_files_fail_mode" version="1">
+    <linux:mode_differs>fail</linux:mode_differs>
+  </linux:rpmverifyfile_state>
+</def-group>

@@ -1,0 +1,45 @@
+prodtype: ubuntu2004
+description: 'Although the useradd program will not let you create a duplicate User
+    ID (UID),
+
+    it is possible for an administrator to manually edit the /etc/passwd file
+
+    and change the UID field. Users must be assigned unique UIDs for
+
+    accountability and to ensure appropriate access protections.'
+rationale: 'Users must be assigned unique UIDs for accountability and to ensure
+
+    appropriate access protections.'
+severity: medium
+references:
+    disa: CCI-000764,CCI-000804
+    srg: SRG-OS-000104-GPOS-00051,SRG-OS-000121-GPOS-00062
+    stigid: UBTU-20-010010
+    cis: 6.2.13
+identifiers: {}
+ocil_clause: null
+ocil: null
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings:
+-   general: 'Due to the risk of removing user accounts or changing user''s UIDS,
+
+        automated remediation is not available for this configuration check.'
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Ensure no duplicate UIDs exist
+definition_location: /home/oscap/content/linux_os/guide/system/accounts/accounts-restrictions/password_storage/no_duplicate_uids/rule.yml
+template: null
+documentation_complete: true

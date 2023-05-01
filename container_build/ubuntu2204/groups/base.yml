@@ -1,0 +1,26 @@
+prodtype: all
+description: 'This section addresses the base services that are installed on a
+
+    Ubuntu 22.04 default installation which are not covered in other
+
+    sections. Some of these services listen on the network and
+
+    should be treated with particular discretion. Other services are local
+
+    system utilities that may or may not be extraneous. In general, system services
+
+    should be disabled if not required.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- service_kdump_disabled
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Base Services
+definition_location: /home/oscap/content/linux_os/guide/services/base/group.yml
+documentation_complete: true

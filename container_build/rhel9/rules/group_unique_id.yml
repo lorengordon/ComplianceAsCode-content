@@ -1,0 +1,55 @@
+prodtype: alinux2,alinux3,anolis8,fedora,ol9,rhel7,rhel8,rhel9,sle12,sle15,ubuntu2004,ubuntu2204
+description: Change the group name or delete groups, so each has a unique id.
+rationale: To assure accountability and prevent unauthenticated access, groups must
+    be identified uniquely to prevent potential misuse and compromise of the system.
+severity: medium
+references:
+    disa: CCI-000764
+    pcidss4: 8.2.1
+    srg: SRG-OS-000104-GPOS-00051
+    cis: 6.2.5
+identifiers:
+    cce: CCE-86043-7
+ocil_clause: the system has duplicate group ids
+ocil: "Run the following command to check for duplicate group names:\nCheck that the\
+    \ operating system contains no duplicate group names for interactive users by\
+    \ running the following command:\n<pre>\n    cut -d : -f 3 /etc/group | uniq -d\n\
+    </pre>\nIf output is produced, this is a finding.\nConfigure the operating system\
+    \ to contain no duplicate names for groups.\nEdit the file \"/etc/group\" and\
+    \ provide each group that has a duplicate group id with a unique group id."
+oval_external_content: null
+fixtext: Edit the file "/etc/group" and provide each group that has a duplicate Group
+    ID (GID) with a unique GID.
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Red Hat Enterprise Linux 9 groups must have unique Group ID (GID).
+warnings:
+-   general: Automatic remediation of this control is not available due to the unique
+        requirements of each system.
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Red Hat Enterprise Linux 9 groups must have unique Group
+            ID (GID).
+        vuldiscussion: To assure accountability and prevent unauthenticated access,
+            groups must be identified uniquely to prevent potential misuse and compromise
+            of the system.
+        checktext: "Verify that Red Hat Enterprise Linux 9 contains no duplicate Group\
+            \ IDs (GID) for interactive users with the following command:\n\n $  cut\
+            \ -d : -f 3 /etc/group | uniq -d\n\nIf the system has duplicate group\
+            \ ids, this is a finding."
+        fixtext: Edit the file "/etc/group" and provide each group that has a duplicate
+            Group ID (GID) with a unique GID.
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Ensure All Groups on the System Have Unique Group ID
+definition_location: /home/oscap/content/linux_os/guide/system/accounts/accounts-restrictions/group_unique_id/rule.yml
+template: null
+documentation_complete: true

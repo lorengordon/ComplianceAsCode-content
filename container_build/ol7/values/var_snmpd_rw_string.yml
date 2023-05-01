@@ -1,0 +1,10 @@
+description: Specify the SNMP community string used for read-write access.
+type: string
+operator: equals
+interactive: true
+options:
+    default: changemerw
+warnings: []
+title: SNMP read-write community string
+definition_location: /home/oscap/content/linux_os/guide/services/snmp/snmp_configure_server/var_snmpd_rw_string.var
+documentation_complete: true

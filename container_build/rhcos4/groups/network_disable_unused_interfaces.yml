@@ -1,0 +1,32 @@
+prodtype: all
+description: "Network interfaces expand the attack surface of the\nsystem.  Unused\
+    \ interfaces are not monitored or controlled, and\nshould be disabled.\n<br /><br\
+    \ />\nIf the system does not require network communications but still\nneeds to\
+    \ use the loopback interface, remove all files of the form\n<tt>ifcfg-<i>interface</i></tt>\
+    \ except for <tt>ifcfg-lo</tt> from\n<tt>/etc/sysconfig/network-scripts</tt>:\n\
+    <pre>$ sudo rm /etc/sysconfig/network-scripts/ifcfg-<i>interface</i></pre>\nIf\
+    \ the system is a standalone machine with no need for network access or even\n\
+    communication over the loopback device, then disable this service.\n\nThe <code>network</code>\
+    \ service can be disabled with the following manifest:\n<pre>\n---\napiVersion:\
+    \ machineconfiguration.openshift.io/v1\nkind: MachineConfig\nmetadata:\n  labels:\n\
+    \    machineconfiguration.openshift.io/role: master\n  name: 75-master-network-disable\n\
+    spec:\n  config:\n    ignition:\n      version: 3.1.0\n    systemd:\n      units:\n\
+    \      - enabled: false\n        name: network.service\n</pre>\n<p>\nThis will\
+    \ disable the <tt>network</tt> service in all the\nnodes labeled with the \"master\"\
+    \ role.\n</p>\n<p>\nNote that this needs to be done for each <tt>MachineConfigPool</tt>\n\
+    </p>\n<p>\nFor more information on how to configure nodes with the Machine Config\n\
+    Operator see\n<a xmlns='http://www.w3.org/1999/xhtml' href='https://docs.openshift.com/container-platform/4.6/post_installation_configuration/machine-configuration-tasks.html'>the\
+    \ relevant documentation</a>.\n</p>"
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules: {}
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Disable Unused Interfaces
+definition_location: /home/oscap/content/linux_os/guide/system/network/network_disable_unused_interfaces/group.yml
+documentation_complete: true

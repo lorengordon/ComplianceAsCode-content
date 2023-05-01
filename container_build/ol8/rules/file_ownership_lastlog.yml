@@ -1,0 +1,58 @@
+prodtype: ol8
+description: '
+
+    To properly set the owner of <code>/usr/bin/lastlog</code>, run the command:
+
+    <pre>$ sudo chown root /usr/bin/lastlog </pre>'
+rationale: 'Unauthorized disclosure of the contents of the /var/log/lastlog file can
+    reveal system data to
+
+    attackers, thus compromising its confidentiality.'
+severity: medium
+references:
+    disa: CCI-001314
+    nist: SI-11(b),SI-11(c),SI-11.1(iv)
+    srg: SRG-OS-000206-GPOS-00084
+    stigid: OL08-00-020263
+    stigref: SV-248706r779684_rule
+identifiers: {}
+ocil_clause: /usr/bin/lastlog does not have an owner of root
+ocil: 'To check the ownership of <code>/usr/bin/lastlog</code>,
+
+    run the command:
+
+    <pre>$ ls -lL /usr/bin/lastlog</pre>
+
+    If properly configured, the output should indicate the following owner:
+
+    <code>root</code>'
+oval_external_content: null
+fixtext: ' Change the owner of the directory /var/log/lastlog to root by running the
+    following command:
+
+    $ sudo chown root /var/log/lastlog'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ' The Oracle Linux 8 /usr/bin/lastlog directory must be owned by
+    root.'
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Verify Owner on lastlog Command
+definition_location: /home/oscap/content/linux_os/guide/system/accounts/accounts-session/file_ownership_lastlog/rule.yml
+template:
+    name: file_owner
+    vars:
+        filepath: /usr/bin/lastlog
+        fileuid: '0'
+    backends: {}
+documentation_complete: true

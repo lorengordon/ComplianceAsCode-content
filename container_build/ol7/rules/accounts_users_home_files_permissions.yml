@@ -1,0 +1,50 @@
+prodtype: ol7,ol8,rhel7,rhel8,rhv4,sle12,sle15
+description: 'Set the mode on files and directories in the local interactive user
+    home
+
+    directory with the following command:
+
+    <pre>$ sudo chmod 0750 /home/<i>USER</i>/<i>FILE_DIR</i></pre>
+
+    Files that begin with a "." are excluded from this requirement.'
+rationale: 'If a local interactive user files have excessive permissions, unintended
+    users
+
+    may be able to access or modify them.'
+severity: medium
+references:
+    disa: CCI-000366
+    srg: SRG-OS-000480-GPOS-00227
+    stigid: OL07-00-020680
+    stigref: SV-221734r603260_rule
+identifiers: {}
+ocil_clause: home directory files or folders have incorrect permissions
+ocil: 'To verify all files and directories contained in interactive user home
+
+    directory, excluding local initialization files, have a mode of <tt>0750</tt>,
+
+    run the following command:
+
+    <pre>$ sudo ls -lLR /home/<i>USER</i></pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: All User Files and Directories In The Home Directory Must Have Mode 0750 Or
+    Less Permissive
+definition_location: /home/oscap/content/linux_os/guide/system/accounts/accounts-session/accounts_users_home_files_permissions/rule.yml
+template: null
+documentation_complete: true

@@ -1,0 +1,82 @@
+prodtype: ol7,ol8,ol9,rhel7,rhel8,rhel9,rhv4,sle12,sle15
+description: 'The <tt>~/.shosts</tt> (in each user''s home directory) files
+
+    list remote hosts and users that are trusted by the
+
+    local system. To remove these files, run the following command
+
+    to delete them from any location:
+
+    <pre>$ sudo find / -name ''.shosts'' -type f -delete</pre>'
+rationale: 'The .shosts files are used to configure host-based authentication for
+
+    individual users or the system via SSH. Host-based authentication is not
+
+    sufficient for preventing unauthorized access to the system, as it does not
+
+    require interactive identification and authentication of a connection request,
+
+    or for the use of two-factor authentication.'
+severity: high
+references:
+    disa: CCI-000366
+    srg: SRG-OS-000480-GPOS-00227
+    stigid: OL08-00-010470
+    stigref: SV-248598r779360_rule
+identifiers: {}
+ocil_clause: .shosts files exist
+ocil: 'To verify that there are no <tt>.shosts</tt> files
+
+    on the system, run the following command:
+
+    <pre>$ sudo find / -name ''.shosts''</pre>'
+oval_external_content: null
+fixtext: 'Remove any found ".shosts" files from the system.
+
+
+    $ sudo rm /[path]/[to]/[file]/.shosts'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: There must be no .shosts files on Oracle Linux 8.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: There must be no .shosts files on the Oracle Linux 8.
+        vuldiscussion: 'The .shosts files are used to configure host-based authentication
+            for
+
+            individual users or the system via SSH. Host-based authentication is not
+
+            sufficient for preventing unauthorized access to the system, as it does
+            not
+
+            require interactive identification and authentication of a connection
+            request,
+
+            or for the use of two-factor authentication.'
+        checktext: 'Verify there are no ".shosts" files on Oracle Linux 8 with the
+            following command:
+
+
+            $ sudo find / -name .shosts
+
+
+            If a ".shosts" file is found, this is a finding.'
+        fixtext: 'Remove any found ".shosts" files from the system.
+
+
+            $ sudo rm /[path]/[to]/[file]/.shosts'
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Remove User Host-Based Authentication Files
+definition_location: /home/oscap/content/linux_os/guide/services/obsolete/r_services/no_user_host_based_files/rule.yml
+template: null
+documentation_complete: true

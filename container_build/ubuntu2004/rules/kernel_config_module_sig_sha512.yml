@@ -1,0 +1,48 @@
+prodtype: all
+description: "This configures the kernel to build and sign modules using SHA512 as\
+    \ the hash function.\n\nThe configuration that was used to build kernel is available\
+    \ at <tt>/boot/config-*</tt>.\n    To check the configuration value for <tt>CONFIG_MODULE_SIG_SHA512</tt>,\
+    \ run the following command:\n    <tt>grep CONFIG_MODULE_SIG_SHA512 /boot/config-*</tt>\n\
+    \    \n    For each kernel installed, a line with value \"y\" should be returned.\n\
+    \    "
+rationale: Use of strong hash function is important to secure the module against counterfeit
+    signatures.
+severity: medium
+references:
+    anssi: BP28(R18)
+identifiers: {}
+ocil_clause: the kernel was not built with the required value
+ocil: "To determine the config value the kernel was built with, run the following\
+    \ command:\n    <pre>$ grep CONFIG_MODULE_SIG_SHA512 /boot/config.*</pre>\n  \
+    \  \n    For each kernel installed, a line with value \"y\" should be returned.\n\
+    \    "
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings:
+-   general: There is no remediation for this besides re-compiling the kernel with
+        the appropriate value for the config.
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Sign kernel modules with SHA-512
+definition_location: /home/oscap/content/linux_os/guide/system/kernel_build_config/kernel_config_module_sig_sha512/rule.yml
+template:
+    name: kernel_build_config
+    vars:
+        config: CONFIG_MODULE_SIG_SHA512
+        value: y
+    backends: {}
+documentation_complete: true

@@ -1,0 +1,124 @@
+prodtype: fedora,ol7,ol8,ol9,rhel7,rhel8,rhel9,sle12,sle15,ubuntu2004,ubuntu2204
+description: 'Reboot the system and enter the BIOS or Setup configuration menu.
+
+    Navigate the BIOS configuration menu and make sure that the option is enabled.
+    The setting may be located
+
+    under a Security section. Look for Execute Disable (XD) on Intel-based systems
+    and No Execute (NX)
+
+    on AMD-based systems.'
+rationale: 'Computers with the ability to prevent this type of code execution frequently
+    put an option in the BIOS that will
+
+    allow users to turn the feature on or off at will.'
+severity: medium
+references:
+    cis-csc: 11,3,9
+    cobit5: BAI10.01,BAI10.02,BAI10.03,BAI10.05
+    cui: 3.1.7
+    disa: CCI-002824
+    isa-62443-2009: 4.3.4.3.2,4.3.4.3.3
+    isa-62443-2013: SR 7.6
+    iso27001-2013: A.12.1.2,A.12.5.1,A.12.6.2,A.14.2.2,A.14.2.3,A.14.2.4
+    nist: SC-39,CM-6(a)
+    nist-csf: PR.IP-1
+    pcidss4: 2.2.1
+    srg: SRG-OS-000433-GPOS-00192
+identifiers: {}
+ocil_clause: NX is disabled
+ocil: 'Verify the NX (no-execution) bit flag is set on the system.
+
+
+    Check that the no-execution bit flag is set with the following commands:
+
+
+    $ sudo dmesg | grep NX
+
+
+    [ 0.000000] NX (Execute Disable) protection: active
+
+
+    If "dmesg" does not show "NX (Execute Disable) protection" active, check the cpuinfo
+    settings with the following command:
+
+
+    $ sudo grep flags /proc/cpuinfo
+
+    flags : fpu vme de pse tsc ms nx rdtscp lm constant_ts
+
+
+    The output should contain the "nx" flag.'
+oval_external_content: null
+fixtext: The NX bit execute protection must be enabled in the system BIOS.
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Oracle Linux 7 must implement non-executable data to protect its
+    memory from unauthorized code execution.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Oracle Linux 7 must implement non-executable data to protect
+            its memory from unauthorized code execution.
+        vuldiscussion: 'ExecShield uses the segmentation feature on all x86 systems
+            to prevent
+
+            execution in memory higher than a certain address. It writes an address
+            as
+
+            a limit in the code segment descriptor, to control where code can be
+
+            executed, on a per-process basis. When the kernel places a process''s
+            memory
+
+            regions such as the stack and heap higher than this address, the hardware
+
+            prevents execution in that address range. This is enabled by default on
+            the
+
+            latest Red Hat and Fedora systems if supported by the hardware.'
+        checktext: 'Verify the NX (no-execution) bit flag is set on the system.
+
+
+            Check that the no-execution bit flag is set with the following commands:
+
+
+            $ sudo dmesg | grep NX
+
+
+            [ 0.000000] NX (Execute Disable) protection: active
+
+
+            If "dmesg" does not show "NX (Execute Disable) protection" active, check
+            the cpuinfo settings with the following command:
+
+
+            $ sudo grep -i flags /proc/cpuinfo
+
+            flags : fpu vme de pse tsc ms nx rdtscp lm constant_tsc
+
+
+            If "flags" does not contain the "nx" flag, this is a finding.'
+        fixtext: 'Update the GRUB 2 bootloader configuration.
+
+
+            Run the following command:
+
+
+            $ sudo grubby --update-kernel=ALL --remove-args=noexec'
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Enable NX or XD Support in the BIOS
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/restrictions/enable_nx/bios_enable_execution_restrictions/rule.yml
+template: null
+documentation_complete: true

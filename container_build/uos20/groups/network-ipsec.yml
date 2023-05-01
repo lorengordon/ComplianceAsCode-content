@@ -1,0 +1,18 @@
+prodtype: all
+description: 'Support for Internet Protocol Security (IPsec)
+
+    is provided with Libreswan.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- package_libreswan_installed
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: IPSec Support
+definition_location: /home/oscap/content/linux_os/guide/system/network/network-ipsec/group.yml
+documentation_complete: true

@@ -1,0 +1,34 @@
+prodtype: all
+description: "If it is not possible to run external and internal nameservers on\n\
+    separate physical systems, run BIND9 and simulate this feature using views.\n\
+    Edit <tt>/etc/named.conf</tt>. Add or correct the following directives (where\n\
+    SUBNET is the numerical IP representation of your organization in the form\nxxx.xxx.xxx.xxx/xx):\n\
+    <pre>acl internal {\n  SUBNET ;\n  localhost;\n};\nview \"internal-view\" {\n\
+    \  match-clients { internal; };\n  zone \".\" IN {\n    type hint;\n    file \"\
+    db.cache\";\n  };\n  zone \"internal.example.com \" IN {\n    ...\n  };\n};\n\n\
+    view \"external-view\" {\n  match-clients { any; };\n  recursion no;\n  zone \"\
+    example.com \" IN {\n    ...\n  };\n};</pre>"
+warnings:
+-   general: 'As shown in the example, database files which are
+
+        required for recursion, such as the root hints file, must be available to
+        any
+
+        clients which are allowed to make recursive queries. Under typical
+
+        circumstances, this includes only the internal clients which are allowed to
+        use
+
+        this server as a general-purpose nameserver.'
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules: {}
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Use Views to Partition External and Internal Information
+definition_location: /home/oscap/content/linux_os/guide/services/dns/dns_server_protection/dns_server_partition_with_views/group.yml
+documentation_complete: true

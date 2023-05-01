@@ -1,0 +1,91 @@
+prodtype: ol7,ol8,ol9,rhel7,rhel8,rhel9,rhv4,sle12,sle15
+description: 'Set the mode of the user initialization files to <tt>0740</tt> with
+    the
+
+    following command:
+
+    <pre>$ sudo chmod 0740 /home/<i>USER</i>/.<i>INIT_FILE</i></pre>'
+rationale: 'Local initialization files are used to configure the user''s shell environment
+
+    upon logon. Malicious modification of these files could compromise accounts upon
+
+    logon.'
+severity: medium
+references:
+    disa: CCI-000366
+    srg: SRG-OS-000480-GPOS-00227
+    stigid: OL07-00-020710
+    stigref: SV-221737r603260_rule
+identifiers: {}
+ocil_clause: they are not 0740 or more permissive
+ocil: 'To verify that all user initialization files have a mode of <tt>0740</tt> or
+
+    less permissive, run the following command:
+
+    <pre>$ sudo find /home -type f -name ''\.*'' \( -perm -0002 -o -perm -0020 \)</pre>
+
+    There should be no output.'
+oval_external_content: null
+fixtext: 'Set the mode of the local initialization files to "0740" with the following
+    command:
+
+
+    Note: The example will be for the smithj user, who has a home directory of "/home/smithj".
+
+
+    $ sudo chmod 0740 /home/smithj/.'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: All Oracle Linux 7 local initialization files must have mode 0740
+    or less permissive.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: All Oracle Linux 7 local initialization files must have mode
+            0740 or less permissive.
+        vuldiscussion: Local initialization files are used to configure the user's
+            shell environment upon logon. Malicious modification of these files could
+            compromise accounts upon logon.
+        checktext: 'Verify that all local initialization files have a mode of "0740"
+            or less permissive with the following command:
+
+
+            Note: The example will be for the "smithj" user, who has a home directory
+            of "/home/smithj".
+
+
+            $ sudo ls -al /home/smithj/.[^.]* | more
+
+
+            -rwxr-xr-x 1 smithj users 896 Mar 10 2011 .profile
+
+            -rwxr-xr-x 1 smithj users 497 Jan 6 2007 .login
+
+            -rwxr-xr-x 1 smithj users 886 Jan 6 2007 .something
+
+
+            If any local initialization files have a mode more permissive than "0740",
+            this is a finding.'
+        fixtext: 'Set the mode of the local initialization files to "0740" with the
+            following command:
+
+
+            Note: The example will be for the smithj user, who has a home directory
+            of "/home/smithj".
+
+
+            $ sudo chmod 0740 /home/smithj/.&lt;INIT_FILE&gt;'
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Ensure All User Initialization Files Have Mode 0740 Or Less Permissive
+definition_location: /home/oscap/content/linux_os/guide/system/accounts/accounts-session/file_permission_user_init_files/rule.yml
+template: null
+documentation_complete: true

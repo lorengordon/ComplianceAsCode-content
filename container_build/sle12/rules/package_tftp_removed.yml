@@ -1,0 +1,47 @@
+prodtype: ol7,ol8,ol9,rhel7,rhel8,rhel9,sle12,sle15
+description: 'Trivial File Transfer Protocol (TFTP) is a simple file transfer protocol,
+
+    typically used to automatically transfer configuration or boot files between systems.
+
+    TFTP does not support authentication and can be easily hacked. The package
+
+    <tt>tftp</tt> is a client program that allows for connections to a <tt>tftp</tt>
+    server.'
+rationale: 'It is recommended that TFTP be removed, unless there is a specific need
+
+    for TFTP (such as a boot server). In that case, use extreme caution when configuring
+
+    the services.'
+severity: low
+references:
+    anssi: BP28(R1)
+identifiers:
+    cce: CCE-91465-5
+ocil_clause: null
+ocil: 'The <code>tftp</code> package can be removed with the following command: <pre>
+    $ sudo zypper remove tftp</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Remove tftp Daemon
+definition_location: /home/oscap/content/linux_os/guide/services/obsolete/tftp/package_tftp_removed/rule.yml
+template:
+    name: package_removed
+    vars:
+        pkgname: tftp
+    backends: {}
+documentation_complete: true

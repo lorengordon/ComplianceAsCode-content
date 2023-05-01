@@ -1,0 +1,64 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = configure
+# complexity = low
+# disruption = low
+- name: Check for duplicate values
+  lineinfile:
+    path: /etc/tmux.conf
+    create: false
+    regexp: \s*bind\s+\w\s+lock-session.*$
+    mode: '0644'
+    state: absent
+  check_mode: true
+  changed_when: false
+  register: dupes
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-86135-1
+  - DISA-STIG-RHEL-08-020040
+  - configure_strategy
+  - configure_tmux_lock_keybinding
+  - low_complexity
+  - low_disruption
+  - low_severity
+  - no_reboot_needed
+
+- name: Deduplicate values from /etc/tmux.conf
+  lineinfile:
+    path: /etc/tmux.conf
+    create: false
+    regexp: \s*bind\s+\w\s+lock-session.*$
+    mode: '0644'
+    state: absent
+  when:
+  - ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  - dupes.found is defined and dupes.found > 1
+  tags:
+  - CCE-86135-1
+  - DISA-STIG-RHEL-08-020040
+  - configure_strategy
+  - configure_tmux_lock_keybinding
+  - low_complexity
+  - low_disruption
+  - low_severity
+  - no_reboot_needed
+
+- name: Insert correct line into /etc/tmux.conf
+  lineinfile:
+    path: /etc/tmux.conf
+    create: null
+    regexp: \s*bind\s+\w\s+lock-session.*$
+    mode: '0644'
+    line: bind X lock-session
+    state: present
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-86135-1
+  - DISA-STIG-RHEL-08-020040
+  - configure_strategy
+  - configure_tmux_lock_keybinding
+  - low_complexity
+  - low_disruption
+  - low_severity
+  - no_reboot_needed

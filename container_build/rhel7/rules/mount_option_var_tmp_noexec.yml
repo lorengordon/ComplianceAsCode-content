@@ -1,0 +1,76 @@
+prodtype: alinux2,alinux3,ol7,ol8,ol9,rhcos4,rhel7,rhel8,rhel9,sle12,sle15,ubuntu1804,ubuntu2004,ubuntu2204
+description: 'The <tt>noexec</tt> mount option can be used to prevent binaries
+
+    from being executed out of <tt>/var/tmp</tt>.
+
+    Add the <code>noexec</code> option to the fourth column of
+
+    <tt>/etc/fstab</tt> for the line which controls mounting of
+
+    <code>/var/tmp</code>.'
+rationale: 'Allowing users to execute binaries from world-writable directories
+
+    such as <tt>/var/tmp</tt> should never be necessary in normal operation and
+
+    can expose the system to potential compromise.'
+severity: medium
+references:
+    anssi: BP28(R12)
+    disa: CCI-001764
+    srg: SRG-OS-000368-GPOS-00154
+    cis: 1.1.12
+identifiers:
+    cce: CCE-82150-4
+ocil_clause: the "/var/tmp" file system does not have the "noexec" option set
+ocil: "Verify the <tt>noexec</tt> option is configured for the <tt>/var/tmp</tt> mount\
+    \ point,\n    run the following command:\n    <pre>$ sudo mount | grep '\\s/var/tmp\\\
+    s'</pre>\n    <pre>. . . /var/tmp . . . noexec . . .</pre>\n"
+oval_external_content: null
+fixtext: Modify "/etc/fstab" to use the "noexec" option on the "/var/tmp" directory.
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Red Hat Enterprise Linux 7 must mount /var/tmp with the noexec option.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Red Hat Enterprise Linux 7 must mount /var/tmp with the noexec
+            option.
+        vuldiscussion: The "noexec" mount option causes the system to not execute
+            binary files. This option must be used for mounting any file system not
+            containing approved binary files, as they may be incompatible. Executing
+            files from untrusted file systems increases the opportunity for unprivileged
+            users to attain unauthorized administrative access.
+        checktext: 'Verify "/var/tmp" is mounted with the "noexec" option:
+
+
+            $ mount | grep /var/tmp
+
+
+            /dev/mapper/rhel-var-tmp on /var/tmp type xfs (rw,nodev,nosuid,noexec,seclabel)
+
+
+            If the "/var/tmp" file system is mounted without the "noexec" option,
+            this is a finding.'
+        fixtext: Modify "/etc/fstab" to use the "noexec" option on the "/var/tmp"
+            directory.
+platform: machine and mount[var-tmp]
+platforms: !!set
+    machine and mount[var-tmp]: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine_and_mount_var-tmp: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Add noexec Option to /var/tmp
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/partitions/mount_option_var_tmp_noexec/rule.yml
+template:
+    name: mount_option
+    vars:
+        mountpoint: /var/tmp
+        mountoption: noexec
+    backends: {}
+documentation_complete: true

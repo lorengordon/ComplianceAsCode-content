@@ -1,0 +1,34 @@
+prodtype: all
+description: The <tt>root</tt> user should have a primary group of 0.
+rationale: To help ensure that root-owned files are not inadvertently exposed to other
+    users.
+severity: high
+references:
+    pcidss: Req-8.1.1
+    pcidss4: 8.2.1
+identifiers: {}
+ocil_clause: root has a primary gid not equal to zero
+ocil: "To verify that root's primary group is zero run the following command:\n<pre>\n\
+    \    grep '^root:' /etc/passwd | cut -d : -f 4\n</pre>\nThe command should return:\n\
+    <pre>\n0\n</pre>"
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Verify Root Has A Primary GID 0
+definition_location: /home/oscap/content/linux_os/guide/system/accounts/accounts-restrictions/root_logins/accounts_root_gid_zero/rule.yml
+template: null
+documentation_complete: true

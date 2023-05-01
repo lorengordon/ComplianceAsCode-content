@@ -1,0 +1,56 @@
+prodtype: rhcos4,rhel8,rhel9
+description: 'To disable use of virtual syscalls,
+
+    check that all boot entries in <tt>/boot/loader/entries/*.conf</tt> have <tt>vsyscall=none</tt>
+
+    included in its options.<br />
+
+    To ensure that new kernels and boot entries continue to disable virtual syscalls,
+
+    add <tt>vsyscall=none</tt> to <tt>/etc/kernel/cmdline</tt>.'
+rationale: 'Virtual Syscalls provide an opportunity of attack for a user who has control
+
+    of the return instruction pointer.'
+severity: medium
+references:
+    ospp: FPT_ASLR_EXT.1
+identifiers:
+    cce: CCE-84100-7
+ocil_clause: vsyscalls are enabled
+ocil: 'To check that virtual syscalls are disabled at boot time, check all boot entries
+    with following command:
+
+    <pre>sudo grep -L "^options\s+.*\bvsyscall=none\b" /boot/loader/entries/*.conf</pre>
+
+    No line should be returned, each line returned is a boot entry that doesn''t disable
+    virtual syscalls.'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set
+    s390x_arch: null
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set
+    s390x_arch: null
+bash_conditional: null
+fixes: {}
+title: Disable vsyscalls in zIPL
+definition_location: /home/oscap/content/linux_os/guide/system/bootloader-zipl/zipl_vsyscall_argument/rule.yml
+template:
+    name: zipl_bls_entries_option
+    vars:
+        arg_name: vsyscall
+        arg_value: none
+    backends: {}
+documentation_complete: true

@@ -1,0 +1,40 @@
+prodtype: all
+description: 'The <tt>yum</tt> command line tool is used to install and
+
+    update software packages. The system also provides a graphical
+
+    software update tool in the <b>System</b> menu, in the <b>Administration</b> submenu,
+
+    called <b>Software Update</b>.
+
+    <br /><br />
+
+    Red Hat Enterprise Linux 7 systems contain an installed software catalog called
+
+    the RPM database, which records metadata of installed packages. Consistently using
+
+    <tt>yum</tt> or the graphical <b>Software Update</b> for all software installation
+
+    allows for insight into the current inventory of installed software on the system.
+
+    <br /><br />'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- clean_components_post_updating
+- ensure_gpgcheck_globally_activated
+- ensure_gpgcheck_local_packages
+- ensure_gpgcheck_never_disabled
+- ensure_gpgcheck_repo_metadata
+- ensure_redhat_gpgkey_installed
+- security_patches_up_to_date
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Updating Software
+definition_location: /home/oscap/content/linux_os/guide/system/software/updating/group.yml
+documentation_complete: true

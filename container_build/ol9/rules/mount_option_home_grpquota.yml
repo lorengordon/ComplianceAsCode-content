@@ -1,0 +1,88 @@
+prodtype: fedora,ol7,ol8,ol9,rhel7,rhel8,rhel9,rhv4
+description: 'The <tt>grpquota</tt> mount option allows for the filesystem to have
+    disk quotas configured.
+
+    Add the <code>grpquota</code> option to the fourth column of
+
+    <tt>/etc/fstab</tt> for the line which controls mounting of
+
+    <code>/home</code>.'
+rationale: 'To ensure the availability of disk space on /home, it is important to
+    limit the impact a
+
+    single user or group can cause for other users (or the wider system) by intentionally
+    or
+
+    accidentally filling up the partition. Quotas can also be applied to inodes for
+    filesystems
+
+    where inode exhaustion is a concern.'
+severity: medium
+references:
+    nist: CM-6(b)
+identifiers: {}
+ocil_clause: the "/home" file system does not have the "grpquota" option set
+ocil: "Verify the <tt>grpquota</tt> option is configured for the <tt>/home</tt> mount\
+    \ point,\n    run the following command:\n    <pre>$ sudo mount | grep '\\s/home\\\
+    s'</pre>\n    <pre>. . . /home . . . grpquota . . .</pre>\n"
+oval_external_content: null
+fixtext: Modify "/etc/fstab" to use the "grpquota" option on the "/home" directory.
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Oracle Linux 9 must mount /home with the grpquota option.
+warnings:
+-   general: 'The quota options for XFS file systems can only be activated when mounting
+        the partition.
+
+        It is not possible to enable them by remounting an already mounted partition.
+        Therefore,
+
+        if the desired options were not defined before mounting the partition, dismount
+        and mount
+
+        it again to apply the quota options.'
+-   functionality: 'OVAL looks for partitions whose mount point is a substring of
+        any interactive user''s home
+
+        directory and validates that grpquota option is there. Because of this, there
+        could be
+
+        false negatives when several partitions share a base substring. For example,
+        if there is a
+
+        home directory in <tt>/var/tmp/user1</tt> and there are partitions mounted
+        in
+
+        <tt>/var</tt> and <tt>/var/tmp</tt>. The grpquota option is only expected
+        in
+
+        <tt>/var/tmp</tt>, but OVAL will check both.<br/>
+
+        Bash remediation uses the <tt>df</tt> command to find out the partition where
+        the home
+
+        directory is mounted. However, if the directory doesn''t exist the remediation
+        won''t be
+
+        applied.'
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Add grpquota Option to /home
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/partitions/mount_option_home_grpquota/rule.yml
+template:
+    name: mount_option_home
+    vars:
+        mountoption: grpquota
+    backends: {}
+documentation_complete: true

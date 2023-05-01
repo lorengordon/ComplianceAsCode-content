@@ -1,0 +1,76 @@
+prodtype: alinux2,alinux3,ol7,ol8,ol9,rhcos4,rhel7,rhel8,rhel9,sle12,sle15,ubuntu1804,ubuntu2004,ubuntu2204
+description: 'The <tt>/var/tmp</tt> directory is a world-writable directory used
+
+    for temporary file storage. Ensure it has its own partition or
+
+    logical volume at installation time, or migrate it using LVM.'
+rationale: 'The <tt>/var/tmp</tt> partition is used as temporary storage by many programs.
+
+    Placing <tt>/var/tmp</tt> in its own partition enables the setting of more
+
+    restrictive mount options, which can help protect programs which use it.'
+severity: medium
+references:
+    anssi: BP28(R12)
+    srg: SRG-OS-000480-GPOS-00227
+    cis: 1.1.11
+identifiers:
+    cce: CCE-91182-6
+ocil_clause: '"/var/tmp is not a mountpoint" is returned'
+ocil: 'Verify that a separate file system/partition has been created for <code>/var/tmp</code>
+    with the following command:
+
+
+    <pre>$ mountpoint /var/tmp</pre>
+
+    '
+oval_external_content: null
+fixtext: Migrate the "/var/tmp" path onto a separate file system.
+checktext: ''
+vuldiscussion: ''
+srg_requirement: SUSE Linux Enterprise 15 must use a separate file system for /var/tmp.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: SUSE Linux Enterprise 15 must use a separate file system
+            for /var/tmp.
+        vuldiscussion: 'The "/var/tmp" partition is used as temporary storage by many
+            programs.
+
+            Placing "/var/tmp" in its own partition enables the setting of more
+
+            restrictive mount options, which can help protect programs which use it.'
+        checktext: 'Verify that a separate file system/partition has been created
+            for "/var/tmp" with the following command:
+
+
+            $ mount | grep /var/tmp
+
+
+            UUID=c274f65f-c5b5-4379-b017-bee96feb7a34 /var/log xfs noatime,nobarrier
+            1 2
+
+
+            If a separate entry for "/var/tmp" is not in use, this is a finding.'
+        fixtext: Migrate the "/var/tmp" path onto a separate file system.
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Ensure /var/tmp Located On Separate Partition
+definition_location: /home/oscap/content/linux_os/guide/system/software/disk_partitioning/partition_for_var_tmp/rule.yml
+template:
+    name: mount
+    vars:
+        mountpoint: /var/tmp
+        min_size: 1073741824
+    backends: {}
+documentation_complete: true

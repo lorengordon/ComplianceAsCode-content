@@ -1,0 +1,24 @@
+prodtype: all
+description: Contains rules that check the configuration of GCC plugins used by the
+    compiler
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- kernel_config_gcc_plugin_latent_entropy
+- kernel_config_gcc_plugin_randstruct
+- kernel_config_gcc_plugin_stackleak
+- kernel_config_gcc_plugin_structleak
+- kernel_config_gcc_plugin_structleak_byref_all
+platform: machine
+platforms: !!set
+    machine: null
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set
+    machine: null
+title: Kernel GCC plugin configuration
+definition_location: /home/oscap/content/linux_os/guide/system/kernel_build_config/gcc_plugin/group.yml
+documentation_complete: true

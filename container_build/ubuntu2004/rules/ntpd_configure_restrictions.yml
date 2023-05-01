@@ -1,0 +1,60 @@
+prodtype: alinux2,fedora,rhel7,sle12,ubuntu2004,ubuntu2204
+description: "ntpd is a daemon which implements the Network Time Protocol (NTP). It\
+    \ is designed to\nsynchronize system clocks across a variety of systems and use\
+    \ a source that is highly\naccurate. More information on NTP can be found at\n\
+    \n    <a xmlns='http://www.w3.org/1999/xhtml' href='http://www.ntp.org'>http://www.ntp.org</a>.\n\
+    ntp can be configured to be a client and/or a server.\nTo ensure that ntpd implements\
+    \ correct server restrictions, make sure that the following lines exist in the\
+    \ file <tt>/etc/ntpd.conf</tt>:\n<pre>restrict -4 default kod nomodify notrap\
+    \ nopeer noquery</pre>\n<pre>restrict -6 default kod nomodify notrap nopeer noquery</pre>\n\
+    This recommendation only applies if ntp is in use on the system."
+rationale: 'If ntp is in use on the system proper configuration is vital to ensuring
+    time synchronization
+
+    is working properly.'
+severity: medium
+references:
+    cis: 2.2.1.4
+identifiers: {}
+ocil_clause: restrictions are not configured for ntpd
+ocil: 'Run the following command and verify output matches:
+
+    <tt># grep "^restrict" /etc/ntp.conf</tt>
+
+    <pre>
+
+    restrict -4 default kod nomodify notrap nopeer noquery
+
+    restrict -6 default kod nomodify notrap nopeer noquery
+
+    </pre>
+
+    The <tt>-4</tt> in the first line is optional and options after <tt>default</tt>
+    can appear in any order.
+
+    Additional restriction lines may exist.'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: package[ntp]
+platforms: !!set
+    package[ntp]: null
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set
+    package_ntp: null
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Configure server restrictions for ntpd
+definition_location: /home/oscap/content/linux_os/guide/services/ntp/ntpd_configure_restrictions/rule.yml
+template: null
+documentation_complete: true

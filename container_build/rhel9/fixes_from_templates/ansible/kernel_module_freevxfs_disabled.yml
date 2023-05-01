@@ -1,0 +1,18 @@
+# platform = multi_platform_rhel,multi_platform_fedora,multi_platform_ol,multi_platform_rhv,multi_platform_ubuntu,multi_platform_sle
+# reboot = true
+# strategy = disable
+# complexity = low
+# disruption = medium
+- name: Ensure kernel module 'freevxfs' is disabled
+  lineinfile:
+    create: yes
+    dest: "/etc/modprobe.d/freevxfs.conf"
+    regexp: 'install\s+freevxfs'
+    line: "install freevxfs /bin/true"
+
+- name: Ensure kernel module 'freevxfs' is blacklisted
+  lineinfile:
+    create: yes
+    dest: "/etc/modprobe.d/freevxfs.conf"
+    regexp: '^blacklist freevxfs$'
+    line: "blacklist freevxfs"

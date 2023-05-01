@@ -1,0 +1,34 @@
+# platform = multi_platform_rhel,multi_platform_fedora,multi_platform_ol,multi_platform_rhv,multi_platform_sle
+# reboot = true
+# strategy = restrict
+# complexity = medium
+# disruption = low
+
+
+- (xccdf-var var_l1tf_options)
+
+
+
+
+
+- name: Check l1tf argument exists
+  command: grep 'GRUB_CMDLINE_LINUX.*l1tf=' /etc/default/grub
+  failed_when: False
+  register: argcheck
+
+- name: Replace existing l1tf argument
+  replace:
+      path: /etc/default/grub
+      regexp: 'l1tf=\w+'
+      replace: 'l1tf={{ var_l1tf_options }}'
+  when: argcheck.rc == 0
+
+- name: Add l1tf argument
+  replace:
+      path: /etc/default/grub
+      regexp: '(GRUB_CMDLINE_LINUX=.*)"'
+      replace: '\1 l1tf={{ var_l1tf_options }}"'
+  when: argcheck.rc != 0
+
+- name: Update grub defaults and the bootloader menu
+  command: /sbin/grubby --update-kernel=ALL --args="l1tf={{ var_l1tf_options }}"

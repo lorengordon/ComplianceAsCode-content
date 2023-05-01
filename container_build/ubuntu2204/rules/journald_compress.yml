@@ -1,0 +1,57 @@
+prodtype: alinux3,anolis8,rhel7,rhel8,rhel9,sle12,sle15,ubuntu2004,ubuntu2204
+description: The journald system can compress large log files to avoid fill the system
+    disk.
+rationale: Log files that are not properly compressed run the risk of growing so large
+    that they fill up the log partition. Valuable logging information could be lost
+    if the log partition becomes full.
+severity: medium
+references:
+    cis: 4.2.1.3
+identifiers: {}
+ocil_clause: is commented out or not configured correctly
+ocil: 'Storing logs with compression can help avoid filling the system disk.
+
+    Run the following command to verify that journald is compressing logs.
+
+    <pre>
+
+    grep "^\sCompress" /etc/systemd/journald.conf
+
+    </pre>
+
+    and it should return
+
+    <pre>
+
+    Compress=yes
+
+    </pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Ensure journald is configured to compress large log files
+definition_location: /home/oscap/content/linux_os/guide/system/logging/journald/journald_compress/rule.yml
+template:
+    name: shell_lineinfile
+    vars:
+        path: /etc/systemd/journald.conf
+        parameter: Compress
+        value: 'yes'
+    backends: {}
+documentation_complete: true

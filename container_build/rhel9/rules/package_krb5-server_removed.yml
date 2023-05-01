@@ -1,0 +1,62 @@
+prodtype: ol7,ol8,rhel7,rhel8,rhel9
+description: 'The <tt>krb5-server</tt> package should be removed if not in use.
+
+    Is this system the Kerberos server? If not, remove the package.
+
+    The <code>krb5-server</code> package can be removed with the following command:
+
+    <pre>
+
+    $ sudo dnf erase krb5-server</pre>
+
+    The krb5-server RPM is not installed by default on a Red Hat Enterprise Linux
+    9
+
+    system. It is needed only by the Kerberos servers, not by the
+
+    clients which use Kerberos for authentication. If the system is not
+
+    intended for use as a Kerberos Server it should be removed.'
+rationale: 'Unnecessary packages should not be installed to decrease the attack
+
+    surface of the system.  While this software is clearly essential on an KDC
+
+    server, it is not necessary on typical desktop or workstation systems.'
+severity: medium
+references:
+    disa: CCI-000803
+    nist: IA-7,IA-7.1
+    srg: SRG-OS-000120-GPOS-00061
+identifiers: {}
+ocil_clause: the package is installed
+ocil: 'Run the following command to determine if the <code>krb5-server</code> package
+    is installed: <pre>$ rpm -q krb5-server</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set
+    krb5_server_older_than_1_17-18: null
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set
+    krb5_server_older_than_1_17-18: null
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Remove the Kerberos Server Package
+definition_location: /home/oscap/content/linux_os/guide/services/kerberos/package_krb5-server_removed/rule.yml
+template:
+    name: package_removed
+    vars:
+        pkgname: krb5-server
+    backends: {}
+documentation_complete: true

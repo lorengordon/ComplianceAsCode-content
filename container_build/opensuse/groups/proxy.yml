@@ -1,0 +1,28 @@
+prodtype: all
+description: 'A proxy server is a very desirable target for a
+
+    potential adversary because much (or all) sensitive data for a
+
+    given infrastructure may flow through it. Therefore, if one is
+
+    required, the system acting as a proxy server should be dedicated
+
+    to that purpose alone and be stored in a physically secure
+
+    location. The system''s default proxy server software is Squid, and
+
+    provided in an RPM package of the same name.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups:
+- disabling_squid
+rules: {}
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Proxy Server
+definition_location: /home/oscap/content/linux_os/guide/services/proxy/group.yml
+documentation_complete: true

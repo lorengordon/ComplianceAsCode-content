@@ -1,0 +1,27 @@
+<ns0:oval_definitions xmlns:ns0="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ns2="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:ns3="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd         http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd         http://oval.mitre.org/XMLSchema/oval-definitions-5#independent independent-definitions-schema.xsd         http://oval.mitre.org/XMLSchema/oval-definitions-5#unix unix-definitions-schema.xsd         http://oval.mitre.org/XMLSchema/oval-definitions-5#linux linux-definitions-schema.xsd">
+    <ns0:generator>
+        <ns2:product_name>test from SCAP Security Guide</ns2:product_name>
+        <ns2:product_version>ssg: 1.0, python: 3.10.6</ns2:product_version>
+        <ns2:schema_version>5.11</ns2:schema_version>
+        <ns2:timestamp>2023-05-01T22:58:25</ns2:timestamp>
+    </ns0:generator><ns0:definitions><ns0:definition class="compliance" id="oval:test-no_empty_passwords:def:1" version="1">
+    <ns0:metadata>
+      <ns0:title>Prevent Login to Accounts With Empty Password</ns0:title>
+      <ns0:affected family="unix">
+        <ns0:platform>multi_platform_all</ns0:platform>
+      </ns0:affected>
+      <ns0:description>The file /etc/pam.d/system-auth should not contain the nullok option</ns0:description>
+    </ns0:metadata>
+    <ns0:criteria>
+      <ns0:criterion comment="make sure the nullok option is not used in /etc/pam.d/system-auth" test_ref="oval:test-test_no_empty_passwords:tst:1" />
+    </ns0:criteria>
+  </ns0:definition>
+  </ns0:definitions><ns0:tests><ns3:textfilecontent54_test check="all" check_existence="none_exist" version="1" id="oval:test-test_no_empty_passwords:tst:1" comment="make sure nullok is not used in /etc/pam.d/system-auth">
+    <ns3:object object_ref="oval:test-object_no_empty_passwords:obj:1" />
+  </ns3:textfilecontent54_test>
+  </ns0:tests><ns0:objects><ns3:textfilecontent54_object id="oval:test-object_no_empty_passwords:obj:1" version="1">
+    <ns3:filepath operation="pattern match">^/etc/pam.d/(system|password)-auth$</ns3:filepath>
+    <ns3:pattern operation="pattern match">^[^#]*\bnullok\b.*$</ns3:pattern>
+    <ns3:instance datatype="int">1</ns3:instance>
+  </ns3:textfilecontent54_object>
+</ns0:objects></ns0:oval_definitions>

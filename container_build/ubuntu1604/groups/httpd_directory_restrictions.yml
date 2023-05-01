@@ -1,0 +1,21 @@
+prodtype: all
+description: 'The Directory tags in the web server configuration file allow finer
+    grained access
+
+    control for a specified directory. All web directories should be configured on
+    a
+
+    case-by-case basis, allowing access only where needed.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules: {}
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Directory Restrictions
+definition_location: /home/oscap/content/linux_os/guide/services/http/securing_httpd/httpd_directory_restrictions/group.yml
+documentation_complete: true

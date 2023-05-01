@@ -1,0 +1,60 @@
+prodtype: firefox
+description: 'JavaScript can configure and make changes to the web browser''s appearance
+    by
+
+    specifically moving and resizing browser windows. This can be disabled by
+
+    setting <tt>dom.disable_window_move_resize</tt> to <tt>true</tt> in the policy
+    file.'
+rationale: "JavaScript can make changes to the browser\u2019s appearance. This activity\n\
+    can help disguise an attack taking place in a minimized background window."
+severity: medium
+references:
+    disa: CCI-000381
+    nist: CM-7
+    stigid: FFOX-00-000010
+identifiers: {}
+ocil_clause: it is not disabled
+ocil: 'To verify that JavaScript cannot change windows sizing,
+
+    type the following into the browser address bar:
+
+    <pre>about:policies</pre>
+
+    The output should have the following uder dom.disable_window_move_resize:
+
+    <pre>"Value": true,</pre>
+
+    <pre>"Status": "locked",</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Disable JavaScript's Moving Or Resizing Windows Capability
+definition_location: /home/oscap/content/products/firefox/guide/firefox/firefox_policy-javascript_window_resizing/rule.yml
+template:
+    name: firefox_policy-setting
+    vars:
+        name: Disable Javascript window move/resize
+        policies:
+        -   path: Preferences dom.disable_window_move_resize
+            parameter: Value
+            value: 'true'
+        -   path: Preferences dom.disable_window_move_resize
+            parameter: Status
+            value: locked
+    backends: {}
+documentation_complete: true

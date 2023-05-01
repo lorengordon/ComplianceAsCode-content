@@ -1,0 +1,27 @@
+prodtype: all
+description: 'The Network Information Service (NIS), also known as ''Yellow
+
+    Pages'' (YP), and its successor NIS+ have been made obsolete by
+
+    Kerberos, LDAP, and other modern centralized authentication
+
+    services. NIS should not be used because it suffers from security
+
+    problems inherent in its design, such as inadequate protection of
+
+    important authentication information.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- package_ypbind_removed
+- package_ypserv_removed
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: NIS
+definition_location: /home/oscap/content/linux_os/guide/services/obsolete/nis/group.yml
+documentation_complete: true

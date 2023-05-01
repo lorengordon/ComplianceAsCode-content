@@ -1,0 +1,62 @@
+prodtype: rhel7,rhel8,rhel9,sle12,sle15,ubuntu2004,ubuntu2204
+description: 'The rpcbind utility maps RPC services to the ports on which they listen.
+
+    RPC processes notify rpcbind when they start, registering the ports they
+
+    are listening on and the RPC program numbers they expect to serve. The
+
+    rpcbind service redirects the client to the proper port number so it can
+
+    communicate with the requested service. If the system does not require RPC
+
+    (such as for NFS servers) then this service should be disabled.
+
+    The <code>rpcbind</code> package can be removed with the following command:
+
+    <pre>
+
+    $ apt-get remove rpcbind</pre>'
+rationale: 'If the system does not require rpc based services, it is recommended that
+
+    rpcbind be disabled to reduce the attack surface.'
+severity: low
+references:
+    cis: 2.3.6
+identifiers: {}
+ocil_clause: the package is installed
+ocil: '
+
+    Run the following command to determine if the <code>rpcbind</code> package is
+    installed:
+
+    <pre>$ dpkg -l  rpcbind</pre>'
+oval_external_content: null
+fixtext: ' To remove the Ubuntu 22.04 package rpcbind run the following command:
+
+
+    $ apt-get remove rpcbind'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Uninstall rpcbind Package
+definition_location: /home/oscap/content/linux_os/guide/services/nfs_and_rpc/disabling_nfs/disabling_nfs_services/package_rpcbind_removed/rule.yml
+template:
+    name: package_removed
+    vars:
+        pkgname: rpcbind
+    backends: {}
+documentation_complete: true

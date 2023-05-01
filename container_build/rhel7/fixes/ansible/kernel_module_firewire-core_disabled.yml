@@ -1,0 +1,38 @@
+# platform = multi_platform_rhel,multi_platform_fedora,multi_platform_ol,multi_platform_rhv,multi_platform_ubuntu,multi_platform_sle
+# reboot = true
+# strategy = disable
+# complexity = low
+# disruption = medium
+- name: Ensure kernel module 'firewire-core' is disabled
+  lineinfile:
+    create: true
+    dest: /etc/modprobe.d/firewire-core.conf
+    regexp: install\s+firewire-core
+    line: install firewire-core /bin/true
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-82160-3
+  - NIST-800-53-AC-18
+  - disable_strategy
+  - kernel_module_firewire-core_disabled
+  - low_complexity
+  - low_severity
+  - medium_disruption
+  - reboot_required
+
+- name: Ensure kernel module 'firewire-core' is blacklisted
+  lineinfile:
+    create: true
+    dest: /etc/modprobe.d/firewire-core.conf
+    regexp: ^blacklist firewire-core$
+    line: blacklist firewire-core
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-82160-3
+  - NIST-800-53-AC-18
+  - disable_strategy
+  - kernel_module_firewire-core_disabled
+  - low_complexity
+  - low_severity
+  - medium_disruption
+  - reboot_required

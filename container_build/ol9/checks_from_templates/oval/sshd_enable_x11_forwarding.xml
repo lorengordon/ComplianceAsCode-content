@@ -1,0 +1,112 @@
+<def-group>
+  <definition class="compliance" id="sshd_enable_x11_forwarding" version="1">
+   <metadata>
+        <title>Enable Encrypted X11 Forwarding</title>
+        
+    <affected family="unix">
+    <platform>Oracle Linux 9</platform>
+    </affected>
+        <description>Ensure 'X11Forwarding' is configured with value 'yes' in /etc/ssh/sshd_config</description>
+    </metadata>
+   <criteria comment="sshd is configured correctly or is not installed" operator="OR">
+     <criteria comment="sshd is not installed" operator="AND">
+        <extend_definition comment="sshd is not required or requirement is unset"
+          definition_ref="sshd_not_required_or_unset" />
+        <extend_definition comment="rpm package openssh-server removed"
+          definition_ref="package_openssh-server_removed" />
+     </criteria>
+     <criteria comment="sshd is installed and configured" operator="AND">
+        <extend_definition comment="sshd is required or requirement is unset"
+          definition_ref="sshd_required_or_unset" />
+        <extend_definition comment="rpm package openssh-server installed"
+          definition_ref="package_openssh-server_installed" />
+        <criteria comment="sshd is configured correctly" operator="AND">
+          <criteria comment="the configuration is correct if it exists" operator="AND"><criterion comment="Check the X11Forwarding in /etc/ssh/sshd_configif any"
+            test_ref="test_sshd_enable_x11_forwarding" />
+            <criterion comment="Check the X11Forwarding in sshd_config includedif any"
+            test_ref="test_sshd_enable_x11_forwarding_sshd_included_files" />
+            
+          </criteria>
+          <criterion comment="the configuraton exists" test_ref="test_X11Forwarding_present_sshd_enable_x11_forwarding" />
+          
+        </criteria>
+      </criteria>
+    </criteria>
+  </definition>
+
+  
+  
+  <ind:textfilecontent54_object id="obj_sshd_include_value_sshd_enable_x11_forwarding" version="1">
+    <ind:filepath>/etc/ssh/sshd_config</ind:filepath>
+    <ind:pattern operation="pattern match">^[ \t]*(?i)include(?-i)[ \t]+(.+?)[ \t]*(?:$|#)</ind:pattern>
+    <ind:instance operation="greater than or equal" datatype="int">1</ind:instance>
+  </ind:textfilecontent54_object>
+  <local_variable id="var_sshd_config_included_files_sshd_enable_x11_forwarding" datatype="string" version="1"
+  comment="Include value converted to regex">
+    <concat>
+      <literal_component>^(/etc/ssh/(?!/))?</literal_component>
+      <substring substring_start="2" substring_length="-1">
+        <unique>
+          <glob_to_regex>
+            <object_component item_field="subexpression" object_ref="obj_sshd_include_value_sshd_enable_x11_forwarding" />
+          </glob_to_regex>
+        </unique>
+      </substring>
+    </concat>
+  </local_variable>
+
+  
+  <ind:textfilecontent54_test check="all" check_existence="any_exist"
+    comment="tests the value of X11Forwarding setting in the sshd_config included file"
+    id="test_sshd_enable_x11_forwarding_sshd_included_files" version="1">
+    <ind:object object_ref="obj_sshd_enable_x11_forwarding_sshd_included_files" />
+    <ind:state state_ref="state_sshd_enable_x11_forwarding_sshd_included_files" />
+  </ind:textfilecontent54_test>
+
+  <ind:textfilecontent54_object id="obj_sshd_enable_x11_forwarding_sshd_included_files" version="1">
+    <ind:filepath operation="pattern match" var_ref="var_sshd_config_included_files_sshd_enable_x11_forwarding" var_check="at least one"/>
+    <ind:pattern operation="pattern match">^[ \t]*(?i)X11Forwarding(?-i)[ \t]+(.+?)[ \t]*(?:$|#)</ind:pattern>
+    <ind:instance operation="greater than or equal" datatype="int">1</ind:instance>
+  </ind:textfilecontent54_object>
+
+  
+  <ind:textfilecontent54_state id="state_sshd_enable_x11_forwarding_sshd_included_files" version="1">
+    <ind:subexpression datatype="string" operation="pattern match">^yes$</ind:subexpression>
+  </ind:textfilecontent54_state>
+
+  
+
+  
+  <ind:textfilecontent54_test check="all" check_existence="any_exist"
+    comment="tests the value of X11Forwarding setting in the /etc/ssh/sshd_config file"
+    id="test_sshd_enable_x11_forwarding" version="1">
+    <ind:object object_ref="obj_sshd_enable_x11_forwarding" />
+    <ind:state state_ref="state_sshd_enable_x11_forwarding" />
+  </ind:textfilecontent54_test>
+  
+  <ind:textfilecontent54_object id="obj_sshd_enable_x11_forwarding" version="1">
+    <ind:filepath>/etc/ssh/sshd_config</ind:filepath>
+    <ind:pattern operation="pattern match">^[ \t]*(?i)X11Forwarding(?-i)[ \t]+(.+?)[ \t]*(?:$|#)</ind:pattern>
+    <ind:instance operation="greater than or equal" datatype="int">1</ind:instance>
+  </ind:textfilecontent54_object>
+  
+  <ind:textfilecontent54_state id="state_sshd_enable_x11_forwarding" version="1">
+    <ind:subexpression datatype="string" operation="pattern match">^yes$</ind:subexpression>
+  </ind:textfilecontent54_state>
+
+  
+  <ind:textfilecontent54_object comment="All confs collection" id="obj_collection_obj_sshd_enable_x11_forwarding" version="1">
+    <set>
+      <object_reference>obj_sshd_enable_x11_forwarding</object_reference>
+      <object_reference>obj_sshd_enable_x11_forwarding_sshd_included_files</object_reference>
+    </set>
+  </ind:textfilecontent54_object>
+
+  <ind:textfilecontent54_test id="test_X11Forwarding_present_sshd_enable_x11_forwarding" version="1"
+                              check="all" check_existence="at_least_one_exists"
+                              comment="Verify that the value of X11Forwarding is present">
+    <ind:object object_ref="obj_collection_obj_sshd_enable_x11_forwarding" />
+  </ind:textfilecontent54_test>
+
+  
+</def-group>

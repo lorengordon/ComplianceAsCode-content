@@ -1,0 +1,39 @@
+
+<def-group>
+  <definition class="compliance" id="grub2_nousb_argument" version="1">
+    <metadata>
+        <title>Disable Kernel Support for USB via Bootloader Configuration</title>
+        
+    <affected family="unix">
+    <platform>Red Hat Enterprise Linux 8</platform>
+      <platform>Red Hat Enterprise Linux CoreOS 4</platform>
+      <platform>Alibaba Cloud Linux 2</platform>
+      <platform>Red Hat Enterprise Linux 7</platform>
+      <platform>Fedora</platform>
+    </affected>
+        <description>Ensure 'GRUB_CMDLINE_LINUX' is configured with value 'nousb' in /etc/default/grub</description>
+    </metadata>
+    <criteria comment="grub is configured correctly"
+    operator="OR"><criterion comment="Check the GRUB_CMDLINE_LINUX in /etc/default/grub"
+  test_ref="test_grub2_nousb_argument" />
+    </criteria>
+  </definition>
+  
+<ind:textfilecontent54_test check="all" check_existence="all_exist"
+  comment="tests the value of GRUB_CMDLINE_LINUX setting in the /etc/default/grub file"
+  id="test_grub2_nousb_argument" version="1">
+  <ind:object object_ref="obj_grub2_nousb_argument" />
+  <ind:state state_ref="state_grub2_nousb_argument" />
+</ind:textfilecontent54_test>
+  
+<ind:textfilecontent54_object id="obj_grub2_nousb_argument" version="1">
+  <ind:filepath>/etc/default/grub</ind:filepath>
+  <ind:pattern operation="pattern match">^[ \t]*GRUB_CMDLINE_LINUX=([^#]*).*$</ind:pattern>
+  <ind:instance operation="greater than or equal" datatype="int">1</ind:instance>
+</ind:textfilecontent54_object>
+  
+<ind:textfilecontent54_state id="state_grub2_nousb_argument" version="1">
+  <ind:subexpression datatype="string" operation="pattern match">^.*\bnousb\b.*$</ind:subexpression>
+</ind:textfilecontent54_state>
+
+</def-group>

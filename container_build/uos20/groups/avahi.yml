@@ -1,0 +1,27 @@
+prodtype: all
+description: 'The Avahi daemon implements the DNS Service Discovery
+
+    and Multicast DNS protocols, which provide service and host
+
+    discovery on a network. It allows a system to automatically
+
+    identify resources on the network, such as printers or web servers.
+
+    This capability is also known as mDNSresponder and is a major part
+
+    of Zeroconf networking.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups:
+- avahi_configuration
+- disable_avahi_group
+rules: {}
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Avahi Server
+definition_location: /home/oscap/content/linux_os/guide/services/avahi/group.yml
+documentation_complete: true

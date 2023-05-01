@@ -1,0 +1,21 @@
+# platform = multi_platform_rhel,multi_platform_fedora,multi_platform_ol,multi_platform_rhv,multi_platform_ubuntu,multi_platform_sle
+# reboot = true
+# strategy = disable
+# complexity = low
+# disruption = medium
+- name: Ensure kernel module 'uvcvideo' is disabled
+  lineinfile:
+    create: true
+    dest: /etc/modprobe.d/uvcvideo.conf
+    regexp: install\s+uvcvideo
+    line: install uvcvideo /bin/true
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - NIST-800-53-CM-7 (5) (b)
+  - NIST-800-53-CM-7 (a)
+  - disable_strategy
+  - kernel_module_uvcvideo_disabled
+  - low_complexity
+  - medium_disruption
+  - medium_severity
+  - reboot_required

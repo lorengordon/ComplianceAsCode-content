@@ -1,0 +1,88 @@
+prodtype: alinux2,alinux3,ol7,ol8,ol9,rhel7,rhel8,rhel9,rhv4,sle12,sle15,ubuntu2204
+description: 'Set the mode on files being executed by the user initialization files
+    with the
+
+    following command:
+
+    <pre>$ sudo chmod o-w <i>FILE</i></pre>'
+rationale: 'If user start-up files execute world-writable programs, especially in
+
+    unprotected directories, they could be maliciously modified to destroy user
+
+    files or otherwise compromise the system at the user level. If the system is
+
+    compromised at the user level, it is easier to elevate privileges to eventually
+
+    compromise the system at the root and network level.'
+severity: medium
+references:
+    disa: CCI-000366
+    srg: SRG-OS-000480-GPOS-00227
+    stigid: RHEL-08-010660
+    cis: 6.2.12
+    stigref: SV-230309r627750_rule
+identifiers:
+    cce: CCE-84039-7
+ocil_clause: any local initialization files are found to reference world-writable
+    files
+ocil: 'Verify that local initialization files do not execute world-writable programs
+    with the following command:
+
+
+    Note: The example will be for a system that is configured to create user home
+    directories in the "/home" directory.
+
+
+    <pre>$ sudo find /home -perm -002 -type f -name ".[^.]*" -exec ls -ld {} \;</pre>'
+oval_external_content: null
+fixtext: 'Set the mode on files being executed by the local initialization files with
+    the following command:
+
+
+    $ sudo chmod 0755 &lt;file&gt;'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Local Red Hat Enterprise Linux 8 initialization files must not execute
+    world-writable programs.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Local Red Hat Enterprise Linux 8 initialization files must
+            not execute world-writable programs.
+        vuldiscussion: 'If user start-up files execute world-writable programs, especially
+            in
+
+            unprotected directories, they could be maliciously modified to destroy
+            user
+
+            files or otherwise compromise the system at the user level. If the system
+            is
+
+            compromised at the user level, it is easier to elevate privileges to eventually
+
+            compromise the system at the root and network level.'
+        checktext: "Verify that local initialization files do not execute world-writable\
+            \ programs with the following command:\n\nNote: The example will be for\
+            \ a system that is configured to create user home directories in the \"\
+            /home\" directory.\n\n $ sudo find /home -perm -002 -type f -name \".[^.]*\"\
+            \ -exec ls -ld {} \\;\n\nIf any local initialization files are found to\
+            \ reference world-writable files, this is a finding."
+        fixtext: 'Set the mode on files being executed by the local initialization
+            files with the following command:
+
+
+            $ sudo chmod 0755 &lt;file&gt;'
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: User Initialization Files Must Not Run World-Writable Programs
+definition_location: /home/oscap/content/linux_os/guide/system/accounts/accounts-session/accounts_user_dot_no_world_writable_programs/rule.yml
+template: null
+documentation_complete: true

@@ -1,0 +1,51 @@
+prodtype: all
+description: 'A mail server is required for sending emails.
+
+    The <code>mailx</code> package can be installed with the following command:
+
+    <pre>
+
+    $ sudo zypper install mailx</pre>'
+rationale: 'Emails can be used to notify designated personnel about important
+
+    system events such as failures or warnings.'
+severity: medium
+references:
+    disa: CCI-001744
+    nist: CM-3(5)
+    srg: SRG-OS-000363-GPOS-00150
+identifiers: {}
+ocil_clause: the package is not installed
+ocil: 'Run the following command to determine if the <code>mailx</code> package is
+    installed: <pre>$ rpm -q mailx</pre>'
+oval_external_content: null
+fixtext: ' To install the SUSE Linux Enterprise 12 package mailx run the following
+    command:
+
+
+    $ sudo zypper install mailx'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ' SUSE Linux Enterprise 12 must have the mailx package installed.'
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: The mailx Package Is Installed
+definition_location: /home/oscap/content/linux_os/guide/services/mail/package_mailx_installed/rule.yml
+template:
+    name: package_installed
+    vars:
+        pkgname: mailx
+    backends: {}
+documentation_complete: true

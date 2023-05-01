@@ -1,0 +1,57 @@
+prodtype: ubuntu2004,ubuntu2204
+description: 'A default deny policy on connections ensures that any unconfigured
+
+    network usage will be rejected.
+
+
+    Note: Any port or protocol without a explicit allow before the default
+
+    deny will be blocked.'
+rationale: 'With a default accept policy the firewall will accept any packet that
+
+    is not configured to be denied. It is easier to allow acceptable
+
+    usage than to block unacceptable usage.'
+severity: medium
+references:
+    cis: 3.5.1.7
+identifiers: {}
+ocil_clause: 'the default policy for the incoming, outgoing and routed is not set
+    to deny,
+
+    reject or disabled'
+ocil: 'Run the following command and verify that the default policy for incoming,
+
+    outgoing, and routed directions is deny, reject, or disabled:
+
+    <pre># ufw status verbose | grep Default:</pre>
+
+    Example output:
+
+    <pre>Default: deny (incoming), deny (outgoing), disabled (routed)</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings:
+-   general: 'Changing firewall settings while connected over network can
+
+        result in being locked out of the system.'
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Ensure ufw Default Deny Firewall Policy
+definition_location: /home/oscap/content/linux_os/guide/system/network/network-ufw/set_ufw_default_rule/rule.yml
+template: null
+documentation_complete: true

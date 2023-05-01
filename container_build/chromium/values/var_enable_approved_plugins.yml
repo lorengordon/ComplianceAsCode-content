@@ -1,0 +1,11 @@
+description: Chromium Enabled Plugins
+type: string
+operator: equals
+interactive: true
+options:
+    default: ''
+    none: ''
+warnings: []
+title: Chromium Enabled Plugins
+definition_location: /home/oscap/content/products/chromium/guide/chromium/var_enable_approved_plugins.var
+documentation_complete: true

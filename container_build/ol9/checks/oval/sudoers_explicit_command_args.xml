@@ -1,0 +1,32 @@
+<def-group>
+     <definition class="compliance" id="sudoers_explicit_command_args" version="1">
+     <metadata>
+        <title>Explicit arguments in sudo specifications</title>
+        
+    <affected family="unix">
+    <platform>multi_platform_all</platform>
+    </affected>
+        <description>Check that sudoers doesn't contain commands without arguments specified</description>
+    </metadata>
+     <criteria operator="AND">
+	     <criterion comment="Make sure that no commands are without arguments" test_ref="test_sudoers_explicit_command_args" />
+     </criteria>
+  </definition>
+
+  <ind:textfilecontent54_test check="all" check_existence="none_exist"
+  comment="Make sure that no command in user spec is without any argument"
+	  id="test_sudoers_explicit_command_args" version="1">
+  <ind:object object_ref="object_sudoers_explicit_command_args" />
+  </ind:textfilecontent54_test>
+
+  <ind:textfilecontent54_object id="object_sudoers_explicit_command_args" version="1">
+    <ind:filepath operation="pattern match">^/etc/sudoers(\.d/.*)?$</ind:filepath>
+    <!-- The regex idea: <user list> <host list> = (<the whole command with at least an arg>,)* <command with no arg> <end of the line or next command spec we don't care about>
+         where a command is <runas spec>?<anything except ,>+,
+           - ',' is a command delimiter, while
+         The last capturing group holds the offending command without args.
+    -->
+    <ind:pattern operation="pattern match">^(?:\s*[^#=]+)=(?:\s*(?:\([^\)]+\))?\s*(?!\s*\()[^,\s]+(?:[ \t]+[^,\s]+)+[ \t]*,)*(\s*(?:\([^\)]+\))?\s*(?!\s*\()[^,\s]+[ \t]*(?:,|$))</ind:pattern>
+    <ind:instance datatype="int">1</ind:instance>
+  </ind:textfilecontent54_object>
+</def-group>

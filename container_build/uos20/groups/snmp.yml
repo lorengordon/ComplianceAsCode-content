@@ -1,0 +1,27 @@
+prodtype: all
+description: 'The Simple Network Management Protocol allows
+
+    administrators to monitor the state of network devices, including
+
+    computers. Older versions of SNMP were well-known for weak
+
+    security, such as plaintext transmission of the community string
+
+    (used for authentication) and usage of easily-guessable
+
+    choices for the community string.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups:
+- disabling_snmp_service
+- snmp_configure_server
+rules: {}
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: SNMP Server
+definition_location: /home/oscap/content/linux_os/guide/services/snmp/group.yml
+documentation_complete: true

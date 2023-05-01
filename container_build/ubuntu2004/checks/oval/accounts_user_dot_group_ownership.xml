@@ -1,0 +1,77 @@
+<def-group>
+  <definition class="compliance" id="accounts_user_dot_group_ownership" version="1">
+    <metadata>
+        <title>User Initialization Files Must Be Group-Owned By The Primary Group</title>
+        
+    <affected family="unix">
+    <platform>Oracle Linux 7</platform>
+      <platform>Red Hat Enterprise Linux 7</platform>
+      <platform>SUSE Linux Enterprise 12</platform>
+      <platform>Ubuntu 20.04</platform>
+      <platform>Oracle Linux 8</platform>
+      <platform>Red Hat Enterprise Linux 8</platform>
+      <platform>Ubuntu 22.04</platform>
+      <platform>Red Hat Virtualization 4</platform>
+      <platform>SUSE Linux Enterprise 15</platform>
+    </affected>
+        <description>User Initialization Files Must Be Group-Owned By The Primary Group</description>
+    </metadata>
+    <criteria>
+      <criterion test_ref="test_accounts_user_dot_group_ownership"
+                 comment="User Initialization Files Must Be Group-Owned By The Primary Group"/>
+    </criteria>
+  </definition>
+
+  <unix:password_object id="object_accounts_user_dot_group_ownership_objects" version="1">
+    <unix:username datatype="string" operation="pattern match">.*</unix:username>
+    <filter action="include">state_accounts_user_dot_group_ownership_users_uids</filter>
+    <filter action="exclude">state_accounts_user_dot_group_ownership_users_ignored</filter>
+    <filter action="exclude">state_accounts_user_dot_group_ownership_users_nologin_shell</filter>
+  </unix:password_object>
+
+  <unix:password_state id="state_accounts_user_dot_group_ownership_users_uids" version="1">
+    <unix:user_id datatype="int" operation="greater than or equal">1000</unix:user_id>
+  </unix:password_state>
+
+  <unix:password_state id="state_accounts_user_dot_group_ownership_users_ignored" version="1">
+    <unix:username datatype="string" operation="pattern match">^(nobody|nfsnobody)$</unix:username>
+  </unix:password_state>
+
+  <unix:password_state id="state_accounts_user_dot_group_ownership_users_nologin_shell" version="1">
+    <unix:login_shell datatype="string" operation="pattern match">^/sbin/nologin$</unix:login_shell>
+  </unix:password_state>
+
+  <local_variable id="var_accounts_user_dot_group_ownership_dirs" datatype="string" version="1"
+                  comment="Variable including all home dirs from interactive users">
+    <object_component item_field="home_dir"
+                      object_ref="object_accounts_user_dot_group_ownership_objects"/>
+  </local_variable>
+
+  <local_variable id="var_accounts_user_dot_group_ownership_gids" datatype="int" version="1"
+                  comment="List of interactive users gids">
+    <object_component item_field="group_id"
+                      object_ref="object_accounts_user_dot_group_ownership_objects"/>
+  </local_variable>
+
+  <!-- #### creation of object #### -->
+  <unix:file_object id="object_accounts_user_dot_group_ownership_init_files" version="1">
+    <unix:behaviors recurse="directories" recurse_direction="down" max_depth="1"
+                    recurse_file_system="local"/>
+    <unix:path var_ref="var_accounts_user_dot_group_ownership_dirs" var_check="at least one"/>
+    <unix:filename operation="pattern match">^\..*</unix:filename>
+  </unix:file_object>
+
+  <!-- #### creation of state #### -->
+  <unix:file_state id="state_accounts_user_dot_group_ownership_gids" version="1">
+    <unix:group_id datatype="int" var_check="only one"
+                  var_ref="var_accounts_user_dot_group_ownership_gids"/>
+  </unix:file_state>
+
+  <!-- #### creation of test #### -->
+  <unix:file_test id="test_accounts_user_dot_group_ownership" check="all"
+              check_existence="any_exist" version="1"
+              comment="All user initialization files are group-owned by a local interactive user">
+    <unix:object object_ref="object_accounts_user_dot_group_ownership_init_files"/>
+    <unix:state state_ref="state_accounts_user_dot_group_ownership_gids"/>
+  </unix:file_test>
+</def-group>

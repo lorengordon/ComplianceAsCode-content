@@ -1,0 +1,62 @@
+prodtype: fedora,ol7,ol8,rhcos4,rhel7,rhel8,rhel9,rhv4,sle12,sle15
+description: 'Configure the operating system to encrypt the transfer of off-loaded
+    audit
+
+    records onto a different system or media from the system being audited.
+
+
+    Set the <tt>transport</tt> option in <pre>/etc/audit/audisp-remote.conf</pre>
+
+    to <tt>KRB5</tt>.'
+rationale: 'Information stored in one location is vulnerable to accidental or incidental
+    deletion
+
+    or alteration. Off-loading is a common process in information systems with limited
+
+    audit storage capacity.'
+severity: medium
+references:
+    disa: CCI-001851
+    nist: AU-9(3),CM-6(a)
+    ospp: FAU_GEN.1.1.c
+    srg: SRG-OS-000342-GPOS-00133,SRG-OS-000479-GPOS-00224
+identifiers: {}
+ocil_clause: audispd is not encrypting audit records when sent over the network
+ocil: 'To verify the audispd plugin encrypts audit records off-loaded onto a different
+
+    system or media from the system being audited, run the following command:
+
+
+    <pre>$ sudo grep -i transport /etc/audit/audisp-remote.conf</pre>
+
+    The output should return the following:
+
+    <pre>transport = KRB5</pre>'
+oval_external_content: null
+fixtext: 'Configure Oracle Linux 8 to encrypt audit records sent with audispd plugin.
+
+
+    Set the "transport" option in "/etc/audit/audisp-remote.conf" to "KRB5".'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Oracle Linux 8 must encrypt audit records sent over the network.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    package[audit]: null
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+    package_audit: null
+bash_conditional: null
+fixes: {}
+title: Encrypt Audit Records Sent With audispd Plugin
+definition_location: /home/oscap/content/linux_os/guide/system/auditing/configure_auditd_data_retention/auditd_audispd_encrypt_sent_records/rule.yml
+template: null
+documentation_complete: true

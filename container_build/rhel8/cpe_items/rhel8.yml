@@ -1,0 +1,11 @@
+name: cpe:/o:redhat:enterprise_linux:8
+check_id: installed_OS_is_rhel8
+bash_conditional: ''
+ansible_conditional: ''
+is_product_cpe: true
+versioned: false
+args: {}
+title: Red Hat Enterprise Linux 8
+definition_location: ''
+template: null
+documentation_complete: true

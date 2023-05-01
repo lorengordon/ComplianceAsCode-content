@@ -1,0 +1,51 @@
+prodtype: alinux3,sle15,ubuntu2004,ubuntu2204
+description: 'nftables is a subsystem of the Linux kernel providing filtering and
+    classification of network
+
+    packets/datagrams/frames and is the successor to iptables.
+
+    The <code>nftables</code> package can be removed with the following command:
+
+    <pre>
+
+    $ apt-get remove nftables</pre>'
+rationale: Running both <tt>firewalld</tt> and <tt>nftables</tt> may lead to conflict.
+severity: medium
+references:
+    cis: 3.5.3.1.2
+identifiers: {}
+ocil_clause: the package is installed
+ocil: '
+
+    Run the following command to determine if the <code>nftables</code> package is
+    installed:
+
+    <pre>$ dpkg -l  nftables</pre>'
+oval_external_content: null
+fixtext: ' To remove the Ubuntu 20.04 package nftables run the following command:
+
+
+    $ apt-get remove nftables'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Uninstall nftables package
+definition_location: /home/oscap/content/linux_os/guide/system/network/network-nftables/package_nftables_removed/rule.yml
+template:
+    name: package_removed
+    vars:
+        pkgname: nftables
+    backends: {}
+documentation_complete: true

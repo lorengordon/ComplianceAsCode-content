@@ -1,0 +1,44 @@
+prodtype: rhel7,rhel8,sle15
+description: "Firewall zones define the trust level of network connections or interfaces.\n\
+    Note: Changing firewall settings while connected over network can result in \n\
+    being locked out of the system."
+rationale: 'A network interface not assigned to the appropriate zone can allow unexpected
+    or
+
+    undesired network traffic to be accepted on the interface.'
+severity: medium
+references:
+    cis: 3.5.1.6
+identifiers:
+    cce: CCE-86109-6
+ocil_clause: Your system accepts all incoming packets for unnecessary services and
+    ports
+ocil: "To verify that the interface(s) follow site policy for zone assignment run\
+    \ the \nfollowing command: \n<pre>$ sudo nmcli -t connection show | awk -F: '{if($4){print\
+    \ $4}}' | while read INT;\ndo firewall-cmd --get-active-zones | grep -B1 $INT;\
+    \ done</pre>\nIf your have to assign an interface to the appropriate zone run\
+    \ the following command: \n<pre>$ sudo firewall-cmd --zone=<Zone NAME> --change-interface=<INTERFACE\
+    \ NAME></pre>"
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Ensure network interfaces are assigned to appropriate zone
+definition_location: /home/oscap/content/linux_os/guide/system/network/network-firewalld/set_firewalld_appropriate_zone/rule.yml
+template: null
+documentation_complete: true

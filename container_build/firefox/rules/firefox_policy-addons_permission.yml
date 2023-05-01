@@ -1,0 +1,52 @@
+prodtype: firefox
+description: 'Addon installation may be disabled in an administrative policy by setting
+
+    the <tt>InstallAddonsPermission</tt> key under <tt>policies</tt> to <tt>false</tt>.'
+rationale: 'A browser extension is a program that has been installed into the browser
+    to add functionality. Where a plug-in interacts only with a web page and usually
+    a third-party external application (e.g., Flash, Adobe Reader), an extension interacts
+    with the browser program itself. Extensions are not embedded in web pages and
+    must be downloaded and installed in order to work. Extensions allow browsers to
+    avoid restrictions that apply to web pages.
+
+    For example, an extension can be written to combine data from multiple domains
+    and present it when a certain page is accessed, which can be considered cross-site
+    scripting. If a browser is configured to allow unrestricted use of extensions,
+    plug-ins can be loaded and installed from malicious sources and used on the browser.'
+severity: medium
+references:
+    disa: CCI-000381
+    nist: CM-7
+    stigid: FFOX-00-000013
+identifiers: {}
+ocil_clause: null
+ocil: null
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Firefox must be configured to disable the installation of extensions.
+definition_location: /home/oscap/content/products/firefox/guide/firefox/firefox_policy-addons_permission/rule.yml
+template:
+    name: firefox_policy-setting
+    vars:
+        name: Disable extension installation
+        policies:
+        -   path: InstallAddonsPermission
+            parameter: Default
+            value: 'false'
+    backends: {}
+documentation_complete: true

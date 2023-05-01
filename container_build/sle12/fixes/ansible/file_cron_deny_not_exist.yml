@@ -1,0 +1,19 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = disable
+# complexity = low
+# disruption = low
+- name: Remove /etc/cron.deny
+  file:
+    path: /etc/cron.deny
+    state: absent
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-91684-1
+  - PCI-DSSv4-2.2.6
+  - disable_strategy
+  - file_cron_deny_not_exist
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed

@@ -1,0 +1,89 @@
+prodtype: alinux3,rhel8,rhel9,sle15,ubuntu2004,ubuntu2204
+description: 'nftables is a subsystem of the Linux kernel providing filtering and
+    classification of network
+
+    packets/datagrams/frames and is the successor to iptables.
+
+    The <code>nftables</code> service can be disabled with the following command:
+
+    <pre>systemctl disable nftables</pre>'
+rationale: 'Running both <tt>firewalld</tt> and <tt>nftables</tt> may lead to conflict.
+    <tt>nftables</tt>
+
+    is actually one of the backends for <tt>firewalld</tt> management tools.'
+severity: medium
+references:
+    cis: 3.4.1.2
+identifiers:
+    cce: CCE-88429-6
+ocil_clause: the "nftables" is loaded and not masked
+ocil: 'To check that the <code>nftables</code> service is disabled in system boot
+    configuration,
+
+    run the following command:
+
+    <pre>$ sudo systemctl is-enabled <code>nftables</code></pre>
+
+    Output should indicate the <code>nftables</code> service has either not been installed,
+
+    or has been disabled at all runlevels, as shown in the example below:
+
+    <pre>$ sudo systemctl is-enabled <code>nftables</code><br/> disabled</pre>
+
+
+    Run the following command to verify <code>nftables</code> is not active (i.e.
+    not running) through current runtime configuration:
+
+    <pre>$ sudo systemctl is-active nftables</pre>
+
+
+    If the service is not running the command will return the following output:
+
+    <pre>inactive</pre>
+
+
+    The service will also be masked, to check that the <code>nftables</code> is masked,
+    run the following command:
+
+    <pre>$ sudo systemctl show <code>nftables</code> | grep "LoadState\|UnitFileState"</pre>
+
+
+    If the service is masked the command will return the following outputs:
+
+
+    <pre>LoadState=masked</pre>
+
+
+    <pre>UnitFileState=masked</pre>'
+oval_external_content: null
+fixtext: 'To disable the nftables service run the following command:
+
+    $ sudo systemctl disable --now nftables
+
+    $ sudo systemctl mask --now nftables'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Verify nftables Service is Disabled
+definition_location: /home/oscap/content/linux_os/guide/system/network/network-nftables/service_nftables_disabled/rule.yml
+template:
+    name: service_disabled
+    vars:
+        servicename: nftables
+        packagename: nftables
+    backends: {}
+documentation_complete: true

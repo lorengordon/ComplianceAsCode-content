@@ -1,0 +1,151 @@
+prodtype: alinux3,fedora,ol7,ol8,ol9,rhel7,rhel8,rhel9,rhv4,sle12,sle15,ubuntu2204
+description: 'The <tt>rsyslog</tt> daemon should not accept remote messages
+
+    unless the system acts as a log server.
+
+    To ensure that it is not listening on the network, ensure the following lines
+    are
+
+    <i>not</i> found in <tt>/etc/rsyslog.conf</tt>:
+
+    <pre>$ModLoad imtcp
+
+    $InputTCPServerRun <i>port</i>
+
+    $ModLoad imudp
+
+    $UDPServerRun <i>port</i>
+
+    $ModLoad imrelp
+
+    $InputRELPServerRun <i>port</i></pre>'
+rationale: 'Any process which receives messages from the network incurs some risk
+
+    of receiving malicious messages. This risk can be eliminated for
+
+    rsyslog by configuring it not to listen on the network.'
+severity: medium
+references:
+    cis-csc: 1,11,12,13,14,15,16,18,3,4,5,6,8,9
+    cobit5: APO01.06,APO11.04,APO13.01,BAI03.05,BAI10.01,BAI10.02,BAI10.03,BAI10.05,DSS01.05,DSS03.01,DSS05.02,DSS05.04,DSS05.07,DSS06.02,MEA02.01
+    disa: CCI-000318,CCI-000366,CCI-000368,CCI-001812,CCI-001813,CCI-001814
+    isa-62443-2009: 4.2.3.4,4.3.3.3.9,4.3.3.4,4.3.3.5.8,4.3.4.3.2,4.3.4.3.3,4.3.4.4.7,4.4.2.1,4.4.2.2,4.4.2.4,4.4.3.3
+    isa-62443-2013: SR 2.10,SR 2.11,SR 2.12,SR 2.8,SR 2.9,SR 3.1,SR 3.5,SR 3.8,SR
+        4.1,SR 4.3,SR 5.1,SR 5.2,SR 5.3,SR 7.1,SR 7.6
+    ism: 0988,1405
+    iso27001-2013: A.10.1.1,A.11.1.4,A.11.1.5,A.11.2.1,A.12.1.1,A.12.1.2,A.12.4.1,A.12.4.2,A.12.4.3,A.12.4.4,A.12.5.1,A.12.6.2,A.12.7.1,A.13.1.1,A.13.1.2,A.13.1.3,A.13.2.1,A.13.2.2,A.13.2.3,A.13.2.4,A.14.1.2,A.14.1.3,A.14.2.2,A.14.2.3,A.14.2.4,A.6.1.2,A.7.1.1,A.7.1.2,A.7.3.1,A.8.2.2,A.8.2.3,A.9.1.1,A.9.1.2,A.9.2.3,A.9.4.1,A.9.4.4,A.9.4.5
+    nist: CM-7(a),CM-7(b),CM-6(a)
+    nist-csf: DE.AE-1,ID.AM-3,PR.AC-5,PR.DS-5,PR.IP-1,PR.PT-1,PR.PT-4
+    srg: SRG-OS-000480-GPOS-00227
+    cis: 4.2.2.7
+identifiers: {}
+ocil_clause: rsyslog accepts remote messages and is not documented as a log aggregation
+    system
+ocil: 'Verify that the system is not accepting "rsyslog" messages from other systems
+    unless it is documented as a log aggregation server.
+
+    Display the contents of the configuration file:
+
+    <pre>cat /etc/rsyslog.conf</pre>
+
+    <pre>$ModLoad imtcp
+
+    $InputTCPServerRun <i>port</i>
+
+    $ModLoad imudp
+
+    $UDPServerRun <i>port</i>
+
+    $ModLoad imrelp
+
+    $InputRELPServerRun <i>port</i></pre>
+
+
+    If any of the above modules are being loaded in the "/etc/rsyslog.conf" file,
+    ask to see the documentation for the system being used for log aggregation.'
+oval_external_content: null
+fixtext: The Ubuntu 22.04 must be configured so that the rsyslog daemon does not accept
+    log messages from other servers unless the server is being used for log aggregation.
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Ubuntu 22.04 must be configured so that the rsyslog daemon does not
+    accept log messages from other servers unless the server is being used for log
+    aggregation.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Ubuntu 22.04 must be configured so that the rsyslog daemon
+            does not accept log messages from other servers unless the server is being
+            used for log aggregation.
+        vuldiscussion: 'Unintentionally running a rsyslog server accepting remote
+            messages puts the system at increased risk. Malicious rsyslog messages
+            sent to the server could exploit vulnerabilities in the server software
+            itself, could introduce misleading information in to the system''s logs,
+            or could fill the system''s storage leading to a Denial of Service.
+
+
+            If the system is intended to be a log aggregation server its use must
+            be documented with the ISSO.'
+        checktext: 'Verify that Ubuntu 22.04 is not configured to receive remote logs
+            using rsyslog with the following commands:
+
+
+            $ grep -i modload /etc/rsyslog.conf /etc/rsyslog.d/*
+
+            $ModLoad imtcp
+
+            $ModLoad imrelp
+
+
+            $ grep -i serverrun /etc/rsyslog.conf /etc/rsyslog.d/*
+
+            $InputTCPServerRun 514
+
+            $InputRELPServerRun 514
+
+
+            Note: You may see an error about no files or directories. This is not
+            a finding.
+
+
+            If any lines are returned by the command, then rsyslog is configured to
+            receive remote messages and this is a finding.'
+        fixtext: 'Configure Ubuntu 22.04 to not receive remote logs using rsyslog.
+
+
+            Remove the lines in /etc/rsyslog.conf and any files in the /etc/rsyslog.d
+            directory that match any of the following:
+
+
+            $ModLoad imtcp
+
+            $ModLoad imudp
+
+            $ModLoad imrelp
+
+            $InputTCPServerRun [0-9]*
+
+            $UDPServerRun [0-9]*
+
+            $InputRELPServerRun [0-9]*
+
+
+            The rsyslog daemon must be restarted for the changes to take effect:
+
+            $ sudo systemctl restart rsyslog.service'
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Ensure rsyslog Does Not Accept Remote Messages Unless Acting As Log Server
+definition_location: /home/oscap/content/linux_os/guide/system/logging/rsyslog_accepting_remote_messages/rsyslog_nolisten/rule.yml
+template: null
+documentation_complete: true

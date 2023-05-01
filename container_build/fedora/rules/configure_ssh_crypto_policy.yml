@@ -1,0 +1,100 @@
+prodtype: alinux2,alinux3,anolis8,fedora,ol8,ol9,rhcos4,rhel8,rhel9,rhv4,sle12,sle15,uos20
+description: 'Crypto Policies provide a centralized control over crypto algorithms
+    usage of many packages.
+
+    SSH is supported by crypto policy, but the SSH configuration may be
+
+    set up to ignore it.
+
+    To check that Crypto Policies settings are configured correctly, ensure that
+
+    the <tt>CRYPTO_POLICY</tt> variable is either commented or not set at all
+
+    in the <tt>/etc/sysconfig/sshd</tt>.'
+rationale: 'Overriding the system crypto policy makes the behavior of the SSH service
+    violate expectations,
+
+    and makes system configuration more fragmented.'
+severity: medium
+references:
+    disa: CCI-001453
+    hipaa: 164.308(a)(4)(i),164.308(b)(1),164.308(b)(3),164.312(e)(1),164.312(e)(2)(ii)
+    nerc-cip: CIP-003-8 R4.2,CIP-007-3 R5.1,CIP-007-3 R7.1
+    nist: AC-17(a),AC-17(2),CM-6(a),MA-4(6),SC-13
+    ospp: FCS_SSH_EXT.1,FCS_SSHS_EXT.1,FCS_SSHC_EXT.1
+    pcidss: Req-2.2
+    pcidss4: '2.2'
+    srg: SRG-OS-000250-GPOS-00093
+identifiers: {}
+ocil_clause: the CRYPTO_POLICY variable is set or is not commented out in the /etc/sysconfig/sshd
+ocil: 'Verify that sshd isn''t configured to ignore the system wide cryptographic
+    policy.
+
+
+    Check that the <tt>CRYPTO_POLICY</tt> variable is not set or is commented out
+    in the
+
+    <tt>/etc/sysconfig/sshd</tt>.
+
+
+    Run the following command:
+
+
+    $ sudo grep CRYPTO_POLICY /etc/sysconfig/sshd'
+oval_external_content: null
+fixtext: 'Configure OpenSSH to not ignore the system wide cryptographic policy.
+
+    Run the following command:
+
+
+    $ sudo sed -i "/^\s*CRYPTO_POLICY.*$/Id" /etc/sysconfig/sshd'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Fedora must implement DoD-approved encryption in the OpenSSH package.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: The Fedora SSH daemon must be configured to use system-wide
+            crypto policies.
+        vuldiscussion: "Without cryptographic integrity protections, information can\
+            \ be altered\nby unauthorized users without detection.\n\nRemote access\
+            \ (e.g., RDP) is access to DoD nonpublic information systems\n by an authorized\
+            \ user (or an information system) communicating through\nan external,\
+            \ non-organization-controlled network. Remote access methods\ninclude,\
+            \ for example, dial-up, broadband, and wireless.\n\nCryptographic mechanisms\
+            \ used for protecting the integrity of\ninformation include, for example,\
+            \ signed hash functions using asymmetric\n cryptography enabling distribution\
+            \ of the public key to verify the hash\n information while maintaining\
+            \ the confidentiality of the secret key\nused to generate the hash."
+        checktext: 'Verify that system-wide crypto policies are in effect:
+
+
+            $ sudo grep Include /etc/ssh/sshd_config  /etc/ssh/sshd_config.d/*
+
+            /etc/ssh/sshd_config:Include /etc/ssh/sshd_config.d/*.conf
+
+            /etc/ssh/sshd_config.d/50-redhat.conf:Include /etc/crypto-policies/back-ends/opensshserver.config
+
+
+            If "Include /etc/ssh/sshd_config.d/*.conf" or "Include /etc/crypto-policies/back-ends/opensshserver.config"
+            are not included in the system sshd config or the file /etc/ssh/sshd_config.d/50-redhat.conf
+            is missing, this is a finding'
+        fixtext: 'Configure the Fedora SSH daemon to use system-wide crypto policies
+            by running the following commands:
+
+
+            $ sudo dnf reinstall openssh-server'
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Configure SSH to use System Crypto Policy
+definition_location: /home/oscap/content/linux_os/guide/system/software/integrity/crypto/configure_ssh_crypto_policy/rule.yml
+template: null
+documentation_complete: true

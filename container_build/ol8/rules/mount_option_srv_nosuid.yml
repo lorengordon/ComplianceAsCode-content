@@ -1,0 +1,55 @@
+prodtype: fedora,ol7,ol8,ol9,rhel7,rhel8,rhel9,rhv4,sle12,sle15
+description: 'The <tt>nosuid</tt> mount option can be used to prevent
+
+    execution of setuid programs in <tt>/srv</tt>. The SUID and SGID permissions
+
+    should not be required in this directory.
+
+    Add the <code>nosuid</code> option to the fourth column of
+
+    <tt>/etc/fstab</tt> for the line which controls mounting of
+
+    <code>/srv</code>.'
+rationale: 'The presence of SUID and SGID executables should be tightly controlled.
+    The
+
+    <tt>/srv</tt> directory contains files served by various network services such
+    as FTP. Users should
+
+    not be able to execute SUID or SGID binaries from this directory.'
+severity: medium
+references:
+    anssi: BP28(R12)
+identifiers: {}
+ocil_clause: the "/srv" file system does not have the "nosuid" option set
+ocil: "Verify the <tt>nosuid</tt> option is configured for the <tt>/srv</tt> mount\
+    \ point,\n    run the following command:\n    <pre>$ sudo mount | grep '\\s/srv\\\
+    s'</pre>\n    <pre>. . . /srv . . . nosuid . . .</pre>\n"
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Add nosuid Option to /srv
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/partitions/mount_option_srv_nosuid/rule.yml
+template:
+    name: mount_option
+    vars:
+        mountpoint: /srv
+        mountoption: nosuid
+    backends: {}
+documentation_complete: true

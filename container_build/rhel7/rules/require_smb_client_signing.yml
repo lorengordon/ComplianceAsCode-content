@@ -1,0 +1,53 @@
+prodtype: rhel7,rhel8
+description: 'To require samba clients running <tt>smbclient</tt> to use
+
+    packet signing, add the following to the <tt>[global]</tt> section
+
+    of the Samba configuration file, <tt>/etc/samba/smb.conf</tt>:
+
+    <pre>client signing = mandatory</pre>
+
+    Requiring samba clients such as <tt>smbclient</tt> to use packet
+
+    signing ensures they can
+
+    only communicate with servers that support packet signing.'
+rationale: 'Packet signing can prevent
+
+    man-in-the-middle attacks which modify SMB packets in
+
+    transit.'
+severity: unknown
+references: {}
+identifiers:
+    cce: CCE-80280-1
+ocil_clause: it is not
+ocil: 'To verify that Samba clients running smbclient must use packet signing, run
+    the following command:
+
+    <pre>$ grep signing /etc/samba/smb.conf</pre>
+
+    The output should show:
+
+    <pre>client signing = mandatory</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Require Client SMB Packet Signing, if using smbclient
+definition_location: /home/oscap/content/linux_os/guide/services/smb/configuring_samba/require_smb_client_signing/rule.yml
+template: null
+documentation_complete: true

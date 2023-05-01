@@ -1,0 +1,22 @@
+name: 'cpe:/a:zypper:'
+check_id: ''
+bash_conditional: rpm --quiet -q zypper
+ansible_conditional: '"zypper" in ansible_facts.packages'
+is_product_cpe: false
+versioned: true
+args: {}
+title: Package zypper is installed
+definition_location: /home/oscap/content/shared/applicability/package.yml
+template:
+    name: platform_package
+    vars:
+        pkgname: zypper
+        id: package_zypper
+        name: package
+        arg: zypper
+        ver_specs: []
+        ver_specs_id: ''
+        ver_specs_cpe: ''
+        ver_specs_title: ''
+        _rule_id: package_zypper
+documentation_complete: true

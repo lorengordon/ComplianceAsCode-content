@@ -1,0 +1,136 @@
+prodtype: all
+description: 'To set the runtime status of the <code>fs.protected_symlinks</code>
+    kernel parameter, run the following command: <pre>$ sudo sysctl -w fs.protected_symlinks=1</pre>
+
+    To make sure that the setting is persistent, add the following line to a file
+    in the directory <tt>/etc/sysctl.d</tt>: <pre>fs.protected_symlinks = 1</pre>'
+rationale: 'By enabling this kernel parameter, symbolic links are permitted to be
+    followed
+
+    only when outside a sticky world-writable directory, or when the UID of the
+
+    link and follower match, or when the directory owner matches the symlink''s owner.
+
+    Disallowing such symlinks helps mitigate vulnerabilities based on insecure file
+    system
+
+    accessed by privileged programs, avoiding an exploitation vector exploiting unsafe
+    use of
+
+    <tt>open()</tt> or <tt>creat()</tt>.'
+severity: medium
+references:
+    anssi: BP28(R23)
+    disa: CCI-002165
+    nerc-cip: CIP-003-8 R5.1.1,CIP-003-8 R5.3,CIP-004-6 R2.3,CIP-007-3 R2.1,CIP-007-3
+        R2.2,CIP-007-3 R2.3,CIP-007-3 R5.1,CIP-007-3 R5.1.1,CIP-007-3 R5.1.2
+    nist: CM-6(a),AC-6(1)
+    srg: SRG-OS-000312-GPOS-00122,SRG-OS-000312-GPOS-00123,SRG-OS-000324-GPOS-00125
+identifiers: {}
+ocil_clause: the correct value is not returned
+ocil: 'The runtime status of the <code>fs.protected_symlinks</code> kernel parameter
+    can be queried
+
+    by running the following command:
+
+    <pre>$ sysctl fs.protected_symlinks</pre>
+
+    <code>1</code>.
+
+    '
+oval_external_content: null
+fixtext: 'Verify the operating system is configured to enable DAC on symlinks with
+    the following commands:
+
+    Add or edit the following line in a system configuration file in the "/etc/sysctl.d/"
+    directory:
+
+    fs.protected_symlinks = 1
+
+
+    Load settings from all system configuration files with the following command:
+
+
+    $ sudo sysctl --system'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Alibaba Cloud Linux 2 must enable kernel parameters to enforce discretionary
+    access control on symlinks.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Alibaba Cloud Linux 2 must enable kernel parameters to enforce
+            discretionary access control on symlinks.
+        vuldiscussion: By enabling the fs.protected_symlinks kernel parameter, symbolic
+            links are permitted to be followed only when outside a sticky world-writable
+            directory, or when the UID of the link and follower match, or when the
+            directory owner matches the symlink's owner. Disallowing such symlinks
+            helps mitigate vulnerabilities based on insecure file system accessed
+            by privileged programs, avoiding an exploitation vector exploiting unsafe
+            use of open() or creat().
+        checktext: 'Verify Alibaba Cloud Linux 2 is configured to enable DAC on symlinks.
+
+
+            Check the status of the fs.protected_symlinks kernel parameter with the
+            following command:
+
+
+            $ sudo sysctl fs.protected_symlinks
+
+
+            fs.protected_symlinks = 1
+
+
+            If "fs.protected_symlinks " is not set to "1" or is missing, this is a
+            finding.
+
+
+            Check that the configuration files are present to enable this kernel parameter.
+
+
+            $ sudo /usr/lib/systemd/systemd-sysctl --cat-config | egrep -v ''^(#|;)''
+            | grep -F fs.protected_symlinks | tail -1
+
+
+            fs.protected_symlinks = 1
+
+
+            If "fs.protected_symlinks" is not set to "1" or is missing, this is a
+            finding.'
+        fixtext: 'Verify Alibaba Cloud Linux 2 is configured to enable DAC on symlinks
+            with the following commands:
+
+
+            Add or edit the following line in a system configuration file in the "/etc/sysctl.d/"
+            directory:
+
+
+            fs.protected_symlinks = 1
+
+
+            Load settings from all system configuration files with the following command:
+
+
+            $ sudo sysctl --system'
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Enable Kernel Parameter to Enforce DAC on Symlinks
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/files/sysctl_fs_protected_symlinks/rule.yml
+template:
+    name: sysctl
+    vars:
+        sysctlvar: fs.protected_symlinks
+        sysctlval: '1'
+        datatype: int
+    backends: {}
+documentation_complete: true

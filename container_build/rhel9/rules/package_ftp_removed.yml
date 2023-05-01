@@ -1,0 +1,58 @@
+prodtype: rhel9
+description: 'FTP (File Transfer Protocol) is a traditional and widely used standard
+    tool for
+
+    transferring files between a server and clients over a network, especially where
+    no
+
+    authentication is necessary (permits anonymous users to connect to a server).
+
+    <br/>
+
+    The <code>ftp</code> package can be removed with the following command:
+
+    <pre>
+
+    $ sudo dnf erase ftp</pre>'
+rationale: 'FTP does not protect the confidentiality of data or authentication credentials.
+    It
+
+    is recommended SFTP be used if file transfer is required. Unless there is a need
+
+    to run the system as a FTP server (for example, to allow anonymous downloads),
+    it is
+
+    recommended that the package be removed to reduce the potential attack surface.'
+severity: low
+references:
+    cis: 2.3.4
+identifiers:
+    cce: CCE-86075-9
+ocil_clause: null
+ocil: 'The <code>ftp</code> package can be removed with the following command: <pre>
+    $ sudo dnf erase ftp</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Remove ftp Package
+definition_location: /home/oscap/content/linux_os/guide/services/ftp/package_ftp_removed/rule.yml
+template:
+    name: package_removed
+    vars:
+        pkgname: ftp
+    backends: {}
+documentation_complete: true

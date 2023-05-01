@@ -1,0 +1,59 @@
+prodtype: firefox
+description: 'The pop-up blocker can be enabled by setting
+
+    <tt>Default</tt> key under <tt>PopupBlocking</tt> to <tt>true</tt> in <tt>policies.json</tt>.
+
+    <tt>Allowed</tt> may be set to a list of sites allowed to use popups. '
+rationale: 'Popup windows may be used to launch an attack within a new browser window
+
+    with altered settings.'
+severity: medium
+references:
+    disa: CCI-000381
+    nist: CM-7
+    stigid: FFOX-00-000009
+identifiers: {}
+ocil_clause: it is not enabled
+ocil: 'To verify that pop-up blocker is enabled,
+
+    run the following command:
+
+    <pre>$ grep -B10 ''PopupBlocking'' <i>FIREFOX_INSTALL_DIR</i>/*.cfg</pre>
+
+    The output should include:
+
+    <pre>"Default": true</pre>
+
+    <pre>"Locked": true</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Enable Firefox Pop-up Blocker
+definition_location: /home/oscap/content/products/firefox/guide/firefox/firefox_policy-pop-up_windows/rule.yml
+template:
+    name: firefox_policy-setting
+    vars:
+        name: Disable popup blocking
+        policies:
+        -   path: PopupBlocking
+            parameter: Default
+            value: 'true'
+        -   path: PopupBlocking
+            parameter: Locked
+            value: 'true'
+    backends: {}
+documentation_complete: true

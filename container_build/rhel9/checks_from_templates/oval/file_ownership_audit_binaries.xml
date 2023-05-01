@@ -1,0 +1,135 @@
+<def-group>
+  <definition class="compliance" id="file_ownership_audit_binaries" version="1">
+  
+    <metadata>
+        <title>Verify that audit tools are owned by root</title>
+        
+    <affected family="unix">
+    <platform>Red Hat Enterprise Linux 9</platform>
+    </affected>
+        <description>This test makes sure that /sbin/auditctl, /sbin/aureport, /sbin/ausearch, /sbin/autrace, /sbin/auditd, /sbin/audispd, /sbin/augenrules is owned by 0.</description>
+    </metadata>
+     <criteria>
+   
+     <criterion comment="Check file ownership of /sbin/auditctl" test_ref="test_file_ownership_audit_binaries_0" />
+   
+     <criterion comment="Check file ownership of /sbin/aureport" test_ref="test_file_ownership_audit_binaries_1" />
+   
+     <criterion comment="Check file ownership of /sbin/ausearch" test_ref="test_file_ownership_audit_binaries_2" />
+   
+     <criterion comment="Check file ownership of /sbin/autrace" test_ref="test_file_ownership_audit_binaries_3" />
+   
+     <criterion comment="Check file ownership of /sbin/auditd" test_ref="test_file_ownership_audit_binaries_4" />
+   
+     <criterion comment="Check file ownership of /sbin/audispd" test_ref="test_file_ownership_audit_binaries_5" />
+   
+     <criterion comment="Check file ownership of /sbin/augenrules" test_ref="test_file_ownership_audit_binaries_6" />
+   
+  
+    </criteria>
+  </definition>
+
+  
+  <unix:file_test check="all" check_existence="none_exist" comment="Testing user ownership of /sbin/auditctl" id="test_file_ownership_audit_binaries_0" version="1">
+    <unix:object object_ref="object_file_ownership_audit_binaries_0" />
+  </unix:file_test>
+
+  <unix:file_object comment="/sbin/auditctl" id="object_file_ownership_audit_binaries_0" version="1">
+      <unix:filepath>/sbin/auditctl</unix:filepath>
+    <filter action="exclude">symlink_file_ownership_audit_binaries_uid_0</filter>
+    <filter action="exclude">state_file_ownership_audit_binaries_uid_0_0</filter>
+  </unix:file_object>
+
+  <unix:file_state id="state_file_ownership_audit_binaries_uid_0_0" version="1">
+    <unix:user_id datatype="int">0</unix:user_id>
+  </unix:file_state>
+  
+  <unix:file_test check="all" check_existence="none_exist" comment="Testing user ownership of /sbin/aureport" id="test_file_ownership_audit_binaries_1" version="1">
+    <unix:object object_ref="object_file_ownership_audit_binaries_1" />
+  </unix:file_test>
+
+  <unix:file_object comment="/sbin/aureport" id="object_file_ownership_audit_binaries_1" version="1">
+      <unix:filepath>/sbin/aureport</unix:filepath>
+    <filter action="exclude">symlink_file_ownership_audit_binaries_uid_0</filter>
+    <filter action="exclude">state_file_ownership_audit_binaries_uid_0_1</filter>
+  </unix:file_object>
+
+  <unix:file_state id="state_file_ownership_audit_binaries_uid_0_1" version="1">
+    <unix:user_id datatype="int">0</unix:user_id>
+  </unix:file_state>
+  
+  <unix:file_test check="all" check_existence="none_exist" comment="Testing user ownership of /sbin/ausearch" id="test_file_ownership_audit_binaries_2" version="1">
+    <unix:object object_ref="object_file_ownership_audit_binaries_2" />
+  </unix:file_test>
+
+  <unix:file_object comment="/sbin/ausearch" id="object_file_ownership_audit_binaries_2" version="1">
+      <unix:filepath>/sbin/ausearch</unix:filepath>
+    <filter action="exclude">symlink_file_ownership_audit_binaries_uid_0</filter>
+    <filter action="exclude">state_file_ownership_audit_binaries_uid_0_2</filter>
+  </unix:file_object>
+
+  <unix:file_state id="state_file_ownership_audit_binaries_uid_0_2" version="1">
+    <unix:user_id datatype="int">0</unix:user_id>
+  </unix:file_state>
+  
+  <unix:file_test check="all" check_existence="none_exist" comment="Testing user ownership of /sbin/autrace" id="test_file_ownership_audit_binaries_3" version="1">
+    <unix:object object_ref="object_file_ownership_audit_binaries_3" />
+  </unix:file_test>
+
+  <unix:file_object comment="/sbin/autrace" id="object_file_ownership_audit_binaries_3" version="1">
+      <unix:filepath>/sbin/autrace</unix:filepath>
+    <filter action="exclude">symlink_file_ownership_audit_binaries_uid_0</filter>
+    <filter action="exclude">state_file_ownership_audit_binaries_uid_0_3</filter>
+  </unix:file_object>
+
+  <unix:file_state id="state_file_ownership_audit_binaries_uid_0_3" version="1">
+    <unix:user_id datatype="int">0</unix:user_id>
+  </unix:file_state>
+  
+  <unix:file_test check="all" check_existence="none_exist" comment="Testing user ownership of /sbin/auditd" id="test_file_ownership_audit_binaries_4" version="1">
+    <unix:object object_ref="object_file_ownership_audit_binaries_4" />
+  </unix:file_test>
+
+  <unix:file_object comment="/sbin/auditd" id="object_file_ownership_audit_binaries_4" version="1">
+      <unix:filepath>/sbin/auditd</unix:filepath>
+    <filter action="exclude">symlink_file_ownership_audit_binaries_uid_0</filter>
+    <filter action="exclude">state_file_ownership_audit_binaries_uid_0_4</filter>
+  </unix:file_object>
+
+  <unix:file_state id="state_file_ownership_audit_binaries_uid_0_4" version="1">
+    <unix:user_id datatype="int">0</unix:user_id>
+  </unix:file_state>
+  
+  <unix:file_test check="all" check_existence="none_exist" comment="Testing user ownership of /sbin/audispd" id="test_file_ownership_audit_binaries_5" version="1">
+    <unix:object object_ref="object_file_ownership_audit_binaries_5" />
+  </unix:file_test>
+
+  <unix:file_object comment="/sbin/audispd" id="object_file_ownership_audit_binaries_5" version="1">
+      <unix:filepath>/sbin/audispd</unix:filepath>
+    <filter action="exclude">symlink_file_ownership_audit_binaries_uid_0</filter>
+    <filter action="exclude">state_file_ownership_audit_binaries_uid_0_5</filter>
+  </unix:file_object>
+
+  <unix:file_state id="state_file_ownership_audit_binaries_uid_0_5" version="1">
+    <unix:user_id datatype="int">0</unix:user_id>
+  </unix:file_state>
+  
+  <unix:file_test check="all" check_existence="none_exist" comment="Testing user ownership of /sbin/augenrules" id="test_file_ownership_audit_binaries_6" version="1">
+    <unix:object object_ref="object_file_ownership_audit_binaries_6" />
+  </unix:file_test>
+
+  <unix:file_object comment="/sbin/augenrules" id="object_file_ownership_audit_binaries_6" version="1">
+      <unix:filepath>/sbin/augenrules</unix:filepath>
+    <filter action="exclude">symlink_file_ownership_audit_binaries_uid_0</filter>
+    <filter action="exclude">state_file_ownership_audit_binaries_uid_0_6</filter>
+  </unix:file_object>
+
+  <unix:file_state id="state_file_ownership_audit_binaries_uid_0_6" version="1">
+    <unix:user_id datatype="int">0</unix:user_id>
+  </unix:file_state>
+  
+
+  <unix:file_state id="symlink_file_ownership_audit_binaries_uid_0" version="1">
+    <unix:type operation="equals">symbolic link</unix:type>
+  </unix:file_state>
+</def-group>

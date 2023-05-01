@@ -1,0 +1,9 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = disable
+# complexity = low
+# disruption = low
+- name: Ensure libreport-plugin-logger is removed
+  package:
+    name: "libreport-plugin-logger"
+    state: absent

@@ -1,0 +1,44 @@
+prodtype: all
+description: 'By default users, can change search provider settings. To disable this,
+    set
+
+    <tt>DefaultSearchProviderEnabled</tt> to <tt>true</tt> in the Chromium policy
+    file.'
+rationale: 'A default search is performed when the user types text in the omnibox
+    that is not a URL.
+
+    This should be organizationally defined and not allowed to be changed by a user.'
+severity: unknown
+references:
+    stigid: DTBC0009
+identifiers: {}
+ocil_clause: it is not enabled
+ocil: 'To verify that users cannot change the default search provider, run the following
+    command:
+
+    <pre>$ grep DefaultSearchProviderEnabled /etc/chromium/policies/managed/*.json</pre>
+
+    The output should contain:
+
+    <pre>"DefaultSearchProviderEnabled": true,</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Enable the Default Search Provider
+definition_location: /home/oscap/content/products/chromium/guide/chromium/chromium_default_search_provider/rule.yml
+template: null
+documentation_complete: true

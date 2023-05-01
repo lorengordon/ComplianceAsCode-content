@@ -1,0 +1,24 @@
+prodtype: all
+description: 'The guidance in this section is appropriate for any host which is
+
+    operating as a site MTA, whether the mail server runs using Sendmail, Postfix,
+
+    or some other software.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups:
+- postfix_configure_ssl_certs
+- postfix_server_cfg
+rules: {}
+platform: package[postfix]
+platforms: !!set
+    package[postfix]: null
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set
+    package_postfix: null
+title: Configure Operating System to Protect Mail Server
+definition_location: /home/oscap/content/linux_os/guide/services/mail/postfix_harden_os/group.yml
+documentation_complete: true

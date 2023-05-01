@@ -1,0 +1,46 @@
+prodtype: all
+description: "The SSH protocol is recommended for remote login and\nremote file transfer.\
+    \ SSH provides confidentiality and integrity\nfor data exchanged between two systems,\
+    \ as well as server\nauthentication, through the use of public key cryptography.\
+    \ The\nimplementation included with the system is called OpenSSH, and more\ndetailed\
+    \ documentation is available from its website,\n\n    <a xmlns='http://www.w3.org/1999/xhtml'\
+    \ href='https://www.openssh.com'>https://www.openssh.com</a>.\nIts server program\
+    \ is called <tt>sshd</tt> and provided by the RPM package\n<tt>openssh-server</tt>."
+warnings: []
+requires: []
+conflicts: []
+values:
+- firewalld_sshd_zone
+- sshd_approved_ciphers
+- sshd_approved_macs
+- sshd_idle_timeout_value
+- sshd_listening_port
+- sshd_max_auth_tries_value
+- sshd_required
+- sshd_strong_kex
+- var_sshd_max_sessions
+- var_sshd_set_keepalive
+groups:
+- ssh_client
+- ssh_server
+rules:
+- file_groupowner_sshd_config
+- file_owner_sshd_config
+- file_permissions_sshd_config
+- file_permissions_sshd_private_key
+- file_permissions_sshd_pub_key
+- iptables_sshd_disabled
+- package_openssh-clients_installed
+- package_openssh-server_installed
+- package_openssh-server_removed
+- service_sshd_disabled
+- service_sshd_enabled
+platform: machine
+platforms: !!set
+    machine: null
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+title: SSH Server
+definition_location: /home/oscap/content/linux_os/guide/services/ssh/group.yml
+documentation_complete: true

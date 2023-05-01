@@ -1,0 +1,124 @@
+prodtype: fedora,ol7,ol8,ol9,rhel7,rhel8,rhel9,sle12,sle15
+description: 'Enterprise Application tends to use the server or virtual machine exclusively.
+
+    Besides the default operating system user, there should be only authorized local
+
+    users required by the installed software groups and applications that exist on
+
+    the operating system. The authorized user list can be customized in the refine
+
+    value variable <tt>var_accounts_authorized_local_users_regex</tt>.
+
+    OVAL regular expression is used for the user list.
+
+    Configure the system so all accounts on the system are assigned to an active system,
+
+    application, or user account. Remove accounts that do not support approved system
+
+    activities or that allow for a normal user to perform administrative-level actions.
+
+    To remove unauthorized system accounts, use the following command:
+
+    <pre>$ sudo userdel <i>unauthorized_user</i></pre>'
+rationale: 'Accounts providing no operational purpose provide additional opportunities
+    for
+
+    system compromise. Unnecessary accounts include user accounts for individuals
+    not
+
+    requiring access to the system and application accounts for applications not installed
+
+    on the system.'
+severity: medium
+references:
+    disa: CCI-000366
+    srg: SRG-OS-000480-GPOS-00227
+    stigid: SLES-15-020090
+    stigref: SV-234874r622137_rule
+identifiers:
+    cce: CCE-85561-9
+ocil_clause: there are unauthorized local user accounts on the system
+ocil: 'To verify that there are no unauthorized local user accounts, run the following
+    command:
+
+    <pre>$ less /etc/passwd </pre>
+
+    Inspect the results, and if unauthorized local user accounts exist, remove them
+    by running
+
+    the following command:
+
+    <pre>$ sudo userdel <i>unauthorized_user</i></pre>'
+oval_external_content: null
+fixtext: 'Configure the system so all accounts on the system are assigned to an active
+    system, application, or user account.
+
+
+    Remove accounts that do not support approved system activities or that allow for
+    a normal user to perform administrative-level actions.
+
+
+    Document all authorized accounts on the system.'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: SUSE Linux Enterprise 15 must not have unnecessary accounts.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: SUSE Linux Enterprise 15 must not have unauthorized accounts.
+        vuldiscussion: 'Accounts providing no operational purpose provide additional
+            opportunities for
+
+            system compromise. Unnecessary accounts include user accounts for individuals
+            not
+
+            requiring access to the system and application accounts for applications
+            not installed
+
+            on the system.'
+        checktext: 'Verify that there are no unauthorized local interactive user accounts
+            with the following command:
+
+
+            $ less /etc/passwd
+
+
+            root:x:0:0:root:/root:/bin/bash
+
+            ...
+
+            smithk:x:1000:1000:smithk:/home/smithk:/bin/bash
+
+            throckw:x:1001:1001:throckw:/home/throckw:/bin/bash
+
+
+            Interactive user account, generally will have a UID of 1000 or greater,
+            a home directory in a specific partition, and an interactive shell.
+
+
+            Obtain the list of interactive user accounts authorized to be on the system
+            from the System Administrator or Information System Security Officer (ISSO)
+            and compare it to the list of local interactive user accounts on the system.
+
+
+            If there are unauthorized local user accounts on the system, this is a
+            finding.'
+        fixtext: 'Remove unauthorized local interactive user accounts with the following
+            command where &ltunauthorized_user&gt is the unauthorized account:
+
+
+            $ sudo userdel  &ltunauthorized_user&gt'
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Only Authorized Local User Accounts Exist on Operating System
+definition_location: /home/oscap/content/linux_os/guide/system/accounts/accounts-restrictions/accounts_authorized_local_users/rule.yml
+template: null
+documentation_complete: true

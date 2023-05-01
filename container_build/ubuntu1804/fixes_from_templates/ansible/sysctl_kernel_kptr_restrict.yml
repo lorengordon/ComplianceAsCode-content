@@ -1,0 +1,41 @@
+# platform = multi_platform_all
+# reboot = true
+# strategy = disable
+# complexity = low
+# disruption = medium
+
+- name: List /etc/sysctl.d/*.conf files
+      
+  find:
+    paths:
+      - "/etc/sysctl.d/"
+      - "/run/sysctl.d/"
+      - "/usr/local/lib/sysctl.d/"
+
+
+      - "/usr/lib/sysctl.d/"
+
+    contains: '^[\s]*kernel.kptr_restrict.*$'
+    patterns: "*.conf"
+    file_type: any
+  register: find_sysctl_d
+
+- name: Comment out any occurrences of kernel.kptr_restrict from config files
+  replace:
+    path: "{{ item.path }}"
+    regexp: '^[\s]*kernel.kptr_restrict'
+    replace: '#kernel.kptr_restrict'
+  loop: "{{ find_sysctl_d.files }}"
+
+
+- (xccdf-var sysctl_kernel_kptr_restrict_value)
+
+- name: Ensure sysctl kernel.kptr_restrict is set
+  sysctl:
+    name: "kernel.kptr_restrict"
+    value: "{{ sysctl_kernel_kptr_restrict_value }}"
+
+    sysctl_file: "/etc/sysctl.conf"
+
+    state: present
+    reload: yes

@@ -1,0 +1,21 @@
+prodtype: all
+description: The steps in this section are appropriate for systems which operate as
+    NFS servers.
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups:
+- configure_exports_restrictively
+- export_filesystems_read_only
+- use_acl_enforce_auth_restrictions
+rules:
+- no_all_squash_exports
+- use_kerberos_security_all_exports
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Configure NFS Servers
+definition_location: /home/oscap/content/linux_os/guide/services/nfs_and_rpc/nfs_configuring_servers/group.yml
+documentation_complete: true

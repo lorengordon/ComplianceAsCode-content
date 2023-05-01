@@ -1,0 +1,1523 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<overlays xmlns="http://checklists.nist.gov/xccdf/1.1">
+  <overlay owner="disastig" ruleid="installed_OS_is_vendor_supported" ownerid="OL08-00-010000" disa="366" severity="high">
+    <VMSinfo VKey="248521" SVKey="248521" VRelease="779129"/>
+    <title text="OL 8 must be a vendor-supported release."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="agent_mfetpd_running" ownerid="OL08-00-010001" disa="1233" severity="medium">
+    <VMSinfo VKey="248522" SVKey="248522" VRelease="779132"/>
+    <title text="The OL 8 operating system must implement the Endpoint Security for Linux Threat Prevention tool."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="security_patches_up_to_date" ownerid="OL08-00-010010" disa="366" severity="medium">
+    <VMSinfo VKey="248523" SVKey="248523" VRelease="779135"/>
+    <title text="OL 8 vendor-packaged system security patches and updates must be installed and up to date."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="ensure_oracle_gpgkey_installed" ownerid="OL08-00-010019" disa="1749" severity="medium">
+    <VMSinfo VKey="256978" SVKey="256978" VRelease="902784"/>
+    <title text="OL 8 must ensure cryptographic verification of vendor software packages."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="harden_sshd_ciphers_openssh_conf_crypto_policy" ownerid="OL08-00-010020" disa="3123" severity="high">
+    <VMSinfo VKey="248524" SVKey="248524" VRelease="877398"/>
+    <title text="OL 8 must implement NIST FIPS-validated cryptography for the following: To provision digital signatures, to generate cryptographic hashes, and to protect data requiring data-at-rest protections in accordance with applicable federal laws, Executive Orders, directives, policies, regulations, and standards."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="encrypt_partitions" ownerid="OL08-00-010030" disa="2476" severity="medium">
+    <VMSinfo VKey="248525" SVKey="248525" VRelease="853748"/>
+    <title text="All OL 8 local disk partitions must implement cryptographic mechanisms to prevent unauthorized disclosure or modification of all information that requires at-rest protection."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sshd_enable_warning_banner" ownerid="OL08-00-010040" disa="1388" severity="medium">
+    <VMSinfo VKey="248526" SVKey="248526" VRelease="858561"/>
+    <title text="OL 8 must display the Standard Mandatory DoD Notice and Consent Banner before granting local or remote access to the system via an SSH logon."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="dconf_gnome_banner_enabled" ownerid="OL08-00-010049" disa="1388" severity="medium">
+    <VMSinfo VKey="248527" SVKey="248527" VRelease="779147"/>
+    <title text="OL 8 must display a banner before granting local or remote access to the system via a graphical user logon."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="dconf_gnome_login_banner_text" ownerid="OL08-00-010050" disa="1388" severity="medium">
+    <VMSinfo VKey="248528" SVKey="248528" VRelease="779150"/>
+    <title text="OL 8 must display the Standard Mandatory DoD Notice and Consent Banner before granting local or remote access to the system via a graphical user logon."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="banner_etc_issue" ownerid="OL08-00-010060" disa="1388" severity="medium">
+    <VMSinfo VKey="248529" SVKey="248529" VRelease="779153"/>
+    <title text="OL 8 must display the Standard Mandatory DoD Notice and Consent Banner before granting local or remote access to the system via a command line user logon."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="rsyslog_remote_access_monitoring" ownerid="OL08-00-010070" disa="67" severity="medium">
+    <VMSinfo VKey="248530" SVKey="248530" VRelease="779156"/>
+    <title text="All OL 8 remote access methods must be monitored."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sssd_has_trust_anchor" ownerid="OL08-00-010090" disa="1991" severity="medium">
+    <VMSinfo VKey="248531" SVKey="248531" VRelease="860907"/>
+    <title text="OL 8, for PKI-based authentication, must validate certificates by constructing a certification path (which includes status information) to an accepted trust anchor."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="ssh_private_keys_have_passcode" ownerid="OL08-00-010100" disa="186" severity="medium">
+    <VMSinfo VKey="248532" SVKey="248532" VRelease="779162"/>
+    <title text="OL 8, for certificate-based authentication, must enforce authorized access to the corresponding private key."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="set_password_hashing_algorithm_logindefs" ownerid="OL08-00-010110" disa="196" severity="medium">
+    <VMSinfo VKey="248533" SVKey="248533" VRelease="877397"/>
+    <title text="OL 8 must encrypt all stored passwords with a FIPS 140-2 approved cryptographic hashing algorithm."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_password_all_shadowed_sha512" ownerid="OL08-00-010120" disa="196" severity="medium">
+    <VMSinfo VKey="248534" SVKey="248534" VRelease="877397"/>
+    <title text="OL 8 must employ FIPS 140-2 approved cryptographic hashing algorithms for all stored passwords."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="no_empty_passwords_etc_shadow" ownerid="OL08-00-010121" disa="366" severity="high">
+    <VMSinfo VKey="252650" SVKey="252650" VRelease="818746"/>
+    <title text="The OL 8 operating system must not have accounts configured with blank or null passwords."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_password_pam_unix_rounds_system_auth" ownerid="OL08-00-010130" disa="196" severity="medium">
+    <VMSinfo VKey="248535" SVKey="248535" VRelease="880546"/>
+    <title text="The OL 8 shadow password suite must be configured to use a sufficient number of hashing rounds."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="grub2_uefi_password" ownerid="OL08-00-010140" disa="213" severity="high">
+    <VMSinfo VKey="248537" SVKey="248537" VRelease="779177"/>
+    <title text="OL 8 operating systems booted with United Extensible Firmware Interface (UEFI) must require authentication upon booting into single-user mode and maintenance."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="grub2_uefi_admin_username" ownerid="OL08-00-010141" disa="213" severity="medium">
+    <VMSinfo VKey="248538" SVKey="248538" VRelease="818603"/>
+    <title text="OL 8 operating systems booted with United Extensible Firmware Interface (UEFI) must have a unique name for the grub superusers account when booting into single-user mode and maintenance."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="grub2_admin_username" ownerid="OL08-00-010149" disa="213" severity="medium">
+    <VMSinfo VKey="248539" SVKey="248539" VRelease="818605"/>
+    <title text="OL 8 operating systems booted with a BIOS must have a unique name for the grub superusers account when booting into single-user and maintenance modes."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="grub2_password" ownerid="OL08-00-010150" disa="213" severity="high">
+    <VMSinfo VKey="248540" SVKey="248540" VRelease="779186"/>
+    <title text="OL 8 operating systems booted with a BIOS must require authentication upon booting into single-user and maintenance modes."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="require_singleuser_auth" ownerid="OL08-00-010151" disa="213" severity="medium">
+    <VMSinfo VKey="248541" SVKey="248541" VRelease="779189"/>
+    <title text="OL 8 operating systems must require authentication upon booting into rescue mode."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="require_emergency_target_auth" ownerid="OL08-00-010152" disa="213" severity="medium">
+    <VMSinfo VKey="248542" SVKey="248542" VRelease="779192"/>
+    <title text="OL 8 operating systems must require authentication upon booting into emergency mode."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="set_password_hashing_algorithm_systemauth" ownerid="OL08-00-010159" disa="803" severity="medium">
+    <VMSinfo VKey="248543" SVKey="248543" VRelease="818608"/>
+    <title text="The OL 8 &quot;pam_unix.so&quot; module must be configured in the system-auth file to use a FIPS 140-2 approved cryptographic hashing algorithm for system authentication."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="set_password_hashing_algorithm_passwordauth" ownerid="OL08-00-010160" disa="803" severity="medium">
+    <VMSinfo VKey="248544" SVKey="248544" VRelease="818611"/>
+    <title text="The OL 8 &quot;pam_unix.so&quot; module must be configured in the password-auth file to use a FIPS 140-2 approved cryptographic hashing algorithm for system authentication."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="kerberos_disable_no_keytab" ownerid="OL08-00-010161" disa="803" severity="medium">
+    <VMSinfo VKey="248545" SVKey="248545" VRelease="779201"/>
+    <title text="OL 8 must prevent system daemons from using Kerberos for authentication."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="package_krb5-workstation_removed" ownerid="OL08-00-010162" disa="803" severity="medium">
+    <VMSinfo VKey="248546" SVKey="248546" VRelease="779204"/>
+    <title text="The krb5-workstation package must not be installed on OL 8."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="package_krb5-server_removed" ownerid="OL08-00-010163" disa="803" severity="medium">
+    <VMSinfo VKey="248547" SVKey="248547" VRelease="779207"/>
+    <title text="The krb5-server package must not be installed on OL 8."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="selinux_state" ownerid="OL08-00-010170" disa="1084" severity="medium">
+    <VMSinfo VKey="248548" SVKey="248548" VRelease="779210"/>
+    <title text="OL 8 must use a Linux Security Module configured to enforce limits on system services."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="package_policycoreutils_installed" ownerid="OL08-00-010171" disa="1084" severity="low">
+    <VMSinfo VKey="248549" SVKey="248549" VRelease="779213"/>
+    <title text="OL 8 must have the &quot;policycoreutils&quot; package installed."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="dir_perms_world_writable_sticky_bits" ownerid="OL08-00-010190" disa="1090" severity="medium">
+    <VMSinfo VKey="248551" SVKey="248551" VRelease="779219"/>
+    <title text="A sticky bit must be set on all OL 8 public directories to prevent unauthorized and unintended information transferred via shared system resources."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sshd_set_keepalive_0" ownerid="OL08-00-010200" disa="2361" severity="medium">
+    <VMSinfo VKey="248552" SVKey="248552" VRelease="860908"/>
+    <title text="OL 8 must be configured so that all network connections associated with SSH traffic are terminate after a period of inactivity."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sshd_set_idle_timeout" ownerid="OL08-00-010201" disa="2361" severity="medium">
+    <VMSinfo VKey="248553" SVKey="248553" VRelease="860909"/>
+    <title text="OL 8 must be configured so that all network connections associated with SSH traffic are terminated at the end of the session or after 10 minutes of inactivity."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="file_permissions_var_log_messages" ownerid="OL08-00-010210" disa="1314" severity="medium">
+    <VMSinfo VKey="248554" SVKey="248554" VRelease="779228"/>
+    <title text="The OL 8 &quot;/var/log/messages&quot; file must have mode 0640 or less permissive."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="file_owner_var_log_messages" ownerid="OL08-00-010220" disa="1314" severity="medium">
+    <VMSinfo VKey="248555" SVKey="248555" VRelease="779231"/>
+    <title text="The OL 8 &quot;/var/log/messages&quot; file must be owned by root."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="file_groupowner_var_log_messages" ownerid="OL08-00-010230" disa="1314" severity="medium">
+    <VMSinfo VKey="248556" SVKey="248556" VRelease="779234"/>
+    <title text="The OL 8 &quot;/var/log/messages&quot; file must be group-owned by root."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="file_permissions_var_log" ownerid="OL08-00-010240" disa="1314" severity="medium">
+    <VMSinfo VKey="248557" SVKey="248557" VRelease="779237"/>
+    <title text="The OL 8 &quot;/var/log&quot; directory must have mode 0755 or less permissive."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="file_owner_var_log" ownerid="OL08-00-010250" disa="1314" severity="medium">
+    <VMSinfo VKey="248558" SVKey="248558" VRelease="779240"/>
+    <title text="The OL 8 &quot;/var/log&quot; directory must be owned by root."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="file_groupowner_var_log" ownerid="OL08-00-010260" disa="1314" severity="medium">
+    <VMSinfo VKey="248559" SVKey="248559" VRelease="779243"/>
+    <title text="The OL 8 &quot;/var/log&quot; directory must be group-owned by root."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="configure_ssh_crypto_policy" ownerid="OL08-00-010287" disa="1453" severity="medium">
+    <VMSinfo VKey="248560" SVKey="248560" VRelease="877394"/>
+    <title text="The OL 8 SSH daemon must be configured to use system-wide crypto policies."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="harden_sshd_macs_opensshserver_conf_crypto_policy" ownerid="OL08-00-010290" disa="877" severity="medium">
+    <VMSinfo VKey="248561" SVKey="248561" VRelease="877395"/>
+    <title text="The OL 8 SSH server must be configured to use only Message Authentication Codes (MACs) employing FIPS 140-2 validated cryptographic hash algorithms."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="harden_sshd_ciphers_opensshserver_conf_crypto_policy" ownerid="OL08-00-010291" disa="877" severity="medium">
+    <VMSinfo VKey="248562" SVKey="248562" VRelease="877395"/>
+    <title text="The OL 8 SSH server must be configured to use only ciphers employing FIPS 140-2 validated cryptographic algorithms."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sshd_use_strong_rng" ownerid="OL08-00-010292" disa="366" severity="low">
+    <VMSinfo VKey="248563" SVKey="248563" VRelease="779255"/>
+    <title text="The OL 8 SSH server must be configured to use strong entropy."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="configure_openssl_crypto_policy" ownerid="OL08-00-010293" disa="1453" severity="medium">
+    <VMSinfo VKey="248564" SVKey="248564" VRelease="877394"/>
+    <title text="The OL 8 operating system must implement DoD-approved encryption in the OpenSSL package."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="configure_openssl_tls_crypto_policy" ownerid="OL08-00-010294" disa="1453" severity="medium">
+    <VMSinfo VKey="248565" SVKey="248565" VRelease="877394"/>
+    <title text="The OL 8 operating system must implement DoD-approved TLS encryption in the OpenSSL package."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="configure_gnutls_tls_crypto_policy" ownerid="OL08-00-010295" disa="1453" severity="medium">
+    <VMSinfo VKey="248566" SVKey="248566" VRelease="877394"/>
+    <title text="The OL 8 operating system must implement DoD-approved TLS encryption in the GnuTLS package."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="file_permissions_binary_dirs" ownerid="OL08-00-010300" disa="1499" severity="medium">
+    <VMSinfo VKey="248567" SVKey="248567" VRelease="818622"/>
+    <title text="OL 8 system commands must have mode 755 or less permissive."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="file_ownership_binary_dirs" ownerid="OL08-00-010310" disa="1499" severity="medium">
+    <VMSinfo VKey="248568" SVKey="248568" VRelease="779270"/>
+    <title text="OL 8 system commands must be owned by root."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="file_groupownership_system_commands_dirs" ownerid="OL08-00-010320" disa="1499" severity="medium">
+    <VMSinfo VKey="248569" SVKey="248569" VRelease="818625"/>
+    <title text="OL 8 system commands must be group-owned by root or a system account."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="file_permissions_library_dirs" ownerid="OL08-00-010330" disa="1499" severity="medium">
+    <VMSinfo VKey="248570" SVKey="248570" VRelease="818628"/>
+    <title text="OL 8 library files must have mode 755 or less permissive."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="dir_permissions_library_dirs" ownerid="OL08-00-010331" disa="1499" severity="medium">
+    <VMSinfo VKey="252651" SVKey="252651" VRelease="818749"/>
+    <title text="OL 8 library directories must have mode 755 or less permissive."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="file_ownership_library_dirs" ownerid="OL08-00-010340" disa="1499" severity="medium">
+    <VMSinfo VKey="248571" SVKey="248571" VRelease="779279"/>
+    <title text="OL 8 library files must be owned by root."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="dir_ownership_library_dirs" ownerid="OL08-00-010341" disa="1499" severity="medium">
+    <VMSinfo VKey="252652" SVKey="252652" VRelease="818752"/>
+    <title text="OL 8 library directories must be owned by root."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="root_permissions_syslibrary_files" ownerid="OL08-00-010350" disa="1499" severity="medium">
+    <VMSinfo VKey="248572" SVKey="248572" VRelease="779282"/>
+    <title text="OL 8 library files must be group-owned by root."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="dir_group_ownership_library_dirs" ownerid="OL08-00-010351" disa="1499" severity="medium">
+    <VMSinfo VKey="252653" SVKey="252653" VRelease="818755"/>
+    <title text="OL 8 library directories must be group-owned by root or a system account."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="package_mailx_installed" ownerid="OL08-00-010358" disa="1744" severity="medium">
+    <VMSinfo VKey="256979" SVKey="256979" VRelease="902803"/>
+    <title text="OL 8 must be configured to allow sending email notifications of unauthorized configuration changes to designated personnel."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="aide_build_database" ownerid="OL08-00-010359" disa="2696" severity="medium">
+    <VMSinfo VKey="252654" SVKey="252654" VRelease="880573"/>
+    <title text="The OL 8 operating system must use a file integrity tool to verify correct operation of all security functions."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="aide_scan_notification" ownerid="OL08-00-010360" disa="2702" severity="medium">
+    <VMSinfo VKey="248573" SVKey="248573" VRelease="902806"/>
+    <title text="The OL 8 file integrity tool must notify the System Administrator (SA) when changes to the baseline configuration or anomalies in the operation of any security functions are discovered within an organizationally defined frequency."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="ensure_gpgcheck_never_disabled" ownerid="OL08-00-010370" disa="1749" severity="high">
+    <VMSinfo VKey="248574" SVKey="248574" VRelease="877463"/>
+    <title text="YUM must be configured to prevent the installation of patches, service packs, device drivers, or OL 8 system components that have not been digitally signed using a certificate that is recognized and approved by the organization."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="ensure_gpgcheck_local_packages" ownerid="OL08-00-010371" disa="1749" severity="high">
+    <VMSinfo VKey="248575" SVKey="248575" VRelease="877463"/>
+    <title text="OL 8 must prevent the installation of software, patches, service packs, device drivers, or operating system components of local packages without verification they have been digitally signed using a certificate that is issued by a Certificate Authority (CA) that is recognized and approved by the organization."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sysctl_kernel_kexec_load_disabled" ownerid="OL08-00-010372" disa="1749" severity="medium">
+    <VMSinfo VKey="248576" SVKey="248576" VRelease="877463"/>
+    <title text="OL 8 must prevent the loading of a new kernel for later execution."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sysctl_fs_protected_symlinks" ownerid="OL08-00-010373" disa="2165" severity="medium">
+    <VMSinfo VKey="248577" SVKey="248577" VRelease="860911"/>
+    <title text="OL 8 must enable kernel parameters to enforce Discretionary Access Control (DAC) on symlinks."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sysctl_fs_protected_hardlinks" ownerid="OL08-00-010374" disa="2165" severity="medium">
+    <VMSinfo VKey="248578" SVKey="248578" VRelease="860912"/>
+    <title text="OL 8 must enable kernel parameters to enforce Discretionary Access Control (DAC) on hardlinks."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sysctl_kernel_dmesg_restrict" ownerid="OL08-00-010375" disa="1090" severity="low">
+    <VMSinfo VKey="248579" SVKey="248579" VRelease="858617"/>
+    <title text="OL 8 must restrict access to the kernel message buffer."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sysctl_kernel_perf_event_paranoid" ownerid="OL08-00-010376" disa="1090" severity="low">
+    <VMSinfo VKey="248580" SVKey="248580" VRelease="858619"/>
+    <title text="OL 8 must prevent kernel profiling by unprivileged users."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sudoers_default_includedir" ownerid="OL08-00-010379" disa="366" severity="medium">
+    <VMSinfo VKey="252655" SVKey="252655" VRelease="880549"/>
+    <title text="OL 8 must specify the default &quot;include&quot; directory for the /etc/sudoers file."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sudo_remove_nopasswd" ownerid="OL08-00-010380" disa="2038" severity="medium">
+    <VMSinfo VKey="248581" SVKey="248581" VRelease="860915"/>
+    <title text="OL 8 must require users to provide a password for privilege escalation."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sudo_remove_no_authenticate" ownerid="OL08-00-010381" disa="2038" severity="medium">
+    <VMSinfo VKey="248582" SVKey="248582" VRelease="880551"/>
+    <title text="OL 8 must require users to reauthenticate for privilege escalation and changing roles."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sudo_restrict_privilege_elevation_to_authorized" ownerid="OL08-00-010382" disa="366" severity="medium">
+    <VMSinfo VKey="248583" SVKey="248583" VRelease="779315"/>
+    <title text="OL 8 must restrict privilege elevation to authorized personnel."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sudoers_validate_passwd" ownerid="OL08-00-010383" disa="366" severity="medium">
+    <VMSinfo VKey="248584" SVKey="248584" VRelease="880554"/>
+    <title text="OL 8 must use the invoking user's password for privilege escalation when using &quot;sudo&quot;."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sudo_require_reauthentication" ownerid="OL08-00-010384" disa="2038" severity="medium">
+    <VMSinfo VKey="248585" SVKey="248585" VRelease="880557"/>
+    <title text="OL 8 must require re-authentication when using the &quot;sudo&quot; command."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="disallow_bypass_password_sudo" ownerid="OL08-00-010385" disa="2038" severity="medium">
+    <VMSinfo VKey="252656" SVKey="252656" VRelease="854184"/>
+    <title text="The OL 8 operating system must not be configured to bypass password requirements for privilege escalation."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="install_smartcard_packages" ownerid="OL08-00-010390" disa="1948" severity="low">
+    <VMSinfo VKey="248586" SVKey="248586" VRelease="853767"/>
+    <title text="OL 8 must have the package required for multifactor authentication installed."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sssd_certificate_verification" ownerid="OL08-00-010400" disa="1954" severity="medium">
+    <VMSinfo VKey="248587" SVKey="248587" VRelease="860917"/>
+    <title text="OL 8 must implement certificate status checking for multifactor authentication."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="package_opensc_installed" ownerid="OL08-00-010410" disa="1953" severity="medium">
+    <VMSinfo VKey="248588" SVKey="248588" VRelease="853769"/>
+    <title text="OL 8 must accept Personal Identity Verification (PIV) credentials."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="bios_enable_execution_restrictions" ownerid="OL08-00-010420" disa="2824" severity="medium">
+    <VMSinfo VKey="248589" SVKey="248589" VRelease="853770"/>
+    <title text="OL 8 must implement non-executable data to protect its memory from unauthorized code execution."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="grub2_page_poison_argument" ownerid="OL08-00-010421" disa="1084" severity="medium">
+    <VMSinfo VKey="248590" SVKey="248590" VRelease="779336"/>
+    <title text="OL 8 must clear the page allocator to prevent use-after-free attacks."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="grub2_vsyscall_argument" ownerid="OL08-00-010422" disa="1084" severity="medium">
+    <VMSinfo VKey="248591" SVKey="248591" VRelease="779339"/>
+    <title text="OL 8 must disable virtual syscalls."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="grub2_slub_debug_argument" ownerid="OL08-00-010423" disa="1084" severity="medium">
+    <VMSinfo VKey="248592" SVKey="248592" VRelease="779342"/>
+    <title text="OL 8 must clear SLUB/SLAB objects to prevent use-after-free attacks."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="grub2_mitigation_argument" ownerid="OL08-00-010424" disa="366" severity="medium">
+    <VMSinfo VKey="248593" SVKey="248593" VRelease="779345"/>
+    <title text="OL 8 must not let Meltdown and Spectre exploit critical vulnerabilities in modern processors."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sysctl_kernel_randomize_va_space" ownerid="OL08-00-010430" disa="2824" severity="medium">
+    <VMSinfo VKey="248594" SVKey="248594" VRelease="860918"/>
+    <title text="OL 8 must implement address space layout randomization (ASLR) to protect its memory from unauthorized code execution."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="clean_components_post_updating" ownerid="OL08-00-010440" disa="2617" severity="low">
+    <VMSinfo VKey="248595" SVKey="248595" VRelease="853773"/>
+    <title text="YUM must remove all software components after updated versions have been installed on OL 8."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="selinux_policytype" ownerid="OL08-00-010450" disa="2696" severity="medium">
+    <VMSinfo VKey="248596" SVKey="248596" VRelease="853774"/>
+    <title text="OL 8 must enable the SELinux targeted policy."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="no_host_based_files" ownerid="OL08-00-010460" disa="366" severity="high">
+    <VMSinfo VKey="248597" SVKey="248597" VRelease="779357"/>
+    <title text="There must be no &quot;shosts.equiv&quot; files on the OL 8 operating system."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="no_user_host_based_files" ownerid="OL08-00-010470" disa="366" severity="high">
+    <VMSinfo VKey="248598" SVKey="248598" VRelease="779360"/>
+    <title text="There must be no &quot;.shosts&quot; files on the OL 8 operating system."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="service_rngd_enabled" ownerid="OL08-00-010471" disa="366" severity="low">
+    <VMSinfo VKey="248599" SVKey="248599" VRelease="779363"/>
+    <title text="OL 8 must enable the hardware random number generator entropy gatherer service."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="package_rng-tools_installed" ownerid="OL08-00-010472" disa="366" severity="low">
+    <VMSinfo VKey="248600" SVKey="248600" VRelease="779366"/>
+    <title text="OL 8 must have the packages required to use the hardware random number generator entropy gatherer service."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="file_permissions_sshd_pub_key" ownerid="OL08-00-010480" disa="366" severity="medium">
+    <VMSinfo VKey="248601" SVKey="248601" VRelease="779369"/>
+    <title text="The OL 8 SSH public host key files must have mode &quot;0644&quot; or less permissive."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="file_permissions_sshd_private_key" ownerid="OL08-00-010490" disa="366" severity="medium">
+    <VMSinfo VKey="248602" SVKey="248602" VRelease="880541"/>
+    <title text="The OL 8 SSH private host key files must have mode &quot;0640&quot; or less permissive."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sshd_enable_strictmodes" ownerid="OL08-00-010500" disa="366" severity="medium">
+    <VMSinfo VKey="248603" SVKey="248603" VRelease="858568"/>
+    <title text="The OL 8 SSH daemon must perform strict mode checking of home directory configuration files."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sshd_disable_user_known_hosts" ownerid="OL08-00-010520" disa="366" severity="medium">
+    <VMSinfo VKey="248605" SVKey="248605" VRelease="858572"/>
+    <title text="The OL 8 SSH daemon must not allow authentication using known host's authentication."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sshd_disable_kerb_auth" ownerid="OL08-00-010521" disa="366" severity="medium">
+    <VMSinfo VKey="248606" SVKey="248606" VRelease="858574"/>
+    <title text="The OL 8 SSH daemon must not allow Kerberos authentication, except to fulfill documented and validated mission requirements."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sshd_disable_gssapi_auth" ownerid="OL08-00-010522" disa="366" severity="medium">
+    <VMSinfo VKey="248607" SVKey="248607" VRelease="858576"/>
+    <title text="The OL 8 SSH daemon must not allow GSSAPI authentication, except to fulfill documented and validated mission requirements."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="partition_for_var" ownerid="OL08-00-010540" disa="366" severity="low">
+    <VMSinfo VKey="248608" SVKey="248608" VRelease="902793"/>
+    <title text="OL 8 must use a separate file system for &quot;/var&quot;."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="partition_for_var_log" ownerid="OL08-00-010541" disa="366" severity="low">
+    <VMSinfo VKey="248609" SVKey="248609" VRelease="902795"/>
+    <title text="OL 8 must use a separate file system for &quot;/var/log&quot;."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="partition_for_var_log_audit" ownerid="OL08-00-010542" disa="366" severity="low">
+    <VMSinfo VKey="248610" SVKey="248610" VRelease="779396"/>
+    <title text="OL 8 must use a separate file system for the system audit data path."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="partition_for_tmp" ownerid="OL08-00-010543" disa="366" severity="medium">
+    <VMSinfo VKey="248611" SVKey="248611" VRelease="779399"/>
+    <title text="OL 8 must use a separate file system for &quot;/tmp&quot;."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="partition_for_var_tmp" ownerid="OL08-00-010544" disa="366" severity="medium">
+    <VMSinfo VKey="248612" SVKey="248612" VRelease="902797"/>
+    <title text="OL 8 must use a separate file system for /var/tmp."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sshd_disable_root_login" ownerid="OL08-00-010550" disa="770" severity="medium">
+    <VMSinfo VKey="248613" SVKey="248613" VRelease="858578"/>
+    <title text="OL 8 must not permit direct logons to the root account using remote access via SSH."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="service_rsyslog_enabled" ownerid="OL08-00-010561" disa="366" severity="medium">
+    <VMSinfo VKey="248615" SVKey="248615" VRelease="779411"/>
+    <title text="OL 8 must have the rsyslog service enabled and active."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="mount_option_home_nosuid" ownerid="OL08-00-010570" disa="366" severity="medium">
+    <VMSinfo VKey="248616" SVKey="248616" VRelease="779414"/>
+    <title text="OL 8 must prevent files with the setuid and setgid bit set from being executed on file systems that contain user home directories."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="mount_option_boot_nosuid" ownerid="OL08-00-010571" disa="366" severity="medium">
+    <VMSinfo VKey="248617" SVKey="248617" VRelease="779417"/>
+    <title text="OL 8 must prevent files with the setuid and setgid bit set from being executed on the /boot directory."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="mount_option_boot_efi_nosuid" ownerid="OL08-00-010572" disa="366" severity="medium">
+    <VMSinfo VKey="248618" SVKey="248618" VRelease="818648"/>
+    <title text="OL 8 must prevent files with the setuid and setgid bit set from being executed on the /boot/efi directory."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="mount_option_nodev_nonroot_local_partitions" ownerid="OL08-00-010580" disa="366" severity="medium">
+    <VMSinfo VKey="248619" SVKey="248619" VRelease="779423"/>
+    <title text="OL 8 must prevent special devices on non-root local partitions."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="mount_option_home_noexec" ownerid="OL08-00-010590" disa="366" severity="medium">
+    <VMSinfo VKey="248620" SVKey="248620" VRelease="779426"/>
+    <title text="OL 8 file systems that contain user home directories must not execute binary files."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="mount_option_nodev_removable_partitions" ownerid="OL08-00-010600" disa="366" severity="medium">
+    <VMSinfo VKey="248621" SVKey="248621" VRelease="779429"/>
+    <title text="OL 8 file systems must not interpret character or block special devices from untrusted file systems."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="mount_option_noexec_removable_partitions" ownerid="OL08-00-010610" disa="366" severity="medium">
+    <VMSinfo VKey="248622" SVKey="248622" VRelease="779432"/>
+    <title text="OL 8 file systems must not execute binary files on removable media."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="mount_option_nosuid_removable_partitions" ownerid="OL08-00-010620" disa="366" severity="medium">
+    <VMSinfo VKey="248623" SVKey="248623" VRelease="779435"/>
+    <title text="OL 8 must prevent files with the setuid and setgid bit set from being executed on file systems that are used with removable media."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="mount_option_noexec_remote_filesystems" ownerid="OL08-00-010630" disa="366" severity="medium">
+    <VMSinfo VKey="248624" SVKey="248624" VRelease="779438"/>
+    <title text="OL 8 file systems must not execute binary files that are imported via Network File System (NFS)."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="mount_option_nodev_remote_filesystems" ownerid="OL08-00-010640" disa="366" severity="medium">
+    <VMSinfo VKey="248625" SVKey="248625" VRelease="779441"/>
+    <title text="OL 8 file systems must not interpret character or block special devices that are imported via NFS."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="mount_option_nosuid_remote_filesystems" ownerid="OL08-00-010650" disa="366" severity="medium">
+    <VMSinfo VKey="248626" SVKey="248626" VRelease="779444"/>
+    <title text="OL 8 must prevent files with the setuid and setgid bit set from being executed on file systems that are imported via Network File System (NFS)."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_user_dot_no_world_writable_programs" ownerid="OL08-00-010660" disa="366" severity="medium">
+    <VMSinfo VKey="248627" SVKey="248627" VRelease="779447"/>
+    <title text="Local OL 8 initialization files must not execute world-writable programs."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="service_kdump_disabled" ownerid="OL08-00-010670" disa="1665" severity="medium">
+    <VMSinfo VKey="248628" SVKey="248628" VRelease="779450"/>
+    <title text="OL 8 must disable kernel dumps unless needed."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sysctl_kernel_core_pattern" ownerid="OL08-00-010671" disa="366" severity="medium">
+    <VMSinfo VKey="248629" SVKey="248629" VRelease="858629"/>
+    <title text="OL 8 must disable the &quot;kernel.core_pattern&quot;."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="service_systemd-coredump_disabled" ownerid="OL08-00-010672" disa="366" severity="medium">
+    <VMSinfo VKey="248630" SVKey="248630" VRelease="779456"/>
+    <title text="OL 8 must disable acquiring, saving, and processing core dumps."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="disable_users_coredumps" ownerid="OL08-00-010673" disa="366" severity="medium">
+    <VMSinfo VKey="248631" SVKey="248631" VRelease="779459"/>
+    <title text="OL 8 must disable core dumps for all users."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="coredump_disable_storage" ownerid="OL08-00-010674" disa="366" severity="medium">
+    <VMSinfo VKey="248632" SVKey="248632" VRelease="779462"/>
+    <title text="OL 8 must disable storing core dumps."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="coredump_disable_backtraces" ownerid="OL08-00-010675" disa="366" severity="medium">
+    <VMSinfo VKey="248633" SVKey="248633" VRelease="779465"/>
+    <title text="OL 8 must disable core dump backtraces."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="network_configure_name_resolution" ownerid="OL08-00-010680" disa="366" severity="medium">
+    <VMSinfo VKey="248634" SVKey="248634" VRelease="779468"/>
+    <title text="For OL 8 systems using Domain Name Servers (DNS) resolution, at least two name servers must be configured."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_user_home_paths_only" ownerid="OL08-00-010690" disa="366" severity="medium">
+    <VMSinfo VKey="248635" SVKey="248635" VRelease="779471"/>
+    <title text="Executable search paths within the initialization files of all local interactive OL 8 users must only contain paths that resolve to the system default or the user's home directory."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="dir_perms_world_writable_system_owned" ownerid="OL08-00-010700" disa="366" severity="medium">
+    <VMSinfo VKey="248636" SVKey="248636" VRelease="779474"/>
+    <title text="All OL 8 world-writable directories must be owned by root, sys, bin, or an application user."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="dir_perms_world_writable_system_owned_group" ownerid="OL08-00-010710" disa="366" severity="medium">
+    <VMSinfo VKey="248637" SVKey="248637" VRelease="779477"/>
+    <title text="All OL 8 world-writable directories must be group-owned by root, sys, bin, or an application group."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_user_interactive_home_directory_defined" ownerid="OL08-00-010720" disa="366" severity="medium">
+    <VMSinfo VKey="248638" SVKey="248638" VRelease="779480"/>
+    <title text="All OL 8 local interactive users must have a home directory assigned in the &quot;/etc/passwd&quot; file."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="file_permissions_home_directories" ownerid="OL08-00-010730" disa="366" severity="medium">
+    <VMSinfo VKey="248639" SVKey="248639" VRelease="779483"/>
+    <title text="All OL 8 local interactive user home directories must have mode &quot;0750&quot; or less permissive."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_users_home_files_permissions" ownerid="OL08-00-010731" disa="366" severity="medium">
+    <VMSinfo VKey="248640" SVKey="248640" VRelease="779486"/>
+    <title text="All OL 8 local interactive user home directory files must have mode &quot;0750&quot; or less permissive."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="file_groupownership_home_directories" ownerid="OL08-00-010740" disa="366" severity="medium">
+    <VMSinfo VKey="248641" SVKey="248641" VRelease="880567"/>
+    <title text="All OL 8 local interactive user home directories must be group-owned by the home directory owner's primary group."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_users_home_files_groupownership" ownerid="OL08-00-010741" disa="366" severity="medium">
+    <VMSinfo VKey="248642" SVKey="248642" VRelease="779492"/>
+    <title text="OL 8 must be configured so that all files and directories contained in local interactive user home directories are group-owned by a group of which the home directory owner is a member."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_user_interactive_home_directory_exists" ownerid="OL08-00-010750" disa="366" severity="medium">
+    <VMSinfo VKey="248643" SVKey="248643" VRelease="779495"/>
+    <title text="All OL 8 local interactive user home directories defined in the &quot;/etc/passwd&quot; file must exist."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_have_homedir_login_defs" ownerid="OL08-00-010760" disa="366" severity="medium">
+    <VMSinfo VKey="248644" SVKey="248644" VRelease="779498"/>
+    <title text="All OL 8 local interactive user accounts must be assigned a home directory upon creation."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="file_permission_user_init_files" ownerid="OL08-00-010770" disa="366" severity="medium">
+    <VMSinfo VKey="248645" SVKey="248645" VRelease="779501"/>
+    <title text="All OL 8 local initialization files must have mode &quot;0740&quot; or less permissive."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="no_files_unowned_by_user" ownerid="OL08-00-010780" disa="366" severity="medium">
+    <VMSinfo VKey="248646" SVKey="248646" VRelease="779504"/>
+    <title text="All OL 8 files and directories must have a valid owner."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="file_permissions_ungroupowned" ownerid="OL08-00-010790" disa="366" severity="medium">
+    <VMSinfo VKey="248647" SVKey="248647" VRelease="779507"/>
+    <title text="All OL 8 files and directories must have a valid group owner."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="partition_for_home" ownerid="OL08-00-010800" disa="366" severity="medium">
+    <VMSinfo VKey="248648" SVKey="248648" VRelease="902800"/>
+    <title text="A separate OL 8 filesystem must be used for user home directories (such as &quot;/home&quot; or an equivalent)."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="gnome_gdm_disable_automatic_login" ownerid="OL08-00-010820" disa="366" severity="high">
+    <VMSinfo VKey="248649" SVKey="248649" VRelease="877377"/>
+    <title text="Unattended or automatic logon via the OL 8 graphical user interface must not be allowed."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sshd_do_not_permit_user_env" ownerid="OL08-00-010830" disa="366" severity="high">
+    <VMSinfo VKey="248650" SVKey="248650" VRelease="877377"/>
+    <title text="OL 8 must not allow users to override SSH environment variables."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="account_temp_expire_date" ownerid="OL08-00-020000" disa="16" severity="medium">
+    <VMSinfo VKey="248651" SVKey="248651" VRelease="779519"/>
+    <title text="OL 8 temporary user accounts must be provisioned with an expiration time of 72 hours or less."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_passwords_pam_faillock_deny" ownerid="OL08-00-020010" disa="2238" severity="medium">
+    <VMSinfo VKey="248652" SVKey="248652" VRelease="853775"/>
+    <title text="OL 8 systems below version 8.2 must automatically lock an account when three unsuccessful logon attempts occur."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="XXXX" ownerid="OL08-00-020011" disa="2238" severity="medium">
+    <VMSinfo VKey="248653" SVKey="248653" VRelease="853776"/>
+    <title text="OL 8 systems, versions 8.2 and above, must automatically lock an account when three unsuccessful logon attempts occur."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_passwords_pam_faillock_interval" ownerid="OL08-00-020012" disa="2238" severity="medium">
+    <VMSinfo VKey="248654" SVKey="248654" VRelease="853777"/>
+    <title text="OL 8 systems below version 8.2 must automatically lock an account when three unsuccessful logon attempts occur during a 15-minute time period."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="XXXX" ownerid="OL08-00-020013" disa="2238" severity="medium">
+    <VMSinfo VKey="248655" SVKey="248655" VRelease="853778"/>
+    <title text="OL 8 systems, versions 8.2 and above, must automatically lock an account when three unsuccessful logon attempts occur during a 15-minute time period."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_passwords_pam_faillock_unlock_time" ownerid="OL08-00-020014" disa="2238" severity="medium">
+    <VMSinfo VKey="248656" SVKey="248656" VRelease="853779"/>
+    <title text="OL 8 systems below version 8.2 must automatically lock an account until the locked account is released by an administrator when three unsuccessful logon attempts occur during a 15-minute time period."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="XXXX" ownerid="OL08-00-020015" disa="2238" severity="medium">
+    <VMSinfo VKey="248657" SVKey="248657" VRelease="853780"/>
+    <title text="OL 8 systems, versions 8.2 and above, must automatically lock an account until the locked account is released by an administrator when three unsuccessful logon attempts occur during a 15-minute time period."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_passwords_pam_faillock_dir" ownerid="OL08-00-020016" disa="2238" severity="medium">
+    <VMSinfo VKey="248658" SVKey="248658" VRelease="853781"/>
+    <title text="OL 8 systems below version 8.2 must ensure account lockouts persist."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="XXXX" ownerid="OL08-00-020017" disa="2238" severity="medium">
+    <VMSinfo VKey="248659" SVKey="248659" VRelease="853782"/>
+    <title text="OL 8 systems, versions 8.2 and above, must ensure account lockouts persist."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="XXXX" ownerid="OL08-00-020018" disa="2238" severity="medium">
+    <VMSinfo VKey="248660" SVKey="248660" VRelease="853783"/>
+    <title text="OL 8 systems below version 8.2 must prevent system messages from being presented when three unsuccessful logon attempts occur."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_passwords_pam_faillock_silent" ownerid="OL08-00-020019" disa="2238" severity="medium">
+    <VMSinfo VKey="248661" SVKey="248661" VRelease="853784"/>
+    <title text="OL 8 systems, versions 8.2 and above, must prevent system messages from being presented when three unsuccessful logon attempts occur."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="XXXX" ownerid="OL08-00-020020" disa="2238" severity="medium">
+    <VMSinfo VKey="248662" SVKey="248662" VRelease="853785"/>
+    <title text="OL 8 systems below version 8.2 must log user name information when unsuccessful logon attempts occur."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_passwords_pam_faillock_audit" ownerid="OL08-00-020021" disa="2238" severity="medium">
+    <VMSinfo VKey="248663" SVKey="248663" VRelease="853786"/>
+    <title text="OL 8 systems, versions 8.2 and above, must log user name information when unsuccessful logon attempts occur."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_passwords_pam_faillock_deny_root" ownerid="OL08-00-020022" disa="2238" severity="medium">
+    <VMSinfo VKey="248664" SVKey="248664" VRelease="853787"/>
+    <title text="OL 8 systems below version 8.2 must include root when automatically locking an account until the locked account is released by an administrator when three unsuccessful logon attempts occur during a 15-minute time period."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="XXXX" ownerid="OL08-00-020023" disa="2238" severity="medium">
+    <VMSinfo VKey="248665" SVKey="248665" VRelease="853788"/>
+    <title text="OL 8 systems, versions 8.2 and above, must include root when automatically locking an account until the locked account is released by an administrator when three unsuccessful logon attempts occur during a 15-minute time period."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_max_concurrent_login_sessions" ownerid="OL08-00-020024" disa="54" severity="low">
+    <VMSinfo VKey="248666" SVKey="248666" VRelease="877399"/>
+    <title text="OL 8 must limit the number of concurrent sessions to 10 for all accounts and/or account types."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="XXXX" ownerid="OL08-00-020025" disa="2238" severity="medium">
+    <VMSinfo VKey="248667" SVKey="248667" VRelease="853789"/>
+    <title text="OL 8 must configure the use of the pam_faillock.so module in the /etc/pam.d/system-auth file."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="XXXX" ownerid="OL08-00-020026" disa="2238" severity="medium">
+    <VMSinfo VKey="248668" SVKey="248668" VRelease="853790"/>
+    <title text="OL 8 must configure the use of the pam_faillock.so module in the /etc/pam.d/password-auth file."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="account_password_selinux_faillock_dir" ownerid="OL08-00-020027" disa="2238" severity="medium">
+    <VMSinfo VKey="248669" SVKey="248669" VRelease="853791"/>
+    <title text="OL 8 systems, versions 8.2 and above, must configure SELinux context type to allow the use of a non-default faillock tally directory."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="XXXX" ownerid="OL08-00-020028" disa="2238" severity="medium">
+    <VMSinfo VKey="248670" SVKey="248670" VRelease="853792"/>
+    <title text="OL 8 systems below version 8.2 must configure SELinux context type to allow the use of a non-default faillock tally directory."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="dconf_gnome_screensaver_lock_enabled" ownerid="OL08-00-020030" disa="58" severity="medium">
+    <VMSinfo VKey="248671" SVKey="248671" VRelease="779579"/>
+    <title text="OL 8 must enable a user session lock until that user reestablishes access using established identification and authentication procedures for graphical user sessions."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="dconf_gnome_screensaver_lock_delay" ownerid="OL08-00-020031" disa="60" severity="medium">
+    <VMSinfo VKey="248672" SVKey="248672" VRelease="779582"/>
+    <title text="OL 8 must initiate a session lock for graphical user interfaces when the screensaver is activated."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="dconf_gnome_disable_user_list" ownerid="OL08-00-020032" disa="366" severity="medium">
+    <VMSinfo VKey="248673" SVKey="248673" VRelease="779585"/>
+    <title text="OL 8 must disable the user list at logon for graphical user interfaces."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="package_tmux_installed" ownerid="OL08-00-020039" disa="58" severity="medium">
+    <VMSinfo VKey="248674" SVKey="248674" VRelease="779588"/>
+    <title text="OL 8 must have the tmux package installed."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="configure_tmux_lock_keybinding" ownerid="OL08-00-020040" disa="58" severity="medium">
+    <VMSinfo VKey="248675" SVKey="248675" VRelease="902786"/>
+    <title text="OL 8 must enable a user session lock until that user re-establishes access using established identification and authentication procedures for command line sessions."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="configure_bashrc_tmux" ownerid="OL08-00-020041" disa="58" severity="medium">
+    <VMSinfo VKey="248676" SVKey="248676" VRelease="880538"/>
+    <title text="OL 8 must ensure session control is automatically started at shell initialization."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="no_tmux_in_shells" ownerid="OL08-00-020042" disa="58" severity="low">
+    <VMSinfo VKey="248677" SVKey="248677" VRelease="779597"/>
+    <title text="OL 8 must prevent users from disabling session control mechanisms."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="vlock_installed" ownerid="OL08-00-020043" disa="58" severity="medium">
+    <VMSinfo VKey="248678" SVKey="248678" VRelease="779600"/>
+    <title text="OL 8 must enable a user session lock until that user reestablishes access using established identification and authentication procedures for command line sessions."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="dconf_gnome_lock_screen_on_smartcard_removal" ownerid="OL08-00-020050" disa="58" severity="medium">
+    <VMSinfo VKey="248679" SVKey="248679" VRelease="818655"/>
+    <title text="OL 8 must be able to initiate directly a session lock for all connection types using smartcard when the smartcard is removed."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="dconf_gnome_screensaver_idle_delay" ownerid="OL08-00-020060" disa="60" severity="medium">
+    <VMSinfo VKey="248680" SVKey="248680" VRelease="779606"/>
+    <title text="OL 8 must automatically lock graphical user sessions after 15 minutes of inactivity."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="configure_tmux_lock_after_time" ownerid="OL08-00-020070" disa="60" severity="medium">
+    <VMSinfo VKey="248681" SVKey="248681" VRelease="779609"/>
+    <title text="OL 8 must automatically lock command line user sessions after 15 minutes of inactivity."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="dconf_gnome_screensaver_user_locks" ownerid="OL08-00-020080" disa="60" severity="medium">
+    <VMSinfo VKey="248682" SVKey="248682" VRelease="779612"/>
+    <title text="OL 8 must prevent a user from overriding the session lock-delay setting for the graphical user interface."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="dconf_gnome_session_idle_user_locks" ownerid="OL08-00-020081" disa="60" severity="medium">
+    <VMSinfo VKey="248683" SVKey="248683" VRelease="779615"/>
+    <title text="OL 8 must prevent a user from overriding the session idle-delay setting for the graphical user interface."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="XXXX" ownerid="OL08-00-020082" disa="60" severity="medium">
+    <VMSinfo VKey="248684" SVKey="248684" VRelease="779618"/>
+    <title text="OL 8 must prevent a user from overriding the session lock-enabled setting for the graphical user interface."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sssd_enable_certmap" ownerid="OL08-00-020090" disa="187" severity="medium">
+    <VMSinfo VKey="248685" SVKey="248685" VRelease="858606"/>
+    <title text="OL 8 must map the authenticated identity to the user or group account for PKI-based authentication."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_password_pam_pwquality_password_auth" ownerid="OL08-00-020100" disa="366" severity="medium">
+    <VMSinfo VKey="248686" SVKey="248686" VRelease="902809"/>
+    <title text="OL 8 must ensure the password complexity module is enabled in the password-auth file."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_password_pam_pwquality_system_auth" ownerid="OL08-00-020101" disa="366" severity="medium">
+    <VMSinfo VKey="252657" SVKey="252657" VRelease="902812"/>
+    <title text="OL 8 must ensure the password complexity module is enabled in the system-auth file."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="XXXX" ownerid="OL08-00-020102" disa="366" severity="medium">
+    <VMSinfo VKey="252658" SVKey="252658" VRelease="902815"/>
+    <title text="OL 8 systems below version 8.4 must ensure the password complexity module in the system-auth file is configured for three retries or less."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="XXXX" ownerid="OL08-00-020103" disa="366" severity="medium">
+    <VMSinfo VKey="252659" SVKey="252659" VRelease="902818"/>
+    <title text="OL 8 systems below version 8.4 must ensure the password complexity module in the password-auth file is configured for three retries or less."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_password_pam_retry" ownerid="OL08-00-020104" disa="366" severity="medium">
+    <VMSinfo VKey="252660" SVKey="252660" VRelease="858600"/>
+    <title text="OL 8 systems, version 8.4 and above, must ensure the password complexity module is configured for three retries or less."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_password_pam_ucredit" ownerid="OL08-00-020110" disa="193" severity="low">
+    <VMSinfo VKey="248687" SVKey="248687" VRelease="858631"/>
+    <title text="OL 8 must enforce password complexity by requiring that at least one uppercase character be used."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_password_pam_lcredit" ownerid="OL08-00-020120" disa="193" severity="low">
+    <VMSinfo VKey="248688" SVKey="248688" VRelease="858633"/>
+    <title text="OL 8 must enforce password complexity by requiring that at least one lowercase character be used."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_password_pam_dcredit" ownerid="OL08-00-020130" disa="194" severity="low">
+    <VMSinfo VKey="248689" SVKey="248689" VRelease="858635"/>
+    <title text="OL 8 must enforce password complexity by requiring that at least one numeric character be used."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_password_pam_maxclassrepeat" ownerid="OL08-00-020140" disa="195" severity="medium">
+    <VMSinfo VKey="248690" SVKey="248690" VRelease="858637"/>
+    <title text="OL 8 must require the maximum number of repeating characters of the same character class be limited to four when passwords are changed."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_password_pam_maxrepeat" ownerid="OL08-00-020150" disa="195" severity="medium">
+    <VMSinfo VKey="248691" SVKey="248691" VRelease="858639"/>
+    <title text="OL 8 must require the maximum number of repeating characters be limited to three when passwords are changed."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_password_pam_minclass" ownerid="OL08-00-020160" disa="195" severity="medium">
+    <VMSinfo VKey="248692" SVKey="248692" VRelease="858641"/>
+    <title text="OL 8 must require the change of at least four character classes when passwords are changed."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_password_pam_difok" ownerid="OL08-00-020170" disa="195" severity="low">
+    <VMSinfo VKey="248693" SVKey="248693" VRelease="858643"/>
+    <title text="OL 8 must require the change of at least 8 characters when passwords are changed."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_password_set_min_life_existing" ownerid="OL08-00-020180" disa="198" severity="medium">
+    <VMSinfo VKey="248694" SVKey="248694" VRelease="779648"/>
+    <title text="OL 8 passwords for new users or password changes must have a 24 hours/1 day minimum password lifetime restriction in &quot;/etc/shadow&quot;."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_minimum_age_login_defs" ownerid="OL08-00-020190" disa="198" severity="medium">
+    <VMSinfo VKey="248695" SVKey="248695" VRelease="858592"/>
+    <title text="OL 8 passwords for new users or password changes must have a 24 hours/1 day minimum password lifetime restriction in &quot;/etc/login.defs&quot;."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_maximum_age_login_defs" ownerid="OL08-00-020200" disa="199" severity="medium">
+    <VMSinfo VKey="248696" SVKey="248696" VRelease="779654"/>
+    <title text="OL 8 user account passwords must have a 60-day maximum password lifetime restriction."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_password_set_max_life_existing" ownerid="OL08-00-020210" disa="199" severity="medium">
+    <VMSinfo VKey="248697" SVKey="248697" VRelease="779657"/>
+    <title text="OL 8 user account passwords must be configured so that existing passwords are restricted to a 60-day maximum lifetime."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_password_pam_pwhistory_remember_password_auth" ownerid="OL08-00-020220" disa="200" severity="low">
+    <VMSinfo VKey="248698" SVKey="248698" VRelease="902821"/>
+    <title text="OL 8 must be configured in the password-auth file to prohibit password reuse for a minimum of five generations."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_password_pam_pwhistory_remember_system_auth" ownerid="OL08-00-020221" disa="200" severity="medium">
+    <VMSinfo VKey="252661" SVKey="252661" VRelease="902824"/>
+    <title text="OL 8 must be configured in the system-auth file to prohibit password reuse for a minimum of five generations."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_password_pam_minlen" ownerid="OL08-00-020230" disa="205" severity="medium">
+    <VMSinfo VKey="248699" SVKey="248699" VRelease="858645"/>
+    <title text="OL 8 passwords must have a minimum of 15 characters."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_password_minlen_login_defs" ownerid="OL08-00-020231" disa="205" severity="medium">
+    <VMSinfo VKey="248700" SVKey="248700" VRelease="779666"/>
+    <title text="OL 8 passwords for new users must have a minimum of 15 characters."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="account_unique_id" ownerid="OL08-00-020240" disa="804" severity="medium">
+    <VMSinfo VKey="248701" SVKey="248701" VRelease="779669"/>
+    <title text="OL 8 duplicate User IDs (UIDs) must not exist for interactive users."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sssd_enable_smartcards" ownerid="OL08-00-020250" disa="768" severity="medium">
+    <VMSinfo VKey="248702" SVKey="248702" VRelease="779672"/>
+    <title text="OL 8 must implement multifactor authentication for access to interactive accounts."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="account_disable_post_pw_expiration" ownerid="OL08-00-020260" disa="795" severity="medium">
+    <VMSinfo VKey="248703" SVKey="248703" VRelease="779675"/>
+    <title text="The OL 8 system-auth file must disable access to the system for account identifiers (individuals, groups, roles, and devices) with 35 days of inactivity."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="account_disable_inactivity_password_auth" ownerid="OL08-00-020261" disa="795" severity="medium">
+    <VMSinfo VKey="248704" SVKey="248704" VRelease="779678"/>
+    <title text="The OL 8 password-auth file must disable access to the system for account identifiers (individuals, groups, roles, and devices) with 35 days of inactivity."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="file_permissions_lastlog" ownerid="OL08-00-020262" disa="1314" severity="medium">
+    <VMSinfo VKey="248705" SVKey="248705" VRelease="779681"/>
+    <title text="The OL 8 lastlog command must have a mode of &quot;0750&quot; or less permissive."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="file_ownership_lastlog" ownerid="OL08-00-020263" disa="1314" severity="medium">
+    <VMSinfo VKey="248706" SVKey="248706" VRelease="779684"/>
+    <title text="The OL 8 lastlog command must be owned by root."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="file_groupownership_lastlog" ownerid="OL08-00-020264" disa="1314" severity="medium">
+    <VMSinfo VKey="248707" SVKey="248707" VRelease="779687"/>
+    <title text="The OL 8 lastlog command must be group-owned by root."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="account_emergency_expire_date" ownerid="OL08-00-020270" disa="1682" severity="medium">
+    <VMSinfo VKey="248708" SVKey="248708" VRelease="902791"/>
+    <title text="OL 8 must automatically expire temporary accounts within 72 hours."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_password_pam_ocredit" ownerid="OL08-00-020280" disa="1619" severity="low">
+    <VMSinfo VKey="248709" SVKey="248709" VRelease="858647"/>
+    <title text="All OL 8 passwords must contain at least one special character."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sssd_offline_cred_expiration" ownerid="OL08-00-020290" disa="2007" severity="medium">
+    <VMSinfo VKey="248710" SVKey="248710" VRelease="853793"/>
+    <title text="OL 8 must prohibit the use of cached authentications after one day."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_password_pam_dictcheck" ownerid="OL08-00-020300" disa="366" severity="medium">
+    <VMSinfo VKey="248711" SVKey="248711" VRelease="858649"/>
+    <title text="OL 8 must prevent the use of dictionary words for passwords."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_logon_fail_delay" ownerid="OL08-00-020310" disa="366" severity="medium">
+    <VMSinfo VKey="248712" SVKey="248712" VRelease="779702"/>
+    <title text="OL 8 must enforce a delay of at least four seconds between logon prompts following a failed logon attempt."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_authorized_local_users" ownerid="OL08-00-020320" disa="366" severity="medium">
+    <VMSinfo VKey="248713" SVKey="248713" VRelease="779705"/>
+    <title text="OL 8 must not have unnecessary accounts."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sshd_disable_empty_passwords" ownerid="OL08-00-020330" disa="366" severity="high">
+    <VMSinfo VKey="248714" SVKey="248714" VRelease="858582"/>
+    <title text="OL 8 must not allow accounts configured with blank or null passwords."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="no_empty_passwords" ownerid="OL08-00-020331" disa="366" severity="high">
+    <VMSinfo VKey="248715" SVKey="248715" VRelease="779711"/>
+    <title text="OL 8 must not allow blank or null passwords in the system-auth file."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="XXXX" ownerid="OL08-00-020332" disa="366" severity="high">
+    <VMSinfo VKey="248716" SVKey="248716" VRelease="779714"/>
+    <title text="OL 8 must not allow blank or null passwords in the password-auth file."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="display_login_attempts" ownerid="OL08-00-020340" disa="52" severity="low">
+    <VMSinfo VKey="248717" SVKey="248717" VRelease="858591"/>
+    <title text="OL 8 must display the date and time of the last successful account logon upon logon."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sshd_print_last_log" ownerid="OL08-00-020350" disa="52" severity="medium">
+    <VMSinfo VKey="248718" SVKey="248718" VRelease="858584"/>
+    <title text="OL 8 must display the date and time of the last successful account logon upon an SSH logon."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_umask_etc_login_defs" ownerid="OL08-00-020351" disa="366" severity="medium">
+    <VMSinfo VKey="248719" SVKey="248719" VRelease="779723"/>
+    <title text="OL 8 default permissions must be defined in such a way that all authenticated users can read and modify only their own files."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_umask_interactive_users" ownerid="OL08-00-020352" disa="366" severity="medium">
+    <VMSinfo VKey="248720" SVKey="248720" VRelease="858597"/>
+    <title text="OL 8 must set the umask value to 077 for all local interactive user accounts."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_umask_etc_profile" ownerid="OL08-00-020353" disa="366" severity="medium">
+    <VMSinfo VKey="248721" SVKey="248721" VRelease="818666"/>
+    <title text="OL 8 must define default permissions for logon and non-logon shells."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_suid_privilege_function" ownerid="OL08-00-030000" disa="2234" severity="medium">
+    <VMSinfo VKey="248722" SVKey="248722" VRelease="853794"/>
+    <title text="The OL 8 audit system must be configured to audit the execution of privileged functions and prevent all software from executing at higher privilege levels than users executing the software."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="rsyslog_cron_logging" ownerid="OL08-00-030010" disa="366" severity="medium">
+    <VMSinfo VKey="248723" SVKey="248723" VRelease="779735"/>
+    <title text="Cron logging must be implemented in OL 8."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="auditd_data_retention_action_mail_acct" ownerid="OL08-00-030020" disa="139" severity="medium">
+    <VMSinfo VKey="248724" SVKey="248724" VRelease="779738"/>
+    <title text="The OL 8 System Administrator (SA) and Information System Security Officer (ISSO) (at a minimum) must be alerted of an audit processing failure event."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="postfix_client_configure_mail_alias_postmaster" ownerid="OL08-00-030030" disa="139" severity="medium">
+    <VMSinfo VKey="248725" SVKey="248725" VRelease="779741"/>
+    <title text="The OL 8 Information System Security Officer (ISSO) and System Administrator (SA) (at a minimum) must have mail aliases to be notified of an audit processing failure."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="auditd_data_disk_error_action" ownerid="OL08-00-030040" disa="140" severity="medium">
+    <VMSinfo VKey="248726" SVKey="248726" VRelease="779744"/>
+    <title text="The OL 8 System must take appropriate action when an audit processing failure occurs."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="auditd_data_disk_full_action" ownerid="OL08-00-030060" disa="140" severity="medium">
+    <VMSinfo VKey="248728" SVKey="248728" VRelease="779750"/>
+    <title text="The OL 8 audit system must take appropriate action when the audit storage volume is full."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="auditd_local_events" ownerid="OL08-00-030061" disa="366" severity="medium">
+    <VMSinfo VKey="248729" SVKey="248729" VRelease="779753"/>
+    <title text="The OL 8 audit system must audit local events."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="auditd_name_format" ownerid="OL08-00-030062" disa="1851" severity="medium">
+    <VMSinfo VKey="248730" SVKey="248730" VRelease="877390"/>
+    <title text="OL 8 must label all offloaded audit logs before sending them to the central log server."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="auditd_log_format" ownerid="OL08-00-030063" disa="366" severity="medium">
+    <VMSinfo VKey="248731" SVKey="248731" VRelease="779759"/>
+    <title text="OL 8 must resolve audit information before writing to disk."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="file_permissions_var_log_audit" ownerid="OL08-00-030070" disa="164" severity="medium">
+    <VMSinfo VKey="248732" SVKey="248732" VRelease="779762"/>
+    <title text="OL 8 audit logs must have a mode of &quot;0600&quot; or less permissive to prevent unauthorized read access."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="file_ownership_var_log_audit_stig" ownerid="OL08-00-030080" disa="164" severity="medium">
+    <VMSinfo VKey="248733" SVKey="248733" VRelease="779765"/>
+    <title text="OL 8 audit logs must be owned by root to prevent unauthorized read access."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="file_group_ownership_var_log_audit" ownerid="OL08-00-030090" disa="164" severity="medium">
+    <VMSinfo VKey="248734" SVKey="248734" VRelease="779768"/>
+    <title text="OL 8 audit logs must be group-owned by root to prevent unauthorized read access."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="directory_ownership_var_log_audit" ownerid="OL08-00-030100" disa="164" severity="medium">
+    <VMSinfo VKey="248735" SVKey="248735" VRelease="779771"/>
+    <title text="The OL 8 audit log directory must be owned by root to prevent unauthorized read access."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="directory_group_ownership_var_log_audit" ownerid="OL08-00-030110" disa="164" severity="medium">
+    <VMSinfo VKey="248736" SVKey="248736" VRelease="779774"/>
+    <title text="The OL 8 audit log directory must be group-owned by root to prevent unauthorized read access."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="directory_permissions_var_log_audit" ownerid="OL08-00-030120" disa="164" severity="medium">
+    <VMSinfo VKey="248737" SVKey="248737" VRelease="779777"/>
+    <title text="The OL 8 audit log directory must have a mode of 0700 or less permissive to prevent unauthorized read access."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_immutable" ownerid="OL08-00-030121" disa="164" severity="medium">
+    <VMSinfo VKey="248738" SVKey="248738" VRelease="779780"/>
+    <title text="The OL 8 audit system must protect auditing rules from unauthorized change."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_immutable_login_uids" ownerid="OL08-00-030122" disa="164" severity="medium">
+    <VMSinfo VKey="248739" SVKey="248739" VRelease="779783"/>
+    <title text="The OL 8 audit system must protect logon UIDs from unauthorized change."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_usergroup_modification_shadow" ownerid="OL08-00-030130" disa="2884" severity="medium">
+    <VMSinfo VKey="248740" SVKey="248740" VRelease="853796"/>
+    <title text="OL 8 must generate audit records for all account creation events that affect &quot;/etc/shadow&quot;."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_usergroup_modification_opasswd" ownerid="OL08-00-030140" disa="2884" severity="medium">
+    <VMSinfo VKey="248741" SVKey="248741" VRelease="853797"/>
+    <title text="OL 8 must generate audit records for all account creation events that affect &quot;/etc/security/opasswd&quot;."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_usergroup_modification_passwd" ownerid="OL08-00-030150" disa="2884" severity="medium">
+    <VMSinfo VKey="248742" SVKey="248742" VRelease="853798"/>
+    <title text="OL 8 must generate audit records for all account creation events that affect &quot;/etc/passwd&quot;."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_usergroup_modification_gshadow" ownerid="OL08-00-030160" disa="2884" severity="medium">
+    <VMSinfo VKey="248743" SVKey="248743" VRelease="853799"/>
+    <title text="OL 8 must generate audit records for all account creation events that affect &quot;/etc/gshadow&quot;."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_usergroup_modification_group" ownerid="OL08-00-030170" disa="2884" severity="medium">
+    <VMSinfo VKey="248744" SVKey="248744" VRelease="853800"/>
+    <title text="OL 8 must generate audit records for all account creation events that affect &quot;/etc/group&quot;."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_sudoers" ownerid="OL08-00-030171" disa="2884" severity="medium">
+    <VMSinfo VKey="248745" SVKey="248745" VRelease="853801"/>
+    <title text="OL 8 must generate audit records for all account creations, modifications, disabling, and termination events that affect &quot;/etc/sudoers&quot;."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_sudoers_d" ownerid="OL08-00-030172" disa="2884" severity="medium">
+    <VMSinfo VKey="248746" SVKey="248746" VRelease="853802"/>
+    <title text="OL 8 must generate audit records for all account creations, modifications, disabling, and termination events that affect &quot;/etc/sudoers.d/&quot;."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="package_audit_installed" ownerid="OL08-00-030180" disa="2884" severity="medium">
+    <VMSinfo VKey="248519" SVKey="248519" VRelease="853745"/>
+    <title text="The OL 8 audit package must be installed."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="service_auditd_enabled" ownerid="OL08-00-030181" disa="2884" severity="medium">
+    <VMSinfo VKey="248520" SVKey="248520" VRelease="853746"/>
+    <title text="OL 8 audit records must contain information to establish what type of events occurred, the source of events, where events occurred, and the outcome of events."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_privileged_commands_su" ownerid="OL08-00-030190" disa="2884" severity="medium">
+    <VMSinfo VKey="248747" SVKey="248747" VRelease="853803"/>
+    <title text="OL 8 must generate audit records for any use of the &quot;su&quot; command."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_dac_modification_setxattr" ownerid="OL08-00-030200" disa="2884" severity="medium">
+    <VMSinfo VKey="248748" SVKey="248748" VRelease="853804"/>
+    <title text="The OL 8 audit system must be configured to audit any use of the &quot;setxattr&quot;, &quot;fsetxattr&quot;, &quot;lsetxattr&quot;, &quot;removexattr&quot;, &quot;fremovexattr&quot;, and &quot;lremovexattr&quot; system calls."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_privileged_commands_chage" ownerid="OL08-00-030250" disa="2884" severity="medium">
+    <VMSinfo VKey="248753" SVKey="248753" VRelease="853805"/>
+    <title text="OL 8 must generate audit records for any use of the &quot;chage&quot; command."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_execution_chcon" ownerid="OL08-00-030260" disa="2884" severity="medium">
+    <VMSinfo VKey="248754" SVKey="248754" VRelease="853806"/>
+    <title text="OL 8 must generate audit records for any uses of the &quot;chcon&quot; command."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_privileged_commands_ssh_agent" ownerid="OL08-00-030280" disa="2884" severity="medium">
+    <VMSinfo VKey="248756" SVKey="248756" VRelease="853807"/>
+    <title text="OL 8 must generate audit records for any use of the &quot;ssh-agent&quot; command."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_privileged_commands_passwd" ownerid="OL08-00-030290" disa="2884" severity="medium">
+    <VMSinfo VKey="248757" SVKey="248757" VRelease="853808"/>
+    <title text="OL 8 must generate audit records for any use of the &quot;passwd&quot; command."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_privileged_commands_mount" ownerid="OL08-00-030300" disa="2884" severity="medium">
+    <VMSinfo VKey="248758" SVKey="248758" VRelease="853809"/>
+    <title text="OL 8 must generate audit records for any use of the &quot;mount&quot; command."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_privileged_commands_umount" ownerid="OL08-00-030301" disa="2884" severity="medium">
+    <VMSinfo VKey="248759" SVKey="248759" VRelease="853810"/>
+    <title text="OL 8 must generate audit records for any use of the &quot;umount&quot; command."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_media_export" ownerid="OL08-00-030302" disa="2884" severity="medium">
+    <VMSinfo VKey="248760" SVKey="248760" VRelease="853811"/>
+    <title text="OL 8 must generate audit records for any use of the &quot;mount&quot; syscall."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_privileged_commands_unix_update" ownerid="OL08-00-030310" disa="2884" severity="medium">
+    <VMSinfo VKey="248761" SVKey="248761" VRelease="853812"/>
+    <title text="OL 8 must generate audit records for any use of the &quot;unix_update&quot; command."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_privileged_commands_postdrop" ownerid="OL08-00-030311" disa="2884" severity="medium">
+    <VMSinfo VKey="248762" SVKey="248762" VRelease="853813"/>
+    <title text="OL 8 must generate audit records for any use of the &quot;postdrop&quot; command."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_privileged_commands_postqueue" ownerid="OL08-00-030312" disa="2884" severity="medium">
+    <VMSinfo VKey="248763" SVKey="248763" VRelease="853814"/>
+    <title text="OL 8 must generate audit records for any use of the &quot;postqueue&quot; command."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_execution_semanage" ownerid="OL08-00-030313" disa="169" severity="medium">
+    <VMSinfo VKey="248764" SVKey="248764" VRelease="779858"/>
+    <title text="OL 8 must generate audit records for any use of the &quot;semanage&quot; command."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_execution_setfiles" ownerid="OL08-00-030314" disa="169" severity="medium">
+    <VMSinfo VKey="248765" SVKey="248765" VRelease="779861"/>
+    <title text="OL 8 must generate audit records for any use of the &quot;setfiles&quot; command."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_privileged_commands_userhelper" ownerid="OL08-00-030315" disa="169" severity="medium">
+    <VMSinfo VKey="248766" SVKey="248766" VRelease="779864"/>
+    <title text="OL 8 must generate audit records for any use of the &quot;userhelper&quot; command."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_execution_setsebool" ownerid="OL08-00-030316" disa="2884" severity="medium">
+    <VMSinfo VKey="248767" SVKey="248767" VRelease="853815"/>
+    <title text="OL 8 must generate audit records for any use of the &quot;setsebool&quot; command."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_privileged_commands_unix_chkpwd" ownerid="OL08-00-030317" disa="2884" severity="medium">
+    <VMSinfo VKey="248768" SVKey="248768" VRelease="853816"/>
+    <title text="OL 8 must generate audit records for any use of the &quot;unix_chkpwd&quot; command."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_privileged_commands_ssh_keysign" ownerid="OL08-00-030320" disa="2884" severity="medium">
+    <VMSinfo VKey="248769" SVKey="248769" VRelease="853817"/>
+    <title text="OL 8 must generate audit records for any use of the &quot;ssh-keysign&quot; command."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_execution_setfacl" ownerid="OL08-00-030330" disa="2884" severity="medium">
+    <VMSinfo VKey="248770" SVKey="248770" VRelease="853818"/>
+    <title text="OL 8 must generate audit records for any use of the &quot;setfacl&quot; command."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_privileged_commands_pam_timestamp_check" ownerid="OL08-00-030340" disa="2884" severity="medium">
+    <VMSinfo VKey="248771" SVKey="248771" VRelease="853819"/>
+    <title text="OL 8 must generate audit records for any use of the &quot;pam_timestamp_check&quot; command."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_privileged_commands_newgrp" ownerid="OL08-00-030350" disa="2884" severity="medium">
+    <VMSinfo VKey="248772" SVKey="248772" VRelease="853820"/>
+    <title text="OL 8 must generate audit records for any use of the &quot;newgrp&quot; command."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_kernel_module_loading_init" ownerid="OL08-00-030360" disa="2884" severity="medium">
+    <VMSinfo VKey="248773" SVKey="248773" VRelease="853821"/>
+    <title text="OL 8 must generate audit records for any use of the &quot;init_module&quot; and &quot;finit_module&quot; system calls."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_file_deletion_events_unlinkat" ownerid="OL08-00-030361" disa="2884" severity="medium">
+    <VMSinfo VKey="248774" SVKey="248774" VRelease="853822"/>
+    <title text="OL 8 must generate audit records for any use of the &quot;rename&quot;, &quot;unlink&quot;, &quot;rmdir&quot;, &quot;renameat&quot;, and &quot;unlinkat&quot; system calls."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_privileged_commands_gpasswd" ownerid="OL08-00-030370" disa="2884" severity="medium">
+    <VMSinfo VKey="248779" SVKey="248779" VRelease="853823"/>
+    <title text="OL 8 must generate audit records for any use of the &quot;gpasswd&quot; command."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_kernel_module_loading_delete" ownerid="OL08-00-030390" disa="2884" severity="medium">
+    <VMSinfo VKey="248781" SVKey="248781" VRelease="853824"/>
+    <title text="OL 8 must generate audit records for any use of the delete_module syscall."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_privileged_commands_crontab" ownerid="OL08-00-030400" disa="2884" severity="medium">
+    <VMSinfo VKey="248782" SVKey="248782" VRelease="853825"/>
+    <title text="OL 8 must generate audit records for any use of the &quot;crontab&quot; command."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_privileged_commands_chsh" ownerid="OL08-00-030410" disa="2884" severity="medium">
+    <VMSinfo VKey="248783" SVKey="248783" VRelease="853826"/>
+    <title text="OL 8 must generate audit records for any use of the &quot;chsh&quot; command."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_unsuccessful_file_modification_truncate" ownerid="OL08-00-030420" disa="2884" severity="medium">
+    <VMSinfo VKey="248784" SVKey="248784" VRelease="853827"/>
+    <title text="OL 8 must generate audit records for any use of the &quot;truncate&quot;, &quot;ftruncate&quot;, &quot;creat&quot;, &quot;open&quot;, &quot;openat&quot;, and &quot;open_by_handle_at&quot; system calls."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_dac_modification_lchown" ownerid="OL08-00-030480" disa="2884" severity="medium">
+    <VMSinfo VKey="248790" SVKey="248790" VRelease="853828"/>
+    <title text="OL 8 must generate audit records for any use of the &quot;chown&quot;, &quot;fchown&quot;, &quot;fchownat&quot;, and &quot;lchown&quot; system calls."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_dac_modification_fchmodat" ownerid="OL08-00-030490" disa="2884" severity="medium">
+    <VMSinfo VKey="248791" SVKey="248791" VRelease="853829"/>
+    <title text="OL 8 must generate audit records for any use of the &quot;chmod&quot;, &quot;fchmod&quot;, and &quot;fchmodat&quot; system calls."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_privileged_commands_sudo" ownerid="OL08-00-030550" disa="2884" severity="medium">
+    <VMSinfo VKey="248797" SVKey="248797" VRelease="853830"/>
+    <title text="OL 8 must generate audit records for any use of the &quot;sudo&quot; command."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_privileged_commands_usermod" ownerid="OL08-00-030560" disa="2884" severity="medium">
+    <VMSinfo VKey="248798" SVKey="248798" VRelease="853831"/>
+    <title text="OL 8 must generate audit records for any use of the &quot;usermod&quot; command."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_execution_chacl" ownerid="OL08-00-030570" disa="2884" severity="medium">
+    <VMSinfo VKey="248799" SVKey="248799" VRelease="853832"/>
+    <title text="OL 8 must generate audit records for any use of the &quot;chacl&quot; command."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_privileged_commands_kmod" ownerid="OL08-00-030580" disa="2884" severity="medium">
+    <VMSinfo VKey="248800" SVKey="248800" VRelease="853833"/>
+    <title text="OL 8 must generate audit records for any use of the &quot;kmod&quot; command."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_login_events_faillock" ownerid="OL08-00-030590" disa="2884" severity="medium">
+    <VMSinfo VKey="248801" SVKey="248801" VRelease="853834"/>
+    <title text="OL 8 must generate audit records for any attempted modifications to the &quot;faillock&quot; log file."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="audit_rules_login_events_lastlog" ownerid="OL08-00-030600" disa="2884" severity="medium">
+    <VMSinfo VKey="248802" SVKey="248802" VRelease="853835"/>
+    <title text="OL 8 must generate audit records for any attempted modifications to the &quot;lastlog&quot; file."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="grub2_audit_argument" ownerid="OL08-00-030601" disa="2884" severity="medium">
+    <VMSinfo VKey="248803" SVKey="248803" VRelease="853836"/>
+    <title text="OL 8 must enable auditing of processes that start prior to the audit daemon."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="grub2_audit_backlog_limit_argument" ownerid="OL08-00-030602" disa="2884" severity="low">
+    <VMSinfo VKey="248804" SVKey="248804" VRelease="853837"/>
+    <title text="OL 8 must allocate an &quot;audit_backlog_limit&quot; of sufficient size to capture processes that start prior to the audit daemon."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="configure_usbguard_auditbackend" ownerid="OL08-00-030603" disa="172" severity="medium">
+    <VMSinfo VKey="248805" SVKey="248805" VRelease="779981"/>
+    <title text="OL 8 must enable Linux audit logging for the USBGuard daemon."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="file_permissions_etc_audit_rulesd" ownerid="OL08-00-030610" disa="171" severity="medium">
+    <VMSinfo VKey="248806" SVKey="248806" VRelease="779984"/>
+    <title text="OL 8 must allow only the Information System Security Manager (ISSM) (or individuals or roles appointed by the ISSM) to select which auditable events are to be audited."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="file_audit_tools_permissions" ownerid="OL08-00-030620" disa="1493" severity="medium">
+    <VMSinfo VKey="248807" SVKey="248807" VRelease="779987"/>
+    <title text="OL 8 audit tools must have a mode of &quot;0755&quot; or less permissive."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="file_audit_tools_ownership" ownerid="OL08-00-030630" disa="1495" severity="medium">
+    <VMSinfo VKey="248808" SVKey="248808" VRelease="779990"/>
+    <title text="OL 8 audit tools must be owned by root."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="file_audit_tools_group_ownership" ownerid="OL08-00-030640" disa="1495" severity="medium">
+    <VMSinfo VKey="248809" SVKey="248809" VRelease="779993"/>
+    <title text="OL 8 audit tools must be group-owned by root."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="aide_check_audit_tools" ownerid="OL08-00-030650" disa="1496" severity="medium">
+    <VMSinfo VKey="248810" SVKey="248810" VRelease="880559"/>
+    <title text="OL 8 must use cryptographic mechanisms to protect the integrity of audit tools."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="auditd_audispd_configure_sufficiently_large_partition" ownerid="OL08-00-030660" disa="1849" severity="medium">
+    <VMSinfo VKey="248811" SVKey="248811" VRelease="877391"/>
+    <title text="OL 8 must allocate audit record storage capacity to store at least one week of audit records when audit records are not immediately sent to a central audit record storage facility."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="package_rsyslog_installed" ownerid="OL08-00-030670" disa="366" severity="medium">
+    <VMSinfo VKey="248812" SVKey="248812" VRelease="780002"/>
+    <title text="OL 8 must have the packages required for offloading audit logs installed."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="package_rsyslog-gnutls_installed" ownerid="OL08-00-030680" disa="366" severity="medium">
+    <VMSinfo VKey="248813" SVKey="248813" VRelease="780005"/>
+    <title text="OL 8 must have the packages required for encrypting offloaded audit logs installed."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="rsyslog_remote_loghost" ownerid="OL08-00-030690" disa="1851" severity="medium">
+    <VMSinfo VKey="248814" SVKey="248814" VRelease="877390"/>
+    <title text="The OL 8 audit records must be offloaded onto a different system or storage media from the system being audited."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="auditd_overflow_action" ownerid="OL08-00-030700" disa="1851" severity="medium">
+    <VMSinfo VKey="248815" SVKey="248815" VRelease="877390"/>
+    <title text="OL 8 must take appropriate action when the internal event queue is full."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="rsyslog_encrypt_offload_defaultnetstreamdriver" ownerid="OL08-00-030710" disa="1851" severity="medium">
+    <VMSinfo VKey="248816" SVKey="248816" VRelease="877390"/>
+    <title text="OL 8 must encrypt the transfer of audit records offloaded onto a different system or media from the system being audited."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="rsyslog_encrypt_offload_actionsendstreamdriverauthmode" ownerid="OL08-00-030720" disa="1851" severity="medium">
+    <VMSinfo VKey="248817" SVKey="248817" VRelease="877390"/>
+    <title text="OL 8 must authenticate the remote logging server for offloading audit logs."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="auditd_data_retention_space_left_percentage" ownerid="OL08-00-030730" disa="1855" severity="medium">
+    <VMSinfo VKey="248818" SVKey="248818" VRelease="877389"/>
+    <title text="OL 8 must take action when allocated audit record storage volume reaches 75 percent of the repository maximum audit record storage capacity."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="auditd_data_retention_space_left_action" ownerid="OL08-00-030731" disa="1855" severity="medium">
+    <VMSinfo VKey="248819" SVKey="248819" VRelease="877389"/>
+    <title text="OL 8 must notify the System Administrator (SA) and Information System Security Officer (ISSO) (at a minimum) when allocated audit record storage volume 75 percent utilization."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="chronyd_server_directive" ownerid="OL08-00-030740" disa="2046" severity="medium">
+    <VMSinfo VKey="248820" SVKey="248820" VRelease="877038"/>
+    <title text="OL 8 must compare internal information system clocks at least every 24 hours with a server synchronized to an authoritative time source, such as the United States Naval Observatory (USNO) time servers, or a time server designated for the appropriate DoD network (NIPRNet/SIPRNet), and/or the Global Positioning System (GPS)."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="chronyd_client_only" ownerid="OL08-00-030741" disa="381" severity="low">
+    <VMSinfo VKey="248821" SVKey="248821" VRelease="780029"/>
+    <title text="OL 8 must disable the chrony daemon from acting as a server."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="chronyd_no_chronyc_network" ownerid="OL08-00-030742" disa="381" severity="low">
+    <VMSinfo VKey="248822" SVKey="248822" VRelease="780032"/>
+    <title text="OL 8 must disable network management of the chrony daemon."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="package_telnet-server_removed" ownerid="OL08-00-040000" disa="381" severity="high">
+    <VMSinfo VKey="248823" SVKey="248823" VRelease="780035"/>
+    <title text="OL 8 must not have the telnet-server package installed."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="package_abrt_removed" ownerid="OL08-00-040001" disa="381" severity="medium">
+    <VMSinfo VKey="248824" SVKey="248824" VRelease="780038"/>
+    <title text="OL 8 must not have any automated bug reporting tools installed."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="package_sendmail_removed" ownerid="OL08-00-040002" disa="381" severity="medium">
+    <VMSinfo VKey="248825" SVKey="248825" VRelease="780041"/>
+    <title text="OL 8 must not have the sendmail package installed."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="grub2_pti_argument" ownerid="OL08-00-040004" disa="381" severity="low">
+    <VMSinfo VKey="248826" SVKey="248826" VRelease="780044"/>
+    <title text="OL 8 must enable mitigations against processor-based vulnerabilities."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="package_rsh-server_removed" ownerid="OL08-00-040010" disa="381" severity="high">
+    <VMSinfo VKey="248827" SVKey="248827" VRelease="780047"/>
+    <title text="OL 8 must not have the rsh-server package installed."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="XXXX" ownerid="OL08-00-040020" disa="381" severity="medium">
+    <VMSinfo VKey="248828" SVKey="248828" VRelease="818691"/>
+    <title text="OL 8 must cover or disable the built-in or attached camera when not in use."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="kernel_module_atm_disabled" ownerid="OL08-00-040021" disa="366" severity="medium">
+    <VMSinfo VKey="248829" SVKey="248829" VRelease="780053"/>
+    <title text="OL 8 must not have the asynchronous transfer mode (ATM) kernel module installed if not required for operational support."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="kernel_module_can_disabled" ownerid="OL08-00-040022" disa="366" severity="medium">
+    <VMSinfo VKey="248830" SVKey="248830" VRelease="780056"/>
+    <title text="OL 8 must not have the Controller Area Network (CAN) kernel module installed if not required for operational support."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="kernel_module_sctp_disabled" ownerid="OL08-00-040023" disa="366" severity="medium">
+    <VMSinfo VKey="248831" SVKey="248831" VRelease="780059"/>
+    <title text="OL 8 must not have the stream control transmission protocol (SCTP) kernel module installed if not required for operational support."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="kernel_module_tipc_disabled" ownerid="OL08-00-040024" disa="381" severity="low">
+    <VMSinfo VKey="248832" SVKey="248832" VRelease="818694"/>
+    <title text="OL 8 must disable the transparent inter-process communication (TIPC) protocol."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="kernel_module_cramfs_disabled" ownerid="OL08-00-040025" disa="381" severity="low">
+    <VMSinfo VKey="248833" SVKey="248833" VRelease="780065"/>
+    <title text="OL 8 must disable mounting of cramfs."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="kernel_module_firewire-core_disabled" ownerid="OL08-00-040026" disa="381" severity="low">
+    <VMSinfo VKey="248834" SVKey="248834" VRelease="780068"/>
+    <title text="OL 8 must disable IEEE 1394 (FireWire) Support."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="configure_firewalld_ports" ownerid="OL08-00-040030" disa="382" severity="medium">
+    <VMSinfo VKey="248835" SVKey="248835" VRelease="780071"/>
+    <title text="OL 8 must be configured to prohibit or restrict the use of functions, ports, protocols, and/or services as defined in the Ports, Protocols, and Services Management (PPSM) Category Assignments List (CAL) and vulnerability assessments."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="service_autofs_disabled" ownerid="OL08-00-040070" disa="778" severity="medium">
+    <VMSinfo VKey="248836" SVKey="248836" VRelease="780074"/>
+    <title text="The OL 8 file system automounter must be disabled unless required."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="kernel_module_usb-storage_disabled" ownerid="OL08-00-040080" disa="778" severity="medium">
+    <VMSinfo VKey="248837" SVKey="248837" VRelease="818697"/>
+    <title text="OL 8 must be configured to disable the ability to use USB mass storage devices."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="XXXX" ownerid="OL08-00-040090" disa="2314" severity="medium">
+    <VMSinfo VKey="248839" SVKey="248839" VRelease="853846"/>
+    <title text="An OL 8 firewall must employ a deny-all, allow-by-exception policy for allowing connections to other systems."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="package_firewalld_installed" ownerid="OL08-00-040100" disa="2314" severity="medium">
+    <VMSinfo VKey="248840" SVKey="248840" VRelease="853847"/>
+    <title text="A firewall must be installed on OL 8."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="service_firewalld_enabled" ownerid="OL08-00-040101" disa="2314" severity="medium">
+    <VMSinfo VKey="248841" SVKey="248841" VRelease="853848"/>
+    <title text="A firewall must be active on OL 8."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="wireless_disable_interfaces" ownerid="OL08-00-040110" disa="2418" severity="medium">
+    <VMSinfo VKey="248842" SVKey="248842" VRelease="853849"/>
+    <title text="OL 8 wireless network adapters must be disabled."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="kernel_module_bluetooth_disabled" ownerid="OL08-00-040111" disa="2418" severity="medium">
+    <VMSinfo VKey="248843" SVKey="248843" VRelease="860921"/>
+    <title text="OL 8 Bluetooth must be disabled."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="mount_option_dev_shm_nodev" ownerid="OL08-00-040120" disa="1764" severity="medium">
+    <VMSinfo VKey="248844" SVKey="248844" VRelease="853853"/>
+    <title text="OL 8 must mount &quot;/dev/shm&quot; with the &quot;nodev&quot; option."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="mount_option_dev_shm_nosuid" ownerid="OL08-00-040121" disa="1764" severity="medium">
+    <VMSinfo VKey="248845" SVKey="248845" VRelease="853854"/>
+    <title text="OL 8 must mount &quot;/dev/shm&quot; with the &quot;nosuid&quot; option."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="mount_option_dev_shm_noexec" ownerid="OL08-00-040122" disa="1764" severity="medium">
+    <VMSinfo VKey="248846" SVKey="248846" VRelease="853855"/>
+    <title text="OL 8 must mount &quot;/dev/shm&quot; with the &quot;noexec&quot; option."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="mount_option_tmp_nodev" ownerid="OL08-00-040123" disa="1764" severity="medium">
+    <VMSinfo VKey="248847" SVKey="248847" VRelease="853856"/>
+    <title text="OL 8 must mount &quot;/tmp&quot; with the &quot;nodev&quot; option."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="mount_option_tmp_nosuid" ownerid="OL08-00-040124" disa="1764" severity="medium">
+    <VMSinfo VKey="248848" SVKey="248848" VRelease="853857"/>
+    <title text="OL 8 must mount &quot;/tmp&quot; with the &quot;nosuid&quot; option."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="mount_option_tmp_noexec" ownerid="OL08-00-040125" disa="1764" severity="medium">
+    <VMSinfo VKey="248849" SVKey="248849" VRelease="853858"/>
+    <title text="OL 8 must mount &quot;/tmp&quot; with the &quot;noexec&quot; option."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="mount_option_var_log_nodev" ownerid="OL08-00-040126" disa="1764" severity="medium">
+    <VMSinfo VKey="248850" SVKey="248850" VRelease="853859"/>
+    <title text="OL 8 must mount &quot;/var/log&quot; with the &quot;nodev&quot; option."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="mount_option_var_log_nosuid" ownerid="OL08-00-040127" disa="1764" severity="medium">
+    <VMSinfo VKey="248851" SVKey="248851" VRelease="853860"/>
+    <title text="OL 8 must mount &quot;/var/log&quot; with the &quot;nosuid&quot; option."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="mount_option_var_log_noexec" ownerid="OL08-00-040128" disa="1764" severity="medium">
+    <VMSinfo VKey="248852" SVKey="248852" VRelease="853861"/>
+    <title text="OL 8 must mount &quot;/var/log&quot; with the &quot;noexec&quot; option."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="mount_option_var_log_audit_nodev" ownerid="OL08-00-040129" disa="1764" severity="medium">
+    <VMSinfo VKey="248853" SVKey="248853" VRelease="853862"/>
+    <title text="OL 8 must mount &quot;/var/log/audit&quot; with the &quot;nodev&quot; option."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="mount_option_var_log_audit_nosuid" ownerid="OL08-00-040130" disa="1764" severity="medium">
+    <VMSinfo VKey="248854" SVKey="248854" VRelease="853863"/>
+    <title text="OL 8 must mount &quot;/var/log/audit&quot; with the &quot;nosuid&quot; option."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="mount_option_var_log_audit_noexec" ownerid="OL08-00-040131" disa="1764" severity="medium">
+    <VMSinfo VKey="248855" SVKey="248855" VRelease="853864"/>
+    <title text="OL 8 must mount &quot;/var/log/audit&quot; with the &quot;noexec&quot; option."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="mount_option_var_tmp_nodev" ownerid="OL08-00-040132" disa="1764" severity="medium">
+    <VMSinfo VKey="248856" SVKey="248856" VRelease="853865"/>
+    <title text="OL 8 must mount &quot;/var/tmp&quot; with the &quot;nodev&quot; option."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="mount_option_var_tmp_nosuid" ownerid="OL08-00-040133" disa="1764" severity="medium">
+    <VMSinfo VKey="248857" SVKey="248857" VRelease="853866"/>
+    <title text="OL 8 must mount &quot;/var/tmp&quot; with the &quot;nosuid&quot; option."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="mount_option_var_tmp_noexec" ownerid="OL08-00-040134" disa="1764" severity="medium">
+    <VMSinfo VKey="248858" SVKey="248858" VRelease="853867"/>
+    <title text="OL 8 must mount &quot;/var/tmp&quot; with the &quot;noexec&quot; option."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="package_fapolicyd_installed" ownerid="OL08-00-040135" disa="1774" severity="medium">
+    <VMSinfo VKey="248859" SVKey="248859" VRelease="853868"/>
+    <title text="The OL 8 &quot;fapolicy&quot; module must be installed."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="service_fapolicyd_enabled" ownerid="OL08-00-040136" disa="1774" severity="medium">
+    <VMSinfo VKey="248860" SVKey="248860" VRelease="853869"/>
+    <title text="The OL 8 &quot;fapolicy&quot; module must be enabled."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="fapolicy_default_deny" ownerid="OL08-00-040137" disa="1774" severity="medium">
+    <VMSinfo VKey="248861" SVKey="248861" VRelease="860922"/>
+    <title text="The OL 8 fapolicy module must be configured to employ a deny-all, permit-by-exception policy to allow the execution of authorized software programs."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="package_usbguard_installed" ownerid="OL08-00-040139" disa="1958" severity="medium">
+    <VMSinfo VKey="248862" SVKey="248862" VRelease="853871"/>
+    <title text="OL 8 must have the USBGuard installed."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="usbguard_generate_policy" ownerid="OL08-00-040140" disa="1958" severity="medium">
+    <VMSinfo VKey="248863" SVKey="248863" VRelease="853872"/>
+    <title text="OL 8 must block unauthorized peripherals before establishing a connection."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="service_usbguard_enabled" ownerid="OL08-00-040141" disa="1958" severity="medium">
+    <VMSinfo VKey="248864" SVKey="248864" VRelease="853873"/>
+    <title text="OL 8 must enable the USBGuard."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="firewalld-backend" ownerid="OL08-00-040150" disa="2385" severity="medium">
+    <VMSinfo VKey="248865" SVKey="248865" VRelease="902788"/>
+    <title text="A firewall must be able to protect against or limit the effects of denial-of-service (DoS) attacks by ensuring OL 8 can implement rate-limiting measures on impacted network interfaces."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="package_openssh-server_installed" ownerid="OL08-00-040159" disa="2422" severity="medium">
+    <VMSinfo VKey="248866" SVKey="248866" VRelease="853875"/>
+    <title text="All OL 8 networked systems must have SSH installed."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="service_sshd_enabled" ownerid="OL08-00-040160" disa="2422" severity="medium">
+    <VMSinfo VKey="248867" SVKey="248867" VRelease="853876"/>
+    <title text="All OL 8 networked systems must have and implement SSH to protect the confidentiality and integrity of transmitted and received information, as well as information during preparation for transmission."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sshd_rekey_limit" ownerid="OL08-00-040161" disa="68" severity="medium">
+    <VMSinfo VKey="248868" SVKey="248868" VRelease="877398"/>
+    <title text="OL 8 must force a frequent session key renegotiation for SSH connections to the server."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="disable_ctrlaltdel_reboot" ownerid="OL08-00-040170" disa="366" severity="high">
+    <VMSinfo VKey="248869" SVKey="248869" VRelease="833246"/>
+    <title text="The x86 Ctrl-Alt-Delete key sequence must be disabled on OL 8."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="dconf_gnome_disable_ctrlaltdel_reboot" ownerid="OL08-00-040171" disa="366" severity="high">
+    <VMSinfo VKey="248870" SVKey="248870" VRelease="780176"/>
+    <title text="The x86 Ctrl-Alt-Delete key sequence in OL 8 must be disabled if a graphical user interface is installed."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="disable_ctrlaltdel_burstaction" ownerid="OL08-00-040172" disa="366" severity="medium">
+    <VMSinfo VKey="248871" SVKey="248871" VRelease="780179"/>
+    <title text="OL 8 must disable the systemd Ctrl-Alt-Delete burst key sequence."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="service_debug-shell_disabled" ownerid="OL08-00-040180" disa="366" severity="low">
+    <VMSinfo VKey="248872" SVKey="248872" VRelease="780182"/>
+    <title text="OL 8 must disable the debug-shell systemd service."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="package_tftp-server_removed" ownerid="OL08-00-040190" disa="366" severity="high">
+    <VMSinfo VKey="248873" SVKey="248873" VRelease="780185"/>
+    <title text="The Trivial File Transfer Protocol (TFTP) server package must not be installed if not required for OL 8 operational support."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="accounts_no_uid_except_zero" ownerid="OL08-00-040200" disa="366" severity="high">
+    <VMSinfo VKey="248874" SVKey="248874" VRelease="780188"/>
+    <title text="The root account must be the only account having unrestricted access to the OL 8 system."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sysctl_net_ipv4_conf_default_accept_redirects" ownerid="OL08-00-040209" disa="366" severity="medium">
+    <VMSinfo VKey="248875" SVKey="248875" VRelease="858651"/>
+    <title text="OL 8 must prevent IPv4 Internet Control Message Protocol (ICMP) redirect messages from being accepted."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sysctl_net_ipv6_conf_default_accept_redirects" ownerid="OL08-00-040210" disa="366" severity="medium">
+    <VMSinfo VKey="248876" SVKey="248876" VRelease="858653"/>
+    <title text="OL 8 must prevent IPv6 Internet Control Message Protocol (ICMP) redirect messages from being accepted."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sysctl_net_ipv4_conf_all_send_redirects" ownerid="OL08-00-040220" disa="366" severity="medium">
+    <VMSinfo VKey="248877" SVKey="248877" VRelease="858655"/>
+    <title text="OL 8 must not send Internet Control Message Protocol (ICMP) redirects."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sysctl_net_ipv4_icmp_echo_ignore_broadcasts" ownerid="OL08-00-040230" disa="366" severity="medium">
+    <VMSinfo VKey="248878" SVKey="248878" VRelease="858657"/>
+    <title text="OL 8 must not respond to Internet Control Message Protocol (ICMP) echoes sent to a broadcast address."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sysctl_net_ipv4_conf_all_accept_source_route" ownerid="OL08-00-040239" disa="366" severity="medium">
+    <VMSinfo VKey="248879" SVKey="248879" VRelease="858659"/>
+    <title text="OL 8 must not forward IPv4 source-routed packets."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sysctl_net_ipv6_conf_all_accept_source_route" ownerid="OL08-00-040240" disa="366" severity="medium">
+    <VMSinfo VKey="248880" SVKey="248880" VRelease="858661"/>
+    <title text="OL 8 must not forward IPv6 source-routed packets."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sysctl_net_ipv4_conf_default_accept_source_route" ownerid="OL08-00-040249" disa="366" severity="medium">
+    <VMSinfo VKey="248881" SVKey="248881" VRelease="858663"/>
+    <title text="OL 8 must not forward IPv4 source-routed packets by default."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sysctl_net_ipv6_conf_default_accept_source_route" ownerid="OL08-00-040250" disa="366" severity="medium">
+    <VMSinfo VKey="248882" SVKey="248882" VRelease="858665"/>
+    <title text="OL 8 must not forward IPv6 source-routed packets by default."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sysctl_net_ipv4_ip_forward" ownerid="OL08-00-040259" disa="366" severity="medium">
+    <VMSinfo VKey="252662" SVKey="252662" VRelease="858667"/>
+    <title text="OL 8 must not enable IPv4 packet forwarding unless the system is a router."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sysctl_net_ipv6_conf_all_forwarding" ownerid="OL08-00-040260" disa="366" severity="medium">
+    <VMSinfo VKey="248883" SVKey="248883" VRelease="858669"/>
+    <title text="OL 8 must not enable IPv6 packet forwarding unless the system is a router."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sysctl_net_ipv6_conf_all_accept_ra" ownerid="OL08-00-040261" disa="366" severity="medium">
+    <VMSinfo VKey="248884" SVKey="248884" VRelease="858671"/>
+    <title text="OL 8 must not accept router advertisements on all IPv6 interfaces."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sysctl_net_ipv6_conf_default_accept_ra" ownerid="OL08-00-040262" disa="366" severity="medium">
+    <VMSinfo VKey="248885" SVKey="248885" VRelease="858673"/>
+    <title text="OL 8 must not accept router advertisements on all IPv6 interfaces by default."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sysctl_net_ipv4_conf_default_send_redirects" ownerid="OL08-00-040270" disa="366" severity="medium">
+    <VMSinfo VKey="248886" SVKey="248886" VRelease="858675"/>
+    <title text="OL 8 must not allow interfaces to perform Internet Control Message Protocol (ICMP) redirects by default."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sysctl_net_ipv4_conf_all_accept_redirects" ownerid="OL08-00-040279" disa="366" severity="medium">
+    <VMSinfo VKey="248887" SVKey="248887" VRelease="858677"/>
+    <title text="OL 8 must ignore IPv4 Internet Control Message Protocol (ICMP) redirect messages."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sysctl_net_ipv6_conf_all_accept_redirects" ownerid="OL08-00-040280" disa="366" severity="medium">
+    <VMSinfo VKey="248888" SVKey="248888" VRelease="858679"/>
+    <title text="OL 8 must ignore IPv6 Internet Control Message Protocol (ICMP) redirect messages."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sysctl_kernel_unprivileged_bpf_disabled" ownerid="OL08-00-040281" disa="366" severity="medium">
+    <VMSinfo VKey="248889" SVKey="248889" VRelease="858681"/>
+    <title text="OL 8 must disable access to the network &quot;bpf&quot; syscall from unprivileged processes."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sysctl_kernel_yama_ptrace_scope" ownerid="OL08-00-040282" disa="366" severity="medium">
+    <VMSinfo VKey="248890" SVKey="248890" VRelease="858683"/>
+    <title text="OL 8 must restrict the use of &quot;ptrace&quot; to descendant processes."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sysctl_kernel_kptr_restrict" ownerid="OL08-00-040283" disa="366" severity="medium">
+    <VMSinfo VKey="248891" SVKey="248891" VRelease="858685"/>
+    <title text="OL 8 must restrict exposed kernel pointer addresses access."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sysctl_user_max_user_namespaces" ownerid="OL08-00-040284" disa="366" severity="medium">
+    <VMSinfo VKey="248892" SVKey="248892" VRelease="858687"/>
+    <title text="OL 8 must disable the use of user namespaces."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sysctl_net_ipv4_conf_all_rp_filter" ownerid="OL08-00-040285" disa="366" severity="medium">
+    <VMSinfo VKey="248893" SVKey="248893" VRelease="858689"/>
+    <title text="OL 8 must use reverse path filtering on all IPv4 interfaces."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sysctl_net_core_bpf_jit_harden" ownerid="OL08-00-040286" disa="366" severity="medium">
+    <VMSinfo VKey="248894" SVKey="248894" VRelease="858691"/>
+    <title text="OL 8 must enable hardening for the Berkeley Packet Filter Just-in-time compiler."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="postfix_prevent_unrestricted_relay" ownerid="OL08-00-040290" disa="366" severity="medium">
+    <VMSinfo VKey="248895" SVKey="248895" VRelease="780251"/>
+    <title text="OL 8 must be configured to prevent unrestricted mail relaying."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="aide_verify_ext_attributes" ownerid="OL08-00-040300" disa="366" severity="low">
+    <VMSinfo VKey="248896" SVKey="248896" VRelease="780254"/>
+    <title text="The OL 8 file integrity tool must be configured to verify extended attributes."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="aide_verify_acls" ownerid="OL08-00-040310" disa="366" severity="low">
+    <VMSinfo VKey="248897" SVKey="248897" VRelease="880561"/>
+    <title text="The OL 8 file integrity tool must be configured to verify Access Control Lists (ACLs)."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="xwindows_remove_packages" ownerid="OL08-00-040320" disa="366" severity="medium">
+    <VMSinfo VKey="248898" SVKey="248898" VRelease="780260"/>
+    <title text="The graphical display manager must not be installed on OL 8 unless approved."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="xwindows_runlevel_target" ownerid="OL08-00-040321" disa="366" severity="medium">
+    <VMSinfo VKey="252663" SVKey="252663" VRelease="818785"/>
+    <title text="The graphical display manager must not be the default target on OL 8 unless approved."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="network_sniffer_disabled" ownerid="OL08-00-040330" disa="366" severity="medium">
+    <VMSinfo VKey="248899" SVKey="248899" VRelease="780263"/>
+    <title text="OL 8 network interfaces must not be in promiscuous mode."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sshd_disable_x11_forwarding" ownerid="OL08-00-040340" disa="366" severity="medium">
+    <VMSinfo VKey="248900" SVKey="248900" VRelease="858588"/>
+    <title text="OL 8 remote X connections for interactive users must be disabled unless to fulfill documented and validated mission requirements."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sshd_x11_use_localhost" ownerid="OL08-00-040341" disa="366" severity="medium">
+    <VMSinfo VKey="248901" SVKey="248901" VRelease="858590"/>
+    <title text="The OL 8 SSH daemon must prevent remote hosts from connecting to the proxy display."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="sshd_use_approved_kex_ordered_stig" ownerid="OL08-00-040342" disa="1453" severity="medium">
+    <VMSinfo VKey="255898" SVKey="255898" VRelease="880544"/>
+    <title text="OL 8 SSH server must be configured to use only FIPS-validated key exchange algorithms."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="tftpd_uses_secure_mode" ownerid="OL08-00-040350" disa="366" severity="medium">
+    <VMSinfo VKey="248902" SVKey="248902" VRelease="780272"/>
+    <title text="If the Trivial File Transfer Protocol (TFTP) server is required, the OL 8 TFTP daemon must be configured to operate in secure mode."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="package_vsftpd_removed" ownerid="OL08-00-040360" disa="366" severity="high">
+    <VMSinfo VKey="248903" SVKey="248903" VRelease="780275"/>
+    <title text="A File Transfer Protocol (FTP) server package must not be installed unless mission essential on OL 8."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="package_gssproxy_removed" ownerid="OL08-00-040370" disa="366" severity="medium">
+    <VMSinfo VKey="248904" SVKey="248904" VRelease="780278"/>
+    <title text="OL 8 must not have the &quot;gssproxy&quot; package installed if not required for operational support."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="package_iprutils_removed" ownerid="OL08-00-040380" disa="366" severity="medium">
+    <VMSinfo VKey="248905" SVKey="248905" VRelease="780281"/>
+    <title text="OL 8 must not have the &quot;iprutils&quot; package installed if not required for operational support."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="package_tuned_removed" ownerid="OL08-00-040390" disa="366" severity="medium">
+    <VMSinfo VKey="248906" SVKey="248906" VRelease="780284"/>
+    <title text="OL 8 must not have the &quot;tuned&quot; package installed if not required for operational support."/>
+  </overlay>
+  <overlay owner="disastig" ruleid="selinux_user_login_roles" ownerid="OL08-00-040400" disa="2235" severity="medium">
+    <VMSinfo VKey="248907" SVKey="248907" VRelease="877392"/>
+    <title text="OL 8 must prevent non-privileged users from executing privileged functions, including disabling, circumventing, or altering implemented security safeguards/countermeasures."/>
+  </overlay>
+</overlays>

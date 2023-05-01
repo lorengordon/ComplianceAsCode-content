@@ -1,0 +1,52 @@
+prodtype: ol7
+description: 'The package <tt>glibc</tt> is installed on Linux by default, but the
+
+    <tt>glibc</tt> version might not be sufficient for SAP. Please refer to
+
+    SAP note of your Linux version for the minimum requirement on <tt>glibc</tt>.
+
+    The <code>glibc</code> package can be installed with the following command:
+
+    <pre>
+
+    $ sudo yum install glibc</pre>'
+rationale: 'The <tt>glibc</tt> package contains standard C and math libraries used
+    by
+
+    multiple programs on Linux. The <tt>glibc</tt> shipped with first release
+
+    of each major Linux version is often not sufficient for SAP.
+
+    An update is required after the first OS installation.'
+severity: medium
+references: {}
+identifiers: {}
+ocil_clause: the minimum required <tt>glibc</tt> version is not installed
+ocil: 'Run the following command to determine if the <code>glibc</code> package is
+    installed: <pre>$ rpm -q glibc</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Package glibc Installed
+definition_location: /home/oscap/content/linux_os/guide/system/software/sap_host/package_glibc_installed/rule.yml
+template:
+    name: package_installed
+    vars:
+        pkgname: glibc
+        evr: 0:2.17-55.0.4.el7_0.3
+    backends: {}
+documentation_complete: true

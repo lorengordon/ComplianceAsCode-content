@@ -1,0 +1,19 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = enable
+# complexity = low
+# disruption = low
+- name: Ensure mailx is installed
+  package:
+    name: mailx
+    state: present
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - DISA-STIG-OL08-00-010358
+  - NIST-800-53-CM-3(5)
+  - enable_strategy
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+  - package_mailx_installed

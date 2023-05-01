@@ -1,0 +1,41 @@
+<def-group>
+    <definition class="compliance" id="sssd_certificate_verification" version="1">
+           <metadata>
+        <title>Certificate status checking in SSSD</title>
+        
+    <affected family="unix">
+    <platform>Red Hat Enterprise Linux 9</platform>
+      <platform>Oracle Linux 8</platform>
+      <platform>Oracle Linux 9</platform>
+      <platform>Fedora</platform>
+      <platform>Red Hat Enterprise Linux 8</platform>
+    </affected>
+        <description>SSSD should be configured with the correct ocsp_dgst
+            digest function</description>
+    </metadata>
+        <criteria>
+            <criterion comment="check value of certificate_verification in sssd configuration"
+                       test_ref="test_sssd_certificate_verification" />
+        </criteria>
+    </definition>
+
+    <ind:textfilecontent54_test check="all" check_existence="all_exist" comment="test the value of
+        certificate_verification in sssd configuration" id="test_sssd_certificate_verification" version="1">
+        <ind:object object_ref="obj_sssd_certificate_verification" />
+        <ind:state state_ref="state_sssd_certificate_verification" />
+    </ind:textfilecontent54_test>
+
+    <ind:textfilecontent54_object id="obj_sssd_certificate_verification" version="1">
+        <ind:filepath operation="pattern match">^/etc/sssd/(sssd|conf\.d/.*)\.conf$</ind:filepath>
+        <ind:pattern operation="pattern match">^[\s]*\[sssd](?:[^\n\[]*\n+)+?[\s]*certificate_verification\s*=\s*ocsp_dgst\s*=\s*(\w+)$</ind:pattern>
+        <ind:instance datatype="int">1</ind:instance>
+    </ind:textfilecontent54_object>
+
+    <ind:textfilecontent54_state comment="value of certificate_verification" id="state_sssd_certificate_verification" version="1">
+        <ind:subexpression operation="equals" var_check="all"
+                           var_ref="var_sssd_certificate_verification_digest_function" />
+    </ind:textfilecontent54_state>
+
+    <external_variable comment="certificate_verification value" datatype="string"
+                       id="var_sssd_certificate_verification_digest_function" version="1" />
+</def-group>

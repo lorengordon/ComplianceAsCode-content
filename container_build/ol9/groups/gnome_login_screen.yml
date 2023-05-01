@@ -1,0 +1,27 @@
+prodtype: all
+description: "In the default GNOME desktop, the login is displayed after system boot\n\
+    and can display user accounts, allow users to reboot the system, and allow users\
+    \ to\nlogin automatically and/or with a guest account. The login screen should\
+    \ be configured\nto prevent such behavior.\n<br /><br />\n\nFor more information\
+    \ about enforcing preferences in the GNOME3 environment using the DConf\nconfiguration\
+    \ system, see <b>\n    <a xmlns='http://www.w3.org/1999/xhtml' href='https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/desktop_migration_and_administration_guide'>https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/desktop_migration_and_administration_guide</a>/></b>\
+    \ and the man page <tt>dconf(1)</tt>."
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- dconf_gnome_disable_restart_shutdown
+- dconf_gnome_disable_user_list
+- dconf_gnome_lock_screen_on_smartcard_removal
+- gnome_gdm_disable_automatic_login
+- gnome_gdm_disable_xdmcp
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set
+    package[gdm]: null
+cpe_platform_names: !!set {}
+title: Configure GNOME Login Screen
+definition_location: /home/oscap/content/linux_os/guide/system/software/gnome/gnome_login_screen/group.yml
+documentation_complete: true

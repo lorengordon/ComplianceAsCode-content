@@ -1,0 +1,58 @@
+prodtype: all
+description: 'The syslog service has been the default Unix logging mechanism for
+
+    many years. It has a number of downsides, including inconsistent log format,
+
+    lack of authentication for received messages, and lack of authentication,
+
+    encryption, or reliable transport for messages sent over a network. However,
+
+    due to its long history, syslog is a de facto standard which is supported by
+
+    almost all Unix applications.
+
+    <br />
+
+    <br />
+
+    In Red Hat Enterprise Linux 7, rsyslog has replaced ksyslogd as the
+
+    syslog daemon of choice, and it includes some additional security features
+
+    such as reliable, connection-oriented (i.e. TCP) transmission of logs, the
+
+    option to log to database formats, and the encryption of log data en route to
+
+    a central logging server.
+
+    This section discusses how to configure rsyslog for
+
+    best effect, and how to use tools provided with the system to maintain and
+
+    monitor logs.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups:
+- configure_logwatch_on_logserver
+- ensure_rsyslog_log_file_configuration
+- journald
+- log_rotation
+- rsyslog_accepting_remote_messages
+- rsyslog_sending_messages
+rules:
+- disable_logwatch_for_logserver
+- package_rsyslog-gnutls_installed
+- package_rsyslog_installed
+- rsyslog_filecreatemode
+- service_rsyslog_enabled
+platform: machine
+platforms: !!set
+    machine: null
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+title: Configure Syslog
+definition_location: /home/oscap/content/linux_os/guide/system/logging/group.yml
+documentation_complete: true

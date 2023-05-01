@@ -1,0 +1,1596 @@
+<?xml version="1.0"?>
+<ns0:oval_definitions xmlns:ns0="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ns2="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:ns3="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" xmlns:ns4="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" xmlns:ns5="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd         http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd         http://oval.mitre.org/XMLSchema/oval-definitions-5#independent independent-definitions-schema.xsd         http://oval.mitre.org/XMLSchema/oval-definitions-5#unix unix-definitions-schema.xsd         http://oval.mitre.org/XMLSchema/oval-definitions-5#linux linux-definitions-schema.xsd">
+  <ns0:generator>
+    <ns2:product_name>combine_ovals.py from SCAP Security Guide</ns2:product_name>
+    <ns2:product_version>ssg: [0, 1, 68], python: 3.10.6</ns2:product_version>
+    <ns2:schema_version>5.11</ns2:schema_version>
+    <ns2:timestamp>2023-05-01T22:44:32</ns2:timestamp>
+  </ns0:generator>
+  <ns0:definitions>
+    <ns0:definition class="compliance" id="installed_firefox_version_supported" version="1">
+      <ns0:metadata>
+        <ns0:title>Supported Version of Firefox Installed</ns0:title>
+        <ns0:affected family="unix">
+          <ns0:product>Firefox</ns0:product>
+        </ns0:affected>
+        <ns0:description>Use of versions of an application which are not
+      supported by the vendor are not permitted. Vendors respond to
+      security flaws with updates and patches. These updates are not
+      available for unsupported versions which can leave the application
+      vulnerable to attack.</ns0:description>
+      </ns0:metadata>
+      <ns0:criteria>
+        <ns0:criterion comment="installed version of firefox supported" test_ref="test_supported_version_of_firefox"/>
+      </ns0:criteria>
+    </ns0:definition>
+    <ns0:definition class="compliance" id="firefox_policy-addons_permission" version="1">
+      <ns0:metadata>
+        <ns0:title>Firefox must be configured to disable the installation of extensions.</ns0:title>
+        <ns0:affected family="unix">
+          <ns0:product>Firefox</ns0:product>
+        </ns0:affected>
+        <ns0:description>Check setting of Disable extension installation in Firefox policy</ns0:description>
+      </ns0:metadata>
+      <ns0:criteria operator="AND" comment="Test conditions - Firefox policy item is set.">
+        <ns0:criterion comment="Check that Firefox administrative policy setting InstallAddonsPermission.Default to 'false'." test_ref="test_firefox_policy-addons_permission_InstallAddonsPermission_Default"/>
+      </ns0:criteria>
+    </ns0:definition>
+    <ns0:definition class="compliance" id="firefox_policy-autoplay_video" version="1">
+      <ns0:metadata>
+        <ns0:title>Firefox autoplay must be disabled.</ns0:title>
+        <ns0:affected family="unix">
+          <ns0:product>Firefox</ns0:product>
+        </ns0:affected>
+        <ns0:description>Check setting of Disable autoplay for videos with audio content in Firefox policy</ns0:description>
+      </ns0:metadata>
+      <ns0:criteria operator="AND" comment="Test conditions - Firefox policy item is set.">
+        <ns0:criterion comment="Check that Firefox administrative policy setting Permissions.Autoplay.Default to 'block-audio-video'." test_ref="test_firefox_policy-autoplay_video_Permissions_Autoplay_Default"/>
+      </ns0:criteria>
+    </ns0:definition>
+    <ns0:definition class="compliance" id="firefox_policy-cryptomining" version="1">
+      <ns0:metadata>
+        <ns0:title>Enabled Firefox Cryptomining protection</ns0:title>
+        <ns0:affected family="unix">
+          <ns0:product>Firefox</ns0:product>
+        </ns0:affected>
+        <ns0:description>Check setting of Enable tracking protection for cryptomining in Firefox policy</ns0:description>
+      </ns0:metadata>
+      <ns0:criteria operator="AND" comment="Test conditions - Firefox policy item is set.">
+        <ns0:criterion comment="Check that Firefox administrative policy setting EnableTrackingProtection.Cryptomining to 'true'." test_ref="test_firefox_policy-cryptomining_EnableTrackingProtection_Cryptomining"/>
+      </ns0:criteria>
+    </ns0:definition>
+    <ns0:definition class="compliance" id="firefox_policy-development_tools" version="1">
+      <ns0:metadata>
+        <ns0:title>Disable Firefox Development Tools</ns0:title>
+        <ns0:affected family="unix">
+          <ns0:product>Firefox</ns0:product>
+        </ns0:affected>
+        <ns0:description>Check setting of Disable developer tools in Firefox policy</ns0:description>
+      </ns0:metadata>
+      <ns0:criteria operator="AND" comment="Test conditions - Firefox policy item is set.">
+        <ns0:criterion comment="Check that Firefox administrative policy setting .DisableDeveloperTools to 'true'." test_ref="test_firefox_policy-development_tools__DisableDeveloperTools"/>
+      </ns0:criteria>
+    </ns0:definition>
+    <ns0:definition class="compliance" id="firefox_policy-disable_deprecated_ciphers" version="1">
+      <ns0:metadata>
+        <ns0:title>Disable Firefox deprecated ciphers</ns0:title>
+        <ns0:affected family="unix">
+          <ns0:product>Firefox</ns0:product>
+        </ns0:affected>
+        <ns0:description>Check setting of Disable deprecated ciphers in Firefox policy</ns0:description>
+      </ns0:metadata>
+      <ns0:criteria operator="AND" comment="Test conditions - Firefox policy item is set.">
+        <ns0:criterion comment="Check that Firefox administrative policy setting DisabledCiphers.TLS_RSA_WITH_3DES_EDE_CBC_SHA to 'true'." test_ref="test_firefox_policy-disable_deprecated_ciphers_DisabledCiphers_TLS_RSA_WITH_3DES_EDE_CBC_SHA"/>
+      </ns0:criteria>
+    </ns0:definition>
+    <ns0:definition class="compliance" id="firefox_policy-disable_form_history" version="1">
+      <ns0:metadata>
+        <ns0:title>Firefox must be configured to disable form fill assistance.</ns0:title>
+        <ns0:affected family="unix">
+          <ns0:product>Firefox</ns0:product>
+        </ns0:affected>
+        <ns0:description>Check setting of Disable form fill history. in Firefox policy</ns0:description>
+      </ns0:metadata>
+      <ns0:criteria operator="AND" comment="Test conditions - Firefox policy item is set.">
+        <ns0:criterion comment="Check that Firefox administrative policy setting .DisableFormHistory to 'true'." test_ref="test_firefox_policy-disable_form_history__DisableFormHistory"/>
+      </ns0:criteria>
+    </ns0:definition>
+    <ns0:definition class="compliance" id="firefox_policy-disable_pocket" version="1">
+      <ns0:metadata>
+        <ns0:title>Disable Firefox Pocket</ns0:title>
+        <ns0:affected family="unix">
+          <ns0:product>Firefox</ns0:product>
+        </ns0:affected>
+        <ns0:description>Check setting of Disable Firefox Pocket in Firefox policy</ns0:description>
+      </ns0:metadata>
+      <ns0:criteria operator="AND" comment="Test conditions - Firefox policy item is set.">
+        <ns0:criterion comment="Check that Firefox administrative policy setting .DisablePocket to 'true'." test_ref="test_firefox_policy-disable_pocket__DisablePocket"/>
+      </ns0:criteria>
+    </ns0:definition>
+    <ns0:definition class="compliance" id="firefox_policy-disable_studies" version="1">
+      <ns0:metadata>
+        <ns0:title>Disable Firefox Studies</ns0:title>
+        <ns0:affected family="unix">
+          <ns0:product>Firefox</ns0:product>
+        </ns0:affected>
+        <ns0:description>Check setting of Disable Firefox Studies in Firefox policy</ns0:description>
+      </ns0:metadata>
+      <ns0:criteria operator="AND" comment="Test conditions - Firefox policy item is set.">
+        <ns0:criterion comment="Check that Firefox administrative policy setting .DisableFirefoxStudies to 'true'." test_ref="test_firefox_policy-disable_studies__DisableFirefoxStudies"/>
+      </ns0:criteria>
+    </ns0:definition>
+    <ns0:definition class="compliance" id="firefox_policy-dns_over_https" version="1">
+      <ns0:metadata>
+        <ns0:title>Firefox must be configured so that DNS over HTTPS is disabled.</ns0:title>
+        <ns0:affected family="unix">
+          <ns0:product>Firefox</ns0:product>
+        </ns0:affected>
+        <ns0:description>Check setting of Disable DNS over HTTPS in Firefox policy</ns0:description>
+      </ns0:metadata>
+      <ns0:criteria operator="AND" comment="Test conditions - Firefox policy item is set.">
+        <ns0:criterion comment="Check that Firefox administrative policy setting DNSOverHTTPS.Enabled to 'false'." test_ref="test_firefox_policy-dns_over_https_DNSOverHTTPS_Enabled"/>
+      </ns0:criteria>
+    </ns0:definition>
+    <ns0:definition class="compliance" id="firefox_policy-encrypted_media_extensions" version="1">
+      <ns0:metadata>
+        <ns0:title>Firefox encrypted media extensions must be disabled.</ns0:title>
+        <ns0:affected family="unix">
+          <ns0:product>Firefox</ns0:product>
+        </ns0:affected>
+        <ns0:description>Check setting of Disable Firefox Site Feedback in Firefox policy</ns0:description>
+      </ns0:metadata>
+      <ns0:criteria operator="AND" comment="Test conditions - Firefox policy item is set.">
+        <ns0:criterion comment="Check that Firefox administrative policy setting EncryptedMediaExtensions.Enabled to 'false'." test_ref="test_firefox_policy-encrypted_media_extensions_EncryptedMediaExtensions_Enabled"/>
+        <ns0:criterion comment="Check that Firefox administrative policy setting EncryptedMediaExtensions.Locked to 'true'." test_ref="test_firefox_policy-encrypted_media_extensions_EncryptedMediaExtensions_Locked"/>
+      </ns0:criteria>
+    </ns0:definition>
+    <ns0:definition class="compliance" id="firefox_policy-enhanced_tracking" version="1">
+      <ns0:metadata>
+        <ns0:title>Enabled Firefox Enhanced Tracking Protection</ns0:title>
+        <ns0:affected family="unix">
+          <ns0:product>Firefox</ns0:product>
+        </ns0:affected>
+        <ns0:description>Check setting of Enable enhanced tracking protection in Firefox policy</ns0:description>
+      </ns0:metadata>
+      <ns0:criteria operator="AND" comment="Test conditions - Firefox policy item is set.">
+        <ns0:criterion comment="Check that Firefox administrative policy setting Preferences.browser.contentblocking.category.Value to 'strict'." test_ref="test_firefox_policy-enhanced_tracking_Preferences_browser.contentblocking.category_Value"/>
+        <ns0:criterion comment="Check that Firefox administrative policy setting Preferences.browser.contentblocking.category.Status to 'locked'." test_ref="test_firefox_policy-enhanced_tracking_Preferences_browser.contentblocking.category_Status"/>
+      </ns0:criteria>
+    </ns0:definition>
+    <ns0:definition class="compliance" id="firefox_policy-extension_recommendation" version="1">
+      <ns0:metadata>
+        <ns0:title>Disabled Firefox Extension Recommendations</ns0:title>
+        <ns0:affected family="unix">
+          <ns0:product>Firefox</ns0:product>
+        </ns0:affected>
+        <ns0:description>Check setting of Disable Firefox extension recommendations in Firefox policy</ns0:description>
+      </ns0:metadata>
+      <ns0:criteria operator="AND" comment="Test conditions - Firefox policy item is set.">
+        <ns0:criterion comment="Check that Firefox administrative policy setting Preferences.extensions.htmlaboutaddons.recommendations.enabled.Value to 'false'." test_ref="test_firefox_policy-extension_recommendation_Preferences_extensions.htmlaboutaddons.recommendations.enabled_Value"/>
+        <ns0:criterion comment="Check that Firefox administrative policy setting Preferences.extensions.htmlaboutaddons.recommendations.enabled.Status to 'locked'." test_ref="test_firefox_policy-extension_recommendation_Preferences_extensions.htmlaboutaddons.recommendations.enabled_Status"/>
+      </ns0:criteria>
+    </ns0:definition>
+    <ns0:definition class="compliance" id="firefox_policy-extension_update" version="1">
+      <ns0:metadata>
+        <ns0:title>Firefox must be configured to not automatically update installed add-ons and plugins.</ns0:title>
+        <ns0:affected family="unix">
+          <ns0:product>Firefox</ns0:product>
+        </ns0:affected>
+        <ns0:description>Check setting of Disable addon and plugin automatic update in Firefox policy</ns0:description>
+      </ns0:metadata>
+      <ns0:criteria operator="AND" comment="Test conditions - Firefox policy item is set.">
+        <ns0:criterion comment="Check that Firefox administrative policy setting .ExtensionUpdate to 'false'." test_ref="test_firefox_policy-extension_update__ExtensionUpdate"/>
+      </ns0:criteria>
+    </ns0:definition>
+    <ns0:definition class="compliance" id="firefox_policy-feedback_reporting" version="1">
+      <ns0:metadata>
+        <ns0:title>Firefox feedback reporting must be disabled.</ns0:title>
+        <ns0:affected family="unix">
+          <ns0:product>Firefox</ns0:product>
+        </ns0:affected>
+        <ns0:description>Check setting of Disable Firefox Site Feedback in Firefox policy</ns0:description>
+      </ns0:metadata>
+      <ns0:criteria operator="AND" comment="Test conditions - Firefox policy item is set.">
+        <ns0:criterion comment="Check that Firefox administrative policy setting .DisableFeedbackCommands to 'true'." test_ref="test_firefox_policy-feedback_reporting__DisableFeedbackCommands"/>
+      </ns0:criteria>
+    </ns0:definition>
+    <ns0:definition class="compliance" id="firefox_policy-fingerprinting_protection" version="1">
+      <ns0:metadata>
+        <ns0:title>Enabled Firefox Fingerprinting Protection</ns0:title>
+        <ns0:affected family="unix">
+          <ns0:product>Firefox</ns0:product>
+        </ns0:affected>
+        <ns0:description>Check setting of Enable tracking protection for fingerprinting in Firefox policy</ns0:description>
+      </ns0:metadata>
+      <ns0:criteria operator="AND" comment="Test conditions - Firefox policy item is set.">
+        <ns0:criterion comment="Check that Firefox administrative policy setting EnableTrackingProtection.Fingerprinting to 'true'." test_ref="test_firefox_policy-fingerprinting_protection_EnableTrackingProtection_Fingerprinting"/>
+      </ns0:criteria>
+    </ns0:definition>
+    <ns0:definition class="compliance" id="firefox_policy-forget_button" version="1">
+      <ns0:metadata>
+        <ns0:title>Firefox must prevent the user from quickly deleting data.</ns0:title>
+        <ns0:affected family="unix">
+          <ns0:product>Firefox</ns0:product>
+        </ns0:affected>
+        <ns0:description>Check setting of Disable Forget button in Firefox policy</ns0:description>
+      </ns0:metadata>
+      <ns0:criteria operator="AND" comment="Test conditions - Firefox policy item is set.">
+        <ns0:criterion comment="Check that Firefox administrative policy setting .DisableForgetButton to 'true'." test_ref="test_firefox_policy-forget_button__DisableForgetButton"/>
+      </ns0:criteria>
+    </ns0:definition>
+    <ns0:definition class="compliance" id="firefox_policy-javascript_window_changes" version="1">
+      <ns0:metadata>
+        <ns0:title>Disable JavaScript's Raise Or Lower Windows Capability</ns0:title>
+        <ns0:affected family="unix">
+          <ns0:product>Firefox</ns0:product>
+        </ns0:affected>
+        <ns0:description>Check setting of Disable addon and plugin automatic update in Firefox policy</ns0:description>
+      </ns0:metadata>
+      <ns0:criteria operator="AND" comment="Test conditions - Firefox policy item is set.">
+        <ns0:criterion comment="Check that Firefox administrative policy setting Preferences.dom.disable_window_flip.Value to 'true'." test_ref="test_firefox_policy-javascript_window_changes_Preferences_dom.disable_window_flip_Value"/>
+        <ns0:criterion comment="Check that Firefox administrative policy setting Preferences.dom.disable_window_flip.Status to 'locked'." test_ref="test_firefox_policy-javascript_window_changes_Preferences_dom.disable_window_flip_Status"/>
+      </ns0:criteria>
+    </ns0:definition>
+    <ns0:definition class="compliance" id="firefox_policy-javascript_window_resizing" version="1">
+      <ns0:metadata>
+        <ns0:title>Disable JavaScript's Moving Or Resizing Windows Capability</ns0:title>
+        <ns0:affected family="unix">
+          <ns0:product>Firefox</ns0:product>
+        </ns0:affected>
+        <ns0:description>Check setting of Disable Javascript window move/resize in Firefox policy</ns0:description>
+      </ns0:metadata>
+      <ns0:criteria operator="AND" comment="Test conditions - Firefox policy item is set.">
+        <ns0:criterion comment="Check that Firefox administrative policy setting Preferences.dom.disable_window_move_resize.Value to 'true'." test_ref="test_firefox_policy-javascript_window_resizing_Preferences_dom.disable_window_move_resize_Value"/>
+        <ns0:criterion comment="Check that Firefox administrative policy setting Preferences.dom.disable_window_move_resize.Status to 'locked'." test_ref="test_firefox_policy-javascript_window_resizing_Preferences_dom.disable_window_move_resize_Status"/>
+      </ns0:criteria>
+    </ns0:definition>
+    <ns0:definition class="compliance" id="firefox_policy-network_prediction" version="1">
+      <ns0:metadata>
+        <ns0:title>Disable Firefox network prediction</ns0:title>
+        <ns0:affected family="unix">
+          <ns0:product>Firefox</ns0:product>
+        </ns0:affected>
+        <ns0:description>Check setting of Disable addon and plugin automatic update in Firefox policy</ns0:description>
+      </ns0:metadata>
+      <ns0:criteria operator="AND" comment="Test conditions - Firefox policy item is set.">
+        <ns0:criterion comment="Check that Firefox administrative policy setting .NetworkPrediction to 'false'." test_ref="test_firefox_policy-network_prediction__NetworkPrediction"/>
+      </ns0:criteria>
+    </ns0:definition>
+    <ns0:definition class="compliance" id="firefox_policy-no_sanitize_on_shutdown" version="1">
+      <ns0:metadata>
+        <ns0:title>Firefox must be configured to not delete data upon shutdown.</ns0:title>
+        <ns0:affected family="unix">
+          <ns0:product>Firefox</ns0:product>
+        </ns0:affected>
+        <ns0:description>Check setting of Require default personal certificate be chosen every time in Firefox policy</ns0:description>
+      </ns0:metadata>
+      <ns0:criteria operator="AND" comment="Test conditions - Firefox policy item is set.">
+        <ns0:criterion comment="Check that Firefox administrative policy setting SanitizeOnShutdown.Cache to 'false'." test_ref="test_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_Cache"/>
+        <ns0:criterion comment="Check that Firefox administrative policy setting SanitizeOnShutdown.Cookies to 'false'." test_ref="test_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_Cookies"/>
+        <ns0:criterion comment="Check that Firefox administrative policy setting SanitizeOnShutdown.Downloads to 'false'." test_ref="test_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_Downloads"/>
+        <ns0:criterion comment="Check that Firefox administrative policy setting SanitizeOnShutdown.FormData to 'false'." test_ref="test_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_FormData"/>
+        <ns0:criterion comment="Check that Firefox administrative policy setting SanitizeOnShutdown.History to 'false'." test_ref="test_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_History"/>
+        <ns0:criterion comment="Check that Firefox administrative policy setting SanitizeOnShutdown.Sessions to 'false'." test_ref="test_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_Sessions"/>
+        <ns0:criterion comment="Check that Firefox administrative policy setting SanitizeOnShutdown.SiteSettings to 'false'." test_ref="test_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_SiteSettings"/>
+        <ns0:criterion comment="Check that Firefox administrative policy setting SanitizeOnShutdown.OfflineApps to 'false'." test_ref="test_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_OfflineApps"/>
+        <ns0:criterion comment="Check that Firefox administrative policy setting SanitizeOnShutdown.Locked to 'true'." test_ref="test_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_Locked"/>
+      </ns0:criteria>
+    </ns0:definition>
+    <ns0:definition class="compliance" id="firefox_policy-nonessential_capabilities" version="1">
+      <ns0:metadata>
+        <ns0:title>The Firefox New Tab page must not show Top Sites, Sponsored Top sites, Pocket Recommendations, Sponsored Pocket Stories, Searches, Highlights, or Snippets.</ns0:title>
+        <ns0:affected family="unix">
+          <ns0:product>Firefox</ns0:product>
+        </ns0:affected>
+        <ns0:description>Check setting of Disable dynamic New Tab features in Firefox policy</ns0:description>
+      </ns0:metadata>
+      <ns0:criteria operator="AND" comment="Test conditions - Firefox policy item is set.">
+        <ns0:criterion comment="Check that Firefox administrative policy setting FirefoxHome.Search to 'false'." test_ref="test_firefox_policy-nonessential_capabilities_FirefoxHome_Search"/>
+        <ns0:criterion comment="Check that Firefox administrative policy setting FirefoxHome.TopSites to 'false'." test_ref="test_firefox_policy-nonessential_capabilities_FirefoxHome_TopSites"/>
+        <ns0:criterion comment="Check that Firefox administrative policy setting FirefoxHome.SponsoredTopSites to 'false'." test_ref="test_firefox_policy-nonessential_capabilities_FirefoxHome_SponsoredTopSites"/>
+        <ns0:criterion comment="Check that Firefox administrative policy setting FirefoxHome.Pocket to 'false'." test_ref="test_firefox_policy-nonessential_capabilities_FirefoxHome_Pocket"/>
+        <ns0:criterion comment="Check that Firefox administrative policy setting FirefoxHome.SponsoredPocket to 'false'." test_ref="test_firefox_policy-nonessential_capabilities_FirefoxHome_SponsoredPocket"/>
+        <ns0:criterion comment="Check that Firefox administrative policy setting FirefoxHome.Highlights to 'false'." test_ref="test_firefox_policy-nonessential_capabilities_FirefoxHome_Highlights"/>
+        <ns0:criterion comment="Check that Firefox administrative policy setting FirefoxHome.Snippets to 'false'." test_ref="test_firefox_policy-nonessential_capabilities_FirefoxHome_Snippets"/>
+        <ns0:criterion comment="Check that Firefox administrative policy setting FirefoxHome.locked to 'true'." test_ref="test_firefox_policy-nonessential_capabilities_FirefoxHome_locked"/>
+      </ns0:criteria>
+    </ns0:definition>
+    <ns0:definition class="compliance" id="firefox_policy-password_manager" version="1">
+      <ns0:metadata>
+        <ns0:title>Firefox must be configured to not use a password store with or without a master password.</ns0:title>
+        <ns0:affected family="unix">
+          <ns0:product>Firefox</ns0:product>
+        </ns0:affected>
+        <ns0:description>Check setting of Disable password manager in Firefox policy</ns0:description>
+      </ns0:metadata>
+      <ns0:criteria operator="AND" comment="Test conditions - Firefox policy item is set.">
+        <ns0:criterion comment="Check that Firefox administrative policy setting .PasswordManagerEnabled to 'false'." test_ref="test_firefox_policy-password_manager__PasswordManagerEnabled"/>
+      </ns0:criteria>
+    </ns0:definition>
+    <ns0:definition class="compliance" id="firefox_policy-pop-up_windows" version="1">
+      <ns0:metadata>
+        <ns0:title>Enable Firefox Pop-up Blocker</ns0:title>
+        <ns0:affected family="unix">
+          <ns0:product>Firefox</ns0:product>
+        </ns0:affected>
+        <ns0:description>Check setting of Disable popup blocking in Firefox policy</ns0:description>
+      </ns0:metadata>
+      <ns0:criteria operator="AND" comment="Test conditions - Firefox policy item is set.">
+        <ns0:criterion comment="Check that Firefox administrative policy setting PopupBlocking.Default to 'true'." test_ref="test_firefox_policy-pop-up_windows_PopupBlocking_Default"/>
+        <ns0:criterion comment="Check that Firefox administrative policy setting PopupBlocking.Locked to 'true'." test_ref="test_firefox_policy-pop-up_windows_PopupBlocking_Locked"/>
+      </ns0:criteria>
+    </ns0:definition>
+    <ns0:definition class="compliance" id="firefox_policy-private_browsing" version="1">
+      <ns0:metadata>
+        <ns0:title>Firefox private browsing must be disabled.</ns0:title>
+        <ns0:affected family="unix">
+          <ns0:product>Firefox</ns0:product>
+        </ns0:affected>
+        <ns0:description>Check setting of Disable Private Browsing feature in Firefox policy</ns0:description>
+      </ns0:metadata>
+      <ns0:criteria operator="AND" comment="Test conditions - Firefox policy item is set.">
+        <ns0:criterion comment="Check that Firefox administrative policy setting .DisablePrivateBrowsing to 'true'." test_ref="test_firefox_policy-private_browsing__DisablePrivateBrowsing"/>
+      </ns0:criteria>
+    </ns0:definition>
+    <ns0:definition class="compliance" id="firefox_policy-search_suggestion" version="1">
+      <ns0:metadata>
+        <ns0:title>Firefox search suggestions must be disabled.</ns0:title>
+        <ns0:affected family="unix">
+          <ns0:product>Firefox</ns0:product>
+        </ns0:affected>
+        <ns0:description>Check setting of Disable search suggestion in Firefox policy</ns0:description>
+      </ns0:metadata>
+      <ns0:criteria operator="AND" comment="Test conditions - Firefox policy item is set.">
+        <ns0:criterion comment="Check that Firefox administrative policy setting .SearchSuggestEnabled to 'false'." test_ref="test_firefox_policy-search_suggestion__SearchSuggestEnabled"/>
+      </ns0:criteria>
+    </ns0:definition>
+    <ns0:definition class="compliance" id="firefox_policy-search_update" version="1">
+      <ns0:metadata>
+        <ns0:title>Disable Installed Search Plugins Update Checking</ns0:title>
+        <ns0:affected family="unix">
+          <ns0:product>Firefox</ns0:product>
+        </ns0:affected>
+        <ns0:description>Check setting of Disable Search Plugin Updates in Firefox policy</ns0:description>
+      </ns0:metadata>
+      <ns0:criteria operator="AND" comment="Test conditions - Firefox policy item is set.">
+        <ns0:criterion comment="Check that Firefox administrative policy setting Preferences.browser.search.update.Value to 'false'." test_ref="test_firefox_policy-search_update_Preferences_browser.search.update_Value"/>
+        <ns0:criterion comment="Check that Firefox administrative policy setting Preferences.browser.search.update.Status to 'locked'." test_ref="test_firefox_policy-search_update_Preferences_browser.search.update_Status"/>
+      </ns0:criteria>
+    </ns0:definition>
+    <ns0:definition class="compliance" id="firefox_policy-ssl_minimum_version" version="1">
+      <ns0:metadata>
+        <ns0:title>Firefox must be configured to allow only TLS 1.2 or above.</ns0:title>
+        <ns0:affected family="unix">
+          <ns0:product>Firefox</ns0:product>
+        </ns0:affected>
+        <ns0:description>Check setting of Disable Firefox Sync in Firefox policy</ns0:description>
+      </ns0:metadata>
+      <ns0:criteria operator="AND" comment="Test conditions - Firefox policy item is set.">
+        <ns0:criterion comment="Check that Firefox administrative policy setting .SSLVersionMin to 'tls1.2'." test_ref="test_firefox_policy-ssl_minimum_version__SSLVersionMin"/>
+      </ns0:criteria>
+    </ns0:definition>
+    <ns0:definition class="compliance" id="firefox_policy-sync" version="1">
+      <ns0:metadata>
+        <ns0:title>Firefox accounts must be disabled.</ns0:title>
+        <ns0:affected family="unix">
+          <ns0:product>Firefox</ns0:product>
+        </ns0:affected>
+        <ns0:description>Check setting of Disable Firefox Sync in Firefox policy</ns0:description>
+      </ns0:metadata>
+      <ns0:criteria operator="AND" comment="Test conditions - Firefox policy item is set.">
+        <ns0:criterion comment="Check that Firefox administrative policy setting .DisableFirefoxAccounts to 'true'." test_ref="test_firefox_policy-sync__DisableFirefoxAccounts"/>
+      </ns0:criteria>
+    </ns0:definition>
+    <ns0:definition class="compliance" id="firefox_policy-telemetry" version="1">
+      <ns0:metadata>
+        <ns0:title>Disable Firefox Telemetry</ns0:title>
+        <ns0:affected family="unix">
+          <ns0:product>Firefox</ns0:product>
+        </ns0:affected>
+        <ns0:description>Check setting of Disable telemetry in Firefox policy</ns0:description>
+      </ns0:metadata>
+      <ns0:criteria operator="AND" comment="Test conditions - Firefox policy item is set.">
+        <ns0:criterion comment="Check that Firefox administrative policy setting .DisableTelemetry to 'true'." test_ref="test_firefox_policy-telemetry__DisableTelemetry"/>
+      </ns0:criteria>
+    </ns0:definition>
+    <ns0:definition class="compliance" id="firefox_policy-user_messaging" version="1">
+      <ns0:metadata>
+        <ns0:title>Firefox must not recommend extensions as the user is using the browser.</ns0:title>
+        <ns0:affected family="unix">
+          <ns0:product>Firefox</ns0:product>
+        </ns0:affected>
+        <ns0:description>Check setting of Disable Extension Recommendation Messages in Firefox policy</ns0:description>
+      </ns0:metadata>
+      <ns0:criteria operator="AND" comment="Test conditions - Firefox policy item is set.">
+        <ns0:criterion comment="Check that Firefox administrative policy setting UserMessaging.ExtensionRecommendations to 'false'." test_ref="test_firefox_policy-user_messaging_UserMessaging_ExtensionRecommendations"/>
+      </ns0:criteria>
+    </ns0:definition>
+    <ns0:definition class="compliance" id="firefox_policy-verification" version="1">
+      <ns0:metadata>
+        <ns0:title>Enable Certificate Verification</ns0:title>
+        <ns0:affected family="unix">
+          <ns0:product>Firefox</ns0:product>
+        </ns0:affected>
+        <ns0:description>Check setting of Configure Default Personal Certificate to Ask Every Time in Firefox policy</ns0:description>
+      </ns0:metadata>
+      <ns0:criteria operator="AND" comment="Test conditions - Firefox policy item is set.">
+        <ns0:criterion comment="Check that Firefox administrative policy setting Preferences.security.default_personal_cert.Value to 'Ask Every Time'." test_ref="test_firefox_policy-verification_Preferences_security.default_personal_cert_Value"/>
+        <ns0:criterion comment="Check that Firefox administrative policy setting Preferences.security.default_personal_cert.Status to 'locked'." test_ref="test_firefox_policy-verification_Preferences_security.default_personal_cert_Status"/>
+      </ns0:criteria>
+    </ns0:definition>
+    <ns0:definition class="inventory" id="installed_OS_is_part_of_Unix_family" version="1">
+      <ns0:metadata>
+        <ns0:title>Installed operating system is part of the Unix family</ns0:title>
+        <ns0:affected family="unix">
+          <ns0:product>Firefox</ns0:product>
+        </ns0:affected>
+        <ns0:description>The operating system installed on the system is part of the Unix OS family</ns0:description>
+      </ns0:metadata>
+      <ns0:criteria>
+        <ns0:criterion comment="Installed operating system is part of the unix family" test_ref="test_unix_family"/>
+      </ns0:criteria>
+    </ns0:definition>
+  </ns0:definitions>
+  <ns0:tests>
+    <ns3:rpminfo_test check="all" check_existence="any_exist" comment="Installed version of firefox is greater than 68.4.0" id="test_supported_version_of_firefox" version="1">
+      <ns3:object object_ref="obj_supported_version_of_firefox"/>
+      <ns3:state state_ref="state_supported_version_of_firefox"/>
+    </ns3:rpminfo_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of InstallAddonsPermission.Default in Firefox policy file" id="test_firefox_policy-addons_permission_InstallAddonsPermission_Default" version="1">
+      <ns4:object object_ref="obj_firefox_policy-addons_permission_InstallAddonsPermission_Default"/>
+      <ns4:state state_ref="state_firefox_policy-addons_permission_InstallAddonsPermission_Default"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of Permissions.Autoplay.Default in Firefox policy file" id="test_firefox_policy-autoplay_video_Permissions_Autoplay_Default" version="1">
+      <ns4:object object_ref="obj_firefox_policy-autoplay_video_Permissions_Autoplay_Default"/>
+      <ns4:state state_ref="state_firefox_policy-autoplay_video_Permissions_Autoplay_Default"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of EnableTrackingProtection.Cryptomining in Firefox policy file" id="test_firefox_policy-cryptomining_EnableTrackingProtection_Cryptomining" version="1">
+      <ns4:object object_ref="obj_firefox_policy-cryptomining_EnableTrackingProtection_Cryptomining"/>
+      <ns4:state state_ref="state_firefox_policy-cryptomining_EnableTrackingProtection_Cryptomining"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of .DisableDeveloperTools in Firefox policy file" id="test_firefox_policy-development_tools__DisableDeveloperTools" version="1">
+      <ns4:object object_ref="obj_firefox_policy-development_tools__DisableDeveloperTools"/>
+      <ns4:state state_ref="state_firefox_policy-development_tools__DisableDeveloperTools"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of DisabledCiphers.TLS_RSA_WITH_3DES_EDE_CBC_SHA in Firefox policy file" id="test_firefox_policy-disable_deprecated_ciphers_DisabledCiphers_TLS_RSA_WITH_3DES_EDE_CBC_SHA" version="1">
+      <ns4:object object_ref="obj_firefox_policy-disable_deprecated_ciphers_DisabledCiphers_TLS_RSA_WITH_3DES_EDE_CBC_SHA"/>
+      <ns4:state state_ref="state_firefox_policy-disable_deprecated_ciphers_DisabledCiphers_TLS_RSA_WITH_3DES_EDE_CBC_SHA"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of .DisableFormHistory in Firefox policy file" id="test_firefox_policy-disable_form_history__DisableFormHistory" version="1">
+      <ns4:object object_ref="obj_firefox_policy-disable_form_history__DisableFormHistory"/>
+      <ns4:state state_ref="state_firefox_policy-disable_form_history__DisableFormHistory"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of .DisablePocket in Firefox policy file" id="test_firefox_policy-disable_pocket__DisablePocket" version="1">
+      <ns4:object object_ref="obj_firefox_policy-disable_pocket__DisablePocket"/>
+      <ns4:state state_ref="state_firefox_policy-disable_pocket__DisablePocket"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of .DisableFirefoxStudies in Firefox policy file" id="test_firefox_policy-disable_studies__DisableFirefoxStudies" version="1">
+      <ns4:object object_ref="obj_firefox_policy-disable_studies__DisableFirefoxStudies"/>
+      <ns4:state state_ref="state_firefox_policy-disable_studies__DisableFirefoxStudies"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of DNSOverHTTPS.Enabled in Firefox policy file" id="test_firefox_policy-dns_over_https_DNSOverHTTPS_Enabled" version="1">
+      <ns4:object object_ref="obj_firefox_policy-dns_over_https_DNSOverHTTPS_Enabled"/>
+      <ns4:state state_ref="state_firefox_policy-dns_over_https_DNSOverHTTPS_Enabled"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of EncryptedMediaExtensions.Enabled in Firefox policy file" id="test_firefox_policy-encrypted_media_extensions_EncryptedMediaExtensions_Enabled" version="1">
+      <ns4:object object_ref="obj_firefox_policy-encrypted_media_extensions_EncryptedMediaExtensions_Enabled"/>
+      <ns4:state state_ref="state_firefox_policy-encrypted_media_extensions_EncryptedMediaExtensions_Enabled"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of EncryptedMediaExtensions.Locked in Firefox policy file" id="test_firefox_policy-encrypted_media_extensions_EncryptedMediaExtensions_Locked" version="1">
+      <ns4:object object_ref="obj_firefox_policy-encrypted_media_extensions_EncryptedMediaExtensions_Locked"/>
+      <ns4:state state_ref="state_firefox_policy-encrypted_media_extensions_EncryptedMediaExtensions_Locked"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of Preferences.browser.contentblocking.category.Value in Firefox policy file" id="test_firefox_policy-enhanced_tracking_Preferences_browser.contentblocking.category_Value" version="1">
+      <ns4:object object_ref="obj_firefox_policy-enhanced_tracking_Preferences_browser.contentblocking.category_Value"/>
+      <ns4:state state_ref="state_firefox_policy-enhanced_tracking_Preferences_browser.contentblocking.category_Value"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of Preferences.browser.contentblocking.category.Status in Firefox policy file" id="test_firefox_policy-enhanced_tracking_Preferences_browser.contentblocking.category_Status" version="1">
+      <ns4:object object_ref="obj_firefox_policy-enhanced_tracking_Preferences_browser.contentblocking.category_Status"/>
+      <ns4:state state_ref="state_firefox_policy-enhanced_tracking_Preferences_browser.contentblocking.category_Status"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of Preferences.extensions.htmlaboutaddons.recommendations.enabled.Value in Firefox policy file" id="test_firefox_policy-extension_recommendation_Preferences_extensions.htmlaboutaddons.recommendations.enabled_Value" version="1">
+      <ns4:object object_ref="obj_firefox_policy-extension_recommendation_Preferences_extensions.htmlaboutaddons.recommendations.enabled_Value"/>
+      <ns4:state state_ref="state_firefox_policy-extension_recommendation_Preferences_extensions.htmlaboutaddons.recommendations.enabled_Value"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of Preferences.extensions.htmlaboutaddons.recommendations.enabled.Status in Firefox policy file" id="test_firefox_policy-extension_recommendation_Preferences_extensions.htmlaboutaddons.recommendations.enabled_Status" version="1">
+      <ns4:object object_ref="obj_firefox_policy-extension_recommendation_Preferences_extensions.htmlaboutaddons.recommendations.enabled_Status"/>
+      <ns4:state state_ref="state_firefox_policy-extension_recommendation_Preferences_extensions.htmlaboutaddons.recommendations.enabled_Status"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of .ExtensionUpdate in Firefox policy file" id="test_firefox_policy-extension_update__ExtensionUpdate" version="1">
+      <ns4:object object_ref="obj_firefox_policy-extension_update__ExtensionUpdate"/>
+      <ns4:state state_ref="state_firefox_policy-extension_update__ExtensionUpdate"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of .DisableFeedbackCommands in Firefox policy file" id="test_firefox_policy-feedback_reporting__DisableFeedbackCommands" version="1">
+      <ns4:object object_ref="obj_firefox_policy-feedback_reporting__DisableFeedbackCommands"/>
+      <ns4:state state_ref="state_firefox_policy-feedback_reporting__DisableFeedbackCommands"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of EnableTrackingProtection.Fingerprinting in Firefox policy file" id="test_firefox_policy-fingerprinting_protection_EnableTrackingProtection_Fingerprinting" version="1">
+      <ns4:object object_ref="obj_firefox_policy-fingerprinting_protection_EnableTrackingProtection_Fingerprinting"/>
+      <ns4:state state_ref="state_firefox_policy-fingerprinting_protection_EnableTrackingProtection_Fingerprinting"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of .DisableForgetButton in Firefox policy file" id="test_firefox_policy-forget_button__DisableForgetButton" version="1">
+      <ns4:object object_ref="obj_firefox_policy-forget_button__DisableForgetButton"/>
+      <ns4:state state_ref="state_firefox_policy-forget_button__DisableForgetButton"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of Preferences.dom.disable_window_flip.Value in Firefox policy file" id="test_firefox_policy-javascript_window_changes_Preferences_dom.disable_window_flip_Value" version="1">
+      <ns4:object object_ref="obj_firefox_policy-javascript_window_changes_Preferences_dom.disable_window_flip_Value"/>
+      <ns4:state state_ref="state_firefox_policy-javascript_window_changes_Preferences_dom.disable_window_flip_Value"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of Preferences.dom.disable_window_flip.Status in Firefox policy file" id="test_firefox_policy-javascript_window_changes_Preferences_dom.disable_window_flip_Status" version="1">
+      <ns4:object object_ref="obj_firefox_policy-javascript_window_changes_Preferences_dom.disable_window_flip_Status"/>
+      <ns4:state state_ref="state_firefox_policy-javascript_window_changes_Preferences_dom.disable_window_flip_Status"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of Preferences.dom.disable_window_move_resize.Value in Firefox policy file" id="test_firefox_policy-javascript_window_resizing_Preferences_dom.disable_window_move_resize_Value" version="1">
+      <ns4:object object_ref="obj_firefox_policy-javascript_window_resizing_Preferences_dom.disable_window_move_resize_Value"/>
+      <ns4:state state_ref="state_firefox_policy-javascript_window_resizing_Preferences_dom.disable_window_move_resize_Value"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of Preferences.dom.disable_window_move_resize.Status in Firefox policy file" id="test_firefox_policy-javascript_window_resizing_Preferences_dom.disable_window_move_resize_Status" version="1">
+      <ns4:object object_ref="obj_firefox_policy-javascript_window_resizing_Preferences_dom.disable_window_move_resize_Status"/>
+      <ns4:state state_ref="state_firefox_policy-javascript_window_resizing_Preferences_dom.disable_window_move_resize_Status"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of .NetworkPrediction in Firefox policy file" id="test_firefox_policy-network_prediction__NetworkPrediction" version="1">
+      <ns4:object object_ref="obj_firefox_policy-network_prediction__NetworkPrediction"/>
+      <ns4:state state_ref="state_firefox_policy-network_prediction__NetworkPrediction"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of SanitizeOnShutdown.Cache in Firefox policy file" id="test_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_Cache" version="1">
+      <ns4:object object_ref="obj_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_Cache"/>
+      <ns4:state state_ref="state_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_Cache"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of SanitizeOnShutdown.Cookies in Firefox policy file" id="test_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_Cookies" version="1">
+      <ns4:object object_ref="obj_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_Cookies"/>
+      <ns4:state state_ref="state_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_Cookies"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of SanitizeOnShutdown.Downloads in Firefox policy file" id="test_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_Downloads" version="1">
+      <ns4:object object_ref="obj_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_Downloads"/>
+      <ns4:state state_ref="state_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_Downloads"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of SanitizeOnShutdown.FormData in Firefox policy file" id="test_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_FormData" version="1">
+      <ns4:object object_ref="obj_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_FormData"/>
+      <ns4:state state_ref="state_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_FormData"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of SanitizeOnShutdown.History in Firefox policy file" id="test_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_History" version="1">
+      <ns4:object object_ref="obj_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_History"/>
+      <ns4:state state_ref="state_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_History"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of SanitizeOnShutdown.Sessions in Firefox policy file" id="test_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_Sessions" version="1">
+      <ns4:object object_ref="obj_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_Sessions"/>
+      <ns4:state state_ref="state_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_Sessions"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of SanitizeOnShutdown.SiteSettings in Firefox policy file" id="test_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_SiteSettings" version="1">
+      <ns4:object object_ref="obj_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_SiteSettings"/>
+      <ns4:state state_ref="state_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_SiteSettings"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of SanitizeOnShutdown.OfflineApps in Firefox policy file" id="test_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_OfflineApps" version="1">
+      <ns4:object object_ref="obj_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_OfflineApps"/>
+      <ns4:state state_ref="state_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_OfflineApps"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of SanitizeOnShutdown.Locked in Firefox policy file" id="test_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_Locked" version="1">
+      <ns4:object object_ref="obj_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_Locked"/>
+      <ns4:state state_ref="state_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_Locked"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of FirefoxHome.Search in Firefox policy file" id="test_firefox_policy-nonessential_capabilities_FirefoxHome_Search" version="1">
+      <ns4:object object_ref="obj_firefox_policy-nonessential_capabilities_FirefoxHome_Search"/>
+      <ns4:state state_ref="state_firefox_policy-nonessential_capabilities_FirefoxHome_Search"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of FirefoxHome.TopSites in Firefox policy file" id="test_firefox_policy-nonessential_capabilities_FirefoxHome_TopSites" version="1">
+      <ns4:object object_ref="obj_firefox_policy-nonessential_capabilities_FirefoxHome_TopSites"/>
+      <ns4:state state_ref="state_firefox_policy-nonessential_capabilities_FirefoxHome_TopSites"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of FirefoxHome.SponsoredTopSites in Firefox policy file" id="test_firefox_policy-nonessential_capabilities_FirefoxHome_SponsoredTopSites" version="1">
+      <ns4:object object_ref="obj_firefox_policy-nonessential_capabilities_FirefoxHome_SponsoredTopSites"/>
+      <ns4:state state_ref="state_firefox_policy-nonessential_capabilities_FirefoxHome_SponsoredTopSites"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of FirefoxHome.Pocket in Firefox policy file" id="test_firefox_policy-nonessential_capabilities_FirefoxHome_Pocket" version="1">
+      <ns4:object object_ref="obj_firefox_policy-nonessential_capabilities_FirefoxHome_Pocket"/>
+      <ns4:state state_ref="state_firefox_policy-nonessential_capabilities_FirefoxHome_Pocket"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of FirefoxHome.SponsoredPocket in Firefox policy file" id="test_firefox_policy-nonessential_capabilities_FirefoxHome_SponsoredPocket" version="1">
+      <ns4:object object_ref="obj_firefox_policy-nonessential_capabilities_FirefoxHome_SponsoredPocket"/>
+      <ns4:state state_ref="state_firefox_policy-nonessential_capabilities_FirefoxHome_SponsoredPocket"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of FirefoxHome.Highlights in Firefox policy file" id="test_firefox_policy-nonessential_capabilities_FirefoxHome_Highlights" version="1">
+      <ns4:object object_ref="obj_firefox_policy-nonessential_capabilities_FirefoxHome_Highlights"/>
+      <ns4:state state_ref="state_firefox_policy-nonessential_capabilities_FirefoxHome_Highlights"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of FirefoxHome.Snippets in Firefox policy file" id="test_firefox_policy-nonessential_capabilities_FirefoxHome_Snippets" version="1">
+      <ns4:object object_ref="obj_firefox_policy-nonessential_capabilities_FirefoxHome_Snippets"/>
+      <ns4:state state_ref="state_firefox_policy-nonessential_capabilities_FirefoxHome_Snippets"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of FirefoxHome.locked in Firefox policy file" id="test_firefox_policy-nonessential_capabilities_FirefoxHome_locked" version="1">
+      <ns4:object object_ref="obj_firefox_policy-nonessential_capabilities_FirefoxHome_locked"/>
+      <ns4:state state_ref="state_firefox_policy-nonessential_capabilities_FirefoxHome_locked"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of .PasswordManagerEnabled in Firefox policy file" id="test_firefox_policy-password_manager__PasswordManagerEnabled" version="1">
+      <ns4:object object_ref="obj_firefox_policy-password_manager__PasswordManagerEnabled"/>
+      <ns4:state state_ref="state_firefox_policy-password_manager__PasswordManagerEnabled"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of PopupBlocking.Default in Firefox policy file" id="test_firefox_policy-pop-up_windows_PopupBlocking_Default" version="1">
+      <ns4:object object_ref="obj_firefox_policy-pop-up_windows_PopupBlocking_Default"/>
+      <ns4:state state_ref="state_firefox_policy-pop-up_windows_PopupBlocking_Default"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of PopupBlocking.Locked in Firefox policy file" id="test_firefox_policy-pop-up_windows_PopupBlocking_Locked" version="1">
+      <ns4:object object_ref="obj_firefox_policy-pop-up_windows_PopupBlocking_Locked"/>
+      <ns4:state state_ref="state_firefox_policy-pop-up_windows_PopupBlocking_Locked"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of .DisablePrivateBrowsing in Firefox policy file" id="test_firefox_policy-private_browsing__DisablePrivateBrowsing" version="1">
+      <ns4:object object_ref="obj_firefox_policy-private_browsing__DisablePrivateBrowsing"/>
+      <ns4:state state_ref="state_firefox_policy-private_browsing__DisablePrivateBrowsing"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of .SearchSuggestEnabled in Firefox policy file" id="test_firefox_policy-search_suggestion__SearchSuggestEnabled" version="1">
+      <ns4:object object_ref="obj_firefox_policy-search_suggestion__SearchSuggestEnabled"/>
+      <ns4:state state_ref="state_firefox_policy-search_suggestion__SearchSuggestEnabled"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of Preferences.browser.search.update.Value in Firefox policy file" id="test_firefox_policy-search_update_Preferences_browser.search.update_Value" version="1">
+      <ns4:object object_ref="obj_firefox_policy-search_update_Preferences_browser.search.update_Value"/>
+      <ns4:state state_ref="state_firefox_policy-search_update_Preferences_browser.search.update_Value"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of Preferences.browser.search.update.Status in Firefox policy file" id="test_firefox_policy-search_update_Preferences_browser.search.update_Status" version="1">
+      <ns4:object object_ref="obj_firefox_policy-search_update_Preferences_browser.search.update_Status"/>
+      <ns4:state state_ref="state_firefox_policy-search_update_Preferences_browser.search.update_Status"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of .SSLVersionMin in Firefox policy file" id="test_firefox_policy-ssl_minimum_version__SSLVersionMin" version="1">
+      <ns4:object object_ref="obj_firefox_policy-ssl_minimum_version__SSLVersionMin"/>
+      <ns4:state state_ref="state_firefox_policy-ssl_minimum_version__SSLVersionMin"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of .DisableFirefoxAccounts in Firefox policy file" id="test_firefox_policy-sync__DisableFirefoxAccounts" version="1">
+      <ns4:object object_ref="obj_firefox_policy-sync__DisableFirefoxAccounts"/>
+      <ns4:state state_ref="state_firefox_policy-sync__DisableFirefoxAccounts"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of .DisableTelemetry in Firefox policy file" id="test_firefox_policy-telemetry__DisableTelemetry" version="1">
+      <ns4:object object_ref="obj_firefox_policy-telemetry__DisableTelemetry"/>
+      <ns4:state state_ref="state_firefox_policy-telemetry__DisableTelemetry"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of UserMessaging.ExtensionRecommendations in Firefox policy file" id="test_firefox_policy-user_messaging_UserMessaging_ExtensionRecommendations" version="1">
+      <ns4:object object_ref="obj_firefox_policy-user_messaging_UserMessaging_ExtensionRecommendations"/>
+      <ns4:state state_ref="state_firefox_policy-user_messaging_UserMessaging_ExtensionRecommendations"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of Preferences.security.default_personal_cert.Value in Firefox policy file" id="test_firefox_policy-verification_Preferences_security.default_personal_cert_Value" version="1">
+      <ns4:object object_ref="obj_firefox_policy-verification_Preferences_security.default_personal_cert_Value"/>
+      <ns4:state state_ref="state_firefox_policy-verification_Preferences_security.default_personal_cert_Value"/>
+    </ns4:textfilecontent54_test>
+    <ns4:textfilecontent54_test check="all" comment="Check setting of Preferences.security.default_personal_cert.Status in Firefox policy file" id="test_firefox_policy-verification_Preferences_security.default_personal_cert_Status" version="1">
+      <ns4:object object_ref="obj_firefox_policy-verification_Preferences_security.default_personal_cert_Status"/>
+      <ns4:state state_ref="state_firefox_policy-verification_Preferences_security.default_personal_cert_Status"/>
+    </ns4:textfilecontent54_test>
+    <ns4:family_test id="test_unix_family" check="all" check_existence="at_least_one_exists" comment="Test installed OS is part of the unix family" version="1">
+      <ns4:object object_ref="object_unix_family"/>
+      <ns4:state state_ref="state_unix_family"/>
+    </ns4:family_test>
+  </ns0:tests>
+  <ns0:objects>
+    <ns3:rpminfo_object id="obj_supported_version_of_firefox" version="1">
+      <ns3:name>firefox</ns3:name>
+    </ns3:rpminfo_object>
+    <ns5:file_object id="obj_firefox_policy-addons_permission_firefox_path" version="1" comment="Find all installations of Firefox">
+      <ns5:behaviors recurse_direction="down" max_depth="-1" recurse_file_system="all"/>
+      <ns5:path>/usr</ns5:path>
+      <ns5:filename operation="pattern match">^firefox.sh$|^firefox-bin$</ns5:filename>
+    </ns5:file_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-addons_permission_InstallAddonsPermission_Default" version="1">
+      <ns4:path var_ref="var_firefox_policy-addons_permission_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?="InstallAddonsPermission")"InstallAddonsPermission"[\s]*:[\s]*\{[\s\S]*?(?=[^"])Default"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns5:file_object id="obj_firefox_policy-autoplay_video_firefox_path" version="1" comment="Find all installations of Firefox">
+      <ns5:behaviors recurse_direction="down" max_depth="-1" recurse_file_system="all"/>
+      <ns5:path>/usr</ns5:path>
+      <ns5:filename operation="pattern match">^firefox.sh$|^firefox-bin$</ns5:filename>
+    </ns5:file_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-autoplay_video_Permissions_Autoplay_Default" version="1">
+      <ns4:path var_ref="var_firefox_policy-autoplay_video_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?="Permissions")"Permissions"[\s]*:[\s]*\{[\s\S]*?(?="Autoplay")"Autoplay"[\s]*:[\s]*\{[\s\S]*?(?=[^"])Default"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns5:file_object id="obj_firefox_policy-cryptomining_firefox_path" version="1" comment="Find all installations of Firefox">
+      <ns5:behaviors recurse_direction="down" max_depth="-1" recurse_file_system="all"/>
+      <ns5:path>/usr</ns5:path>
+      <ns5:filename operation="pattern match">^firefox.sh$|^firefox-bin$</ns5:filename>
+    </ns5:file_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-cryptomining_EnableTrackingProtection_Cryptomining" version="1">
+      <ns4:path var_ref="var_firefox_policy-cryptomining_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?="EnableTrackingProtection")"EnableTrackingProtection"[\s]*:[\s]*\{[\s\S]*?(?=[^"])Cryptomining"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns5:file_object id="obj_firefox_policy-development_tools_firefox_path" version="1" comment="Find all installations of Firefox">
+      <ns5:behaviors recurse_direction="down" max_depth="-1" recurse_file_system="all"/>
+      <ns5:path>/usr</ns5:path>
+      <ns5:filename operation="pattern match">^firefox.sh$|^firefox-bin$</ns5:filename>
+    </ns5:file_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-development_tools__DisableDeveloperTools" version="1">
+      <ns4:path var_ref="var_firefox_policy-development_tools_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?=[^"])DisableDeveloperTools"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns5:file_object id="obj_firefox_policy-disable_deprecated_ciphers_firefox_path" version="1" comment="Find all installations of Firefox">
+      <ns5:behaviors recurse_direction="down" max_depth="-1" recurse_file_system="all"/>
+      <ns5:path>/usr</ns5:path>
+      <ns5:filename operation="pattern match">^firefox.sh$|^firefox-bin$</ns5:filename>
+    </ns5:file_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-disable_deprecated_ciphers_DisabledCiphers_TLS_RSA_WITH_3DES_EDE_CBC_SHA" version="1">
+      <ns4:path var_ref="var_firefox_policy-disable_deprecated_ciphers_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?="DisabledCiphers")"DisabledCiphers"[\s]*:[\s]*\{[\s\S]*?(?=[^"])TLS_RSA_WITH_3DES_EDE_CBC_SHA"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns5:file_object id="obj_firefox_policy-disable_form_history_firefox_path" version="1" comment="Find all installations of Firefox">
+      <ns5:behaviors recurse_direction="down" max_depth="-1" recurse_file_system="all"/>
+      <ns5:path>/usr</ns5:path>
+      <ns5:filename operation="pattern match">^firefox.sh$|^firefox-bin$</ns5:filename>
+    </ns5:file_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-disable_form_history__DisableFormHistory" version="1">
+      <ns4:path var_ref="var_firefox_policy-disable_form_history_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?=[^"])DisableFormHistory"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns5:file_object id="obj_firefox_policy-disable_pocket_firefox_path" version="1" comment="Find all installations of Firefox">
+      <ns5:behaviors recurse_direction="down" max_depth="-1" recurse_file_system="all"/>
+      <ns5:path>/usr</ns5:path>
+      <ns5:filename operation="pattern match">^firefox.sh$|^firefox-bin$</ns5:filename>
+    </ns5:file_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-disable_pocket__DisablePocket" version="1">
+      <ns4:path var_ref="var_firefox_policy-disable_pocket_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?=[^"])DisablePocket"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns5:file_object id="obj_firefox_policy-disable_studies_firefox_path" version="1" comment="Find all installations of Firefox">
+      <ns5:behaviors recurse_direction="down" max_depth="-1" recurse_file_system="all"/>
+      <ns5:path>/usr</ns5:path>
+      <ns5:filename operation="pattern match">^firefox.sh$|^firefox-bin$</ns5:filename>
+    </ns5:file_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-disable_studies__DisableFirefoxStudies" version="1">
+      <ns4:path var_ref="var_firefox_policy-disable_studies_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?=[^"])DisableFirefoxStudies"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns5:file_object id="obj_firefox_policy-dns_over_https_firefox_path" version="1" comment="Find all installations of Firefox">
+      <ns5:behaviors recurse_direction="down" max_depth="-1" recurse_file_system="all"/>
+      <ns5:path>/usr</ns5:path>
+      <ns5:filename operation="pattern match">^firefox.sh$|^firefox-bin$</ns5:filename>
+    </ns5:file_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-dns_over_https_DNSOverHTTPS_Enabled" version="1">
+      <ns4:path var_ref="var_firefox_policy-dns_over_https_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?="DNSOverHTTPS")"DNSOverHTTPS"[\s]*:[\s]*\{[\s\S]*?(?=[^"])Enabled"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns5:file_object id="obj_firefox_policy-encrypted_media_extensions_firefox_path" version="1" comment="Find all installations of Firefox">
+      <ns5:behaviors recurse_direction="down" max_depth="-1" recurse_file_system="all"/>
+      <ns5:path>/usr</ns5:path>
+      <ns5:filename operation="pattern match">^firefox.sh$|^firefox-bin$</ns5:filename>
+    </ns5:file_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-encrypted_media_extensions_EncryptedMediaExtensions_Enabled" version="1">
+      <ns4:path var_ref="var_firefox_policy-encrypted_media_extensions_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?="EncryptedMediaExtensions")"EncryptedMediaExtensions"[\s]*:[\s]*\{[\s\S]*?(?=[^"])Enabled"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-encrypted_media_extensions_EncryptedMediaExtensions_Locked" version="1">
+      <ns4:path var_ref="var_firefox_policy-encrypted_media_extensions_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?="EncryptedMediaExtensions")"EncryptedMediaExtensions"[\s]*:[\s]*\{[\s\S]*?(?=[^"])Locked"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns5:file_object id="obj_firefox_policy-enhanced_tracking_firefox_path" version="1" comment="Find all installations of Firefox">
+      <ns5:behaviors recurse_direction="down" max_depth="-1" recurse_file_system="all"/>
+      <ns5:path>/usr</ns5:path>
+      <ns5:filename operation="pattern match">^firefox.sh$|^firefox-bin$</ns5:filename>
+    </ns5:file_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-enhanced_tracking_Preferences_browser.contentblocking.category_Value" version="1">
+      <ns4:path var_ref="var_firefox_policy-enhanced_tracking_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?="Preferences")"Preferences"[\s]*:[\s]*\{[\s\S]*?(?="browser\.contentblocking\.category")"browser\.contentblocking\.category"[\s]*:[\s]*\{[\s\S]*?(?=[^"])Value"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-enhanced_tracking_Preferences_browser.contentblocking.category_Status" version="1">
+      <ns4:path var_ref="var_firefox_policy-enhanced_tracking_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?="Preferences")"Preferences"[\s]*:[\s]*\{[\s\S]*?(?="browser\.contentblocking\.category")"browser\.contentblocking\.category"[\s]*:[\s]*\{[\s\S]*?(?=[^"])Status"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns5:file_object id="obj_firefox_policy-extension_recommendation_firefox_path" version="1" comment="Find all installations of Firefox">
+      <ns5:behaviors recurse_direction="down" max_depth="-1" recurse_file_system="all"/>
+      <ns5:path>/usr</ns5:path>
+      <ns5:filename operation="pattern match">^firefox.sh$|^firefox-bin$</ns5:filename>
+    </ns5:file_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-extension_recommendation_Preferences_extensions.htmlaboutaddons.recommendations.enabled_Value" version="1">
+      <ns4:path var_ref="var_firefox_policy-extension_recommendation_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?="Preferences")"Preferences"[\s]*:[\s]*\{[\s\S]*?(?="extensions\.htmlaboutaddons\.recommendations\.enabled")"extensions\.htmlaboutaddons\.recommendations\.enabled"[\s]*:[\s]*\{[\s\S]*?(?=[^"])Value"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-extension_recommendation_Preferences_extensions.htmlaboutaddons.recommendations.enabled_Status" version="1">
+      <ns4:path var_ref="var_firefox_policy-extension_recommendation_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?="Preferences")"Preferences"[\s]*:[\s]*\{[\s\S]*?(?="extensions\.htmlaboutaddons\.recommendations\.enabled")"extensions\.htmlaboutaddons\.recommendations\.enabled"[\s]*:[\s]*\{[\s\S]*?(?=[^"])Status"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns5:file_object id="obj_firefox_policy-extension_update_firefox_path" version="1" comment="Find all installations of Firefox">
+      <ns5:behaviors recurse_direction="down" max_depth="-1" recurse_file_system="all"/>
+      <ns5:path>/usr</ns5:path>
+      <ns5:filename operation="pattern match">^firefox.sh$|^firefox-bin$</ns5:filename>
+    </ns5:file_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-extension_update__ExtensionUpdate" version="1">
+      <ns4:path var_ref="var_firefox_policy-extension_update_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?=[^"])ExtensionUpdate"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns5:file_object id="obj_firefox_policy-feedback_reporting_firefox_path" version="1" comment="Find all installations of Firefox">
+      <ns5:behaviors recurse_direction="down" max_depth="-1" recurse_file_system="all"/>
+      <ns5:path>/usr</ns5:path>
+      <ns5:filename operation="pattern match">^firefox.sh$|^firefox-bin$</ns5:filename>
+    </ns5:file_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-feedback_reporting__DisableFeedbackCommands" version="1">
+      <ns4:path var_ref="var_firefox_policy-feedback_reporting_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?=[^"])DisableFeedbackCommands"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns5:file_object id="obj_firefox_policy-fingerprinting_protection_firefox_path" version="1" comment="Find all installations of Firefox">
+      <ns5:behaviors recurse_direction="down" max_depth="-1" recurse_file_system="all"/>
+      <ns5:path>/usr</ns5:path>
+      <ns5:filename operation="pattern match">^firefox.sh$|^firefox-bin$</ns5:filename>
+    </ns5:file_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-fingerprinting_protection_EnableTrackingProtection_Fingerprinting" version="1">
+      <ns4:path var_ref="var_firefox_policy-fingerprinting_protection_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?="EnableTrackingProtection")"EnableTrackingProtection"[\s]*:[\s]*\{[\s\S]*?(?=[^"])Fingerprinting"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns5:file_object id="obj_firefox_policy-forget_button_firefox_path" version="1" comment="Find all installations of Firefox">
+      <ns5:behaviors recurse_direction="down" max_depth="-1" recurse_file_system="all"/>
+      <ns5:path>/usr</ns5:path>
+      <ns5:filename operation="pattern match">^firefox.sh$|^firefox-bin$</ns5:filename>
+    </ns5:file_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-forget_button__DisableForgetButton" version="1">
+      <ns4:path var_ref="var_firefox_policy-forget_button_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?=[^"])DisableForgetButton"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns5:file_object id="obj_firefox_policy-javascript_window_changes_firefox_path" version="1" comment="Find all installations of Firefox">
+      <ns5:behaviors recurse_direction="down" max_depth="-1" recurse_file_system="all"/>
+      <ns5:path>/usr</ns5:path>
+      <ns5:filename operation="pattern match">^firefox.sh$|^firefox-bin$</ns5:filename>
+    </ns5:file_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-javascript_window_changes_Preferences_dom.disable_window_flip_Value" version="1">
+      <ns4:path var_ref="var_firefox_policy-javascript_window_changes_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?="Preferences")"Preferences"[\s]*:[\s]*\{[\s\S]*?(?="dom\.disable_window_flip")"dom\.disable_window_flip"[\s]*:[\s]*\{[\s\S]*?(?=[^"])Value"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-javascript_window_changes_Preferences_dom.disable_window_flip_Status" version="1">
+      <ns4:path var_ref="var_firefox_policy-javascript_window_changes_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?="Preferences")"Preferences"[\s]*:[\s]*\{[\s\S]*?(?="dom\.disable_window_flip")"dom\.disable_window_flip"[\s]*:[\s]*\{[\s\S]*?(?=[^"])Status"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns5:file_object id="obj_firefox_policy-javascript_window_resizing_firefox_path" version="1" comment="Find all installations of Firefox">
+      <ns5:behaviors recurse_direction="down" max_depth="-1" recurse_file_system="all"/>
+      <ns5:path>/usr</ns5:path>
+      <ns5:filename operation="pattern match">^firefox.sh$|^firefox-bin$</ns5:filename>
+    </ns5:file_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-javascript_window_resizing_Preferences_dom.disable_window_move_resize_Value" version="1">
+      <ns4:path var_ref="var_firefox_policy-javascript_window_resizing_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?="Preferences")"Preferences"[\s]*:[\s]*\{[\s\S]*?(?="dom\.disable_window_move_resize")"dom\.disable_window_move_resize"[\s]*:[\s]*\{[\s\S]*?(?=[^"])Value"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-javascript_window_resizing_Preferences_dom.disable_window_move_resize_Status" version="1">
+      <ns4:path var_ref="var_firefox_policy-javascript_window_resizing_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?="Preferences")"Preferences"[\s]*:[\s]*\{[\s\S]*?(?="dom\.disable_window_move_resize")"dom\.disable_window_move_resize"[\s]*:[\s]*\{[\s\S]*?(?=[^"])Status"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns5:file_object id="obj_firefox_policy-network_prediction_firefox_path" version="1" comment="Find all installations of Firefox">
+      <ns5:behaviors recurse_direction="down" max_depth="-1" recurse_file_system="all"/>
+      <ns5:path>/usr</ns5:path>
+      <ns5:filename operation="pattern match">^firefox.sh$|^firefox-bin$</ns5:filename>
+    </ns5:file_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-network_prediction__NetworkPrediction" version="1">
+      <ns4:path var_ref="var_firefox_policy-network_prediction_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?=[^"])NetworkPrediction"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns5:file_object id="obj_firefox_policy-no_sanitize_on_shutdown_firefox_path" version="1" comment="Find all installations of Firefox">
+      <ns5:behaviors recurse_direction="down" max_depth="-1" recurse_file_system="all"/>
+      <ns5:path>/usr</ns5:path>
+      <ns5:filename operation="pattern match">^firefox.sh$|^firefox-bin$</ns5:filename>
+    </ns5:file_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_Cache" version="1">
+      <ns4:path var_ref="var_firefox_policy-no_sanitize_on_shutdown_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?="SanitizeOnShutdown")"SanitizeOnShutdown"[\s]*:[\s]*\{[\s\S]*?(?=[^"])Cache"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_Cookies" version="1">
+      <ns4:path var_ref="var_firefox_policy-no_sanitize_on_shutdown_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?="SanitizeOnShutdown")"SanitizeOnShutdown"[\s]*:[\s]*\{[\s\S]*?(?=[^"])Cookies"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_Downloads" version="1">
+      <ns4:path var_ref="var_firefox_policy-no_sanitize_on_shutdown_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?="SanitizeOnShutdown")"SanitizeOnShutdown"[\s]*:[\s]*\{[\s\S]*?(?=[^"])Downloads"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_FormData" version="1">
+      <ns4:path var_ref="var_firefox_policy-no_sanitize_on_shutdown_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?="SanitizeOnShutdown")"SanitizeOnShutdown"[\s]*:[\s]*\{[\s\S]*?(?=[^"])FormData"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_History" version="1">
+      <ns4:path var_ref="var_firefox_policy-no_sanitize_on_shutdown_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?="SanitizeOnShutdown")"SanitizeOnShutdown"[\s]*:[\s]*\{[\s\S]*?(?=[^"])History"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_Sessions" version="1">
+      <ns4:path var_ref="var_firefox_policy-no_sanitize_on_shutdown_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?="SanitizeOnShutdown")"SanitizeOnShutdown"[\s]*:[\s]*\{[\s\S]*?(?=[^"])Sessions"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_SiteSettings" version="1">
+      <ns4:path var_ref="var_firefox_policy-no_sanitize_on_shutdown_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?="SanitizeOnShutdown")"SanitizeOnShutdown"[\s]*:[\s]*\{[\s\S]*?(?=[^"])SiteSettings"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_OfflineApps" version="1">
+      <ns4:path var_ref="var_firefox_policy-no_sanitize_on_shutdown_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?="SanitizeOnShutdown")"SanitizeOnShutdown"[\s]*:[\s]*\{[\s\S]*?(?=[^"])OfflineApps"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_Locked" version="1">
+      <ns4:path var_ref="var_firefox_policy-no_sanitize_on_shutdown_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?="SanitizeOnShutdown")"SanitizeOnShutdown"[\s]*:[\s]*\{[\s\S]*?(?=[^"])Locked"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns5:file_object id="obj_firefox_policy-nonessential_capabilities_firefox_path" version="1" comment="Find all installations of Firefox">
+      <ns5:behaviors recurse_direction="down" max_depth="-1" recurse_file_system="all"/>
+      <ns5:path>/usr</ns5:path>
+      <ns5:filename operation="pattern match">^firefox.sh$|^firefox-bin$</ns5:filename>
+    </ns5:file_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-nonessential_capabilities_FirefoxHome_Search" version="1">
+      <ns4:path var_ref="var_firefox_policy-nonessential_capabilities_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?="FirefoxHome")"FirefoxHome"[\s]*:[\s]*\{[\s\S]*?(?=[^"])Search"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-nonessential_capabilities_FirefoxHome_TopSites" version="1">
+      <ns4:path var_ref="var_firefox_policy-nonessential_capabilities_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?="FirefoxHome")"FirefoxHome"[\s]*:[\s]*\{[\s\S]*?(?=[^"])TopSites"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-nonessential_capabilities_FirefoxHome_SponsoredTopSites" version="1">
+      <ns4:path var_ref="var_firefox_policy-nonessential_capabilities_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?="FirefoxHome")"FirefoxHome"[\s]*:[\s]*\{[\s\S]*?(?=[^"])SponsoredTopSites"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-nonessential_capabilities_FirefoxHome_Pocket" version="1">
+      <ns4:path var_ref="var_firefox_policy-nonessential_capabilities_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?="FirefoxHome")"FirefoxHome"[\s]*:[\s]*\{[\s\S]*?(?=[^"])Pocket"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-nonessential_capabilities_FirefoxHome_SponsoredPocket" version="1">
+      <ns4:path var_ref="var_firefox_policy-nonessential_capabilities_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?="FirefoxHome")"FirefoxHome"[\s]*:[\s]*\{[\s\S]*?(?=[^"])SponsoredPocket"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-nonessential_capabilities_FirefoxHome_Highlights" version="1">
+      <ns4:path var_ref="var_firefox_policy-nonessential_capabilities_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?="FirefoxHome")"FirefoxHome"[\s]*:[\s]*\{[\s\S]*?(?=[^"])Highlights"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-nonessential_capabilities_FirefoxHome_Snippets" version="1">
+      <ns4:path var_ref="var_firefox_policy-nonessential_capabilities_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?="FirefoxHome")"FirefoxHome"[\s]*:[\s]*\{[\s\S]*?(?=[^"])Snippets"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-nonessential_capabilities_FirefoxHome_locked" version="1">
+      <ns4:path var_ref="var_firefox_policy-nonessential_capabilities_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?="FirefoxHome")"FirefoxHome"[\s]*:[\s]*\{[\s\S]*?(?=[^"])locked"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns5:file_object id="obj_firefox_policy-password_manager_firefox_path" version="1" comment="Find all installations of Firefox">
+      <ns5:behaviors recurse_direction="down" max_depth="-1" recurse_file_system="all"/>
+      <ns5:path>/usr</ns5:path>
+      <ns5:filename operation="pattern match">^firefox.sh$|^firefox-bin$</ns5:filename>
+    </ns5:file_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-password_manager__PasswordManagerEnabled" version="1">
+      <ns4:path var_ref="var_firefox_policy-password_manager_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?=[^"])PasswordManagerEnabled"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns5:file_object id="obj_firefox_policy-pop-up_windows_firefox_path" version="1" comment="Find all installations of Firefox">
+      <ns5:behaviors recurse_direction="down" max_depth="-1" recurse_file_system="all"/>
+      <ns5:path>/usr</ns5:path>
+      <ns5:filename operation="pattern match">^firefox.sh$|^firefox-bin$</ns5:filename>
+    </ns5:file_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-pop-up_windows_PopupBlocking_Default" version="1">
+      <ns4:path var_ref="var_firefox_policy-pop-up_windows_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?="PopupBlocking")"PopupBlocking"[\s]*:[\s]*\{[\s\S]*?(?=[^"])Default"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-pop-up_windows_PopupBlocking_Locked" version="1">
+      <ns4:path var_ref="var_firefox_policy-pop-up_windows_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?="PopupBlocking")"PopupBlocking"[\s]*:[\s]*\{[\s\S]*?(?=[^"])Locked"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns5:file_object id="obj_firefox_policy-private_browsing_firefox_path" version="1" comment="Find all installations of Firefox">
+      <ns5:behaviors recurse_direction="down" max_depth="-1" recurse_file_system="all"/>
+      <ns5:path>/usr</ns5:path>
+      <ns5:filename operation="pattern match">^firefox.sh$|^firefox-bin$</ns5:filename>
+    </ns5:file_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-private_browsing__DisablePrivateBrowsing" version="1">
+      <ns4:path var_ref="var_firefox_policy-private_browsing_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?=[^"])DisablePrivateBrowsing"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns5:file_object id="obj_firefox_policy-search_suggestion_firefox_path" version="1" comment="Find all installations of Firefox">
+      <ns5:behaviors recurse_direction="down" max_depth="-1" recurse_file_system="all"/>
+      <ns5:path>/usr</ns5:path>
+      <ns5:filename operation="pattern match">^firefox.sh$|^firefox-bin$</ns5:filename>
+    </ns5:file_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-search_suggestion__SearchSuggestEnabled" version="1">
+      <ns4:path var_ref="var_firefox_policy-search_suggestion_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?=[^"])SearchSuggestEnabled"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns5:file_object id="obj_firefox_policy-search_update_firefox_path" version="1" comment="Find all installations of Firefox">
+      <ns5:behaviors recurse_direction="down" max_depth="-1" recurse_file_system="all"/>
+      <ns5:path>/usr</ns5:path>
+      <ns5:filename operation="pattern match">^firefox.sh$|^firefox-bin$</ns5:filename>
+    </ns5:file_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-search_update_Preferences_browser.search.update_Value" version="1">
+      <ns4:path var_ref="var_firefox_policy-search_update_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?="Preferences")"Preferences"[\s]*:[\s]*\{[\s\S]*?(?="browser\.search\.update")"browser\.search\.update"[\s]*:[\s]*\{[\s\S]*?(?=[^"])Value"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-search_update_Preferences_browser.search.update_Status" version="1">
+      <ns4:path var_ref="var_firefox_policy-search_update_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?="Preferences")"Preferences"[\s]*:[\s]*\{[\s\S]*?(?="browser\.search\.update")"browser\.search\.update"[\s]*:[\s]*\{[\s\S]*?(?=[^"])Status"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns5:file_object id="obj_firefox_policy-ssl_minimum_version_firefox_path" version="1" comment="Find all installations of Firefox">
+      <ns5:behaviors recurse_direction="down" max_depth="-1" recurse_file_system="all"/>
+      <ns5:path>/usr</ns5:path>
+      <ns5:filename operation="pattern match">^firefox.sh$|^firefox-bin$</ns5:filename>
+    </ns5:file_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-ssl_minimum_version__SSLVersionMin" version="1">
+      <ns4:path var_ref="var_firefox_policy-ssl_minimum_version_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?=[^"])SSLVersionMin"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns5:file_object id="obj_firefox_policy-sync_firefox_path" version="1" comment="Find all installations of Firefox">
+      <ns5:behaviors recurse_direction="down" max_depth="-1" recurse_file_system="all"/>
+      <ns5:path>/usr</ns5:path>
+      <ns5:filename operation="pattern match">^firefox.sh$|^firefox-bin$</ns5:filename>
+    </ns5:file_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-sync__DisableFirefoxAccounts" version="1">
+      <ns4:path var_ref="var_firefox_policy-sync_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?=[^"])DisableFirefoxAccounts"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns5:file_object id="obj_firefox_policy-telemetry_firefox_path" version="1" comment="Find all installations of Firefox">
+      <ns5:behaviors recurse_direction="down" max_depth="-1" recurse_file_system="all"/>
+      <ns5:path>/usr</ns5:path>
+      <ns5:filename operation="pattern match">^firefox.sh$|^firefox-bin$</ns5:filename>
+    </ns5:file_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-telemetry__DisableTelemetry" version="1">
+      <ns4:path var_ref="var_firefox_policy-telemetry_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?=[^"])DisableTelemetry"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns5:file_object id="obj_firefox_policy-user_messaging_firefox_path" version="1" comment="Find all installations of Firefox">
+      <ns5:behaviors recurse_direction="down" max_depth="-1" recurse_file_system="all"/>
+      <ns5:path>/usr</ns5:path>
+      <ns5:filename operation="pattern match">^firefox.sh$|^firefox-bin$</ns5:filename>
+    </ns5:file_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-user_messaging_UserMessaging_ExtensionRecommendations" version="1">
+      <ns4:path var_ref="var_firefox_policy-user_messaging_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?="UserMessaging")"UserMessaging"[\s]*:[\s]*\{[\s\S]*?(?=[^"])ExtensionRecommendations"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns5:file_object id="obj_firefox_policy-verification_firefox_path" version="1" comment="Find all installations of Firefox">
+      <ns5:behaviors recurse_direction="down" max_depth="-1" recurse_file_system="all"/>
+      <ns5:path>/usr</ns5:path>
+      <ns5:filename operation="pattern match">^firefox.sh$|^firefox-bin$</ns5:filename>
+    </ns5:file_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-verification_Preferences_security.default_personal_cert_Value" version="1">
+      <ns4:path var_ref="var_firefox_policy-verification_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?="Preferences")"Preferences"[\s]*:[\s]*\{[\s\S]*?(?="security\.default_personal_cert")"security\.default_personal_cert"[\s]*:[\s]*\{[\s\S]*?(?=[^"])Value"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns4:textfilecontent54_object id="obj_firefox_policy-verification_Preferences_security.default_personal_cert_Status" version="1">
+      <ns4:path var_ref="var_firefox_policy-verification_firefox_path" var_check="at least one" datatype="string"/>
+      <ns4:filename datatype="string">policies.json</ns4:filename>
+      <ns4:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?="Preferences")"Preferences"[\s]*:[\s]*\{[\s\S]*?(?="security\.default_personal_cert")"security\.default_personal_cert"[\s]*:[\s]*\{[\s\S]*?(?=[^"])Status"[\s]*:[\s]*([^,}]+),?\s*</ns4:pattern>
+      <ns4:instance datatype="int">1</ns4:instance>
+    </ns4:textfilecontent54_object>
+    <ns4:family_object id="object_unix_family" version="1"/>
+  </ns0:objects>
+  <ns0:states>
+    <ns3:rpminfo_state id="state_supported_version_of_firefox" version="1">
+      <ns3:evr operation="greater than" datatype="evr_string">68.4.0</ns3:evr>
+    </ns3:rpminfo_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-addons_permission_InstallAddonsPermission_Default" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Ff]alse</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-autoplay_video_Permissions_Autoplay_Default" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">"block-audio-video"</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-cryptomining_EnableTrackingProtection_Cryptomining" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Tt]rue</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-development_tools__DisableDeveloperTools" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Tt]rue</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-disable_deprecated_ciphers_DisabledCiphers_TLS_RSA_WITH_3DES_EDE_CBC_SHA" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Tt]rue</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-disable_form_history__DisableFormHistory" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Tt]rue</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-disable_pocket__DisablePocket" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Tt]rue</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-disable_studies__DisableFirefoxStudies" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Tt]rue</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-dns_over_https_DNSOverHTTPS_Enabled" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Ff]alse</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-encrypted_media_extensions_EncryptedMediaExtensions_Enabled" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Ff]alse</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-encrypted_media_extensions_EncryptedMediaExtensions_Locked" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Tt]rue</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-enhanced_tracking_Preferences_browser.contentblocking.category_Value" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">"strict"</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-enhanced_tracking_Preferences_browser.contentblocking.category_Status" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">"locked"</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-extension_recommendation_Preferences_extensions.htmlaboutaddons.recommendations.enabled_Value" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Ff]alse</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-extension_recommendation_Preferences_extensions.htmlaboutaddons.recommendations.enabled_Status" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">"locked"</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-extension_update__ExtensionUpdate" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Ff]alse</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-feedback_reporting__DisableFeedbackCommands" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Tt]rue</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-fingerprinting_protection_EnableTrackingProtection_Fingerprinting" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Tt]rue</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-forget_button__DisableForgetButton" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Tt]rue</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-javascript_window_changes_Preferences_dom.disable_window_flip_Value" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Tt]rue</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-javascript_window_changes_Preferences_dom.disable_window_flip_Status" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">"locked"</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-javascript_window_resizing_Preferences_dom.disable_window_move_resize_Value" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Tt]rue</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-javascript_window_resizing_Preferences_dom.disable_window_move_resize_Status" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">"locked"</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-network_prediction__NetworkPrediction" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Ff]alse</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_Cache" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Ff]alse</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_Cookies" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Ff]alse</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_Downloads" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Ff]alse</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_FormData" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Ff]alse</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_History" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Ff]alse</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_Sessions" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Ff]alse</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_SiteSettings" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Ff]alse</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_OfflineApps" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Ff]alse</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-no_sanitize_on_shutdown_SanitizeOnShutdown_Locked" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Tt]rue</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-nonessential_capabilities_FirefoxHome_Search" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Ff]alse</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-nonessential_capabilities_FirefoxHome_TopSites" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Ff]alse</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-nonessential_capabilities_FirefoxHome_SponsoredTopSites" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Ff]alse</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-nonessential_capabilities_FirefoxHome_Pocket" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Ff]alse</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-nonessential_capabilities_FirefoxHome_SponsoredPocket" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Ff]alse</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-nonessential_capabilities_FirefoxHome_Highlights" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Ff]alse</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-nonessential_capabilities_FirefoxHome_Snippets" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Ff]alse</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-nonessential_capabilities_FirefoxHome_locked" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Tt]rue</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-password_manager__PasswordManagerEnabled" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Ff]alse</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-pop-up_windows_PopupBlocking_Default" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Tt]rue</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-pop-up_windows_PopupBlocking_Locked" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Tt]rue</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-private_browsing__DisablePrivateBrowsing" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Tt]rue</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-search_suggestion__SearchSuggestEnabled" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Ff]alse</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-search_update_Preferences_browser.search.update_Value" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Ff]alse</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-search_update_Preferences_browser.search.update_Status" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">"locked"</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-ssl_minimum_version__SSLVersionMin" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">tls1\.[23]</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-sync__DisableFirefoxAccounts" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Tt]rue</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-telemetry__DisableTelemetry" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Tt]rue</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-user_messaging_UserMessaging_ExtensionRecommendations" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">[Ff]alse</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-verification_Preferences_security.default_personal_cert_Value" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">"Ask Every Time"</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:textfilecontent54_state id="state_firefox_policy-verification_Preferences_security.default_personal_cert_Status" version="1">
+      <ns4:subexpression datatype="string" entity_check="all" operation="pattern match">"locked"</ns4:subexpression>
+    </ns4:textfilecontent54_state>
+    <ns4:family_state id="state_unix_family" version="1">
+      <ns4:family>unix</ns4:family>
+    </ns4:family_state>
+  </ns0:states>
+  <ns0:variables>
+    <ns0:local_variable id="var_firefox_policy-addons_permission_firefox_path" version="1" datatype="string" comment="policies.json path for Firefox.">
+      <ns0:unique>
+        <ns0:literal_component>/etc/firefox/policies</ns0:literal_component>
+        <ns0:concat>
+          <ns0:object_component object_ref="obj_firefox_policy-addons_permission_firefox_path" item_field="path"/>
+          <ns0:literal_component>/distribution</ns0:literal_component>
+        </ns0:concat>
+      </ns0:unique>
+    </ns0:local_variable>
+    <ns0:local_variable id="var_firefox_policy-autoplay_video_firefox_path" version="1" datatype="string" comment="policies.json path for Firefox.">
+      <ns0:unique>
+        <ns0:literal_component>/etc/firefox/policies</ns0:literal_component>
+        <ns0:concat>
+          <ns0:object_component object_ref="obj_firefox_policy-autoplay_video_firefox_path" item_field="path"/>
+          <ns0:literal_component>/distribution</ns0:literal_component>
+        </ns0:concat>
+      </ns0:unique>
+    </ns0:local_variable>
+    <ns0:local_variable id="var_firefox_policy-cryptomining_firefox_path" version="1" datatype="string" comment="policies.json path for Firefox.">
+      <ns0:unique>
+        <ns0:literal_component>/etc/firefox/policies</ns0:literal_component>
+        <ns0:concat>
+          <ns0:object_component object_ref="obj_firefox_policy-cryptomining_firefox_path" item_field="path"/>
+          <ns0:literal_component>/distribution</ns0:literal_component>
+        </ns0:concat>
+      </ns0:unique>
+    </ns0:local_variable>
+    <ns0:local_variable id="var_firefox_policy-development_tools_firefox_path" version="1" datatype="string" comment="policies.json path for Firefox.">
+      <ns0:unique>
+        <ns0:literal_component>/etc/firefox/policies</ns0:literal_component>
+        <ns0:concat>
+          <ns0:object_component object_ref="obj_firefox_policy-development_tools_firefox_path" item_field="path"/>
+          <ns0:literal_component>/distribution</ns0:literal_component>
+        </ns0:concat>
+      </ns0:unique>
+    </ns0:local_variable>
+    <ns0:local_variable id="var_firefox_policy-disable_deprecated_ciphers_firefox_path" version="1" datatype="string" comment="policies.json path for Firefox.">
+      <ns0:unique>
+        <ns0:literal_component>/etc/firefox/policies</ns0:literal_component>
+        <ns0:concat>
+          <ns0:object_component object_ref="obj_firefox_policy-disable_deprecated_ciphers_firefox_path" item_field="path"/>
+          <ns0:literal_component>/distribution</ns0:literal_component>
+        </ns0:concat>
+      </ns0:unique>
+    </ns0:local_variable>
+    <ns0:local_variable id="var_firefox_policy-disable_form_history_firefox_path" version="1" datatype="string" comment="policies.json path for Firefox.">
+      <ns0:unique>
+        <ns0:literal_component>/etc/firefox/policies</ns0:literal_component>
+        <ns0:concat>
+          <ns0:object_component object_ref="obj_firefox_policy-disable_form_history_firefox_path" item_field="path"/>
+          <ns0:literal_component>/distribution</ns0:literal_component>
+        </ns0:concat>
+      </ns0:unique>
+    </ns0:local_variable>
+    <ns0:local_variable id="var_firefox_policy-disable_pocket_firefox_path" version="1" datatype="string" comment="policies.json path for Firefox.">
+      <ns0:unique>
+        <ns0:literal_component>/etc/firefox/policies</ns0:literal_component>
+        <ns0:concat>
+          <ns0:object_component object_ref="obj_firefox_policy-disable_pocket_firefox_path" item_field="path"/>
+          <ns0:literal_component>/distribution</ns0:literal_component>
+        </ns0:concat>
+      </ns0:unique>
+    </ns0:local_variable>
+    <ns0:local_variable id="var_firefox_policy-disable_studies_firefox_path" version="1" datatype="string" comment="policies.json path for Firefox.">
+      <ns0:unique>
+        <ns0:literal_component>/etc/firefox/policies</ns0:literal_component>
+        <ns0:concat>
+          <ns0:object_component object_ref="obj_firefox_policy-disable_studies_firefox_path" item_field="path"/>
+          <ns0:literal_component>/distribution</ns0:literal_component>
+        </ns0:concat>
+      </ns0:unique>
+    </ns0:local_variable>
+    <ns0:local_variable id="var_firefox_policy-dns_over_https_firefox_path" version="1" datatype="string" comment="policies.json path for Firefox.">
+      <ns0:unique>
+        <ns0:literal_component>/etc/firefox/policies</ns0:literal_component>
+        <ns0:concat>
+          <ns0:object_component object_ref="obj_firefox_policy-dns_over_https_firefox_path" item_field="path"/>
+          <ns0:literal_component>/distribution</ns0:literal_component>
+        </ns0:concat>
+      </ns0:unique>
+    </ns0:local_variable>
+    <ns0:local_variable id="var_firefox_policy-encrypted_media_extensions_firefox_path" version="1" datatype="string" comment="policies.json path for Firefox.">
+      <ns0:unique>
+        <ns0:literal_component>/etc/firefox/policies</ns0:literal_component>
+        <ns0:concat>
+          <ns0:object_component object_ref="obj_firefox_policy-encrypted_media_extensions_firefox_path" item_field="path"/>
+          <ns0:literal_component>/distribution</ns0:literal_component>
+        </ns0:concat>
+      </ns0:unique>
+    </ns0:local_variable>
+    <ns0:local_variable id="var_firefox_policy-enhanced_tracking_firefox_path" version="1" datatype="string" comment="policies.json path for Firefox.">
+      <ns0:unique>
+        <ns0:literal_component>/etc/firefox/policies</ns0:literal_component>
+        <ns0:concat>
+          <ns0:object_component object_ref="obj_firefox_policy-enhanced_tracking_firefox_path" item_field="path"/>
+          <ns0:literal_component>/distribution</ns0:literal_component>
+        </ns0:concat>
+      </ns0:unique>
+    </ns0:local_variable>
+    <ns0:local_variable id="var_firefox_policy-extension_recommendation_firefox_path" version="1" datatype="string" comment="policies.json path for Firefox.">
+      <ns0:unique>
+        <ns0:literal_component>/etc/firefox/policies</ns0:literal_component>
+        <ns0:concat>
+          <ns0:object_component object_ref="obj_firefox_policy-extension_recommendation_firefox_path" item_field="path"/>
+          <ns0:literal_component>/distribution</ns0:literal_component>
+        </ns0:concat>
+      </ns0:unique>
+    </ns0:local_variable>
+    <ns0:local_variable id="var_firefox_policy-extension_update_firefox_path" version="1" datatype="string" comment="policies.json path for Firefox.">
+      <ns0:unique>
+        <ns0:literal_component>/etc/firefox/policies</ns0:literal_component>
+        <ns0:concat>
+          <ns0:object_component object_ref="obj_firefox_policy-extension_update_firefox_path" item_field="path"/>
+          <ns0:literal_component>/distribution</ns0:literal_component>
+        </ns0:concat>
+      </ns0:unique>
+    </ns0:local_variable>
+    <ns0:local_variable id="var_firefox_policy-feedback_reporting_firefox_path" version="1" datatype="string" comment="policies.json path for Firefox.">
+      <ns0:unique>
+        <ns0:literal_component>/etc/firefox/policies</ns0:literal_component>
+        <ns0:concat>
+          <ns0:object_component object_ref="obj_firefox_policy-feedback_reporting_firefox_path" item_field="path"/>
+          <ns0:literal_component>/distribution</ns0:literal_component>
+        </ns0:concat>
+      </ns0:unique>
+    </ns0:local_variable>
+    <ns0:local_variable id="var_firefox_policy-fingerprinting_protection_firefox_path" version="1" datatype="string" comment="policies.json path for Firefox.">
+      <ns0:unique>
+        <ns0:literal_component>/etc/firefox/policies</ns0:literal_component>
+        <ns0:concat>
+          <ns0:object_component object_ref="obj_firefox_policy-fingerprinting_protection_firefox_path" item_field="path"/>
+          <ns0:literal_component>/distribution</ns0:literal_component>
+        </ns0:concat>
+      </ns0:unique>
+    </ns0:local_variable>
+    <ns0:local_variable id="var_firefox_policy-forget_button_firefox_path" version="1" datatype="string" comment="policies.json path for Firefox.">
+      <ns0:unique>
+        <ns0:literal_component>/etc/firefox/policies</ns0:literal_component>
+        <ns0:concat>
+          <ns0:object_component object_ref="obj_firefox_policy-forget_button_firefox_path" item_field="path"/>
+          <ns0:literal_component>/distribution</ns0:literal_component>
+        </ns0:concat>
+      </ns0:unique>
+    </ns0:local_variable>
+    <ns0:local_variable id="var_firefox_policy-javascript_window_changes_firefox_path" version="1" datatype="string" comment="policies.json path for Firefox.">
+      <ns0:unique>
+        <ns0:literal_component>/etc/firefox/policies</ns0:literal_component>
+        <ns0:concat>
+          <ns0:object_component object_ref="obj_firefox_policy-javascript_window_changes_firefox_path" item_field="path"/>
+          <ns0:literal_component>/distribution</ns0:literal_component>
+        </ns0:concat>
+      </ns0:unique>
+    </ns0:local_variable>
+    <ns0:local_variable id="var_firefox_policy-javascript_window_resizing_firefox_path" version="1" datatype="string" comment="policies.json path for Firefox.">
+      <ns0:unique>
+        <ns0:literal_component>/etc/firefox/policies</ns0:literal_component>
+        <ns0:concat>
+          <ns0:object_component object_ref="obj_firefox_policy-javascript_window_resizing_firefox_path" item_field="path"/>
+          <ns0:literal_component>/distribution</ns0:literal_component>
+        </ns0:concat>
+      </ns0:unique>
+    </ns0:local_variable>
+    <ns0:local_variable id="var_firefox_policy-network_prediction_firefox_path" version="1" datatype="string" comment="policies.json path for Firefox.">
+      <ns0:unique>
+        <ns0:literal_component>/etc/firefox/policies</ns0:literal_component>
+        <ns0:concat>
+          <ns0:object_component object_ref="obj_firefox_policy-network_prediction_firefox_path" item_field="path"/>
+          <ns0:literal_component>/distribution</ns0:literal_component>
+        </ns0:concat>
+      </ns0:unique>
+    </ns0:local_variable>
+    <ns0:local_variable id="var_firefox_policy-no_sanitize_on_shutdown_firefox_path" version="1" datatype="string" comment="policies.json path for Firefox.">
+      <ns0:unique>
+        <ns0:literal_component>/etc/firefox/policies</ns0:literal_component>
+        <ns0:concat>
+          <ns0:object_component object_ref="obj_firefox_policy-no_sanitize_on_shutdown_firefox_path" item_field="path"/>
+          <ns0:literal_component>/distribution</ns0:literal_component>
+        </ns0:concat>
+      </ns0:unique>
+    </ns0:local_variable>
+    <ns0:local_variable id="var_firefox_policy-nonessential_capabilities_firefox_path" version="1" datatype="string" comment="policies.json path for Firefox.">
+      <ns0:unique>
+        <ns0:literal_component>/etc/firefox/policies</ns0:literal_component>
+        <ns0:concat>
+          <ns0:object_component object_ref="obj_firefox_policy-nonessential_capabilities_firefox_path" item_field="path"/>
+          <ns0:literal_component>/distribution</ns0:literal_component>
+        </ns0:concat>
+      </ns0:unique>
+    </ns0:local_variable>
+    <ns0:local_variable id="var_firefox_policy-password_manager_firefox_path" version="1" datatype="string" comment="policies.json path for Firefox.">
+      <ns0:unique>
+        <ns0:literal_component>/etc/firefox/policies</ns0:literal_component>
+        <ns0:concat>
+          <ns0:object_component object_ref="obj_firefox_policy-password_manager_firefox_path" item_field="path"/>
+          <ns0:literal_component>/distribution</ns0:literal_component>
+        </ns0:concat>
+      </ns0:unique>
+    </ns0:local_variable>
+    <ns0:local_variable id="var_firefox_policy-pop-up_windows_firefox_path" version="1" datatype="string" comment="policies.json path for Firefox.">
+      <ns0:unique>
+        <ns0:literal_component>/etc/firefox/policies</ns0:literal_component>
+        <ns0:concat>
+          <ns0:object_component object_ref="obj_firefox_policy-pop-up_windows_firefox_path" item_field="path"/>
+          <ns0:literal_component>/distribution</ns0:literal_component>
+        </ns0:concat>
+      </ns0:unique>
+    </ns0:local_variable>
+    <ns0:local_variable id="var_firefox_policy-private_browsing_firefox_path" version="1" datatype="string" comment="policies.json path for Firefox.">
+      <ns0:unique>
+        <ns0:literal_component>/etc/firefox/policies</ns0:literal_component>
+        <ns0:concat>
+          <ns0:object_component object_ref="obj_firefox_policy-private_browsing_firefox_path" item_field="path"/>
+          <ns0:literal_component>/distribution</ns0:literal_component>
+        </ns0:concat>
+      </ns0:unique>
+    </ns0:local_variable>
+    <ns0:local_variable id="var_firefox_policy-search_suggestion_firefox_path" version="1" datatype="string" comment="policies.json path for Firefox.">
+      <ns0:unique>
+        <ns0:literal_component>/etc/firefox/policies</ns0:literal_component>
+        <ns0:concat>
+          <ns0:object_component object_ref="obj_firefox_policy-search_suggestion_firefox_path" item_field="path"/>
+          <ns0:literal_component>/distribution</ns0:literal_component>
+        </ns0:concat>
+      </ns0:unique>
+    </ns0:local_variable>
+    <ns0:local_variable id="var_firefox_policy-search_update_firefox_path" version="1" datatype="string" comment="policies.json path for Firefox.">
+      <ns0:unique>
+        <ns0:literal_component>/etc/firefox/policies</ns0:literal_component>
+        <ns0:concat>
+          <ns0:object_component object_ref="obj_firefox_policy-search_update_firefox_path" item_field="path"/>
+          <ns0:literal_component>/distribution</ns0:literal_component>
+        </ns0:concat>
+      </ns0:unique>
+    </ns0:local_variable>
+    <ns0:local_variable id="var_firefox_policy-ssl_minimum_version_firefox_path" version="1" datatype="string" comment="policies.json path for Firefox.">
+      <ns0:unique>
+        <ns0:literal_component>/etc/firefox/policies</ns0:literal_component>
+        <ns0:concat>
+          <ns0:object_component object_ref="obj_firefox_policy-ssl_minimum_version_firefox_path" item_field="path"/>
+          <ns0:literal_component>/distribution</ns0:literal_component>
+        </ns0:concat>
+      </ns0:unique>
+    </ns0:local_variable>
+    <ns0:local_variable id="var_firefox_policy-sync_firefox_path" version="1" datatype="string" comment="policies.json path for Firefox.">
+      <ns0:unique>
+        <ns0:literal_component>/etc/firefox/policies</ns0:literal_component>
+        <ns0:concat>
+          <ns0:object_component object_ref="obj_firefox_policy-sync_firefox_path" item_field="path"/>
+          <ns0:literal_component>/distribution</ns0:literal_component>
+        </ns0:concat>
+      </ns0:unique>
+    </ns0:local_variable>
+    <ns0:local_variable id="var_firefox_policy-telemetry_firefox_path" version="1" datatype="string" comment="policies.json path for Firefox.">
+      <ns0:unique>
+        <ns0:literal_component>/etc/firefox/policies</ns0:literal_component>
+        <ns0:concat>
+          <ns0:object_component object_ref="obj_firefox_policy-telemetry_firefox_path" item_field="path"/>
+          <ns0:literal_component>/distribution</ns0:literal_component>
+        </ns0:concat>
+      </ns0:unique>
+    </ns0:local_variable>
+    <ns0:local_variable id="var_firefox_policy-user_messaging_firefox_path" version="1" datatype="string" comment="policies.json path for Firefox.">
+      <ns0:unique>
+        <ns0:literal_component>/etc/firefox/policies</ns0:literal_component>
+        <ns0:concat>
+          <ns0:object_component object_ref="obj_firefox_policy-user_messaging_firefox_path" item_field="path"/>
+          <ns0:literal_component>/distribution</ns0:literal_component>
+        </ns0:concat>
+      </ns0:unique>
+    </ns0:local_variable>
+    <ns0:local_variable id="var_firefox_policy-verification_firefox_path" version="1" datatype="string" comment="policies.json path for Firefox.">
+      <ns0:unique>
+        <ns0:literal_component>/etc/firefox/policies</ns0:literal_component>
+        <ns0:concat>
+          <ns0:object_component object_ref="obj_firefox_policy-verification_firefox_path" item_field="path"/>
+          <ns0:literal_component>/distribution</ns0:literal_component>
+        </ns0:concat>
+      </ns0:unique>
+    </ns0:local_variable>
+  </ns0:variables>
+</ns0:oval_definitions>

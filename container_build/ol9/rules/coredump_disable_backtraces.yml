@@ -1,0 +1,123 @@
+prodtype: all
+description: 'The <tt>ProcessSizeMax</tt> option in <tt>[Coredump]</tt> section
+
+    of <tt>/etc/systemd/coredump.conf</tt>
+
+    specifies the maximum size in bytes of a core which will be processed.
+
+    Core dumps exceeding this size may be stored, but the backtrace will not
+
+    be generated.'
+rationale: 'A core dump includes a memory image taken at the time the operating system
+
+    terminates an application. The memory image could contain sensitive data
+
+    and is generally useful only for developers or system operators trying to
+
+    debug problems.
+
+
+    Enabling core dumps on production systems is not recommended,
+
+    however there may be overriding operational requirements to enable advanced
+
+    debuging. Permitting temporary enablement of core dumps during such situations
+
+    should be reviewed through local needs and policy.'
+severity: medium
+references:
+    disa: CCI-000366
+    nist: CM-6
+    ospp: FMT_SMF_EXT.1
+    pcidss: Req-3.2
+    pcidss4: 3.3.1.1,3.3.1.2,3.3.1.3
+    srg: SRG-OS-000480-GPOS-00227
+identifiers: {}
+ocil_clause: the "ProcessSizeMax" item is missing, commented out, or the value is
+    anything other than "0" and the need for core dumps is not documented with the
+    Information System Security Officer (ISSO) as an operational requirement for all
+    domains that have the "core" item assigned
+ocil: 'Verify Oracle Linux 9 disables core dump backtraces by issuing the following
+    command:
+
+
+    <pre>$ grep -i process /etc/systemd/coredump.conf
+
+
+    ProcessSizeMax=0</pre>'
+oval_external_content: null
+fixtext: 'Configure Oracle Linux 9 to disable core dump backtraces.
+
+
+    Add or modify the following line in /etc/systemd/coredump.conf:
+
+
+    ProcessSizeMax=0'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Oracle Linux 9 must disable core dump backtraces.
+warnings:
+-   general: 'If the <tt>/etc/systemd/coredump.conf</tt> file
+
+        does not already contain the <tt>[Coredump]</tt> section,
+
+        the value will not be configured correctly.'
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Oracle Linux 9 must disable core dump backtraces
+        vuldiscussion: 'A core dump includes a memory image taken at the time the
+            operating system
+
+            terminates an application. The memory image could contain sensitive data
+
+            and is generally useful only for developers or system operators trying
+            to
+
+            debug problems.
+
+
+            Enabling core dumps on production systems is not recommended,
+
+            however there may be overriding operational requirements to enable advanced
+
+            debuging. Permitting temporary enablement of core dumps during such situations
+
+            should be reviewed through local needs and policy.'
+        checktext: 'Verify Oracle Linux 9 disables core dump backtraces by issuing
+            the following command:
+
+
+            $ grep -i process /etc/systemd/coredump.conf
+
+
+            ProcessSizeMax=0
+
+
+            If the "ProcessSizeMax" item is missing, commented out, or the value is
+            anything other than "0" and the need for core dumps is not documented
+            with the Information System Security Officer (ISSO) as an operational
+            requirement for all domains that have the "core" item assigned, this is
+            a finding.'
+        fixtext: 'Configure the operating system to disable core dump backtraces.
+
+
+            Add or modify the following line in /etc/systemd/coredump.conf:
+
+
+            ProcessSizeMax=0'
+platform: package[systemd]
+platforms: !!set
+    package[systemd]: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    package_systemd: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Disable core dump backtraces
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/restrictions/coredumps/coredump_disable_backtraces/rule.yml
+template: null
+documentation_complete: true

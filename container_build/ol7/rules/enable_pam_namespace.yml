@@ -1,0 +1,49 @@
+prodtype: fedora,ol7,ol8,rhel7,rhel8,sle12,sle15
+description: 'To setup a private namespace add the following line to <tt>/etc/pam.d/login</tt>:
+
+    <pre>session    required     pam_namespace.so</pre>'
+rationale: 'The pam_namespace PAM module sets up a private namespace for a
+
+    session with polyinstantiated directories. A polyinstantiated directory
+
+    provides a different instance of itself based on user name, or when using
+
+    SELinux, user name, security context or both. The polyinstatied directories
+
+    can be used to dedicate separate temporary directories to each account.'
+severity: low
+references:
+    anssi: BP28(R39)
+identifiers: {}
+ocil_clause: pam_namespace.so is not required or is commented out
+ocil: 'To check if pam_namespace.so is required for user login, run the following
+    command:
+
+    <pre>$ grep pam_namespace.so /etc/pam.d/login</pre>
+
+    The output should return the following uncommented:
+
+    <pre>session    required     pam_namespace.so</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: package[pam] and not osbuild
+platforms: !!set
+    package[pam] and not osbuild: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    not_osbuild_and_package_pam: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Set Up a Private Namespace in PAM Configuration
+definition_location: /home/oscap/content/linux_os/guide/system/accounts/accounts-pam/enable_pam_namespace/rule.yml
+template: null
+documentation_complete: true

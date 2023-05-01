@@ -1,0 +1,131 @@
+prodtype: all
+description: 'Make sure that mails delivered to root user are forwarded to a monitored
+
+    email address. Make sure that the address
+
+    <sub idref="var_postfix_root_mail_alias" /> is a valid email address
+
+    reachable from the system in question. Use the following command to
+
+    configure the alias:
+
+    <pre>$ sudo echo "root: <sub idref="var_postfix_root_mail_alias" />" &gt;&gt;
+    /etc/aliases
+
+    $ sudo newaliases</pre>'
+rationale: 'A number of system services utilize email messages sent to the root user
+    to
+
+    notify system administrators of active or impending issues.  These messages must
+
+    be forwarded to at least one monitored email address.'
+severity: medium
+references:
+    anssi: BP28(R49)
+    disa: CCI-000139,CCI-000366
+    nist: CM-6(a)
+    srg: SRG-OS-000046-GPOS-00022
+identifiers:
+    cce: CCE-82380-7
+ocil_clause: the alias is not set
+ocil: 'Find the list of alias maps used by the Postfix mail server:
+
+    <pre>$ sudo postconf alias_maps</pre>
+
+    Query the Postfix alias maps for an alias for the <i>root</i> user:
+
+    <pre>$ sudo postmap -q root hash:/etc/aliases</pre>
+
+    The output should return an alias.'
+oval_external_content: null
+fixtext: 'Configure a valid email address as an alias for the root account.
+
+
+    Append the following line to "/etc/aliases":
+
+
+    root: <sub idref="var_postfix_root_mail_alias" />
+
+
+    Then, run the following command:
+
+
+    $ sudo newaliases'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: The Red Hat Enterprise Linux 7 Information System Security Officer
+    (ISSO) and System Administrator (SA) (at a minimum) must have mail aliases to
+    be notified of an audit processing failure.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Red Hat Enterprise Linux 7 must have mail alises to notify
+            the Information System Security Officer (ISSO) and System Administrator
+            (SA) (at a minimum) in the event of an audit processing failure.
+        vuldiscussion: 'It is critical for the appropriate personnel to be aware if
+            a system is at risk of failing to process audit logs as required. Without
+            this notification, the security personnel may be unaware of an impending
+            failure of the audit capability, and system operation may be adversely
+            affected.
+
+
+            Audit processing failures include software/hardware errors, failures in
+            the audit capturing mechanisms, and audit storage capacity being reached
+            or exceeded.
+
+
+            This requirement applies to each audit data storage repository (i.e.,
+            distinct information system component where audit records are stored),
+            the centralized audit storage capacity of organizations (i.e., all audit
+            data storage repositories combined), or both.'
+        checktext: 'Verify that Red Hat Enterprise Linux 7 is configured to notify
+            the appropraite interactive users in the event of an audit processing
+            failure.
+
+
+            Find the alias maps that are being used with the following command:
+
+
+            $ postconf alias_maps
+
+
+            alias_maps = hash:/etc/aliases
+
+
+            Query the Postfix alias maps for an alias for the root user with the following
+            command:
+
+
+            $ postmap -q root hash:/etc/aliases
+
+            isso
+
+
+            If an alias is not set, this is a finding.'
+        fixtext: 'Edit the aliases map file (by default /etc/aliases) used by Postfix
+            and configure a root alias (using the user ISSO as an example):
+
+
+            root:    ISSO
+
+
+            and then update the aliases database with the command:
+
+
+            $ sudo newaliases'
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Configure System to Forward All Mail For The Root Account
+definition_location: /home/oscap/content/linux_os/guide/services/mail/postfix_client/postfix_client_configure_mail_alias/rule.yml
+template: null
+documentation_complete: true

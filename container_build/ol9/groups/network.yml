@@ -1,0 +1,53 @@
+prodtype: all
+description: 'Most systems must be connected to a network of some
+
+    sort, and this brings with it the substantial risk of network
+
+    attack. This section discusses the security impact of decisions
+
+    about networking which must be made when configuring a system.
+
+    <br /><br />
+
+    This section also discusses firewalls, network access
+
+    controls, and other network security frameworks, which allow
+
+    system-level rules to be written that can limit an attackers'' ability
+
+    to connect to your system. These rules can specify that network
+
+    traffic should be allowed or denied from certain IP addresses,
+
+    hosts, and networks. The rules can also specify which of the
+
+    system''s network services are available to particular hosts or
+
+    networks.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups:
+- network-firewalld
+- network-ipsec
+- network-iptables
+- network-ipv6
+- network-kernel
+- network-nftables
+- network-susefirewall2
+- network-ufw
+- network-uncommon
+- network-wireless
+- network_disable_unused_interfaces
+- network_ssl
+rules:
+- network_configure_name_resolution
+- network_sniffer_disabled
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Network Configuration and Firewalls
+definition_location: /home/oscap/content/linux_os/guide/system/network/group.yml
+documentation_complete: true

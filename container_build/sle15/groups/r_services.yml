@@ -1,0 +1,26 @@
+prodtype: all
+description: 'The Berkeley r-commands are legacy services which
+
+    allow cleartext remote access and have an insecure trust
+
+    model.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- no_host_based_files
+- no_rsh_trust_files
+- no_user_host_based_files
+- package_rsh-server_removed
+- package_rsh_removed
+- service_rexec_disabled
+- service_rlogin_disabled
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Rlogin, Rsh, and Rexec
+definition_location: /home/oscap/content/linux_os/guide/services/obsolete/r_services/group.yml
+documentation_complete: true

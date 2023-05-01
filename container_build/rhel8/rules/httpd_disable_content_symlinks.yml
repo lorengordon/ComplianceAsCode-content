@@ -1,0 +1,51 @@
+prodtype: rhel7,rhel8
+description: 'For each <tt>&lt;Directory&gt;</tt> instance, remove the following:
+
+    <pre>FollowSymLinks</pre>
+
+    If symbolic links are allowed, the following can be added for each
+
+    <tt>&lt;Directory&gt;</tt> instance:
+
+    <pre>Options SymLinksIfOwnerMatchDisable</pre>'
+rationale: 'A symbolic link allows a file or a directory to be referenced using a
+    symbolic
+
+    name raising a potential hazard if symbolic linkage is made to a sensitive area.
+
+    When web scripts are executed and symbolic links are allowed, the web user could
+
+    be allowed to access locations on the web server that are outside the scope of
+
+    the web document root or home directory.'
+severity: high
+references:
+    stigid: WG360
+identifiers: {}
+ocil_clause: it is not
+ocil: 'Inspect each <tt>&lt;Directory&gt;</tt> instance and verify that either
+
+    <pre>FollowSymLinks</pre> does not exist, or
+
+    <pre>Options SymLinksIfOwnerMatchDisable</pre> is configured properly.'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Disable Web Content Symbolic Links
+definition_location: /home/oscap/content/linux_os/guide/services/http/securing_httpd/httpd_secure_content/httpd_disable_content_symlinks/rule.yml
+template: null
+documentation_complete: true

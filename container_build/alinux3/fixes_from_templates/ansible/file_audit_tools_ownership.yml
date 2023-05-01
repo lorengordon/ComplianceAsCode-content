@@ -1,0 +1,111 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = configure
+# complexity = low
+# disruption = low
+
+
+
+
+- name: Test for existence /sbin/auditctl
+  stat:
+    path: "/sbin/auditctl"
+  register: file_exists
+
+- name: Ensure owner 0 on /sbin/auditctl
+  file:
+    path: "/sbin/auditctl"
+    owner: "0"
+  when: file_exists.stat is defined and file_exists.stat.exists
+
+
+
+
+
+- name: Test for existence /sbin/aureport
+  stat:
+    path: "/sbin/aureport"
+  register: file_exists
+
+- name: Ensure owner 0 on /sbin/aureport
+  file:
+    path: "/sbin/aureport"
+    owner: "0"
+  when: file_exists.stat is defined and file_exists.stat.exists
+
+
+
+
+
+- name: Test for existence /sbin/ausearch
+  stat:
+    path: "/sbin/ausearch"
+  register: file_exists
+
+- name: Ensure owner 0 on /sbin/ausearch
+  file:
+    path: "/sbin/ausearch"
+    owner: "0"
+  when: file_exists.stat is defined and file_exists.stat.exists
+
+
+
+
+
+- name: Test for existence /sbin/autrace
+  stat:
+    path: "/sbin/autrace"
+  register: file_exists
+
+- name: Ensure owner 0 on /sbin/autrace
+  file:
+    path: "/sbin/autrace"
+    owner: "0"
+  when: file_exists.stat is defined and file_exists.stat.exists
+
+
+
+
+
+- name: Test for existence /sbin/auditd
+  stat:
+    path: "/sbin/auditd"
+  register: file_exists
+
+- name: Ensure owner 0 on /sbin/auditd
+  file:
+    path: "/sbin/auditd"
+    owner: "0"
+  when: file_exists.stat is defined and file_exists.stat.exists
+
+
+
+
+
+- name: Test for existence /sbin/rsyslogd
+  stat:
+    path: "/sbin/rsyslogd"
+  register: file_exists
+
+- name: Ensure owner 0 on /sbin/rsyslogd
+  file:
+    path: "/sbin/rsyslogd"
+    owner: "0"
+  when: file_exists.stat is defined and file_exists.stat.exists
+
+
+
+
+
+- name: Test for existence /sbin/augenrules
+  stat:
+    path: "/sbin/augenrules"
+  register: file_exists
+
+- name: Ensure owner 0 on /sbin/augenrules
+  file:
+    path: "/sbin/augenrules"
+    owner: "0"
+  when: file_exists.stat is defined and file_exists.stat.exists
+
+

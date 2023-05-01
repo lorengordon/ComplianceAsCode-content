@@ -1,0 +1,18 @@
+prodtype: all
+description: The apt service manage the package management and update of the whole
+    system. Its configuration need to be properly defined to ensure efficient security
+    updates, packages and repository authentication and proper lifecycle management.
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- apt_conf_disallow_unauthenticated
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: APT service configuration
+definition_location: /home/oscap/content/linux_os/guide/services/apt/group.yml
+documentation_complete: true

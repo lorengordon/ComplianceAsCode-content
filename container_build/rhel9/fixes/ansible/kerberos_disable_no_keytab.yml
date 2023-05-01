@@ -1,0 +1,34 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = disable
+# complexity = low
+# disruption = low
+- name: Find keytab files
+  find:
+    paths: /etc/
+    patterns: '*.keytab'
+  register: keytab_files
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-84221-1
+  - disable_strategy
+  - kerberos_disable_no_keytab
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Remove keytab files
+  file:
+    path: '{{ item.path }}'
+    state: absent
+  with_items: '{{ keytab_files.files }}'
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-84221-1
+  - disable_strategy
+  - kerberos_disable_no_keytab
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed

@@ -1,0 +1,133 @@
+prodtype: alinux3,ol8,ol9,rhel8,rhel9
+description: 'Alibaba Cloud Linux 3 systems providing tools to interface with audit
+    information will leverage user permissions and roles identifying the user accessing
+    the tools, and the corresponding rights the user enjoys, to make access decisions
+    regarding the access to audit tools.
+
+
+    Audit tools include, but are not limited to, vendor-provided and open source audit
+    tools needed to successfully view and manipulate audit information system activity
+    and records. Audit tools include custom queries and report generators.
+
+
+    Audit tools must have a mode of 0755 or less permissive.'
+rationale: 'Protecting audit information also includes identifying and protecting
+    the tools used to view and manipulate log data.
+
+    Therefore, protecting audit tools is necessary to prevent unauthorized operations
+    on audit information.'
+severity: medium
+references:
+    disa: CCI-001493
+    nist: AU-9
+    srg: SRG-OS-000256-GPOS-00097,SRG-OS-000257-GPOS-00098,SRG-OS-000258-GPOS-00099
+    cis: 4.1.4.8
+identifiers: {}
+ocil_clause: any of these files have more permissive permissions than 0755
+ocil: 'Verify the audit tools are protected from unauthorized access, deletion, or
+    modification by checking the permissive mode.
+
+
+    Check the octal permission of each audit tool by running the following command:
+
+
+    $ sudo stat -c "%U %n" /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace
+    /sbin/auditd /sbin/rsyslogd /sbin/augenrules'
+oval_external_content: null
+fixtext: 'Configure the audit tools to be owned by "root", by running the following
+    command:
+
+
+    $ sudo chmod 0755 [audit_tool]
+
+
+    Replace "[audit_tool]" with each audit tool that has a more permissive mode than
+    0755.'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Alibaba Cloud Linux 3 audit tools must have a mode of 0755 or less
+    permissive.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Alibaba Cloud Linux 3 audit tools must have a mode of 0755
+            or less permissive.
+        vuldiscussion: 'Protecting audit information also includes identifying and
+            protecting the tools used to view and manipulate log data. Therefore,
+            protecting audit tools is necessary to prevent unauthorized operation
+            on audit information.
+
+
+            Alibaba Cloud Linux 3 systems providing tools to interface with audit
+            information will leverage user permissions and roles identifying the user
+            accessing the tools, and the corresponding rights the user enjoys, to
+            make access decisions regarding the access to audit tools.
+
+
+            Audit tools include, but are not limited to, vendor-provided and open
+            source audit tools needed to successfully view and manipulate audit information
+            system activity and records. Audit tools include custom queries and report
+            generators.'
+        checktext: 'Verify the audit tools have a mode of "0755" or less with the
+            following command:
+
+
+            $ stat -c "%a %n" /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace
+            /sbin/auditd /sbin/rsyslogd /sbin/augenrules
+
+
+            755 /sbin/auditctl
+
+            755 /sbin/aureport
+
+            755 /sbin/ausearch
+
+            750 /sbin/autrace
+
+            755 /sbin/auditd
+
+            755 /sbin/rsyslogd
+
+            755 /sbin/augenrules
+
+
+            If any of the audit tool files have a mode more permissive than "0755",
+            this is a finding.'
+        fixtext: 'Configure the audit tools to have a mode of "0755"  by running the
+            following command:
+
+
+            $ sudo chmod 0755 [audit_tool]
+
+
+            Replace "[audit_tool]" with each audit tool that has a more permissive
+            mode than 0755.'
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Audit Tools Must Have a Mode of 0755 or Less Permissive
+definition_location: /home/oscap/content/linux_os/guide/system/software/integrity/software-integrity/aide/file_audit_tools_permissions/rule.yml
+template:
+    name: file_permissions
+    vars:
+        filepath:
+        - /sbin/auditctl
+        - /sbin/aureport
+        - /sbin/ausearch
+        - /sbin/autrace
+        - /sbin/auditd
+        - /sbin/rsyslogd
+        - /sbin/augenrules
+        filemode: '0755'
+        missing_file_pass: 'true'
+    backends: {}
+documentation_complete: true

@@ -1,0 +1,41 @@
+prodtype: sle12,sle15
+description: 'Systems need to have package manager repositories configured to ensure
+    they receive the
+
+    latest patches and updates.'
+rationale: 'If the system''s package repositories are misconfigured important patches
+    may not be
+
+    identified or a rogue repository could introduce compromised software.'
+severity: medium
+references:
+    cis: 1.2.2
+identifiers:
+    cce: CCE-92489-4
+ocil_clause: Your package manager repositories are not configured according to site
+    policy
+ocil: "To verify repositories are configured correctly run the following command:\
+    \ \n<pre>$ sudo zypper repos</pre>\nIf your package manager repositories are not\
+    \ configured correctly, you have to \nconfigure them according to site policy.\
+    \  "
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Ensure package manager repositories are configured
+definition_location: /home/oscap/content/linux_os/guide/system/software/updating/ensure_package_repositories_are_configured/rule.yml
+template: null
+documentation_complete: true

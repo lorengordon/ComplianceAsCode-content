@@ -1,0 +1,52 @@
+prodtype: rhel7,rhel8,rhel9
+description: 'Require packet signing of clients who mount Samba
+
+    shares using the <tt>mount.cifs</tt> program (e.g., those who specify shares
+
+    in <tt>/etc/fstab</tt>). To do so, ensure signing options (either
+
+    <tt>sec=krb5i</tt> or <tt>sec=ntlmv2i</tt>) are used.
+
+    <br /><br />
+
+    See the <tt>mount.cifs(8)</tt> man page for more information. A Samba
+
+    client should only communicate with servers who can support SMB
+
+    packet signing.'
+rationale: 'Packet signing can prevent man-in-the-middle
+
+    attacks which modify SMB packets in transit.'
+severity: unknown
+references: {}
+identifiers: {}
+ocil_clause: it does not
+ocil: 'To verify that Samba clients using mount.cifs must use packet signing, run
+    the following command:
+
+    <pre>$ grep sec /etc/fstab</pre>
+
+    The output should show either <tt>krb5i</tt> or <tt>ntlmv2i</tt> in use.'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Require Client SMB Packet Signing, if using mount.cifs
+definition_location: /home/oscap/content/linux_os/guide/services/smb/configuring_samba/mount_option_smb_client_signing/rule.yml
+template: null
+documentation_complete: true

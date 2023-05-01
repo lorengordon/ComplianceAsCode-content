@@ -1,0 +1,11 @@
+description: Default homepage for Chromium users
+type: string
+operator: equals
+interactive: false
+options:
+    blank: about:blank
+    default: about:blank
+warnings: []
+title: Default Chromium Homepage
+definition_location: /home/oscap/content/products/chromium/guide/chromium/var_trusted_home_page.var
+documentation_complete: true

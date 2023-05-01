@@ -1,0 +1,32 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = restrict
+# complexity = low
+# disruption = low
+- (xccdf-var var_nftables_family)
+- (xccdf-var var_nftables_table)
+
+- name: Collect Existing Nftables
+  ansible.builtin.command: nft list tables
+  register: existing_nftables
+  tags:
+  - CCE-86163-3
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+  - restrict_strategy
+  - set_nftables_table
+
+- name: Set Nftable Table
+  ansible.builtin.command: nft create table {{ var_nftables_family }} {{ var_nftables_table
+    }}
+  when: existing_nftables.stdout_lines | length == 0
+  tags:
+  - CCE-86163-3
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+  - restrict_strategy
+  - set_nftables_table

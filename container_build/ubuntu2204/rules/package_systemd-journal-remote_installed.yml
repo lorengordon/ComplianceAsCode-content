@@ -1,0 +1,50 @@
+prodtype: rhel8,ubuntu2204
+description: 'Journald (via systemd-journal-remote ) supports the ability to send
+
+    log events it gathers to a remote log host or to receive messages
+
+    from remote hosts, thus enabling centralised log management.'
+rationale: 'Storing log data on a remote host protects log integrity from local
+
+    attacks. If an attacker gains root access on the local system, they
+
+    could tamper with or remove log data that is stored on the local system.'
+severity: medium
+references:
+    cis: 4.2.1.1.1
+identifiers: {}
+ocil_clause: the package is not installed
+ocil: ' Run the following command to determine if the <code>systemd-journal-remote</code>
+    package is installed: <pre>$ dpkg -l  systemd-journal-remote</pre>'
+oval_external_content: null
+fixtext: 'The <code>systemd-journal-remote</code> package can be installed with the
+    following command:
+
+    <pre>
+
+    $ apt-get install systemd-journal-remote</pre>'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Install systemd-journal-remote Package
+definition_location: /home/oscap/content/linux_os/guide/system/logging/journald/package_systemd-journal-remote_installed/rule.yml
+template:
+    name: package_installed
+    vars:
+        pkgname: systemd-journal-remote
+    backends: {}
+documentation_complete: true

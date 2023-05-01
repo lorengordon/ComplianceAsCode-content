@@ -1,0 +1,53 @@
+prodtype: firefox
+description: 'Firefox accounts feature may be disabled via administrative policy by
+    setting
+
+    <tt>DisableFirefoxAccounts</tt> under <tt>policies</tt> to <tt>true</tt>.'
+rationale: "Disable Firefox Accounts integration (Sync). \nIt is detrimental for applications\
+    \ to provide, or install by default, functionality exceeding requirements or mission\
+    \ objectives. These unnecessary capabilities or services are often overlooked\
+    \ and therefore may remain unsecured. They increase the risk to the platform by\
+    \ providing additional attack vectors.\nApplications are capable of providing\
+    \ a wide variety of functions and services. Some of the functions and services,\
+    \ provided by default, may not be necessary to support essential organizational\
+    \ operations (e.g., key missions, functions).\nExamples of non-essential capabilities\
+    \ include but are not limited to advertising software or browser plug-ins that\
+    \ are not related to requirements or provide a wide array of functionality not\
+    \ required for every mission but that cannot be disabled."
+severity: medium
+references:
+    disa: CCI-000381
+    nist: CM-7
+    stigid: FFOX-00-000034
+identifiers: {}
+ocil_clause: null
+ocil: null
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Firefox accounts must be disabled.
+definition_location: /home/oscap/content/products/firefox/guide/firefox/firefox_policy-sync/rule.yml
+template:
+    name: firefox_policy-setting
+    vars:
+        name: Disable Firefox Sync
+        policies:
+        -   path: policies
+            parameter: DisableFirefoxAccounts
+            value: 'true'
+    backends: {}
+documentation_complete: true

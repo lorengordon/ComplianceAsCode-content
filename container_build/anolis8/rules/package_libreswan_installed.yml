@@ -1,0 +1,88 @@
+prodtype: alinux2,alinux3,anolis8,fedora,ol7,ol8,ol9,rhcos4,rhel7,rhel8,rhel9,rhv4,sle12,sle15,uos20
+description: 'The Libreswan package provides an implementation of IPsec
+
+    and IKE, which permits the creation of secure tunnels over
+
+    untrusted networks. The <code>libreswan</code> package can be installed with the
+    following command:
+
+    <pre>
+
+    $ sudo yum install libreswan</pre>'
+rationale: 'Providing the ability for remote users or systems
+
+    to initiate a secure VPN connection protects information when it is
+
+    transmitted over a wide area network.'
+severity: medium
+references:
+    cis-csc: 12,15,3,5,8
+    cobit5: APO13.01,DSS01.04,DSS05.02,DSS05.03,DSS05.04
+    disa: CCI-001130,CCI-001131
+    isa-62443-2009: 4.3.3.6.5,4.3.3.6.6,4.3.3.6.7,4.3.3.6.8
+    isa-62443-2013: SR 1.13,SR 2.6,SR 3.1,SR 3.5,SR 3.8,SR 4.1,SR 4.3,SR 5.1,SR 5.2,SR
+        5.3,SR 7.1,SR 7.6
+    iso27001-2013: A.11.2.4,A.11.2.6,A.13.1.1,A.13.2.1,A.14.1.3,A.15.1.1,A.15.2.1,A.6.2.1,A.6.2.2
+    nist: CM-6(a)
+    nist-csf: PR.AC-3,PR.MA-2,PR.PT-4
+    pcidss: Req-4.1
+    pcidss4: 4.2.1
+    srg: SRG-OS-000480-GPOS-00227,SRG-OS-000120-GPOS-00061
+identifiers: {}
+ocil_clause: the package is not installed
+ocil: 'Run the following command to determine if the <code>libreswan</code> package
+    is installed: <pre>$ rpm -q libreswan</pre>'
+oval_external_content: null
+fixtext: ' To install the Anolis OS 8 package libreswan run the following command:
+
+
+    $ sudo yum install libreswan'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ' Anolis OS 8 must have the libreswan package installed.'
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: The Anolis OS 8 libreswan package must be installed.
+        vuldiscussion: 'Providing the ability for remote users or systems
+
+            to initiate a secure VPN connection protects information when it is
+
+            transmitted over a wide area network.'
+        checktext: 'Verify that Anolis OS 8 libreswan service package is installed.
+
+
+            Check that the libreswan service package is installed with the following
+            command:
+
+
+            $ sudo dnf list --installed libreswan
+
+
+            libreswan.x86_64     4.6-3.el9
+
+
+            If the "libreswan" package is not installed, this is a finding.'
+        fixtext: 'Install the libreswan service (if it is not already installed) with
+            the following command:
+
+
+            $ sudo dnf install libreswan'
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Install libreswan Package
+definition_location: /home/oscap/content/linux_os/guide/system/network/network-ipsec/package_libreswan_installed/rule.yml
+template:
+    name: package_installed
+    vars:
+        pkgname: libreswan
+    backends: {}
+documentation_complete: true

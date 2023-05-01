@@ -1,0 +1,47 @@
+prodtype: rhel7,rhel8
+description: 'The <tt>cache</tt> module allows <tt>httpd</tt> to cache data, optimizing
+    access to
+
+    frequently accessed content. However, it introduces potential security flaws
+
+    such as the possibility of circumventing <tt>Allow</tt> and
+
+    <tt>Deny</tt> directives.
+
+    <br /><br /> If this functionality is
+
+    unnecessary, comment out the module:
+
+    <pre>#LoadModule cache_module modules/mod_cache.so</pre>
+
+    If caching is required, it should not be enabled for any limited-access content.'
+rationale: 'Minimizing the number of loadable modules available to the web server
+    reduces risk
+
+    by limiting the capabilities allowed by the web server.'
+severity: unknown
+references: {}
+identifiers: {}
+ocil_clause: null
+ocil: null
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Disable Cache Support
+definition_location: /home/oscap/content/linux_os/guide/services/http/securing_httpd/httpd_minimize_loadable_modules/httpd_core_modules/httpd_cache_support/rule.yml
+template: null
+documentation_complete: true

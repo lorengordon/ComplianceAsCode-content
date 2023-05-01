@@ -1,0 +1,26 @@
+prodtype: all
+description: 'Memory Poisoning consists of writing a special value to uninitialized
+    or freed memory.
+
+    Poisoning can be used as a mechanism to prevent leak of information and detection
+    of
+
+    corrupted memory.'
+warnings: []
+requires: []
+conflicts: []
+values:
+- var_slub_debug_options
+groups: {}
+rules:
+- grub2_page_poison_argument
+- grub2_slub_debug_argument
+platform: machine
+platforms: !!set
+    machine: null
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+title: Memory Poisoning
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/restrictions/poisoning/group.yml
+documentation_complete: true

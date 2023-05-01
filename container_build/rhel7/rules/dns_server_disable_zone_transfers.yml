@@ -1,0 +1,42 @@
+prodtype: rhel7,rhel8
+description: "Is it necessary for a secondary nameserver to receive zone data\nvia\
+    \ zone transfer from the primary server?  If not, follow the instructions in\n\
+    this section. If so, see the next section for instructions on protecting zone\n\
+    transfers.\nAdd or correct the following directive within <tt>/etc/named.conf</tt>:\n\
+    <pre>options {\n  allow-transfer { none; };\n  ...\n}</pre>"
+rationale: 'If both the primary and secondary nameserver are under your control,
+
+    or if you have only one nameserver, it may be possible to use an external
+
+    configuration management mechanism to distribute zone updates. In that case, it
+
+    is not necessary to allow zone transfers within BIND itself, so they should be
+
+    disabled to avoid the potential for abuse.'
+severity: unknown
+references: {}
+identifiers:
+    cce: CCE-80327-0
+ocil_clause: null
+ocil: null
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Disable Zone Transfers from the Nameserver
+definition_location: /home/oscap/content/linux_os/guide/services/dns/dns_server_protection/dns_server_disable_zone_transfers/rule.yml
+template: null
+documentation_complete: true

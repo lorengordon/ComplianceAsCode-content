@@ -1,0 +1,230 @@
+
+
+<def-group>
+  <definition class="compliance" id="sysctl_net_ipv4_conf_default_shared_media" version="3">
+    <metadata>
+        <title>Configure Sending and Accepting Shared Media Redirects by Default</title>
+        
+    <affected family="unix">
+    <platform>Debian 10</platform>
+    </affected>
+        <description>The 'net.ipv4.conf.default.shared_media' kernel parameter should be set to the appropriate value in both system configuration and system runtime.</description>
+    </metadata>
+    <criteria operator="AND">
+      <extend_definition comment="net.ipv4.conf.default.shared_media configuration setting check"
+                         definition_ref="sysctl_net_ipv4_conf_default_shared_media_static"/>
+      <extend_definition comment="net.ipv4.conf.default.shared_media runtime setting check"
+                         definition_ref="sysctl_net_ipv4_conf_default_shared_media_runtime"/>
+    </criteria>
+  </definition>
+</def-group><def-group>
+  <definition class="compliance" id="sysctl_net_ipv4_conf_default_shared_media_runtime" version="3">
+    <metadata>
+        <title>Configure Sending and Accepting Shared Media Redirects by Default</title>
+        
+    <affected family="unix">
+    <platform>Debian 10</platform>
+    </affected>
+        <description>The kernel 'net.ipv4.conf.default.shared_media' parameter should be set to the appropriate value in the system runtime.</description>
+    </metadata>
+    <criteria operator="AND">
+      <criterion comment="kernel runtime parameter net.ipv4.conf.default.shared_media set to the appropriate value"
+                 test_ref="test_sysctl_net_ipv4_conf_default_shared_media_runtime"/>
+    </criteria>
+  </definition>
+
+  <unix:sysctl_test id="test_sysctl_net_ipv4_conf_default_shared_media_runtime" version="1"
+                    comment="kernel runtime parameter net.ipv4.conf.default.shared_media set to the appropriate value"
+                    check="all" check_existence="all_exist" state_operator="OR">
+    <unix:object object_ref="object_sysctl_net_ipv4_conf_default_shared_media_runtime"/>
+
+    <unix:state state_ref="state_sysctl_net_ipv4_conf_default_shared_media_runtime"/>
+
+  </unix:sysctl_test>
+
+  <unix:sysctl_object id="object_sysctl_net_ipv4_conf_default_shared_media_runtime" version="1">
+    <unix:name>net.ipv4.conf.default.shared_media</unix:name>
+  </unix:sysctl_object>
+
+
+  <unix:sysctl_state id="state_sysctl_net_ipv4_conf_default_shared_media_runtime" version="1">
+    <unix:value datatype="int" operation="equals"
+                var_ref="sysctl_net_ipv4_conf_default_shared_media_value"/>
+  </unix:sysctl_state>
+
+  <external_variable id="sysctl_net_ipv4_conf_default_shared_media_value" version="1"
+                     comment="External variable for net.ipv4.conf.default.shared_media" datatype="int"/>
+
+</def-group><def-group>
+  <definition class="compliance" id="sysctl_net_ipv4_conf_default_shared_media_static" version="3">
+    <metadata>
+        <title>Configure Sending and Accepting Shared Media Redirects by Default</title>
+        
+    <affected family="unix">
+    <platform>Debian 10</platform>
+    </affected>
+        <description>The kernel 'net.ipv4.conf.default.shared_media' parameter should be set to the appropriate value in the system configuration.</description>
+    </metadata>
+
+
+      <criteria operator="AND">
+        <criteria operator="AND">
+          <criterion comment="kernel static parameter net.ipv4.conf.default.shared_media set to the appropriate value in /etc/sysctl.conf"
+                    test_ref="test_sysctl_net_ipv4_conf_default_shared_media_static"/>
+          <!-- see sysctl.d(5) -->
+          <criterion comment="kernel static parameter net.ipv4.conf.default.shared_media set to the appropriate value in /etc/sysctl.d/*.conf"
+                    test_ref="test_sysctl_net_ipv4_conf_default_shared_media_static_etc_sysctld"/>
+          <criterion comment="kernel static parameter net.ipv4.conf.default.shared_media set to the appropriate value in /run/sysctl.d/*.conf"
+                    test_ref="test_sysctl_net_ipv4_conf_default_shared_media_static_run_sysctld"/>
+
+          <criterion comment="kernel static parameter net.ipv4.conf.default.shared_media set to the appropriate value in /usr/lib/sysctl.d/*.conf"
+                    test_ref="test_sysctl_net_ipv4_conf_default_shared_media_static_usr_lib_sysctld"/>
+
+          <criterion comment="kernel static parameter net.ipv4.conf.default.shared_media set to the appropriate value in /usr/local/lib/sysctl.d/*.conf"
+                    test_ref="test_sysctl_net_ipv4_conf_default_shared_media_static_usr_local_lib_sysctld"/>
+        </criteria>
+        <criterion comment="Check that net_ipv4_conf_default_shared_media is defined in at least one file" test_ref="test_sysctl_net_ipv4_conf_default_shared_media_not_defined"
+                   negate="true"/>
+      </criteria>
+
+  </definition>
+
+  <ind:textfilecontent54_test id="test_sysctl_net_ipv4_conf_default_shared_media_not_defined" version="2"
+                              check="all" check_existence="none_exist"
+                              comment="net.ipv4.conf.default.shared_media static configuration">
+    <ind:object object_ref="object_sysctl_net_ipv4_conf_default_shared_media_static_set_sysctls_unfiltered" />
+  </ind:textfilecontent54_test>
+
+  <ind:textfilecontent54_test id="test_sysctl_net_ipv4_conf_default_shared_media_static" version="2"
+                              check="all" check_existence="any_exist"
+                              comment="net.ipv4.conf.default.shared_media static configuration" state_operator="OR">
+    <ind:object object_ref="object_static_sysctl_sysctl_net_ipv4_conf_default_shared_media"/>
+
+    <ind:state state_ref="state_static_sysctld_sysctl_net_ipv4_conf_default_shared_media"/>
+
+  </ind:textfilecontent54_test>
+
+  <ind:textfilecontent54_test id="test_sysctl_net_ipv4_conf_default_shared_media_static_etc_sysctld" version="2" check="all"
+                          check_existence="any_exist"
+                          comment="net.ipv4.conf.default.shared_media static configuration in /etc/sysctl.d/*.conf" state_operator="OR">
+    <ind:object object_ref="object_static_etc_sysctld_sysctl_net_ipv4_conf_default_shared_media"/>
+
+    <ind:state state_ref="state_static_sysctld_sysctl_net_ipv4_conf_default_shared_media"/>
+
+  </ind:textfilecontent54_test>
+
+  <ind:textfilecontent54_test id="test_sysctl_net_ipv4_conf_default_shared_media_static_run_sysctld" version="2" check="all"
+                          check_existence="any_exist"
+                          comment="net.ipv4.conf.default.shared_media static configuration in /run/sysctl.d/*.conf" state_operator="OR">
+    <ind:object object_ref="object_static_run_sysctld_sysctl_net_ipv4_conf_default_shared_media"/>
+
+    <ind:state state_ref="state_static_sysctld_sysctl_net_ipv4_conf_default_shared_media"/>
+
+  </ind:textfilecontent54_test>
+
+
+  <ind:textfilecontent54_test id="test_sysctl_net_ipv4_conf_default_shared_media_static_usr_lib_sysctld" version="2"
+                          check_existence="any_exist"
+                          check="all"
+                          comment="net.ipv4.conf.default.shared_media static configuration in /usr/lib/sysctl.d/*.conf" state_operator="OR">
+    <ind:object object_ref="object_static_usr_lib_sysctld_sysctl_net_ipv4_conf_default_shared_media"/>
+
+    <ind:state state_ref="state_static_sysctld_sysctl_net_ipv4_conf_default_shared_media"/>
+
+  </ind:textfilecontent54_test>
+
+
+  <ind:textfilecontent54_test id="test_sysctl_net_ipv4_conf_default_shared_media_static_usr_local_lib_sysctld" version="1"
+                          check_existence="any_exist"
+                          check="all"
+                          comment="net.ipv4.conf.default.shared_media static configuration in /usr/local/lib/sysctl.d/*.conf" state_operator="OR">
+    <ind:object object_ref="object_static_usr_local_lib_sysctld_sysctl_net_ipv4_conf_default_shared_media"/>
+
+    <ind:state state_ref="state_static_sysctld_sysctl_net_ipv4_conf_default_shared_media"/>
+
+  </ind:textfilecontent54_test>
+
+  <local_variable comment="List of conf files" datatype="string" id="local_var_conf_files_sysctl_net_ipv4_conf_default_shared_media" version="1">
+    <object_component object_ref="object_sysctl_net_ipv4_conf_default_shared_media_static_set_sysctls_unfiltered" item_field="filepath" />
+  </local_variable>
+
+  <!-- Avoid directly referencing a possibly empty collection, one empty collection will cause the
+       variable to have no value even when there are valid objects. -->
+  <ind:textfilecontent54_object id="object_sysctl_net_ipv4_conf_default_shared_media_static_set_sysctls_unfiltered" version="1">
+    <set>
+      <object_reference>object_static_etc_sysctls_sysctl_net_ipv4_conf_default_shared_media</object_reference>
+      <object_reference>object_static_run_usr_local_sysctls_sysctl_net_ipv4_conf_default_shared_media</object_reference>
+    </set>
+  </ind:textfilecontent54_object>
+
+  <ind:textfilecontent54_object id="object_static_etc_sysctls_sysctl_net_ipv4_conf_default_shared_media" version="1">
+    <set>
+      <object_reference>object_static_sysctl_sysctl_net_ipv4_conf_default_shared_media</object_reference>
+      <object_reference>object_static_etc_sysctld_sysctl_net_ipv4_conf_default_shared_media</object_reference>
+    </set>
+  </ind:textfilecontent54_object>
+
+  <ind:textfilecontent54_object id="object_static_run_usr_local_sysctls_sysctl_net_ipv4_conf_default_shared_media" version="1">
+    <set>
+      <object_reference>object_static_usr_local_lib_sysctld_sysctl_net_ipv4_conf_default_shared_media</object_reference>
+      <object_reference>object_static_run_usr_sysctls_sysctl_net_ipv4_conf_default_shared_media</object_reference>
+    </set>
+  </ind:textfilecontent54_object>
+
+  <ind:textfilecontent54_object id="object_static_run_usr_sysctls_sysctl_net_ipv4_conf_default_shared_media" version="1">
+    <set>
+      <object_reference>object_static_run_sysctld_sysctl_net_ipv4_conf_default_shared_media</object_reference>
+
+      <object_reference>object_static_usr_lib_sysctld_sysctl_net_ipv4_conf_default_shared_media</object_reference>
+
+    </set>
+  </ind:textfilecontent54_object>
+
+  <ind:textfilecontent54_object id="object_static_sysctl_sysctl_net_ipv4_conf_default_shared_media" version="1">
+    <ind:filepath>/etc/sysctl.conf</ind:filepath>
+    <ind:pattern operation="pattern match">^[\s]*net.ipv4.conf.default.shared_media[\s]*=[\s]*(.*)[\s]*$</ind:pattern>
+    <ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+  </ind:textfilecontent54_object>
+
+  <ind:textfilecontent54_object id="object_static_etc_sysctld_sysctl_net_ipv4_conf_default_shared_media" version="1">
+    <ind:path>/etc/sysctl.d</ind:path>
+    <ind:filename operation="pattern match">^.*\.conf$</ind:filename>
+    <ind:pattern operation="pattern match">^[\s]*net.ipv4.conf.default.shared_media[\s]*=[\s]*(.*)[\s]*$</ind:pattern>
+    <ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+  </ind:textfilecontent54_object>
+
+  <ind:textfilecontent54_object id="object_static_run_sysctld_sysctl_net_ipv4_conf_default_shared_media" version="1">
+    <ind:path>/run/sysctl.d</ind:path>
+    <ind:filename operation="pattern match">^.*\.conf$</ind:filename>
+    <ind:pattern operation="pattern match">^[\s]*net.ipv4.conf.default.shared_media[\s]*=[\s]*(.*)[\s]*$</ind:pattern>
+    <ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+  </ind:textfilecontent54_object>
+
+  <ind:textfilecontent54_object id="object_static_usr_local_lib_sysctld_sysctl_net_ipv4_conf_default_shared_media" version="1">
+    <ind:path>/usr/local/lib/sysctl.d</ind:path>
+    <ind:filename operation="pattern match">^.*\.conf$</ind:filename>
+    <ind:pattern operation="pattern match">^[\s]*net.ipv4.conf.default.shared_media[\s]*=[\s]*(.*)[\s]*$</ind:pattern>
+    <ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+  </ind:textfilecontent54_object>
+
+
+  <ind:textfilecontent54_object id="object_static_usr_lib_sysctld_sysctl_net_ipv4_conf_default_shared_media" version="1">
+    <ind:path>/usr/lib/sysctl.d</ind:path>
+    <ind:filename operation="pattern match">^.*\.conf$</ind:filename>
+    <ind:pattern operation="pattern match">^[\s]*net.ipv4.conf.default.shared_media[\s]*=[\s]*(.*)[\s]*$</ind:pattern>
+    <ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+  </ind:textfilecontent54_object>
+
+
+
+
+  <ind:textfilecontent54_state id="state_static_sysctld_sysctl_net_ipv4_conf_default_shared_media" version="1">
+    <ind:subexpression operation="equals" var_ref="sysctl_net_ipv4_conf_default_shared_media_value"
+                       datatype="int" />
+  </ind:textfilecontent54_state>
+
+  <external_variable id="sysctl_net_ipv4_conf_default_shared_media_value" version="1"
+                     comment="External variable for net.ipv4.conf.default.shared_media" datatype="int"/>
+
+
+</def-group>

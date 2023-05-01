@@ -1,0 +1,28 @@
+<def-group>
+    <definition class="compliance" id="agent_mfetpd_running" version="1">
+        <metadata>
+        <title>Ensure McAfee Endpoint Security for Linux (ENSL) is running</title>
+        
+    <affected family="unix">
+    <platform>Oracle Linux 8</platform>
+      <platform>Oracle Linux 9</platform>
+      <platform>Red Hat Enterprise Linux 9</platform>
+      <platform>Oracle Linux 7</platform>
+      <platform>Red Hat Enterprise Linux 7</platform>
+      <platform>Red Hat Enterprise Linux 8</platform>
+    </affected>
+        <description>Ensure that McAfee Endpoint Security for Linux (ENSL) is running.</description>
+    </metadata>
+        <criteria>
+            <criterion comment="McAfee ENSL is running" test_ref="test_agent_mfetpd_running"/>
+        </criteria>
+    </definition>
+    <unix:process58_test check="all" id="test_agent_mfetpd_running" comment="is mfetpd running" version="1">
+        <unix:object object_ref="obj_agent_mfetpd_running"/>
+    </unix:process58_test>
+
+    <unix:process58_object id="obj_agent_mfetpd_running" version="1">
+        <unix:command_line operation="pattern match">^mfetpd.*$</unix:command_line>
+        <unix:pid datatype="int" operation="greater than">0</unix:pid>
+    </unix:process58_object>
+</def-group>

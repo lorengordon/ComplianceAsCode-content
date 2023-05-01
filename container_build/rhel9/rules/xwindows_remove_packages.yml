@@ -1,0 +1,103 @@
+prodtype: alinux2,alinux3,ol7,ol8,ol9,rhel7,rhel8,rhel9,sle12,sle15
+description: 'By removing the following packages,  the system no longer has X Windows
+    installed.
+
+
+    <tt>xorg-x11-server-Xorg xorg-x11-server-common xorg-x11-server-utils xorg-x11-server-Xwayland</tt>
+
+
+    If X Windows is not installed then the system cannot boot into graphical user
+    mode.
+
+    This prevents the system from being accidentally or maliciously booted into a
+    <tt>graphical.target</tt>
+
+    mode. To do so, run the following command:
+
+
+    <pre>sudo dnf remove xorg-x11-server-Xorg xorg-x11-server-common xorg-x11-server-utils
+    xorg-x11-server-Xwayland</pre>'
+rationale: 'Unnecessary service packages must not be installed to decrease the attack
+    surface of the system. X windows has a long history of security
+
+    vulnerabilities and should not be installed unless approved and documented.'
+severity: medium
+references:
+    disa: CCI-000366
+    nist: CM-6(b)
+    srg: SRG-OS-000480-GPOS-00227
+identifiers:
+    cce: CCE-84106-4
+ocil_clause: xorg related packages are not removed and run level is not correctly
+    configured
+ocil: 'To ensure the X Windows package group is removed, run the following command:
+
+
+    <pre>$ rpm -qi xorg-x11-server-Xorg xorg-x11-server-common xorg-x11-server-utils
+    xorg-x11-server-Xwayland</pre>
+
+
+    For each <tt>package</tt> mentioned above you should receive following line:
+
+    <pre>package &lt;package&gt; is not installed</pre>'
+oval_external_content: null
+fixtext: 'To ensure the X Windows package group is removed, run the following command:
+
+
+
+    $ sudo dnf erase xorg-x11-server-Xorg xorg-x11-server-common xorg-x11-server-utils
+    xorg-x11-server-Xwayland'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Red Hat Enterprise Linux 9 Must Be Configured In Accordance With
+    The Security Configuration Settings Based On Dod Security Configuration Or Implementation
+    Guidance, Including Stigs, Nsa Configuration Guides, Ctos, And Dtms.
+warnings:
+-   functionality: 'The installation and use of a Graphical User Interface (GUI) increases
+        your attack vector and decreases your
+
+        overall security posture. Removing the package xorg-x11-server-common package
+        will remove the graphical target
+
+        which might bring your system to an inconsistent state requiring additional
+        configuration to access the system
+
+        again.
+
+        The rule <tt>xwindows_runlevel_target</tt> can be used to configure the system
+        to boot into the multi-user.target.
+
+        If a GUI is an operational requirement, a tailored profile that removes this
+        rule should be used before
+
+        continuing installation.'
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Red Hat Enterprise Linux 9 Must Be Configured In Accordance
+            With The Security Configuration Settings Based On Dod Security Configuration
+            Or Implementation Guidance, Including Stigs, Nsa Configuration Guides,
+            Ctos, And Dtms.
+        vuldiscussion: 'Unnecessary service packages must not be installed to decrease
+            the attack surface of the system. X windows has a long history of security
+
+            vulnerabilities and should not be installed unless approved and documented.'
+        checktext: "To ensure the X Windows package group is removed, run the following\
+            \ command:\n\n $ rpm -qi xorg-x11-server-Xorg xorg-x11-server-common xorg-x11-server-utils\
+            \ xorg-x11-server-Xwayland\n\nFor each \"package\" mentioned above you\
+            \ should receive following line:\n package &lt;package&gt; is not installed\n\
+            \nIf xorg related packages are not removed and run level is not correctly\
+            \ configured, then this is a finding."
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Disable graphical user interface
+definition_location: /home/oscap/content/linux_os/guide/services/xwindows/disabling_xwindows/xwindows_remove_packages/rule.yml
+template: null
+documentation_complete: true

@@ -1,0 +1,19 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = configure
+# complexity = low
+# disruption = low
+
+
+
+
+
+- name: Ensure group owner on /etc/cron.hourly/
+  file:
+    path: "/etc/cron.hourly/"
+    state: directory
+
+    group: "0"
+
+
+

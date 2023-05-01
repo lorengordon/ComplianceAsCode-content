@@ -1,0 +1,24 @@
+prodtype: all
+description: 'Some deprecated software services impact the overall system security
+    due to their behavior (leak of
+
+    confidentiality in network exchange, usage as uncontrolled communication channel,
+    risk associated with the service due to its old age, etc.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- package_inetutils-telnetd_removed
+- package_nis_removed
+- package_ntpdate_removed
+- package_telnetd-ssl_removed
+- package_telnetd_removed
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Deprecated services
+definition_location: /home/oscap/content/linux_os/guide/services/deprecated/group.yml
+documentation_complete: true

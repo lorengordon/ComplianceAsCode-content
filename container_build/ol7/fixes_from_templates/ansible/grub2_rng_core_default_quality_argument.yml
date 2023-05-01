@@ -1,0 +1,34 @@
+# platform = multi_platform_rhel,multi_platform_fedora,multi_platform_ol,multi_platform_rhv,multi_platform_sle
+# reboot = true
+# strategy = restrict
+# complexity = medium
+# disruption = low
+
+
+- (xccdf-var var_rng_core_default_quality)
+
+
+
+
+
+- name: Check rng_core.default_quality argument exists
+  command: grep 'GRUB_CMDLINE_LINUX.*rng_core.default_quality=' /etc/default/grub
+  failed_when: False
+  register: argcheck
+
+- name: Replace existing rng_core.default_quality argument
+  replace:
+      path: /etc/default/grub
+      regexp: 'rng_core.default_quality=\w+'
+      replace: 'rng_core.default_quality={{ var_rng_core_default_quality }}'
+  when: argcheck.rc == 0
+
+- name: Add rng_core.default_quality argument
+  replace:
+      path: /etc/default/grub
+      regexp: '(GRUB_CMDLINE_LINUX=.*)"'
+      replace: '\1 rng_core.default_quality={{ var_rng_core_default_quality }}"'
+  when: argcheck.rc != 0
+
+- name: Update grub defaults and the bootloader menu
+  command: /sbin/grubby --update-kernel=ALL --args="rng_core.default_quality={{ var_rng_core_default_quality }}"

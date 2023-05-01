@@ -1,0 +1,127 @@
+<def-group>
+
+  
+
+  
+
+  <definition class="compliance" id="dconf_db_up_to_date" version="2">
+    <metadata>
+        <title>Make sure that the dconf databases are up-to-date with regards to respective keyfiles</title>
+        
+    <affected family="unix">
+    <platform>Oracle Linux 7</platform>
+      <platform>Oracle Linux 8</platform>
+      <platform>SUSE Linux Enterprise 12</platform>
+      <platform>SUSE Linux Enterprise 15</platform>
+      <platform>Oracle Linux 9</platform>
+      <platform>Red Hat Enterprise Linux 8</platform>
+      <platform>Red Hat Enterprise Linux 9</platform>
+      <platform>Fedora</platform>
+      <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+        <description>Make sure that the dconf databases are up-to-date with regards to respective keyfiles.</description>
+    </metadata>
+    <criteria operator="OR">
+      <extend_definition comment="dconf installed" definition_ref="package_dconf_installed" negate="true" />
+      <criteria comment="check that all DBs in question are up-to-date" operator="AND">
+        
+      <criteria comment="check that all DBs in question are up-to-date" operator="OR">
+        <criterion comment="distro database is up-to-date wrt keyfiles" test_ref="test_dconf_distro_up_to_date" />
+	<criterion comment="no keyfiles applicable to the distro database" test_ref="test_dconf_distro_no_keyfiles" />
+      </criteria>
+  
+        
+          
+      <criteria comment="check that all DBs in question are up-to-date" operator="OR">
+        <criterion comment="local database is up-to-date wrt keyfiles" test_ref="test_dconf_local_up_to_date" />
+	<criterion comment="no keyfiles applicable to the local database" test_ref="test_dconf_local_no_keyfiles" />
+      </criteria>
+  
+        
+      </criteria>
+    </criteria>
+  </definition>
+
+  
+  <unix:file_object id="obj_dconf_distro_db" comment="The binary system-wide dconf database with 'distro' settings" version="1">
+    <unix:filepath>/etc/dconf/db/distro</unix:filepath>
+  </unix:file_object>
+
+  <local_variable id="var_dconf_distro_db_modified_time" datatype="string" version="1" comment="When the 'distro' dconf DB has been modified">
+    <time_difference format_2="seconds_since_epoch">
+      <object_component object_ref="obj_dconf_distro_db" item_field="m_time"/>
+    </time_difference>
+  </local_variable>
+
+  <unix:file_object id="obj_dconf_distro_config" comment="The dconf keyfile with 'distro' settings" version="1">
+    <unix:filepath operation="pattern match">^/etc/dconf/db/distro.d/.*</unix:filepath>
+  </unix:file_object>
+
+  <local_variable id="var_dconf_distro_keyfiles_modified_time" datatype="int" version="1" comment="When dconf keyfiles in the 'distro' tree have been modified">
+    <time_difference format_2="seconds_since_epoch">
+      <object_component object_ref="obj_dconf_distro_config" item_field="m_time"/>
+    </time_difference>
+  </local_variable>
+
+  <ind:variable_test check="all" check_existence="all_exist" id="test_dconf_distro_up_to_date" version="1" comment="Check if the distro dconf DB is up-to-date with keyfiles in the distro tree.">
+    <ind:object object_ref="object_distro_db_modified_time" />
+    <ind:state state_ref="state_distro_db_is_up_to_date" />
+  </ind:variable_test>
+
+  <ind:variable_object comment="All modified times of all keyfiles" id="object_distro_db_modified_time" version="1">
+     <ind:var_ref>var_dconf_distro_db_modified_time</ind:var_ref>
+   </ind:variable_object>
+
+  <!-- The age of the DB has to be lower than age of any keyfile. -->
+  <ind:variable_state id="state_distro_db_is_up_to_date" version="1">
+    <ind:value datatype="int" operation="less than or equal" var_check="all" var_ref="var_dconf_distro_keyfiles_modified_time" />
+  </ind:variable_state>
+
+  <unix:file_test id="test_dconf_distro_no_keyfiles" check="all" check_existence="none_exist" comment="no keyfiles applicable to the distro database" version="1">
+    <unix:object object_ref="obj_dconf_distro_config" />
+  </unix:file_test>
+  
+  
+    
+  <unix:file_object id="obj_dconf_local_db" comment="The binary system-wide dconf database with 'local' settings" version="1">
+    <unix:filepath>/etc/dconf/db/local</unix:filepath>
+  </unix:file_object>
+
+  <local_variable id="var_dconf_local_db_modified_time" datatype="string" version="1" comment="When the 'local' dconf DB has been modified">
+    <time_difference format_2="seconds_since_epoch">
+      <object_component object_ref="obj_dconf_local_db" item_field="m_time"/>
+    </time_difference>
+  </local_variable>
+
+  <unix:file_object id="obj_dconf_local_config" comment="The dconf keyfile with 'local' settings" version="1">
+    <unix:filepath operation="pattern match">^/etc/dconf/db/local.d/.*</unix:filepath>
+  </unix:file_object>
+
+  <local_variable id="var_dconf_local_keyfiles_modified_time" datatype="int" version="1" comment="When dconf keyfiles in the 'local' tree have been modified">
+    <time_difference format_2="seconds_since_epoch">
+      <object_component object_ref="obj_dconf_local_config" item_field="m_time"/>
+    </time_difference>
+  </local_variable>
+
+  <ind:variable_test check="all" check_existence="all_exist" id="test_dconf_local_up_to_date" version="1" comment="Check if the local dconf DB is up-to-date with keyfiles in the local tree.">
+    <ind:object object_ref="object_local_db_modified_time" />
+    <ind:state state_ref="state_local_db_is_up_to_date" />
+  </ind:variable_test>
+
+  <ind:variable_object comment="All modified times of all keyfiles" id="object_local_db_modified_time" version="1">
+     <ind:var_ref>var_dconf_local_db_modified_time</ind:var_ref>
+   </ind:variable_object>
+
+  <!-- The age of the DB has to be lower than age of any keyfile. -->
+  <ind:variable_state id="state_local_db_is_up_to_date" version="1">
+    <ind:value datatype="int" operation="less than or equal" var_check="all" var_ref="var_dconf_local_keyfiles_modified_time" />
+  </ind:variable_state>
+
+  <unix:file_test id="test_dconf_local_no_keyfiles" check="all" check_existence="none_exist" comment="no keyfiles applicable to the local database" version="1">
+    <unix:object object_ref="obj_dconf_local_config" />
+  </unix:file_test>
+  
+  
+
+
+</def-group>

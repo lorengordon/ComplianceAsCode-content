@@ -1,0 +1,60 @@
+prodtype: ol7,ol8,ol9,rhel7,rhel8,rhel9,rhv4,sle12,sle15
+description: 'By default, the SELinux boolean <tt>polyinstantiation_enabled</tt> is
+    disabled.
+
+    This setting should be configured to <sub idref="var_polyinstantiation_enabled"
+    />.
+
+    <br/>
+
+    To set the <code>polyinstantiation_enabled</code> SELinux boolean, run the following
+    command:
+
+    <pre>$ sudo setsebool -P polyinstantiation_enabled <sub idref="var_polyinstantiation_enabled"
+    /></pre>'
+rationale: ''
+severity: medium
+references:
+    anssi: BP28(R39)
+identifiers: {}
+ocil_clause: polyinstantiation_enabled is not set as expected
+ocil: '
+
+    Run the following command to get the current configured value for <code>polyinstantiation_enabled</code>
+
+    SELinux boolean:
+
+    <pre>$ getsebool polyinstantiation_enabled</pre>
+
+    The expected cofiguration is <sub idref="var_polyinstantiation_enabled" />.
+
+    "on" means true, and "off" means false'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    not osbuild: null
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    not_osbuild: null
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Configure the polyinstantiation_enabled SELinux Boolean
+definition_location: /home/oscap/content/linux_os/guide/system/selinux/selinux-booleans/sebool_polyinstantiation_enabled/rule.yml
+template:
+    name: sebool
+    vars:
+        seboolid: polyinstantiation_enabled
+    backends: {}
+documentation_complete: true

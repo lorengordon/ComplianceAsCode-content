@@ -1,0 +1,74 @@
+prodtype: ol8,ol9,rhel8,rhel9
+description: 'The <code>policycoreutils-python-utils</code> package can be installed
+    with the following command:
+
+    <pre>
+
+    $ sudo yum install policycoreutils-python-utils</pre>'
+rationale: 'This package is required to operate and manage an SELinux environment
+    and its policies.
+
+    It provides utilities such as semanage, audit2allow, audit2why, chcat and sandbox.'
+severity: medium
+references:
+    srg: SRG-OS-000480-GPOS-00227
+identifiers: {}
+ocil_clause: the package is not installed
+ocil: 'Run the following command to determine if the <code>policycoreutils-python-utils</code>
+    package is installed: <pre>$ rpm -q policycoreutils-python-utils</pre>'
+oval_external_content: null
+fixtext: ' To install the Oracle Linux 9 package policycoreutils-python-utils run
+    the following command:
+
+
+    $ sudo yum install policycoreutils-python-utils'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ' Oracle Linux 9 must have the policycoreutils-python-utils package
+    installed.'
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: The Oracle Linux 9 policycoreutils-python-utils package must
+            be installed.
+        vuldiscussion: The policycoreutils-python-utils package is required to operate
+            and manage an SELinux environment and its policies. It provides utilities
+            such as semanage, audit2allow, audit2why, chcat and sandbox.
+        checktext: 'Verify that Oracle Linux 9 policycoreutils-python-utils service
+            package is installed with the following command:
+
+
+            $ sudo dnf list --installed policycoreutils-python-utils
+
+
+            policycoreutils-python-utils.noarch     3.3-6.el9_0
+
+
+            If the "policycoreutils-python-utils" package is not installed, this is
+            a finding.'
+        fixtext: 'Install the policycoreutils-python-utils service package (if the
+            policycoreutils-python-utils service is not already installed) with the
+            following command:
+
+
+            $ sudo dnf install policycoreutils-python-utils'
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Install policycoreutils-python-utils package
+definition_location: /home/oscap/content/linux_os/guide/system/selinux/package_policycoreutils-python-utils_installed/rule.yml
+template:
+    name: package_installed
+    vars:
+        pkgname: policycoreutils-python-utils
+    backends: {}
+documentation_complete: true

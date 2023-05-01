@@ -1,0 +1,32 @@
+name: cpe:/a:mount-{arg}
+check_id: installed_env_mount_{arg}
+bash_conditional: findmnt --kernel "{mountpoint}" > /dev/null || findmnt --fstab "{mountpoint}"
+    > /dev/null
+ansible_conditional: '"{mountpoint}" in ansible_mounts | map(attribute="mount") |
+    list'
+is_product_cpe: false
+versioned: false
+args:
+    tmp:
+        mountpoint: /tmp
+        id: mount_tmp
+        name: mount
+        arg: tmp
+        ver_specs: []
+        ver_specs_id: ''
+        ver_specs_cpe: ''
+        ver_specs_title: ''
+    var-tmp:
+        mountpoint: /var/tmp
+        id: mount_var-tmp
+        name: mount
+        arg: var-tmp
+        ver_specs: []
+        ver_specs_id: ''
+        ver_specs_cpe: ''
+        ver_specs_title: ''
+title: The {mountpoint} mountpoint is active (mounted) or configured in /etc/fstab
+definition_location: /home/oscap/content/shared/applicability/mount.yml
+template:
+    name: platform_mount
+documentation_complete: true

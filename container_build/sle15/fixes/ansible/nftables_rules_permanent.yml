@@ -1,0 +1,36 @@
+# platform = SUSE Linux Enterprise 15
+# reboot = false
+# strategy = restrict
+# complexity = low
+# disruption = low
+- (xccdf-var var_nftable_master_config_file)
+
+- name: Check the top-level configuration file exists
+  ansible.builtin.stat:
+    path: '{{ var_nftable_master_config_file }}'
+  tags:
+  - CCE-92485-2
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - nftables_rules_permanent
+  - no_reboot_needed
+  - restrict_strategy
+
+- name: Check the  relevant file is included configuration
+  ansible.builtin.lineinfile:
+    path: '{{ var_nftable_master_config_file }}'
+    line: include "/etc/nftables/{{ item }}-filter"
+    create: true
+  loop:
+  - bridge
+  - arp
+  - inet
+  tags:
+  - CCE-92485-2
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - nftables_rules_permanent
+  - no_reboot_needed
+  - restrict_strategy

@@ -1,0 +1,43 @@
+prodtype: alinux2,fedora,ol7,ol8,rhcos4,rhel7,rhel8,rhel9,rhv4,sle12,sle15
+description: 'The <tt>+</tt> character in <tt>/etc/passwd</tt> file marks a place
+    where
+
+    entries from a network information service (NIS) should be directly inserted.'
+rationale: 'Using this method to include entries into <tt>/etc/passwd</tt> is considered
+    legacy
+
+    and should be avoided. These entries may provide a way for an attacker
+
+    to gain access to the system.'
+severity: medium
+references:
+    cis: 6.2.2
+identifiers:
+    cce: CCE-92286-4
+ocil_clause: the file contains legacy lines
+ocil: 'To check for legacy lines in <tt>/etc/passwd</tt>, run the following command:
+
+    <pre> grep ''^\+'' /etc/passwd</pre>
+
+    The command should not return any output.'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Ensure there are no legacy + NIS entries in /etc/passwd
+definition_location: /home/oscap/content/linux_os/guide/system/accounts/accounts-restrictions/password_storage/no_legacy_plus_entries_etc_passwd/rule.yml
+template: null
+documentation_complete: true

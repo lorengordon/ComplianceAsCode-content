@@ -1,0 +1,37 @@
+# platform = multi_platform_all
+# reboot = true
+# strategy = disable
+# complexity = low
+# disruption = medium
+
+- name: List /etc/sysctl.d/*.conf files
+      
+  find:
+    paths:
+      - "/etc/sysctl.d/"
+      - "/run/sysctl.d/"
+      - "/usr/local/lib/sysctl.d/"
+
+
+    contains: '^[\s]*kernel.dmesg_restrict.*$'
+    patterns: "*.conf"
+    file_type: any
+  register: find_sysctl_d
+
+- name: Comment out any occurrences of kernel.dmesg_restrict from config files
+  replace:
+    path: "{{ item.path }}"
+    regexp: '^[\s]*kernel.dmesg_restrict'
+    replace: '#kernel.dmesg_restrict'
+  loop: "{{ find_sysctl_d.files }}"
+
+
+- name: Ensure sysctl kernel.dmesg_restrict is set to 1
+  sysctl:
+    name: "kernel.dmesg_restrict"
+    value: "1"
+
+    sysctl_file: "/etc/sysctl.conf"
+
+    state: present
+    reload: yes

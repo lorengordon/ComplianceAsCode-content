@@ -1,0 +1,45 @@
+prodtype: alinux3,fedora,ol7,ol8,ol9,rhel7,rhel8,rhel9,rhv4,sle12,sle15
+description: "The <tt>noexec</tt> mount option can be used to prevent binaries from\
+    \ being\nexecuted out of <tt>/var</tt>. \nAdd the <code>noexec</code> option to\
+    \ the fourth column of\n<tt>/etc/fstab</tt> for the line which controls mounting\
+    \ of\n<code>/var</code>."
+rationale: 'The <tt>/var</tt> directory contains variable system data such as logs,
+
+    mails and caches. No binaries should be executed from this directory.'
+severity: medium
+references:
+    anssi: BP28(R12)
+identifiers:
+    cce: CCE-83329-3
+ocil_clause: the "/var" file system does not have the "noexec" option set
+ocil: "Verify the <tt>noexec</tt> option is configured for the <tt>/var</tt> mount\
+    \ point,\n    run the following command:\n    <pre>$ sudo mount | grep '\\s/var\\\
+    s'</pre>\n    <pre>. . . /var . . . noexec . . .</pre>\n"
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Add noexec Option to /var
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/partitions/mount_option_var_noexec/rule.yml
+template:
+    name: mount_option
+    vars:
+        mountpoint: /var
+        mountoption: noexec
+    backends: {}
+documentation_complete: true

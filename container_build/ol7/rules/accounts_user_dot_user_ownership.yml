@@ -1,0 +1,59 @@
+prodtype: ol7,ol8,rhel7,rhel8,rhv4,sle12,sle15,ubuntu2004,ubuntu2204
+description: 'Set the owner of the user initialization files for interactive users
+    to
+
+    the primary owner with the following command:
+
+    <pre>$ sudo chown <i>USER</i> /home/<i>USER</i>/.*</pre>
+
+
+    This rule ensures every initialization file related to an interactive user
+
+    is owned by an interactive user.'
+rationale: 'Local initialization files are used to configure the user''s shell environment
+
+    upon logon. Malicious modification of these files could compromise accounts upon
+
+    logon.'
+severity: medium
+references:
+    disa: CCI-000366
+    srg: SRG-OS-000480-GPOS-00227
+    stigid: OL07-00-020690
+    stigref: SV-221735r603797_rule
+identifiers: {}
+ocil_clause: they are not
+ocil: 'To verify all local initialization files for interactive users are owned by
+    the
+
+    primary user, run the following command:
+
+    <pre>$ sudo ls -al /home/<i>USER</i>/.*</pre>
+
+    The user initialization files should be owned by <i>USER</i>.'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings:
+-   general: 'Due to OVAL limitation, this rule can report a false negative in a
+
+        specific situation where two interactive users swap the ownership of
+
+        their respective initialization files.'
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: User Initialization Files Must Be Owned By the Primary User
+definition_location: /home/oscap/content/linux_os/guide/system/accounts/accounts-session/accounts_user_dot_user_ownership/rule.yml
+template: null
+documentation_complete: true

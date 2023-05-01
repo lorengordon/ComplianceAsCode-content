@@ -1,0 +1,47 @@
+prodtype: rhel8
+description: 'The <code>dnf-plugin-subscription-manager</code> package can be installed
+    with the following command:
+
+    <pre>
+
+    $ sudo yum install dnf-plugin-subscription-manager</pre>'
+rationale: 'This package provides plugins to interact with repositories and subscriptions
+
+    from the Red Hat entitlement platform; contains subscription-manager and
+
+    product-id plugins.'
+severity: medium
+references:
+    ism: 0940,1144,1467,1472,1483,1493,1494,1495
+    ospp: FPT_TUD_EXT.1,FPT_TUD_EXT.2
+    srg: SRG-OS-000366-GPOS-00153
+identifiers:
+    cce: CCE-82315-3
+ocil_clause: the package is not installed
+ocil: 'Run the following command to determine if the <code>dnf-plugin-subscription-manager</code>
+    package is installed: <pre>$ rpm -q dnf-plugin-subscription-manager</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Install dnf-plugin-subscription-manager Package
+definition_location: /home/oscap/content/linux_os/guide/system/software/system-tools/package_dnf-plugin-subscription-manager_installed/rule.yml
+template:
+    name: package_installed
+    vars:
+        pkgname: dnf-plugin-subscription-manager
+    backends: {}
+documentation_complete: true

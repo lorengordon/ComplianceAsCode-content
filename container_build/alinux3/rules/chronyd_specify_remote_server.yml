@@ -1,0 +1,51 @@
+prodtype: all
+description: "<tt>Chrony</tt> is a daemon which implements the Network Time Protocol\
+    \ (NTP). It is designed to\nsynchronize system clocks across a variety of systems\
+    \ and use a source that is highly\naccurate. More information on <tt>chrony</tt>\
+    \ can be found at\n\n    <a xmlns='http://www.w3.org/1999/xhtml' href='http://chrony.tuxfamily.org/'>http://chrony.tuxfamily.org/</a>.\n\
+    <tt>Chrony</tt> can be configured to be a client and/or a server.\nAdd or edit\
+    \ server or pool lines to <tt>/etc/chrony.conf</tt> as appropriate:\n<pre>server\
+    \ &lt;remote-server&gt;</pre>\nMultiple servers may be configured."
+rationale: 'If <tt>chrony</tt> is in use on the system proper configuration is vital
+    to ensuring time
+
+    synchronization is working properly.'
+severity: medium
+references:
+    anssi: BP28(R43)
+    disa: CCI-000160,CCI-001891
+    ism: 0988,1405
+    nist: CM-6(a),AU-8(1)(a)
+    pcidss: Req-10.4.3
+    pcidss4: 10.6.2
+    cis: 2.2.1.2
+identifiers: {}
+ocil_clause: a remote time server is not configured
+ocil: 'Run the following command and verify remote server is configured properly:
+
+    <pre># grep -E "^(server|pool)" /etc/chrony.conf</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: package[chrony]
+platforms: !!set
+    package[chrony]: null
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set
+    package_chrony: null
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: A remote time server for Chrony is configured
+definition_location: /home/oscap/content/linux_os/guide/services/ntp/chronyd_specify_remote_server/rule.yml
+template: null
+documentation_complete: true

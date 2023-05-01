@@ -1,0 +1,55 @@
+prodtype: rhel7,rhel8
+description: 'Install anti-virus software on the system and set it to automatically
+    scan new
+
+    files that are introduced to the web server.'
+rationale: 'Remote web authors should not be able to upload files to the Document
+    Root
+
+    directory structure without virus checking and checking for malicious or mobile
+
+    code. A remote web user, whose agency has a Memorandum of Agreement (MOA) with
+
+    the hosting agency and has submitted a DoD form 2875 (System Authorization
+
+    Access Request (SAAR)) or an equivalent document, will be allowed to post files
+
+    to a temporary location on the server. All posted files to this temporary
+
+    location will be scanned for viruses and content checked for malicious or mobile
+
+    code. Only files free of viruses and malicious or mobile code will be posted to
+
+    the appropriate DocumentRoot directory.'
+severity: medium
+references:
+    stigid: WG237
+identifiers:
+    cce: CCE-80561-4
+ocil_clause: it is not
+ocil: 'Remote web authors should not be able to upload files to the Document Root
+
+    directory structure without virus checking and checking for malicious or mobile
+
+    code.'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Scan All Uploaded Content for Malicious Software
+definition_location: /home/oscap/content/linux_os/guide/services/http/securing_httpd/httpd_configure_os_protect_web_server/httpd_antivirus_scan_uploads/rule.yml
+template: null
+documentation_complete: true

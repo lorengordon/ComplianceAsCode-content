@@ -1,0 +1,42 @@
+<def-group>
+  <definition class="compliance" id="wireless_disable_interfaces" version="1">
+    <metadata>
+        <title>Deactivate Wireless Network Interfaces</title>
+        
+    <affected family="unix">
+    <platform>Red Hat Enterprise Linux 8</platform>
+      <platform>SUSE Linux Enterprise 12</platform>
+      <platform>Alibaba Cloud Linux 3</platform>
+      <platform>Fedora</platform>
+      <platform>Red Hat Virtualization 4</platform>
+      <platform>Ubuntu 20.04</platform>
+      <platform>Anolis OS 8</platform>
+      <platform>Red Hat Enterprise Linux 9</platform>
+      <platform>Ubuntu 22.04</platform>
+      <platform>Oracle Linux 8</platform>
+      <platform>Oracle Linux 7</platform>
+      <platform>Oracle Linux 9</platform>
+      <platform>Red Hat Enterprise Linux CoreOS 4</platform>
+      <platform>SUSE Linux Enterprise 15</platform>
+      <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+        <description>All wireless interfaces should be disabled.</description>
+    </metadata>
+    <criteria>
+      <criterion comment="check if wifi interfaces are disabled" test_ref="test_wireless_disable_interfaces" negate="true" />
+    </criteria>
+  </definition>
+
+  <unix:interface_test check="all" check_existence="at_least_one_exists" id="test_wireless_disable_interfaces" version="1" comment="check if UP flag is present on wifi interfaces">
+    <unix:object object_ref="object_active_wifi_interfaces" />
+    <unix:state state_ref="state_wifi_up" />
+  </unix:interface_test>
+
+  <unix:interface_object id="object_active_wifi_interfaces" version="1">
+    <unix:name operation="pattern match">^wl.*$</unix:name>
+  </unix:interface_object>
+
+  <unix:interface_state id="state_wifi_up" version="1">
+    <unix:flag datatype="string" entity_check="at least one" operation="equals">UP</unix:flag>
+  </unix:interface_state>
+</def-group>

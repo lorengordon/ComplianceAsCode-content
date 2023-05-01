@@ -1,0 +1,19 @@
+prodtype: all
+description: Is this system the central log server? If so, edit the file <tt>/etc/logwatch/conf/logwatch.conf</tt>
+    as shown below.
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- logwatch_configured_hostlimit
+- logwatch_configured_splithosts
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+title: Configure Logwatch on the Central Log Server
+definition_location: /home/oscap/content/linux_os/guide/system/logging/configure_logwatch_on_logserver/group.yml
+documentation_complete: true

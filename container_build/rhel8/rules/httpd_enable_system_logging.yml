@@ -1,0 +1,55 @@
+prodtype: rhel7,rhel8
+description: '<tt>CustomLog</tt> should be enabled and set to the following in
+
+    <tt>/etc/httpd/conf/httpd.conf</tt>:
+
+    <pre>CustomLog "logs/access_log" combined</pre>'
+rationale: 'The server error logs are invaluable because they can also be used to
+    identify
+
+    potential problems and enable proactive remediation. Log data can reveal
+
+    anomalous behavior such as "not found" or "unauthorized" errors that may
+
+    be an evidence of attack attempts. Failure to enable error logging can
+
+    significantly reduce the ability of Web Administrators to detect or remediate
+
+    problems. The CustomLog directive specifies the log file, syslog facility, or
+
+    piped logging utility.'
+severity: medium
+references:
+    stigid: WA00615
+identifiers: {}
+ocil_clause: it is not
+ocil: 'To verify if <tt>CustomLog</tt> is configured correctly in
+
+    <tt>/etc/httpd/conf/httpd.conf</tt>, run the following command:
+
+    <pre>$ grep -i customlog /etc/httpd/conf/httpd.conf</pre>
+
+    The output should return the following:
+
+    <pre>CustomLog "logs/access_log" combined</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Enable HTTPD System Logging
+definition_location: /home/oscap/content/linux_os/guide/services/http/securing_httpd/httpd_enable_system_logging/rule.yml
+template: null
+documentation_complete: true

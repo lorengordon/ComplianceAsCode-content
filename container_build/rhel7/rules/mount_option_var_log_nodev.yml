@@ -1,0 +1,85 @@
+prodtype: fedora,ol7,ol8,ol9,rhcos4,rhel7,rhel8,rhel9,ubuntu2204
+description: 'The <tt>nodev</tt> mount option can be used to prevent device files
+    from
+
+    being created in <tt>/var/log</tt>.
+
+    Legitimate character and block devices should exist only in
+
+    the <tt>/dev</tt> directory on the root partition or within chroot
+
+    jails built for system services.
+
+    Add the <code>nodev</code> option to the fourth column of
+
+    <tt>/etc/fstab</tt> for the line which controls mounting of
+
+    <code>/var/log</code>.'
+rationale: 'The only legitimate location for device files is the <tt>/dev</tt> directory
+
+    located on the root partition. The only exception to this is chroot jails.'
+severity: medium
+references:
+    disa: CCI-001764
+    nerc-cip: CIP-003-8 R5.1.1,CIP-003-8 R5.3,CIP-004-6 R2.3,CIP-007-3 R2.1,CIP-007-3
+        R2.2,CIP-007-3 R2.3,CIP-007-3 R5.1,CIP-007-3 R5.1.1,CIP-007-3 R5.1.2
+    nist: CM-7(a),CM-7(b),CM-6(a),AC-6,AC-6(1),MP-7
+    nist-csf: PR.IP-1,PR.PT-2,PR.PT-3
+    srg: SRG-OS-000368-GPOS-00154
+identifiers:
+    cce: CCE-82076-1
+ocil_clause: the "/var/log" file system does not have the "nodev" option set
+ocil: "Verify the <tt>nodev</tt> option is configured for the <tt>/var/log</tt> mount\
+    \ point,\n    run the following command:\n    <pre>$ sudo mount | grep '\\s/var/log\\\
+    s'</pre>\n    <pre>. . . /var/log . . . nodev . . .</pre>\n"
+oval_external_content: null
+fixtext: Modify "/etc/fstab" to use the "nodev" option on the "/var/log" directory.
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Red Hat Enterprise Linux 7 must mount /var/log with the nodev option.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Red Hat Enterprise Linux 7 must mount /var/log with the nodev
+            option.
+        vuldiscussion: 'The "nodev" mount option causes the system to not interpret
+            character or block special devices. Executing character or block special
+            devices from untrusted file systems increases the opportunity for unprivileged
+            users to attain unauthorized administrative access.
+
+
+            The only legitimate location for device files is the "/dev" directory
+            located on the root partition, with the exception of chroot jails if implemented.'
+        checktext: 'Verify "/var/log" is mounted with the "nodev" option:
+
+
+            $ mount | grep /var/log
+
+
+            /dev/mapper/rhel-var-log on /var/log type xfs (rw,nodev,nosuid,noexec,seclabel)
+
+
+            If the "/var/log" file system is mounted without the "nodev" option, this
+            is a finding.'
+        fixtext: Modify "/etc/fstab" to use the "nodev" option on the "/var/log" directory.
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Add nodev Option to /var/log
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/partitions/mount_option_var_log_nodev/rule.yml
+template:
+    name: mount_option
+    vars:
+        mountpoint: /var/log
+        mountoption: nodev
+    backends: {}
+documentation_complete: true

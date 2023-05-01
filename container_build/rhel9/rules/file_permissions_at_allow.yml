@@ -1,0 +1,58 @@
+prodtype: alinux2,alinux3,anolis8,rhel8,rhel9,sle12,sle15,ubuntu2004,ubuntu2204
+description: 'If <tt>/etc/at.allow</tt> exists, it must have permissions <tt>0600</tt>
+
+    or more restrictive.
+
+
+
+    To properly set the permissions of <code>/etc/at.allow</code>, run the command:
+
+    <pre>$ sudo chmod 0600 /etc/at.allow</pre>'
+rationale: 'If the permissions of the at.allow file are not set to 0600 or more restrictive,
+
+    the possibility exists for an unauthorized user to view or edit sensitive information.'
+severity: medium
+references:
+    pcidss4: 2.2.6
+    cis: 5.1.9
+identifiers:
+    cce: CCE-86904-0
+ocil_clause: /etc/at.allow does not have unix mode -rw-------
+ocil: 'To check the permissions of <code>/etc/at.allow</code>,
+
+    run the command:
+
+    <pre>$ ls -l /etc/at.allow</pre>
+
+    If properly configured, the output should indicate the following permissions:
+
+    <code>-rw-------</code>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Verify Permissions on /etc/at.allow file
+definition_location: /home/oscap/content/linux_os/guide/services/cron_and_at/restrict_at_cron_users/file_permissions_at_allow/rule.yml
+template:
+    name: file_permissions
+    vars:
+        filepath: /etc/at.allow
+        missing_file_pass: 'true'
+        filemode: '0600'
+    backends: {}
+documentation_complete: true

@@ -1,0 +1,27 @@
+prodtype: all
+description: 'In the default graphical environment, users logging
+
+    directly into the system are greeted with a login screen provided
+
+    by the GNOME Display Manager (GDM). The warning banner should be
+
+    displayed in this graphical environment for these users.
+
+    The following sections describe how to configure the GDM login
+
+    banner.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules: {}
+platform: package[gdm]
+platforms: !!set
+    package[gdm]: null
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    package_gdm: null
+title: Implement a GUI Warning Banner
+definition_location: /home/oscap/content/linux_os/guide/system/accounts/accounts-banners/gui_login_banner/group.yml
+documentation_complete: true

@@ -1,0 +1,56 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = configure
+# complexity = low
+# disruption = low
+- name: Ensure Rsyslog Encrypts Off-Loaded Audit Records
+  block:
+
+  - name: Deduplicate values from /etc/rsyslog.conf
+    lineinfile:
+      path: /etc/rsyslog.conf
+      create: false
+      regexp: '^\s*{{ "$ActionSendStreamDriverMode"| regex_escape }} '
+      state: absent
+
+  - name: Check if /etc/rsyslog.d exists
+    stat:
+      path: /etc/rsyslog.d
+    register: _etc_rsyslog_d_exists
+
+  - name: Check if the parameter $ActionSendStreamDriverMode is present in /etc/rsyslog.d
+    find:
+      paths: /etc/rsyslog.d
+      recurse: 'yes'
+      follow: 'no'
+      contains: '^\s*{{ "$ActionSendStreamDriverMode"| regex_escape }} '
+    register: _etc_rsyslog_d_has_parameter
+    when: _etc_rsyslog_d_exists.stat.isdir is defined and _etc_rsyslog_d_exists.stat.isdir
+
+  - name: Remove parameter from files in /etc/rsyslog.d
+    lineinfile:
+      path: '{{ item.path }}'
+      create: false
+      regexp: '^\s*{{ "$ActionSendStreamDriverMode"| regex_escape }} '
+      state: absent
+    with_items: '{{ _etc_rsyslog_d_has_parameter.files }}'
+    when: _etc_rsyslog_d_has_parameter.matched
+
+  - name: Insert correct line to /etc/rsyslog.conf
+    lineinfile:
+      path: /etc/rsyslog.conf
+      create: true
+      regexp: '^\s*{{ "$ActionSendStreamDriverMode"| regex_escape }} '
+      line: $ActionSendStreamDriverMode 1
+      state: present
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-86098-1
+  - DISA-STIG-RHEL-08-030710
+  - NIST-800-53-AU-4(1)
+  - configure_strategy
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+  - rsyslog_encrypt_offload_actionsendstreamdrivermode

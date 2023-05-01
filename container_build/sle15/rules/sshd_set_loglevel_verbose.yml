@@ -1,0 +1,146 @@
+prodtype: all
+description: 'The <tt>VERBOSE</tt> parameter configures the SSH daemon to record login
+    and logout activity.
+
+    To specify the log level in
+
+    SSH, add or correct the following line in
+
+
+
+    <tt>/etc/ssh/sshd_config</tt>:
+
+
+    <pre>LogLevel VERBOSE</pre>'
+rationale: 'SSH provides several logging levels with varying amounts of verbosity.
+    <tt>DEBUG</tt> is specifically
+
+    not recommended other than strictly for debugging SSH communications since it
+    provides
+
+    so much data that it is difficult to identify important security information.
+    <tt>INFO</tt> or
+
+    <tt>VERBOSE</tt> level is the basic level that only records login activity of
+    SSH users. In many
+
+    situations, such as Incident Response, it is important to determine when a particular
+    user was active
+
+    on a system. The logout record can eliminate those users who disconnected, which
+    helps narrow the
+
+    field.'
+severity: medium
+references:
+    disa: CCI-000067
+    nerc-cip: CIP-007-3 R7.1
+    nist: AC-17(a),AC-17(1),CM-6(a)
+    pcidss: Req-2.2.4
+    pcidss4: 2.2.6
+    srg: SRG-OS-000032-GPOS-00013
+    stigid: SLES-15-010150
+    cis: 5.2.5
+    stigref: SV-234815r622137_rule
+identifiers:
+    cce: CCE-83270-9
+ocil_clause: the required value is not set
+ocil: 'To determine how the SSH daemon''s <tt>LogLevel</tt> option is set, run the
+    following command:
+
+
+    <pre>$ sudo grep -i LogLevel /etc/ssh/sshd_config</pre>
+
+
+    If a line indicating <tt>VERBOSE</tt> is returned, then the required value is
+    set.
+
+    '
+oval_external_content: null
+fixtext: 'To configure the system add or modify the following line in "/etc/ssh/sshd_config".
+
+
+    LogLevel VERBOSE
+
+
+    Restart the SSH daemon for the settings to take effect:
+
+
+    $ sudo systemctl restart sshd.service'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: SUSE Linux Enterprise 15 must log SSH connection attempts and failures
+    to the server.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: SUSE Linux Enterprise 15 must log SSH connection attempts
+            and failures to the server.
+        vuldiscussion: 'SSH provides several logging levels with varying amounts of
+            verbosity. "DEBUG" is specifically
+
+            not recommended other than strictly for debugging SSH communications since
+            it provides
+
+            so much data that it is difficult to identify important security information.
+            "INFO" or
+
+            "VERBOSE" level is the basic level that only records login activity of
+            SSH users. In many
+
+            situations, such as Incident Response, it is important to determine when
+            a particular user was active
+
+            on a system. The logout record can eliminate those users who disconnected,
+            which helps narrow the
+
+            field.'
+        checktext: 'Verify SUSE Linux Enterprise 15 logs SSH connection attempts and
+            failures to the server.
+
+
+            Check what the SSH daemon''s "LogLevel" option is set to with the following
+            command:
+
+
+            $ sudo grep -i LogLevel /etc/ssh/sshd_config
+
+
+            LogLevel VERBOSE
+
+
+            If a value of "VERBOSE" is not returned, the line is commented out, or
+            is missing, this is a finding.'
+        fixtext: 'Configure SUSE Linux Enterprise 15 to log connection attempts add
+            or modify the following line in "/etc/ssh/sshd_config".
+
+
+            LogLevel VERBOSE
+
+
+            Restart the SSH daemon for the settings to take effect:
+
+
+            $ sudo systemctl restart sshd.service'
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Set SSH Daemon LogLevel to VERBOSE
+definition_location: /home/oscap/content/linux_os/guide/services/ssh/ssh_server/sshd_set_loglevel_verbose/rule.yml
+template:
+    name: sshd_lineinfile
+    vars:
+        parameter: LogLevel
+        rule_id: sshd_set_loglevel_verbose
+        value: VERBOSE
+    backends: {}
+documentation_complete: true

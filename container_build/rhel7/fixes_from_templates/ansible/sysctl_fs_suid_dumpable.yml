@@ -1,0 +1,37 @@
+# platform = multi_platform_all
+# reboot = true
+# strategy = disable
+# complexity = low
+# disruption = medium
+
+- name: List /etc/sysctl.d/*.conf files
+      
+  find:
+    paths:
+      - "/etc/sysctl.d/"
+      - "/run/sysctl.d/"
+      - "/usr/local/lib/sysctl.d/"
+
+
+    contains: '^[\s]*fs.suid_dumpable.*$'
+    patterns: "*.conf"
+    file_type: any
+  register: find_sysctl_d
+
+- name: Comment out any occurrences of fs.suid_dumpable from config files
+  replace:
+    path: "{{ item.path }}"
+    regexp: '^[\s]*fs.suid_dumpable'
+    replace: '#fs.suid_dumpable'
+  loop: "{{ find_sysctl_d.files }}"
+
+
+- name: Ensure sysctl fs.suid_dumpable is set to 0
+  sysctl:
+    name: "fs.suid_dumpable"
+    value: "0"
+
+    sysctl_file: "/etc/sysctl.conf"
+
+    state: present
+    reload: yes

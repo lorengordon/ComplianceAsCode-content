@@ -1,0 +1,94 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = configure
+# complexity = low
+# disruption = low
+- name: Ensure owner on directory /bin/ recursively
+  file:
+    path: /bin/
+    state: directory
+    recurse: true
+    owner: '0'
+  tags:
+  - DISA-STIG-UBTU-20-010424
+  - configure_strategy
+  - dir_ownership_binary_dirs
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Ensure owner on directory /sbin/ recursively
+  file:
+    path: /sbin/
+    state: directory
+    recurse: true
+    owner: '0'
+  tags:
+  - DISA-STIG-UBTU-20-010424
+  - configure_strategy
+  - dir_ownership_binary_dirs
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Ensure owner on directory /usr/bin/ recursively
+  file:
+    path: /usr/bin/
+    state: directory
+    recurse: true
+    owner: '0'
+  tags:
+  - DISA-STIG-UBTU-20-010424
+  - configure_strategy
+  - dir_ownership_binary_dirs
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Ensure owner on directory /usr/sbin/ recursively
+  file:
+    path: /usr/sbin/
+    state: directory
+    recurse: true
+    owner: '0'
+  tags:
+  - DISA-STIG-UBTU-20-010424
+  - configure_strategy
+  - dir_ownership_binary_dirs
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Ensure owner on directory /usr/local/bin/ recursively
+  file:
+    path: /usr/local/bin/
+    state: directory
+    recurse: true
+    owner: '0'
+  tags:
+  - DISA-STIG-UBTU-20-010424
+  - configure_strategy
+  - dir_ownership_binary_dirs
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Ensure owner on directory /usr/local/sbin/ recursively
+  file:
+    path: /usr/local/sbin/
+    state: directory
+    recurse: true
+    owner: '0'
+  tags:
+  - DISA-STIG-UBTU-20-010424
+  - configure_strategy
+  - dir_ownership_binary_dirs
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed

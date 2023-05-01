@@ -1,0 +1,21 @@
+prodtype: all
+description: 'Since DNS is
+
+    a high-risk service which must frequently be made available to the entire
+
+    Internet, it is strongly recommended that no other services be offered by
+
+    systems which act as organizational DNS servers.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules: {}
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Run DNS Software on Dedicated Servers
+definition_location: /home/oscap/content/linux_os/guide/services/dns/dns_server_isolation/dns_server_dedicated/group.yml
+documentation_complete: true

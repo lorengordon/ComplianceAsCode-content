@@ -1,0 +1,17 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = configure
+# complexity = low
+# disruption = low
+- name: Set permissions for /var/log/
+  file:
+    path: /var/log/
+    state: directory
+    mode: u-s,g-ws,o-wt
+  tags:
+  - configure_strategy
+  - file_permissions_var_log
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed

@@ -1,0 +1,144 @@
+prodtype: alinux3,ol8,ol9,rhel8,rhel9
+description: 'Oracle Linux 8 systems providing tools to interface with audit information
+    will leverage user permissions and roles identifying the user accessing the tools,
+    and the corresponding rights the user enjoys, to make access decisions regarding
+    the access to audit tools.
+
+
+    Audit tools include, but are not limited to, vendor-provided and open source audit
+    tools needed to successfully view and manipulate audit information system activity
+    and records. Audit tools include custom queries and report generators.
+
+
+    Audit tools must have the correct owner.'
+rationale: 'Protecting audit information also includes identifying and protecting
+    the tools used to view and manipulate log data.
+
+    Therefore, protecting audit tools is necessary to prevent unauthorized operations
+    on audit information.'
+severity: medium
+references:
+    disa: CCI-001493,CCI-001494,CCI-001495
+    nist: AU-9
+    srg: SRG-OS-000256-GPOS-00097,SRG-OS-000257-GPOS-00098,SRG-OS-000258-GPOS-00099
+    stigid: OL08-00-030630
+    stigref: SV-248808r779990_rule
+identifiers: {}
+ocil_clause: any audit tools are not owned by root
+ocil: 'Verify the audit tools are owned by "root" to prevent any unauthorized access,
+    deletion, or modification.
+
+
+    Check the owner of each audit tool by running the following command:
+
+
+    $ sudo stat -c "%U %n" /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace
+    /sbin/auditd /sbin/rsyslogd /sbin/augenrules
+
+
+    root /sbin/auditctl
+
+    root /sbin/aureport
+
+    root /sbin/ausearch
+
+    root /sbin/autrace
+
+    root /sbin/auditd
+
+    root /sbin/rsyslogd
+
+    root /sbin/augenrules'
+oval_external_content: null
+fixtext: 'Configure the audit tools to be owned by "root", by running the following
+    command:
+
+
+    $ sudo chown root [audit_tool]
+
+
+    Replace "[audit_tool]" with each audit tool not owned by "root".'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Oracle Linux 8 audit tools must be owned by root.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Oracle Linux 8 audit tools must be owned by root.
+        vuldiscussion: 'Protecting audit information also includes identifying and
+            protecting the tools used to view and manipulate log data. Therefore,
+            protecting audit tools is necessary to prevent unauthorized operation
+            on audit information.
+
+
+            Oracle Linux 8 systems providing tools to interface with audit information
+            will leverage user permissions and roles identifying the user accessing
+            the tools, and the corresponding rights the user enjoys, to make access
+            decisions regarding the access to audit tools.
+
+
+            Audit tools include, but are not limited to, vendor-provided and open
+            source audit tools needed to successfully view and manipulate audit information
+            system activity and records. Audit tools include custom queries and report
+            generators.'
+        checktext: 'Verify the audit tools are owned by "root" with the following
+            command:
+
+
+            $ sudo stat -c "%U %n" /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace
+            /sbin/auditd /sbin/rsyslogd /sbin/augenrules
+
+
+            root /sbin/auditctl
+
+            root /sbin/aureport
+
+            root /sbin/ausearch
+
+            root /sbin/autrace
+
+            root /sbin/auditd
+
+            root /sbin/rsyslogd
+
+            root /sbin/augenrules
+
+
+            If any audit tools do not have an owner of "root", this is a finding.'
+        fixtext: 'Configure the audit tools to be owned by "root" by running the following
+            command:
+
+
+            $ sudo chown root [audit_tool]
+
+
+            Replace "[audit_tool]" with each audit tool not owned by "root".'
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Audit Tools Must Be Owned by Root
+definition_location: /home/oscap/content/linux_os/guide/system/software/integrity/software-integrity/aide/file_audit_tools_ownership/rule.yml
+template:
+    name: file_owner
+    vars:
+        filepath:
+        - /sbin/auditctl
+        - /sbin/aureport
+        - /sbin/ausearch
+        - /sbin/autrace
+        - /sbin/auditd
+        - /sbin/rsyslogd
+        - /sbin/augenrules
+        fileuid: '0'
+        missing_file_pass: 'true'
+    backends: {}
+documentation_complete: true

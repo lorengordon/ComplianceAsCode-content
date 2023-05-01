@@ -1,0 +1,22 @@
+prodtype: all
+description: 'If the system will operate as an IMAP or
+
+    POP3 server, the dovecot software should be configured securely by following
+
+    the recommendations below.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups:
+- dovecot_allow_imap_access
+- dovecot_enabling_ssl
+- dovecot_support_necessary_protocols
+rules: {}
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Configure Dovecot if Necessary
+definition_location: /home/oscap/content/linux_os/guide/services/imap/configure_dovecot/group.yml
+documentation_complete: true

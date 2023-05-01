@@ -1,0 +1,50 @@
+prodtype: alinux2,alinux3,fedora,ol7,ol8,rhcos4,rhel7,rhel8,rhel9,rhv4,sle15
+description: 'The <code>libselinux</code> package can be installed with the following
+    command:
+
+    <pre>
+
+    $ sudo yum install libselinux</pre>'
+rationale: 'Security-enhanced Linux is a feature of the Linux kernel and a number
+    of utilities
+
+    with enhanced security functionality designed to add mandatory access controls
+    to Linux.
+
+
+    The <tt>libselinux</tt> package contains the core library of the Security-enhanced
+    Linux system.'
+severity: high
+references:
+    cis: 1.6.2
+identifiers: {}
+ocil_clause: the package is not installed
+ocil: 'Run the following command to determine if the <code>libselinux</code> package
+    is installed: <pre>$ rpm -q libselinux</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Install libselinux Package
+definition_location: /home/oscap/content/linux_os/guide/system/selinux/package_libselinux_installed/rule.yml
+template:
+    name: package_installed
+    vars:
+        pkgname: libselinux
+    backends: {}
+documentation_complete: true

@@ -1,0 +1,11 @@
+name: cpe:/o:canonical:ubuntu_linux:18.04::~~lts~~~
+check_id: installed_OS_is_ubuntu1804
+bash_conditional: ''
+ansible_conditional: ''
+is_product_cpe: true
+versioned: false
+args: {}
+title: Ubuntu release 18.04 (Bionic Beaver)
+definition_location: ''
+template: null
+documentation_complete: true

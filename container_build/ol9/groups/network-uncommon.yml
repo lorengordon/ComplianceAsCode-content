@@ -1,0 +1,37 @@
+prodtype: all
+description: 'The system includes support for several network protocols which are
+    not commonly used.
+
+    Although security vulnerabilities in kernel networking code are not frequently
+    discovered,
+
+    the consequences can be dramatic. Ensuring uncommon network protocols are disabled
+
+    reduces the system''s risk to attacks targeted at its implementation of those
+    protocols.'
+warnings:
+-   general: 'Although these protocols are not commonly used, avoid disruption
+
+        in your network environment by ensuring they are not needed
+
+        prior to disabling them.'
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- kernel_module_atm_disabled
+- kernel_module_can_disabled
+- kernel_module_firewire-core_disabled
+- kernel_module_rds_disabled
+- kernel_module_sctp_disabled
+- kernel_module_tipc_disabled
+platform: machine
+platforms: !!set
+    machine: null
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+title: Uncommon Network Protocols
+definition_location: /home/oscap/content/linux_os/guide/system/network/network-uncommon/group.yml
+documentation_complete: true

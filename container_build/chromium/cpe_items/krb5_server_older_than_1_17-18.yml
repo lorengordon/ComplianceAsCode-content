@@ -1,0 +1,11 @@
+name: cpe:/a:krb5_server_older_than_1_17-18
+check_id: krb5_server_older_than_1_17_18
+bash_conditional: ''
+ansible_conditional: ''
+is_product_cpe: false
+versioned: false
+args: {}
+title: Package krb5 server is installed and version is lesser than 1.17-18
+definition_location: /home/oscap/content/shared/applicability/krb5_server_older_than_1_17-18.yml
+template: null
+documentation_complete: true

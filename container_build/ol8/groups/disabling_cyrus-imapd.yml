@@ -1,0 +1,17 @@
+prodtype: all
+description: 'If the system does not need to operate as an IMAP or
+
+    POP3 server, the Cyrus IMAP software should be removed.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules: {}
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Disable Cyrus IMAP
+definition_location: /home/oscap/content/linux_os/guide/services/imap/disabling_cyrus-imapd/group.yml
+documentation_complete: true

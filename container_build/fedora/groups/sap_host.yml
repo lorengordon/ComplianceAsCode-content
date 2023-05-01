@@ -1,0 +1,21 @@
+prodtype: all
+description: 'SAP (Systems, Applications and Products in Data Processing) is enterprise
+
+    software to manage business operations and customer relations. The
+
+    following section contains SAP specific requirement that is not part
+
+    of standard or common OS setting.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules: {}
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: SAP Specific Requirement
+definition_location: /home/oscap/content/linux_os/guide/system/software/sap_host/group.yml
+documentation_complete: true

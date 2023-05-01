@@ -1,0 +1,87 @@
+prodtype: ol7,ol8,ol9,rhel7,rhel8,rhel9,sle12,sle15
+description: 'The sudo command allows a user to execute programs with elevated
+
+    (administrator) privileges. It prompts the user for their password
+
+    and confirms your request to execute a command by checking a file,
+
+    called sudoers.
+
+    Restrict privileged actions by removing the following entries from the sudoers
+    file:
+
+    <tt>ALL ALL=(ALL) ALL</tt>
+
+    <tt>ALL ALL=(ALL:ALL) ALL</tt>'
+rationale: 'If the "sudoers" file is not configured correctly, any user defined
+
+    on the system can initiate privileged actions on the target system.'
+severity: medium
+references:
+    disa: CCI-000366
+    nist: CM-6(b),CM-6(iv)
+    srg: SRG-OS-000480-GPOS-00227
+identifiers: {}
+ocil_clause: either of the commands returned a line
+ocil: 'Determine if "sudoers" file restricts sudo access run the following commands:
+
+    <pre>$ sudo grep -PR ''^\s*ALL\s+ALL\=\(ALL\)\s+ALL\s*$'' /etc/sudoers /etc/sudoers.d/*</pre>
+
+    <pre>$ sudo grep -PR ''^\s*ALL\s+ALL\=\(ALL\:ALL\)\s+ALL\s*$'' /etc/sudoers /etc/sudoers.d/*</pre>'
+oval_external_content: null
+fixtext: 'Remove the following entries from /etc/sudoers or any file in /etc/sudoers.d/*:
+
+    ALL ALL=(ALL) ALL
+
+    ALL ALL=(ALL:ALL) ALL'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Oracle Linux 9 must restrict privilege elevation to authorized personnel.
+warnings:
+-   general: 'This rule doesn''t come with a remediation, as the exact requirement
+        allows exceptions,
+
+        and removing lines from the sudoers file can make the system non-administrable.'
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Oracle Linux 9 must restrict privilege elevation to authorized
+            personnel.
+        vuldiscussion: 'If the "sudoers" file is not configured correctly, any user
+            defined
+
+            on the system can initiate privileged actions on the target system.'
+        checktext: 'Verify Oracle Linux 9 restricst privilege elevation to authorized
+            personnel with the following command:
+
+
+            $ sudo sh -c ''grep -iw ALL /etc/sudoers /etc/sudoers.d/*''
+
+
+            If the either of the following entries are returned, this is a finding:
+
+            ALL     ALL=(ALL) ALL
+
+            ALL     ALL=(ALL:ALL) ALL'
+        fixtext: 'Remove the following entries from the /etc/sudoers file or configuration
+            file under /etc/sudoers.d/:
+
+
+            ALL     ALL=(ALL) ALL
+
+            ALL     ALL=(ALL:ALL) ALL'
+platform: package[sudo]
+platforms: !!set
+    package[sudo]: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    package_sudo: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: The operating system must restrict privilege elevation to authorized personnel
+definition_location: /home/oscap/content/linux_os/guide/system/software/sudo/sudo_restrict_privilege_elevation_to_authorized/rule.yml
+template: null
+documentation_complete: true

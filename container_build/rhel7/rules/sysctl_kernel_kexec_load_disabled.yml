@@ -1,0 +1,123 @@
+prodtype: fedora,ol7,ol8,ol9,rhcos4,rhel7,rhel8,rhel9
+description: 'To set the runtime status of the <code>kernel.kexec_load_disabled</code>
+    kernel parameter, run the following command: <pre>$ sudo sysctl -w kernel.kexec_load_disabled=1</pre>
+
+    To make sure that the setting is persistent, add the following line to a file
+    in the directory <tt>/etc/sysctl.d</tt>: <pre>kernel.kexec_load_disabled = 1</pre>'
+rationale: 'Disabling kexec_load allows greater control of the kernel memory.
+
+    It makes it impossible to load another kernel image after it has been disabled.
+
+    '
+severity: medium
+references:
+    disa: CCI-001749
+    nist: CM-6
+    srg: SRG-OS-000480-GPOS-00227,SRG-OS-000366-GPOS-00153
+identifiers:
+    cce: CCE-81056-4
+ocil_clause: the correct value is not returned
+ocil: 'The runtime status of the <code>kernel.kexec_load_disabled</code> kernel parameter
+    can be queried
+
+    by running the following command:
+
+    <pre>$ sysctl kernel.kexec_load_disabled</pre>
+
+    <code>1</code>.
+
+    '
+oval_external_content: null
+fixtext: 'Add or edit the following line in a system configuration file in the "/etc/sysctl.d/"
+    directory:
+
+    kernel.kexec_load_disabled = 1
+
+
+    Load settings from all system configuration files with the following command:
+
+
+    $ sudo sysctl --system'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Red Hat Enterprise Linux 7 must prevent the loading of a new kernel
+    for later execution.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Red Hat Enterprise Linux 7 must prevent the loading of a
+            new kernel for later execution.
+        vuldiscussion: 'Changes to any software components can have significant effects
+            on the overall security of the operating system. This requirement ensures
+            the software has not been tampered with and that it has been provided
+            by a trusted vendor.
+
+
+            Disabling kexec_load prevents an unsigned kernel image (that could be
+            a windows kernel or modified vulnerable kernel) from being loaded. Kexec
+            can be used subvert the entire secureboot process and should be avoided
+            at all costs especially since it can load unsigned kernel images.'
+        checktext: 'Verify Red Hat Enterprise Linux 7 is configured to disable kernel
+            image loading.
+
+
+            Check the status of the kernel.kexec_load_disabled kernel parameter with
+            the following command:
+
+
+            $ sysctl kernel.kexec_load_disabled
+
+
+            kernel.kexec_load_disabled = 1
+
+
+            If "kernel.kexec_load_disabled" is not set to "1" or is missing, this
+            is a finding.
+
+
+            Check that the configuration files are present to enable this kernel parameter
+            with the following command:
+
+
+            $ sudo /usr/lib/systemd/systemd-sysctl --cat-config | egrep -v ''^(#|;)''
+            | grep -F kernel.kexec_load_disabled | tail -1
+
+
+            kernel.kexec_load_disabled = 1
+
+
+            If "kernel.kexec_load_disabled" is not set to "1" or is missing, this
+            is a finding.'
+        fixtext: 'Add or edit the following line in a system configuration file in
+            the "/etc/sysctl.d/" directory:
+
+
+            kernel.kexec_load_disabled = 1
+
+
+            Load settings from all system configuration files with the following command:
+
+
+            $ sudo sysctl --system'
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Disable Kernel Image Loading
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/restrictions/sysctl_kernel_kexec_load_disabled/rule.yml
+template:
+    name: sysctl
+    vars:
+        sysctlvar: kernel.kexec_load_disabled
+        sysctlval: '1'
+        datatype: int
+    backends: {}
+documentation_complete: true

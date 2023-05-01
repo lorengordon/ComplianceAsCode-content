@@ -1,0 +1,19 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = configure
+# complexity = low
+# disruption = low
+
+
+
+
+
+- name: Set permissions for /etc/cron.weekly/
+  file:
+    path: "/etc/cron.weekly/"
+    state: directory
+
+    mode: "u-s,g-xwrs,o-xwrt"
+
+
+

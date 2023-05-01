@@ -1,0 +1,12 @@
+name: non-uefi
+original_expression: non-uefi
+xml_content: <ns0:platform xmlns:ns0="http://cpe.mitre.org/language/2.0" id="non-uefi"><ns0:logical-test
+    operator="AND" negate="false"><ns0:check-fact-ref system="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+    href="ssg-ubuntu1804-cpe-oval.xml" id-ref="oval:ssg-system_boot_mode_is_non_uefi:def:1"
+    /></ns0:logical-test></ns0:platform>
+bash_conditional: '[ ! -d /sys/firmware/efi ]'
+ansible_conditional: '"/boot/efi" not in ansible_mounts | map(attribute="mount") |
+    list'
+title: ''
+definition_location: /home/oscap/content/build/ubuntu1804/platforms/non-uefi.yml
+documentation_complete: true

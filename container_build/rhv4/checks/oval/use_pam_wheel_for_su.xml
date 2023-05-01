@@ -1,0 +1,38 @@
+<def-group>
+  <definition class="compliance" id="use_pam_wheel_for_su" version="1">
+    <metadata>
+        <title>Enforce usage of pam_wheel for su authentication</title>
+        
+    <affected family="unix">
+    <platform>Oracle Linux 8</platform>
+      <platform>Fedora</platform>
+      <platform>Oracle Linux 7</platform>
+      <platform>Red Hat Enterprise Linux 7</platform>
+      <platform>SUSE Linux Enterprise 12</platform>
+      <platform>Anolis OS 8</platform>
+      <platform>SUSE Linux Enterprise 15</platform>
+      <platform>Alibaba Cloud Linux 2</platform>
+      <platform>Oracle Linux 9</platform>
+      <platform>Red Hat Enterprise Linux 9</platform>
+      <platform>Alibaba Cloud Linux 3</platform>
+      <platform>Red Hat Virtualization 4</platform>
+      <platform>Red Hat Enterprise Linux 8</platform>
+    </affected>
+        <description>Only members of the wheel group should be able to authenticate through the su command.</description>
+    </metadata>
+    <criteria operator="AND">
+      <criterion test_ref="test_use_pam_wheel_for_su" />
+    </criteria>
+  </definition>
+
+  <ind:textfilecontent54_test check="all" check_existence="at_least_one_exists" comment="check /etc/pam.d/su for correct setting" id="test_use_pam_wheel_for_su" version="1">
+    <ind:object object_ref="object_use_pam_wheel_for_su" />
+  </ind:textfilecontent54_test>
+
+  <ind:textfilecontent54_object comment="check /etc/pam.d/su for correct setting" id="object_use_pam_wheel_for_su" version="1">
+    <ind:filepath>/etc/pam.d/su</ind:filepath>
+    <ind:pattern operation="pattern match">^[\s]*auth[\s]+required[\s]+pam_wheel\.so[\s]+use_uid$</ind:pattern>
+    <ind:instance datatype="int">1</ind:instance>
+  </ind:textfilecontent54_object>
+
+</def-group>

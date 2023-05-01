@@ -1,0 +1,40 @@
+prodtype: rhcos4,rhel7,rhel8,rhel9,rhv4,sle15
+description: 'The <tt>samba-common</tt> package should be installed.
+
+    The <code>samba-common</code> package can be installed with the following command:
+
+    <pre>
+
+    $ sudo dnf install samba-common</pre>'
+rationale: If the samba-common package is not installed, samba cannot be configured.
+severity: medium
+references: {}
+identifiers: {}
+ocil_clause: the package is not installed
+ocil: 'Run the following command to determine if the <code>samba-common</code> package
+    is installed: <pre>$ rpm -q samba-common</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Install the Samba Common Package
+definition_location: /home/oscap/content/linux_os/guide/services/smb/configuring_samba/package_samba-common_installed/rule.yml
+template:
+    name: package_installed
+    vars:
+        pkgname: samba-common
+    backends: {}
+documentation_complete: true

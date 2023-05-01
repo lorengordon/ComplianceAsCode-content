@@ -1,0 +1,67 @@
+prodtype: fedora,ol7,ol8,rhcos4,rhel7,rhel8,rhel9,rhv4,sle12,sle15,ubuntu2004,ubuntu2204
+description: 'Configure the audispd plugin to off-load audit records onto a different
+
+    system or media from the system being audited.
+
+
+    Set the <tt>remote_server</tt> option in <pre>/etc/audit/audisp-remote.conf</pre>
+
+    with an IP address or hostname of the system that the audispd plugin should
+
+    send audit records to. For example
+
+    <pre>remote_server = <i><sub idref="var_audispd_remote_server" /></i></pre>'
+rationale: 'Information stored in one location is vulnerable to accidental or incidental
+
+    deletion or alteration.Off-loading is a common process in information systems
+
+    with limited audit storage capacity.'
+severity: medium
+references:
+    disa: CCI-001851
+    ospp: FAU_GEN.1.1.c
+    srg: SRG-OS-000342-GPOS-00133,SRG-OS-000479-GPOS-00224
+identifiers: {}
+ocil_clause: audispd is not sending logs to a remote system
+ocil: 'To verify the audispd plugin off-loads audit records onto a different system
+    or
+
+    media from the system being audited, run the following command:
+
+    <pre>$ sudo grep -i remote_server /etc/audit/audisp-remote.conf</pre>
+
+    The output should return something similar to
+
+    <pre>remote_server = <i><sub idref="var_audispd_remote_server" /></i></pre>'
+oval_external_content: null
+fixtext: 'Configure Oracle Linux 8 to off-load audit records to a different system.
+
+
+    Add or edit the following line in /etc/audit/audisp-remote.conf:
+
+
+    remote_server = <sub idref="var_audispd_remote_server" />'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Oracle Linux 8 must off-load audit records onto a different system
+    or media from the system being audited.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    package[audit]: null
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+    package_audit: null
+bash_conditional: null
+fixes: {}
+title: Configure audispd Plugin To Send Logs To Remote Server
+definition_location: /home/oscap/content/linux_os/guide/system/auditing/configure_auditd_data_retention/auditd_audispd_configure_remote_server/rule.yml
+template: null
+documentation_complete: true

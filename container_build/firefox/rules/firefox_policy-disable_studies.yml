@@ -1,0 +1,53 @@
+prodtype: firefox
+description: 'Pocket may be disabled by setting
+
+    <tt>DisableFirefoxStudies</tt> to <tt>true</tt>
+
+    in the policies file.'
+rationale: Studies try out different features and ideas prior to release to all Firefox
+    users. Testing beta software is not in the DoD user's mission.
+severity: medium
+references:
+    disa: CCI-000381
+    nist: CM-7
+    stigid: FFOX-00-000039
+identifiers: {}
+ocil_clause: null
+ocil: 'To verify that Studies is disabled,
+
+    type the following into the browser address bar:
+
+    <pre>about:policies</pre>
+
+    The output should have the following:
+
+    <pre>"DisableFirefoxStudies": true</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Disable Firefox Studies
+definition_location: /home/oscap/content/products/firefox/guide/firefox/firefox_policy-disable_studies/rule.yml
+template:
+    name: firefox_policy-setting
+    vars:
+        name: Disable Firefox Studies
+        policies:
+        -   path: policies
+            parameter: DisableFirefoxStudies
+            value: 'true'
+    backends: {}
+documentation_complete: true

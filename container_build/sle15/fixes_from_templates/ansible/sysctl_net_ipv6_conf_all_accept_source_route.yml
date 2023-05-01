@@ -1,0 +1,46 @@
+# platform = multi_platform_all
+# reboot = true
+# strategy = disable
+# complexity = low
+# disruption = medium
+
+- name: List /etc/sysctl.d/*.conf files
+
+  find:
+    paths:
+      - "/etc/sysctl.d/"
+      - "/run/sysctl.d/"
+
+
+      - "/usr/lib/sysctl.d/"
+
+    contains: '^[\s]*net.ipv6.conf.all.accept_source_route.*$'
+    patterns: "*.conf"
+    file_type: any
+  register: find_sysctl_d
+
+- name: Comment out any occurrences of net.ipv6.conf.all.accept_source_route from config files
+  replace:
+    path: "{{ item.path }}"
+    regexp: '^[\s]*net.ipv6.conf.all.accept_source_route'
+    replace: '#net.ipv6.conf.all.accept_source_route'
+  loop: "{{ find_sysctl_d.files }}"
+
+
+- name: Comment out any occurrences of net.ipv6.conf.all.accept_source_route from /etc/sysctl.conf
+  replace:
+    path: "/etc/sysctl.conf"
+    regexp: '^[\s]*net.ipv6.conf.all.accept_source_route'
+    replace: '#net.ipv6.conf.all.accept_source_route'
+
+- (xccdf-var sysctl_net_ipv6_conf_all_accept_source_route_value)
+
+- name: Ensure sysctl net.ipv6.conf.all.accept_source_route is set
+  sysctl:
+    name: "net.ipv6.conf.all.accept_source_route"
+    value: "{{ sysctl_net_ipv6_conf_all_accept_source_route_value }}"
+
+    sysctl_file: "/etc/sysctl.d/net_ipv6_conf_all_accept_source_route.conf"
+
+    state: present
+    reload: yes

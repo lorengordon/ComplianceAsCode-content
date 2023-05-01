@@ -1,0 +1,76 @@
+prodtype: alinux3,fedora,ol7,ol8,ol9,rhel7,rhel8,rhel9,sle12,sle15,ubuntu2004,ubuntu2204
+description: 'By default, DConf provides a standard user profile. This profile contains
+    a list
+
+    of DConf configuration databases. The user profile and database always take the
+
+    highest priority. As such the DConf User profile should always exist and be
+
+    configured correctly.
+
+    <br /><br />
+
+
+    To make sure that the user profile is configured correctly, the <tt>/etc/dconf/profile/user</tt>
+
+    should be set as follows:
+
+    <pre>user-db:user
+
+    system-db:local
+
+    system-db:site
+
+    system-db:distro
+
+    </pre>'
+rationale: 'Failure to have a functional DConf profile prevents GNOME3 configuration
+    settings
+
+    from being enforced for all users and allows various security risks.'
+severity: high
+references: {}
+identifiers:
+    cce: CCE-88767-9
+ocil_clause: DConf User profile does not exist or is not configured correctly
+ocil: 'To verify that the DConf User profile is configured correctly, run the following
+
+    command:
+
+
+    <pre>$ cat /etc/dconf/profile/user</pre>
+
+    The output should show the following:
+
+    <pre>user-db:user
+
+    system-db:local
+
+    system-db:site
+
+    system-db:distro</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set
+    package[gdm]: null
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set
+    package_gdm: null
+bash_conditional: null
+fixes: {}
+title: Configure GNOME3 DConf User Profile
+definition_location: /home/oscap/content/linux_os/guide/system/software/gnome/enable_dconf_user_profile/rule.yml
+template: null
+documentation_complete: true

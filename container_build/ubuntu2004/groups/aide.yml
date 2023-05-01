@@ -1,0 +1,29 @@
+prodtype: all
+description: 'AIDE conducts integrity checks by comparing information about
+
+    files with previously-gathered information. Ideally, the AIDE database is
+
+    created immediately after initial system configuration, and then again after any
+
+    software update.  AIDE is highly configurable, with further configuration
+
+    information located in <tt>/usr/share/doc/aide-<i>VERSION</i></tt>.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- aide_build_database
+- aide_check_audit_tools
+- aide_periodic_cron_checking
+- package_aide_installed
+platform: machine
+platforms: !!set
+    machine: null
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+title: Verify Integrity with AIDE
+definition_location: /home/oscap/content/linux_os/guide/system/software/integrity/software-integrity/aide/group.yml
+documentation_complete: true

@@ -1,0 +1,18 @@
+prodtype: all
+description: 'If the system does not need to operate as an IMAP or
+
+    POP3 server, the dovecot software should be disabled and removed.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- package_dovecot_removed
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Disable Dovecot
+definition_location: /home/oscap/content/linux_os/guide/services/imap/disabling_dovecot/group.yml
+documentation_complete: true

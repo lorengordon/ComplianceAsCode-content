@@ -1,0 +1,84 @@
+prodtype: all
+description: ' To properly set the group owner of <code>/var/log/messages</code>,
+    run the command: <pre>$ sudo chgrp root /var/log/messages</pre>'
+rationale: 'The <tt>/var/log/messages</tt> file contains logs of error messages in
+
+    the system and should only be accessed by authorized personnel.'
+severity: medium
+references:
+    disa: CCI-001314
+    srg: SRG-OS-000206-GPOS-00084
+identifiers: {}
+ocil_clause: /var/log/messages does not have a group owner of root
+ocil: 'To check the group ownership of <code>/var/log/messages</code>,
+
+    run the command:
+
+    <pre>$ ls -lL /var/log/messages</pre>
+
+    If properly configured, the output should indicate the following group-owner:
+
+    <code>root</code>'
+oval_external_content: null
+fixtext: '
+
+    To properly set the group owner of <code>/var/log/messages</code>, run the command:
+
+    <pre>$ sudo chgrp root /var/log/messages</pre>'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ' The Oracle Linux 7 /var/log/messages file must be group-owned by
+    root.'
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: The Oracle Linux 7 /var/log/messages file must be group-owned
+            by root.
+        vuldiscussion: 'Only authorized personnel should be aware of errors and the
+            details of the errors. Error messages are an indicator of an organization''s
+            operational state or can identify the Oracle Linux 7 system or platform.
+            Additionally, Personally Identifiable Information (PII) and operational
+            information must not be revealed through error messages to unauthorized
+            personnel or their designated representatives.
+
+
+            The structure and content of error messages must be carefully considered
+            by the organization and development team. The extent to which the information
+            system is able to identify and handle error conditions is guided by organizational
+            policy and operational requirements.'
+        checktext: 'Verify the "/var/log/messages" file is group-owned by root with
+            the following command:
+
+
+            $ls -la /var/log/messages
+
+
+            rw-------. 1 root root 564223 July 11 11:34 /var/log/messages
+
+
+            If "/var/log/messages" does not have a group owner of "root", this is
+            a finding.'
+        fixtext: 'Change the group owner of the "/var/log/messages" file to "root"
+            by running the following command:
+
+
+            $ sudo chgrp root /var/log/messages'
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Verify Group Who Owns /var/log/messages File
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/files/permissions_var_log_dir/file_groupowner_var_log_messages/rule.yml
+template:
+    name: file_groupowner
+    vars:
+        filepath: /var/log/messages
+        filegid: '0'
+    backends: {}
+documentation_complete: true

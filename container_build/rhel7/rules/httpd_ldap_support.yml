@@ -1,0 +1,41 @@
+prodtype: rhel7,rhel8
+description: 'The <tt>ldap</tt> module provides HTTP authentication via an LDAP directory.
+
+    If its functionality is unnecessary, comment out the related modules:
+
+    <pre>#LoadModule ldap_module modules/mod_ldap.so
+
+    #LoadModule authnz_ldap_module modules/mod_authnz_ldap.so</pre>
+
+    If LDAP is to be used, SSL encryption should be used as well.'
+rationale: 'Minimizing the number of loadable modules available to the web server
+    reduces risk
+
+    by limiting the capabilities allowed by the web server.'
+severity: unknown
+references: {}
+identifiers:
+    cce: CCE-80306-4
+ocil_clause: null
+ocil: null
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Disable LDAP Support
+definition_location: /home/oscap/content/linux_os/guide/services/http/securing_httpd/httpd_minimize_loadable_modules/httpd_core_modules/httpd_ldap_support/rule.yml
+template: null
+documentation_complete: true

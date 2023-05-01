@@ -1,0 +1,135 @@
+prodtype: ol7,ol8,ol9,rhel7,rhel8,rhel9,rhv4
+description: 'If running the Trivial File Transfer Protocol (TFTP) service is necessary,
+
+    it should be configured to change its root directory at startup. To do so,
+
+    ensure <tt>/etc/xinetd.d/tftp</tt> includes <tt>-s</tt> as a command line argument,
+
+    as shown in the following example:
+
+    <pre>server_args = -s <sub idref="var_tftpd_secure_directory" /></pre>'
+rationale: 'Using the <tt>-s</tt> option causes the TFTP service to only serve files
+    from the
+
+    given directory. Serving files from an intentionally-specified directory
+
+    reduces the risk of sharing files which should remain private.'
+severity: medium
+references:
+    cis-csc: 11,12,13,14,15,16,18,3,5,8,9
+    cobit5: APO01.06,APO13.01,BAI10.01,BAI10.02,BAI10.03,BAI10.05,DSS01.04,DSS05.02,DSS05.03,DSS05.04,DSS05.05,DSS05.07,DSS06.02,DSS06.06
+    disa: CCI-000366
+    isa-62443-2009: 4.3.3.5.1,4.3.3.5.2,4.3.3.5.3,4.3.3.5.4,4.3.3.5.5,4.3.3.5.6,4.3.3.5.7,4.3.3.5.8,4.3.3.6.1,4.3.3.6.2,4.3.3.6.3,4.3.3.6.4,4.3.3.6.5,4.3.3.6.6,4.3.3.6.7,4.3.3.6.8,4.3.3.6.9,4.3.3.7.1,4.3.3.7.2,4.3.3.7.3,4.3.3.7.4,4.3.4.3.2,4.3.4.3.3
+    isa-62443-2013: SR 1.1,SR 1.10,SR 1.11,SR 1.12,SR 1.13,SR 1.2,SR 1.3,SR 1.4,SR
+        1.5,SR 1.6,SR 1.7,SR 1.8,SR 1.9,SR 2.1,SR 2.2,SR 2.3,SR 2.4,SR 2.5,SR 2.6,SR
+        2.7,SR 3.1,SR 3.5,SR 3.8,SR 4.1,SR 4.3,SR 5.1,SR 5.2,SR 5.3,SR 7.1,SR 7.6
+    iso27001-2013: A.10.1.1,A.11.1.4,A.11.1.5,A.11.2.1,A.11.2.6,A.12.1.2,A.12.5.1,A.12.6.2,A.13.1.1,A.13.1.3,A.13.2.1,A.13.2.3,A.13.2.4,A.14.1.2,A.14.1.3,A.14.2.2,A.14.2.3,A.14.2.4,A.6.1.2,A.6.2.1,A.6.2.2,A.7.1.1,A.7.1.2,A.7.3.1,A.8.2.2,A.8.2.3,A.9.1.1,A.9.1.2,A.9.2.3,A.9.4.1,A.9.4.4,A.9.4.5
+    nist: CM-6(b),AC-6,CM-7(a)
+    nist-csf: PR.AC-3,PR.AC-4,PR.DS-5,PR.IP-1,PR.PT-3,PR.PT-4
+    srg: SRG-OS-000480-GPOS-00227
+    stigid: OL07-00-040720
+    stigref: SV-221887r603260_rule
+identifiers: {}
+ocil_clause: '''"server_args" line does not have a "-s" option, and a subdirectory
+    is not assigned'''
+ocil: 'Verify the TFTP daemon is configured to operate in secure mode.
+
+
+    Check if a TFTP server is installed with the following command:
+
+
+    <pre>$ rpm -qa | grep tftp</pre>
+
+
+
+    If a TFTP server is not installed, this is Not Applicable.
+
+    <br /><br />
+
+
+    If a TFTP server is installed, verify TFTP is configured by with
+
+    the <tt>-s</tt> option by running the following command:
+
+
+    <pre>grep "server_args" /etc/xinetd.d/tftp</pre>
+
+    <pre>server_args = -s <sub idref="var_tftpd_secure_directory" /></pre>'
+oval_external_content: null
+fixtext: 'Configure the TFTP daemon to operate in secure mode by adding the following
+    line to "/etc/xinetd.d/tftp" (or modify the line to have the required value):
+
+
+    server_args = -s <sub idref="var_tftpd_secure_directory" />'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: If the Trivial File Transfer Protocol (TFTP) server is required,
+    the Oracle Linux 7 TFTP daemon must be configured to operate in secure mode.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: If the Trivial File Transfer Protocol (TFTP) server is required,
+            the Oracle Linux 7 TFTP daemon must be configured to operate in secure
+            mode.
+        vuldiscussion: 'Restricting TFTP to a specific directory prevents remote users
+            from copying, transferring, or overwriting system files. Using the "-s"
+            option causes the TFTP service to only serve files from the
+
+            given directory.'
+        checktext: 'Verify the TFTP daemon is configured to operate in secure mode.
+
+
+            Check if a TFTP server is installed with the following command:
+
+
+            $ sudo dnf list --installed tftp-server
+
+
+            tftp-server.x86_64    5.2-35.el9.x86_64
+
+
+            If a TFTP server is not installed, this requirement is Not Applicable.
+
+
+            If a TFTP server is installed, check for the server arguments with the
+            following command:
+
+
+            $ systemctl cat tftp | grep ExecStart
+
+            ExecStart=/usr/sbin/in.tftpd -s /var/lib/tftpboot
+
+
+            If the "ExecStart" line does not have a "-s" option, and a subdirectory
+            is not assigned, this is a finding.'
+        fixtext: 'Configure the TFTP daemon to operate in secure mode.
+
+
+            1. Find the path for the systemd service
+
+
+            $ sudo systemctl show tftp | grep FragmentPath=
+
+            FragmentPath=/etc/systemd/system/tftp.service
+
+
+            2. Edit the ExecStart line on that file to add the -s option with a subdirectory.
+
+
+            ExecStart=/usr/sbin/in.tftpd -s /var/lib/tftpboot'
+platform: package[tftp-server]
+platforms: !!set
+    package[tftp-server]: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    package_tftp-server: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Ensure tftp Daemon Uses Secure Mode
+definition_location: /home/oscap/content/linux_os/guide/services/obsolete/tftp/tftpd_uses_secure_mode/rule.yml
+template: null
+documentation_complete: true

@@ -1,0 +1,142 @@
+prodtype: fedora,ol7,ol8,ol9,rhcos4,rhel7,rhel8,rhel9,rhv4,sle12,sle15
+description: 'To set the runtime status of the <code>kernel.dmesg_restrict</code>
+    kernel parameter, run the following command: <pre>$ sudo sysctl -w kernel.dmesg_restrict=1</pre>
+
+    To make sure that the setting is persistent, add the following line to a file
+    in the directory <tt>/etc/sysctl.d</tt>: <pre>kernel.dmesg_restrict = 1</pre>'
+rationale: 'Unprivileged access to the kernel syslog can expose sensitive kernel
+
+    address information.'
+severity: low
+references:
+    anssi: BP28(R23)
+    cui: 3.1.5
+    disa: CCI-001090,CCI-001314
+    hipaa: 164.308(a)(1)(ii)(D),164.308(a)(3),164.308(a)(4),164.310(b),164.310(c),164.312(a),164.312(e)
+    nist: SI-11(a),SI-11(b)
+    srg: SRG-OS-000132-GPOS-00067,SRG-OS-000138-GPOS-00069
+    stigid: RHEL-07-010375
+    stigref: SV-255927r880791_rule
+identifiers:
+    cce: CCE-27050-4
+ocil_clause: the correct value is not returned
+ocil: 'The runtime status of the <code>kernel.dmesg_restrict</code> kernel parameter
+    can be queried
+
+    by running the following command:
+
+    <pre>$ sysctl kernel.dmesg_restrict</pre>
+
+    <code>1</code>.
+
+    '
+oval_external_content: null
+fixtext: 'Configure Red Hat Enterprise Linux 7 to restrict access to the dmesg bus.
+
+    Add or edit the following line in a system configuration file in the "/etc/sysctl.d/"
+    directory:
+
+    kernel.dmesg_restrict = 1
+
+
+    Load settings from all system configuration files with the following command:
+
+
+    $ sudo sysctl --system'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Red Hat Enterprise Linux 7 must restrict access to the kernel message
+    buffer.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Red Hat Enterprise Linux 7 must restrict access to the kernel
+            message buffer.
+        vuldiscussion: 'Preventing unauthorized information transfers mitigates the
+            risk of information, including encrypted representations of information,
+            produced by the actions of prior users/roles (or the actions of processes
+            acting on behalf of prior users/roles) from being available to any current
+            users/roles (or current processes) that obtain access to shared system
+            resources (e.g., registers, main memory, hard disks) after those resources
+            have been released back to information systems. The control of information
+            in shared resources is also commonly referred to as object reuse and residual
+            information protection.
+
+
+            This requirement generally applies to the design of an information technology
+            product, but it can also apply to the configuration of particular information
+            system components that are, or use, such products. This can be verified
+            by acceptance/validation processes in DoD or other government agencies.
+
+
+            There may be shared resources with configurable protections (e.g., files
+            in storage) that may be assessed on specific information system components.
+
+
+            Restricting access to the kernel message buffer limits access to only
+            root. This prevents attackers from gaining additional system information
+            as a non-privileged user.'
+        checktext: 'Verify Red Hat Enterprise Linux 7 is configured to restrict access
+            to the kernel message buffer with the following commands:
+
+
+            Check the status of the kernel.dmesg_restrict kernel parameter.
+
+
+            $ sysctl kernel.dmesg_restrict
+
+
+            kernel.dmesg_restrict = 1
+
+
+            If "kernel.dmesg_restrict" is not set to "1" or is missing, this is a
+            finding.
+
+
+            Check that the configuration files are present to enable this kernel parameter.
+
+
+            $  sudo /usr/lib/systemd/systemd-sysctl --cat-config | egrep -v ''^(#|;)''
+            | grep -F kernel.dmesg_restrict | tail -1
+
+            kernel.dmesg_restrict = 1
+
+
+            If "kernel.dmesg_restrict" is not set to "1" or is missing this is a finding.'
+        fixtext: 'Configure Red Hat Enterprise Linux 7 to restrict access to the kernel
+            message buffer.
+
+
+            Add or edit the following line in a system configuration file, in the
+            "/etc/sysctl.d/" directory:
+
+
+            kernel.dmesg_restrict = 1
+
+
+            Load settings from all system configuration files with the following command:
+
+
+            $ sudo sysctl --system'
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Restrict Access to Kernel Message Buffer
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/restrictions/sysctl_kernel_dmesg_restrict/rule.yml
+template:
+    name: sysctl
+    vars:
+        sysctlvar: kernel.dmesg_restrict
+        sysctlval: '1'
+        datatype: int
+    backends: {}
+documentation_complete: true

@@ -1,0 +1,39 @@
+<def-group>
+  <definition class="compliance" id="selinux_confinement_of_daemons" version="1">
+    <metadata>
+        <title>Ensure No Daemons are Unconfined by SELinux</title>
+        
+    <affected family="unix">
+    <platform>Oracle Linux 7</platform>
+      <platform>Oracle Linux 8</platform>
+      <platform>SUSE Linux Enterprise 15</platform>
+      <platform>Alibaba Cloud Linux 3</platform>
+      <platform>Oracle Linux 9</platform>
+      <platform>Alibaba Cloud Linux 2</platform>
+      <platform>Red Hat Virtualization 4</platform>
+      <platform>Red Hat Enterprise Linux CoreOS 4</platform>
+      <platform>Red Hat Enterprise Linux 8</platform>
+      <platform>Red Hat Enterprise Linux 9</platform>
+      <platform>Fedora</platform>
+      <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+        <description>All pids in /proc should be assigned an SELinux security context other than 'unconfined_service_t'.</description>
+    </metadata>
+    <criteria>
+      <criterion comment="no unconfined_service_t in /proc" test_ref="test_selinux_confinement_of_daemons" />
+    </criteria>
+  </definition>
+  <linux:selinuxsecuritycontext_test check="none satisfy" check_existence="any_exist" comment="none satisfy unconfined_service_t in /proc" id="test_selinux_confinement_of_daemons" version="2">
+    <linux:object object_ref="object_selinux_confinement_of_daemons" />
+    <linux:state state_ref="state_selinux_confinement_of_daemons" />
+  </linux:selinuxsecuritycontext_test>
+  <linux:selinuxsecuritycontext_object comment="find unconfined_service_t in /proc" id="object_selinux_confinement_of_daemons" version="1">
+    <linux:behaviors max_depth="1" recurse_direction="down" />
+    <linux:path>/proc</linux:path>
+    <linux:filename operation="pattern match">^.*$</linux:filename>
+    <filter action="include">state_selinux_confinement_of_daemons</filter>
+  </linux:selinuxsecuritycontext_object>
+  <linux:selinuxsecuritycontext_state comment="state unconfined_service_t" id="state_selinux_confinement_of_daemons" version="1">
+    <linux:type datatype="string" operation="equals">unconfined_service_t</linux:type>
+  </linux:selinuxsecuritycontext_state>
+</def-group>

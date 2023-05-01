@@ -1,0 +1,56 @@
+prodtype: ol7,ol8,ol9,rhel7,rhel8,rhel9,sle12,sle15
+description: 'To set the runtime status of the <code>net.ipv4.tcp_rfc1337</code> kernel
+    parameter, run the following command: <pre>$ sudo sysctl -w net.ipv4.tcp_rfc1337=1</pre>
+
+    To make sure that the setting is persistent, add the following line to a file
+    in the directory <tt>/etc/sysctl.d</tt>: <pre>net.ipv4.tcp_rfc1337 = 1</pre>'
+rationale: 'Enable TCP behavior conformant with RFC 1337. When disabled, if a RST
+    is
+
+    received in TIME_WAIT state, we close the socket immediately without waiting
+
+    for the end of the TIME_WAIT period.'
+severity: medium
+references:
+    anssi: BP28(R22)
+identifiers:
+    cce: CCE-91223-8
+ocil_clause: the correct value is not returned
+ocil: 'The runtime status of the <code>net.ipv4.tcp_rfc1337</code> kernel parameter
+    can be queried
+
+    by running the following command:
+
+    <pre>$ sysctl net.ipv4.tcp_rfc1337</pre>
+
+    <code>1</code>.
+
+    '
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Enable Kernel Parameter to Use TCP RFC 1337 on IPv4 Interfaces
+definition_location: /home/oscap/content/linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_tcp_rfc1337/rule.yml
+template:
+    name: sysctl
+    vars:
+        sysctlvar: net.ipv4.tcp_rfc1337
+        datatype: int
+    backends: {}
+documentation_complete: true

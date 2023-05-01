@@ -1,0 +1,52 @@
+prodtype: ubuntu2004,ubuntu2204
+description: 'To ensure that only users who are members of the group set in the
+
+    <tt>group</tt> pam_wheel parameter can run commands with altered
+
+    privileges through the <tt>su</tt> command, make sure that the
+
+    following line exists in the file <tt>/etc/pam.d/su</tt>:
+
+    <pre>auth required pam_wheel.so use_uid group=<sub idref="var_pam_wheel_group_for_su"
+    /></pre>'
+rationale: 'The <tt>su</tt> program allows to run commands with a substitute
+
+    user and group ID. It is commonly used to run commands as the root
+
+    user. Limiting access to such command is considered a good security
+
+    practice.'
+severity: medium
+references:
+    cis: '5.6'
+identifiers: {}
+ocil_clause: the line is not in the file or it is commented
+ocil: 'Run the following command to check if the line is present:
+
+    <pre>grep pam_wheel /etc/pam.d/su</pre>
+
+    The output should contain the following line:
+
+    <pre>auth required pam_wheel.so use_uid group=<sub idref="var_pam_wheel_group_for_su"
+    /></pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Enforce Usage of pam_wheel with Group Parameter for su Authentication
+definition_location: /home/oscap/content/linux_os/guide/system/accounts/accounts-restrictions/root_logins/use_pam_wheel_group_for_su/rule.yml
+template: null
+documentation_complete: true

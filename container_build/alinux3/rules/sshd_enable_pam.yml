@@ -1,0 +1,108 @@
+prodtype: all
+description: "UsePAM Enables the Pluggable Authentication Module interface. If set\
+    \ to \u201Cyes\u201D this will\nenable PAM authentication using ChallengeResponseAuthentication\
+    \ and\nPasswordAuthentication in addition to PAM account and session module processing\
+    \ for all\nauthentication types.\n\nTo enable PAM authentication, add or correct\
+    \ the following line in\n\n\n<tt>/etc/ssh/sshd_config</tt>:\n\n<pre>UsePAM yes</pre>"
+rationale: 'When UsePAM is set to yes, PAM runs through account and session types
+    properly. This is
+
+    important if you want to restrict access to services based off of IP, time or
+    other factors of
+
+    the account. Additionally, you can make sure users inherit certain environment
+    variables
+
+    on login or disallow access to the server.'
+severity: medium
+references:
+    disa: CCI-000877
+    pcidss4: 2.2.4
+    srg: SRG-OS-000125-GPOS-00065
+identifiers: {}
+ocil_clause: the required value is not set
+ocil: 'To determine how the SSH daemon''s <tt>UsePAM</tt> option is set, run the following
+    command:
+
+
+    <pre>$ sudo grep -i UsePAM /etc/ssh/sshd_config</pre>
+
+
+    If a line indicating <tt>yes</tt> is returned, then the required value is set.
+
+    '
+oval_external_content: null
+fixtext: 'To configure the system add or modify the following line in "/etc/ssh/sshd_config".
+
+
+    UsePAM yes
+
+
+    Restart the SSH daemon for the settings to take effect:
+
+
+    $ sudo systemctl restart sshd.service'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Alibaba Cloud Linux 3 must use strong authenticators in establishing
+    nonlocal maintenance and diagnostic sessions.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Alibaba Cloud Linux 3 must enable the Pluggable Authenitcation
+            Module (PAM) interface for SSHD.
+        vuldiscussion: 'When UsePAM is set to yes, PAM runs through account and session
+            types properly. This is
+
+            important if you want to restrict access to services based off of IP,
+            time or other factors of
+
+            the account. Additionally, you can make sure users inherit certain environment
+            variables
+
+            on login or disallow access to the server.'
+        checktext: 'Verify the Alibaba Cloud Linux 3 SSHD is configured to allow for
+            the UsePAM interface with the following command:
+
+
+            $ sudo grep -i usepam /etc/ssh/sshd_config
+
+
+            UsePAM yes
+
+
+            If the "UsePAM" keyword is set to "no", is missing, or is commented out,
+            this is a finding.'
+        fixtext: 'Configure the Alibaba Cloud Linux 3 SSHD to use the UsePAM interface
+            add or modify the following line in "/etc/ssh/sshd_config".
+
+
+            UsePAM yes
+
+
+            Restart the SSH daemon for the settings to take effect:
+
+
+            $ sudo systemctl restart sshd.service'
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Enable PAM
+definition_location: /home/oscap/content/linux_os/guide/services/ssh/ssh_server/sshd_enable_pam/rule.yml
+template:
+    name: sshd_lineinfile
+    vars:
+        parameter: UsePAM
+        rule_id: sshd_enable_pam
+        value: 'yes'
+    backends: {}
+documentation_complete: true

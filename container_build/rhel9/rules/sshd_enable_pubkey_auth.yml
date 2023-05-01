@@ -1,0 +1,119 @@
+prodtype: all
+description: 'Enable SSH login with public keys.
+
+    <br/>
+
+    The default SSH configuration enables authentication based on public keys. The
+    appropriate
+
+    configuration is used if no value is set for <tt>PubkeyAuthentication</tt>.
+
+    <br/>
+
+    To explicitly enable Public Key Authentication, add or correct the following
+
+
+
+    <tt>/etc/ssh/sshd_config.d/00-complianceascode-hardening.conf</tt>:
+
+
+    <pre>PubkeyAuthentication yes</pre>'
+rationale: "Without the use of multifactor authentication, the ease of access to\n\
+    privileged functions is greatly increased. Multifactor authentication\nrequires\
+    \ using two or more factors to achieve authentication.\nA privileged account is\
+    \ defined as an information system account with\nauthorizations of a privileged\
+    \ user. \nThe DoD CAC with DoD-approved PKI is an example of multifactor\nauthentication."
+severity: medium
+references:
+    disa: CCI-000765,CCI-000766,CCI-000767,CCI-000768
+    srg: SRG-OS-000105-GPOS-00052,SRG-OS-000106-GPOS-00053,SRG-OS-000107-GPOS-00054,SRG-OS-000108-GPOS-00055
+identifiers:
+    cce: CCE-86138-5
+ocil_clause: the required value is not set
+ocil: 'To determine how the SSH daemon''s <tt>PubkeyAuthentication</tt> option is
+    set, run the following command:
+
+
+    <pre>$ sudo grep -i PubkeyAuthentication /etc/ssh/sshd_config.d/00-complianceascode-hardening.conf</pre>
+
+
+
+    If a line indicating <tt>yes</tt> is returned, then the required value is set.
+
+    '
+oval_external_content: null
+fixtext: 'To configure the system add or modify the following line in "/etc/ssh/sshd_config".
+
+
+    PubkeyAuthentication yes
+
+
+    Restart the SSH daemon for the settings to take effect:
+
+
+    $ sudo systemctl restart sshd.service'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Red Hat Enterprise Linux 9 SSHD must accept public key authentication.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Red Hat Enterprise Linux 9 SSHD must accept public key authentication.
+        vuldiscussion: 'Without the use of multifactor authentication, the ease of
+            access to
+
+            privileged functions is greatly increased. Multifactor authentication
+
+            requires using two or more factors to achieve authentication.
+
+            A privileged account is defined as an information system account with
+
+            authorizations of a privileged user.
+
+            The DoD CAC with DoD-approved PKI is an example of multifactor
+
+            authentication.'
+        checktext: 'Verify that Red Hat Enterprise Linux 9 SSH daemon accepts public
+            key encryption with the following command:
+
+
+            $ sudo grep -i PubkeyAuthentication /etc/ssh/sshd_config
+
+
+            PubkeyAuthentication yes
+
+
+            If "PubkeyAuthentication" is set to no, the line is commented out, or
+            the line is missing, this is a finding.'
+        fixtext: 'To configure the system add or modify the following line in "/etc/ssh/sshd_config".
+
+
+            PubkeyAuthentication yes
+
+
+            Restart the SSH daemon for the settings to take effect:
+
+
+            $ sudo systemctl restart sshd.service'
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Enable Public Key Authentication
+definition_location: /home/oscap/content/linux_os/guide/services/ssh/ssh_server/sshd_enable_pubkey_auth/rule.yml
+template:
+    name: sshd_lineinfile
+    vars:
+        parameter: PubkeyAuthentication
+        rule_id: sshd_enable_pubkey_auth
+        value: 'yes'
+    backends: {}
+documentation_complete: true

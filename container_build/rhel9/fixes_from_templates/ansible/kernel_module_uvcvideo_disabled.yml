@@ -1,0 +1,18 @@
+# platform = multi_platform_rhel,multi_platform_fedora,multi_platform_ol,multi_platform_rhv,multi_platform_ubuntu,multi_platform_sle
+# reboot = true
+# strategy = disable
+# complexity = low
+# disruption = medium
+- name: Ensure kernel module 'uvcvideo' is disabled
+  lineinfile:
+    create: yes
+    dest: "/etc/modprobe.d/uvcvideo.conf"
+    regexp: 'install\s+uvcvideo'
+    line: "install uvcvideo /bin/true"
+
+- name: Ensure kernel module 'uvcvideo' is blacklisted
+  lineinfile:
+    create: yes
+    dest: "/etc/modprobe.d/uvcvideo.conf"
+    regexp: '^blacklist uvcvideo$'
+    line: "blacklist uvcvideo"

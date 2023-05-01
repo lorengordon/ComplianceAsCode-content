@@ -1,0 +1,21 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = configure
+# complexity = low
+# disruption = low
+
+
+
+
+- name: Test for existence /usr/bin/lastlog
+  stat:
+    path: "/usr/bin/lastlog"
+  register: file_exists
+
+- name: Ensure group owner 0 on /usr/bin/lastlog
+  file:
+    path: "/usr/bin/lastlog"
+    group: "0"
+  when: file_exists.stat is defined and file_exists.stat.exists
+
+

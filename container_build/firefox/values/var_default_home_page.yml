@@ -1,0 +1,11 @@
+description: The default home page for Firefox users.
+type: string
+operator: equals
+interactive: false
+options:
+    about_blank: about:blank
+    default: null
+warnings: []
+title: The Default Firefox Home Page
+definition_location: /home/oscap/content/products/firefox/guide/firefox/var_default_home_page.var
+documentation_complete: true

@@ -1,0 +1,64 @@
+# platform = multi_platform_rhel,multi_platform_fedora,multi_platform_ol,multi_platform_rhv,multi_platform_sle
+# reboot = true
+# strategy = restrict
+# complexity = medium
+# disruption = low
+- name: Gather the package facts
+  package_facts:
+    manager: auto
+  tags:
+  - CCE-90773-3
+  - grub2_nosmap_argument_absent
+  - low_disruption
+  - medium_complexity
+  - medium_severity
+  - reboot_required
+  - restrict_strategy
+
+- name: Check nosmap argument exists
+  command: grep '^GRUB_CMDLINE_LINUX=.*nosmap=.*"' /etc/default/grub
+  failed_when: false
+  register: argcheck
+  when:
+  - '"grub2-common" in ansible_facts.packages'
+  - ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-90773-3
+  - grub2_nosmap_argument_absent
+  - low_disruption
+  - medium_complexity
+  - medium_severity
+  - reboot_required
+  - restrict_strategy
+
+- name: Replace existing nosmap argument
+  replace:
+    path: /etc/default/grub
+    regexp: \(^GRUB_CMDLINE_LINUX=".*\)nosmap=?[^[:space:]]*\(.*"\)
+    replace: \1 \2
+  when:
+  - '"grub2-common" in ansible_facts.packages'
+  - ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  - argcheck.rc == 0
+  tags:
+  - CCE-90773-3
+  - grub2_nosmap_argument_absent
+  - low_disruption
+  - medium_complexity
+  - medium_severity
+  - reboot_required
+  - restrict_strategy
+
+- name: Update grub defaults and the bootloader menu
+  command: /sbin/grubby --update-kernel=ALL --remove-args="nosmap"
+  when:
+  - '"grub2-common" in ansible_facts.packages'
+  - ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-90773-3
+  - grub2_nosmap_argument_absent
+  - low_disruption
+  - medium_complexity
+  - medium_severity
+  - reboot_required
+  - restrict_strategy

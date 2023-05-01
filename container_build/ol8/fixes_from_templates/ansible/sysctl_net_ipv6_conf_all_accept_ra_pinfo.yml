@@ -1,0 +1,39 @@
+# platform = multi_platform_all
+# reboot = true
+# strategy = disable
+# complexity = low
+# disruption = medium
+
+- name: List /etc/sysctl.d/*.conf files
+      
+  find:
+    paths:
+      - "/etc/sysctl.d/"
+      - "/run/sysctl.d/"
+      - "/usr/local/lib/sysctl.d/"
+
+
+    contains: '^[\s]*net.ipv6.conf.all.accept_ra_pinfo.*$'
+    patterns: "*.conf"
+    file_type: any
+  register: find_sysctl_d
+
+- name: Comment out any occurrences of net.ipv6.conf.all.accept_ra_pinfo from config files
+  replace:
+    path: "{{ item.path }}"
+    regexp: '^[\s]*net.ipv6.conf.all.accept_ra_pinfo'
+    replace: '#net.ipv6.conf.all.accept_ra_pinfo'
+  loop: "{{ find_sysctl_d.files }}"
+
+
+- (xccdf-var sysctl_net_ipv6_conf_all_accept_ra_pinfo_value)
+
+- name: Ensure sysctl net.ipv6.conf.all.accept_ra_pinfo is set
+  sysctl:
+    name: "net.ipv6.conf.all.accept_ra_pinfo"
+    value: "{{ sysctl_net_ipv6_conf_all_accept_ra_pinfo_value }}"
+
+    sysctl_file: "/etc/sysctl.conf"
+
+    state: present
+    reload: yes

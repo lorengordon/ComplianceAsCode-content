@@ -1,0 +1,81 @@
+prodtype: alinux2,alinux3,anolis8,debian10,debian11,rhel7,rhel8,rhel9,sle12,sle15
+description: '
+
+    The <code>snmpd</code> service can be disabled with the following command:
+
+    <pre>$ sudo systemctl mask --now snmpd.service</pre>'
+rationale: 'Running SNMP software provides a network-based avenue of attack, and
+
+    should be disabled if not needed.'
+severity: low
+references:
+    ism: '1311'
+    cis: 2.2.14
+identifiers:
+    cce: CCE-80274-4
+ocil_clause: the "snmpd" is loaded and not masked
+ocil: 'To check that the <code>snmpd</code> service is disabled in system boot configuration,
+
+    run the following command:
+
+    <pre>$ sudo systemctl is-enabled <code>snmpd</code></pre>
+
+    Output should indicate the <code>snmpd</code> service has either not been installed,
+
+    or has been disabled at all runlevels, as shown in the example below:
+
+    <pre>$ sudo systemctl is-enabled <code>snmpd</code><br/> disabled</pre>
+
+
+    Run the following command to verify <code>snmpd</code> is not active (i.e. not
+    running) through current runtime configuration:
+
+    <pre>$ sudo systemctl is-active snmpd</pre>
+
+
+    If the service is not running the command will return the following output:
+
+    <pre>inactive</pre>
+
+
+    The service will also be masked, to check that the <code>snmpd</code> is masked,
+    run the following command:
+
+    <pre>$ sudo systemctl show <code>snmpd</code> | grep "LoadState\|UnitFileState"</pre>
+
+
+    If the service is masked the command will return the following outputs:
+
+
+    <pre>LoadState=masked</pre>
+
+
+    <pre>UnitFileState=masked</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Disable snmpd Service
+definition_location: /home/oscap/content/linux_os/guide/services/snmp/disabling_snmp_service/service_snmpd_disabled/rule.yml
+template:
+    name: service_disabled
+    vars:
+        servicename: snmpd
+        packagename: net-snmp
+    backends: {}
+documentation_complete: true

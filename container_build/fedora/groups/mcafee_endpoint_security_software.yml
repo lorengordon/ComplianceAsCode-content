@@ -1,0 +1,19 @@
+prodtype: all
+description: 'McAfee Endpoint Security for Linux (ENSL) is a suite of software applications
+
+    used to monitor, detect, and defend computer networks and systems.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules: {}
+platform: machine
+platforms: !!set
+    machine: null
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+title: McAfee Endpoint Security for Linux (ENSL)
+definition_location: /home/oscap/content/linux_os/guide/system/software/integrity/endpoint_security_software/mcafee_security_software/mcafee_endpoint_security_software/group.yml
+documentation_complete: true

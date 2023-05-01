@@ -1,0 +1,66 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = configure
+# complexity = low
+# disruption = low
+
+
+
+
+
+- name: Set permissions for /lib/ recursively
+  file:
+    path: "/lib/"
+    state: directory
+
+    recurse: yes
+
+    mode: "g-w,o-w"
+
+
+
+
+
+
+
+- name: Set permissions for /lib64/ recursively
+  file:
+    path: "/lib64/"
+    state: directory
+
+    recurse: yes
+
+    mode: "g-w,o-w"
+
+
+
+
+
+
+
+- name: Set permissions for /usr/lib/ recursively
+  file:
+    path: "/usr/lib/"
+    state: directory
+
+    recurse: yes
+
+    mode: "g-w,o-w"
+
+
+
+
+
+
+
+- name: Set permissions for /usr/lib64/ recursively
+  file:
+    path: "/usr/lib64/"
+    state: directory
+
+    recurse: yes
+
+    mode: "g-w,o-w"
+
+
+

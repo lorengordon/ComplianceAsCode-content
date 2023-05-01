@@ -1,0 +1,99 @@
+prodtype: all
+description: 'Spectre V2 is an indirect branch poisoning attack that can lead to data
+    leakage.
+
+    An exploit for Spectre V2 tricks the indirect branch predictor into executing
+
+    code from a future indirect branch chosen by the attacker, even if the privilege
+
+    level is different.
+
+
+    Since Linux Kernel 4.15 you can check the Spectre V2 mitigation state with the
+    following command:
+
+    <tt>cat /sys/devices/system/cpu/vulnerabilities/spectre_v2</tt>
+
+
+    Enforce the Spectre V2 mitigation by adding the argument
+
+    <tt>spectre_v2=on</tt> to the default
+
+    GRUB 2 command line for the Linux operating system.
+
+    To ensure that <tt>spectre_v2=on)</tt> is added as a kernel command line
+
+    argument to newly installed kernels, add <tt>spectre_v2=on)</tt> to the
+
+    default Grub2 command line for Linux operating systems. Modify the line within
+
+    <tt>/etc/default/grub</tt> as shown below:
+
+    <pre>GRUB_CMDLINE_LINUX="... spectre_v2=on) ..."</pre>
+
+    Run the following command to update command line for already installed kernels:<pre>#
+    grubby --update-kernel=ALL --args="spectre_v2=on)"</pre>'
+rationale: 'The Spectre V2 vulnerability allows an attacker to read memory that he
+    should not have
+
+    access to.'
+severity: high
+references:
+    anssi: BP28(R8)
+identifiers: {}
+ocil_clause: spectre_v2 mitigation is not enforced
+ocil: 'Inspect the form of default GRUB 2 command line for the Linux operating system
+
+    in <tt>/etc/default/grub</tt>. If it includes <tt>spectre_v2=on</tt>,
+
+    then the parameter will be configured for newly installed kernels.
+
+    First check if the GRUB recovery is enabled:
+
+    <pre>$ sudo grep ''GRUB_DISABLE_RECOVERY'' /etc/default/grub</pre>
+
+    If this option is set to true, then check that a line is output by the following
+    command:
+
+    <pre>$ sudo grep ''GRUB_CMDLINE_LINUX_DEFAULT.*spectre_v2=on.*'' /etc/default/grub</pre>
+
+    If the recovery is disabled, check the line with
+
+    <pre>$ sudo grep ''GRUB_CMDLINE_LINUX.*spectre_v2=on.*'' /etc/default/grub</pre>.Moreover,
+    command line parameters for currently installed kernels should be checked as well.
+
+    Run the following command:
+
+    <pre>$ sudo grubby --info=ALL | grep args | grep -v ''spectre_v2=on''</pre>
+
+    The command should not return any output.'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set
+    grub2: null
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set
+    grub2: null
+bash_conditional: null
+fixes: {}
+title: Enforce Spectre v2 mitigation
+definition_location: /home/oscap/content/linux_os/guide/system/bootloader-grub2/grub2_spectre_v2_argument/rule.yml
+template:
+    name: grub2_bootloader_argument
+    vars:
+        arg_name: spectre_v2
+        arg_value: 'on'
+    backends: {}
+documentation_complete: true

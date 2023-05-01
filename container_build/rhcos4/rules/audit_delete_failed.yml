@@ -1,0 +1,127 @@
+prodtype: ol8,ol9,rhcos4,rhel8,rhel9
+description: 'Ensure that unsuccessful attempts to delete a file are audited.
+
+
+    The following rules configure audit as described above:
+
+    <pre>## Unsuccessful file delete
+
+    -a always,exit -F arch=b32 -S unlink,unlinkat,rename,renameat -F exit=-EACCES
+    -F auid&gt;=1000 -F auid!=unset -F key=unsuccessful-delete
+
+    -a always,exit -F arch=b64 -S unlink,unlinkat,rename,renameat -F exit=-EACCES
+    -F auid&gt;=1000 -F auid!=unset -F key=unsuccessful-delete
+
+    -a always,exit -F arch=b32 -S unlink,unlinkat,rename,renameat -F exit=-EPERM -F
+    auid&gt;=1000 -F auid!=unset -F key=unsuccessful-delete
+
+    -a always,exit -F arch=b64 -S unlink,unlinkat,rename,renameat -F exit=-EPERM -F
+    auid&gt;=1000 -F auid!=unset -F key=unsuccessful-delete    </pre>
+
+
+    Load new Audit rules into kernel by running:
+
+    <pre>augenrules --load</pre>
+
+
+    Note: This rule uses a special set of Audit rules to comply with OSPP 4.2.1. You
+    may reuse this rule in different profiles. If you decide to do so, it is recommended
+    that you inspect contents of the file closely and make sure that they are alligned
+    with your needs.'
+rationale: Unsuccessful attempts to delete a file might be signs of malicious activities.
+    Auditing of such events help in monitoring and investigating of such activities.
+severity: medium
+references:
+    nist: AU-2(a)
+    ospp: FAU_GEN.1.1.c
+    srg: SRG-OS-000458-GPOS-00203,SRG-OS-000474-GPOS-00219,SRG-OS-000475-GPOS-00220,SRG-OS-000463-GPOS-00207,SRG-OS-000465-GPOS-00209,SRG-OS-000461-GPOS-00205,SRG-OS-000468-GPOS-00212
+identifiers: {}
+ocil_clause: the file does not exist or the content differs
+ocil: 'To verify that the <tt>Audit</tt> is correctly configured according to recommended
+    rules, check the content of the file with the following command:
+
+    <pre>cat /etc/audit/rules.d/30-ospp-v42-4-delete-failed.rules</pre>
+
+    The output has to be exactly as follows:
+
+    <pre>## Unsuccessful file delete
+
+    -a always,exit -F arch=b32 -S unlink,unlinkat,rename,renameat -F exit=-EACCES
+    -F auid&gt;=1000 -F auid!=unset -F key=unsuccessful-delete
+
+    -a always,exit -F arch=b64 -S unlink,unlinkat,rename,renameat -F exit=-EACCES
+    -F auid&gt;=1000 -F auid!=unset -F key=unsuccessful-delete
+
+    -a always,exit -F arch=b32 -S unlink,unlinkat,rename,renameat -F exit=-EPERM -F
+    auid&gt;=1000 -F auid!=unset -F key=unsuccessful-delete
+
+    -a always,exit -F arch=b64 -S unlink,unlinkat,rename,renameat -F exit=-EPERM -F
+    auid&gt;=1000 -F auid!=unset -F key=unsuccessful-delete    </pre>'
+oval_external_content: null
+fixtext: 'Configure Red Hat Enterprise Linux CoreOS 4 to audit all unsuccessful attempts
+    to delete a file.
+
+
+    Create file "/etc/audit/rules.d/30-ospp-v42-4-delete-failed.rules" with the exactly
+    following content:
+
+
+    ## Unsuccessful file delete
+
+    -a always,exit -F arch=b32 -S unlink,unlinkat,rename,renameat -F exit=-EACCES
+    -F auid&gt;=1000 -F auid!=unset -F key=unsuccessful-delete
+
+    -a always,exit -F arch=b64 -S unlink,unlinkat,rename,renameat -F exit=-EACCES
+    -F auid&gt;=1000 -F auid!=unset -F key=unsuccessful-delete
+
+    -a always,exit -F arch=b32 -S unlink,unlinkat,rename,renameat -F exit=-EPERM -F
+    auid&gt;=1000 -F auid!=unset -F key=unsuccessful-delete
+
+    -a always,exit -F arch=b64 -S unlink,unlinkat,rename,renameat -F exit=-EPERM -F
+    auid&gt;=1000 -F auid!=unset -F key=unsuccessful-delete
+
+
+    Then, run the following commands:
+
+
+    $ sudo chmod o-rwx /etc/audit/rules.d/30-ospp-v42-4-delete-failed.rules
+
+    $ sudo augenrules --load'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Configure auditing of unsuccessful file deletions
+definition_location: /home/oscap/content/linux_os/guide/system/auditing/policy_rules/audit_delete_failed/rule.yml
+template:
+    name: audit_file_contents
+    vars:
+        filepath: /etc/audit/rules.d/30-ospp-v42-4-delete-failed.rules
+        contents: '## Unsuccessful file delete
+
+            -a always,exit -F arch=b32 -S unlink,unlinkat,rename,renameat -F exit=-EACCES
+            -F auid&gt;=1000 -F auid!=unset -F key=unsuccessful-delete
+
+            -a always,exit -F arch=b64 -S unlink,unlinkat,rename,renameat -F exit=-EACCES
+            -F auid&gt;=1000 -F auid!=unset -F key=unsuccessful-delete
+
+            -a always,exit -F arch=b32 -S unlink,unlinkat,rename,renameat -F exit=-EPERM
+            -F auid&gt;=1000 -F auid!=unset -F key=unsuccessful-delete
+
+            -a always,exit -F arch=b64 -S unlink,unlinkat,rename,renameat -F exit=-EPERM
+            -F auid&gt;=1000 -F auid!=unset -F key=unsuccessful-delete'
+    backends: {}
+documentation_complete: true

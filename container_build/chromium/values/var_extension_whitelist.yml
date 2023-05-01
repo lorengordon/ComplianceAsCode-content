@@ -1,0 +1,11 @@
+description: Chromium extensions approved for use
+type: string
+operator: equals
+interactive: false
+options:
+    default: oiigbmnaadbkfbmpbfijlflahbdbdgdf
+    none: oiigbmnaadbkfbmpbfijlflahbdbdgdf
+warnings: []
+title: Whitelisted Chromium Extenstions
+definition_location: /home/oscap/content/products/chromium/guide/chromium/var_extension_whitelist.var
+documentation_complete: true

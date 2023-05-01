@@ -1,0 +1,59 @@
+prodtype: alinux2,alinux3,anolis8,fedora,rhel7,rhel8,rhel9,sle12,sle15,ubuntu2204
+description: 'The file <tt>/etc/cron.deny</tt> should not exist.
+
+    Use <tt>/etc/cron.allow</tt> instead.'
+rationale: 'Access to <tt>cron</tt> should be restricted.
+
+    It is easier to manage an allow list than a deny list.'
+severity: medium
+references:
+    pcidss4: 2.2.6
+    cis: 5.1.8
+identifiers:
+    cce: CCE-91314-5
+ocil_clause: the file /etc/cron.deny exists
+ocil: 'The file <tt>/etc/cron.deny</tt> should not exist.
+
+    This can be checked by runnig the following
+
+    <pre>
+
+    stat /etc/cron.deny
+
+    </pre>
+
+    and the output should be
+
+    <pre>
+
+    stat: cannot stat `/etc/cron.deny'': No such file or directory
+
+    </pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Ensure that /etc/cron.deny does not exist
+definition_location: /home/oscap/content/linux_os/guide/services/cron_and_at/restrict_at_cron_users/file_cron_deny_not_exist/rule.yml
+template:
+    name: file_existence
+    vars:
+        filepath: /etc/cron.deny
+        exists: 'false'
+    backends: {}
+documentation_complete: true

@@ -1,0 +1,31 @@
+prodtype: all
+description: 'When a user must temporarily leave an account
+
+    logged-in, screen locking should be employed to prevent passersby
+
+    from abusing the account. User education and training is
+
+    particularly important for screen locking to be effective, and policies
+
+    can be implemented to reinforce this.
+
+    <br /><br />
+
+    Automatic screen locking is only meant as a safeguard for
+
+    those cases where a user forgot to lock the screen.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups:
+- console_screen_locking
+- smart_card_login
+rules: {}
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Configure Screen Locking
+definition_location: /home/oscap/content/linux_os/guide/system/accounts/accounts-physical/screen_locking/group.yml
+documentation_complete: true

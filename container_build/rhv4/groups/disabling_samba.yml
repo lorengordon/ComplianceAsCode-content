@@ -1,0 +1,21 @@
+prodtype: all
+description: 'Even after the Samba server package has been installed, it
+
+    will remain disabled. Do not enable this service unless it is
+
+    absolutely necessary to provide Microsoft Windows file and print
+
+    sharing functionality.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules: {}
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Disable Samba if Possible
+definition_location: /home/oscap/content/linux_os/guide/services/smb/disabling_samba/group.yml
+documentation_complete: true

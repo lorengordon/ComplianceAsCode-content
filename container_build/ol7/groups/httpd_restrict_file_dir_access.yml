@@ -1,0 +1,15 @@
+prodtype: all
+description: Minimize access to critical <tt>httpd</tt> files and directories.
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules: {}
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Restrict File and Directory Access
+definition_location: /home/oscap/content/linux_os/guide/services/http/securing_httpd/httpd_configure_os_protect_web_server/httpd_restrict_file_dir_access/group.yml
+documentation_complete: true

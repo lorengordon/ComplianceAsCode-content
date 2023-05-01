@@ -1,0 +1,50 @@
+prodtype: all
+description: 'The sudo <tt>NOEXEC</tt> tag, when specified, prevents user executed
+
+    commands from executing other commands, like a shell for example.
+
+    This should be enabled by making sure that the <tt>NOEXEC</tt> tag exists in
+
+    <tt>/etc/sudoers</tt> configuration file or any sudo configuration snippets
+
+    in <tt>/etc/sudoers.d/</tt>.'
+rationale: 'Restricting the capability of sudo allowed commands to execute sub-commands
+
+    prevents users from running programs with privileges they wouldn''t have otherwise.'
+severity: high
+references:
+    anssi: BP28(R58)
+identifiers:
+    cce: CCE-83740-1
+ocil_clause: noexec is not enabled in sudo
+ocil: 'To determine if <tt>NOEXEC</tt> has been configured for sudo, run the following
+    command:
+
+    <pre>$ sudo grep -ri "^[\s]*Defaults.*\bnoexec\b.*" /etc/sudoers /etc/sudoers.d/</pre>
+
+    The command should return a matching output.'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Ensure Privileged Escalated Commands Cannot Execute Other Commands - sudo NOEXEC
+definition_location: /home/oscap/content/linux_os/guide/system/software/sudo/sudo_add_noexec/rule.yml
+template:
+    name: sudo_defaults_option
+    vars:
+        option: noexec
+    backends: {}
+documentation_complete: true

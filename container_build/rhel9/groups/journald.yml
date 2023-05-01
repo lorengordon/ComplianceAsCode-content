@@ -1,0 +1,25 @@
+prodtype: all
+description: "systemd-journald is a system service that collects and stores\nlogging\
+    \ data. It creates and maintains structured, indexed\njournals based on logging\
+    \ information that is received from a\nvariety of sources.\n\nFor more information\
+    \ on <tt>systemd-journald </tt> and additional <tt>systemd-journald</tt> configuration\
+    \ options, see\n<b>\n    <a xmlns='http://www.w3.org/1999/xhtml' href='https://systemd.io/'>https://systemd.io/</a></b>."
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- journald_compress
+- journald_forward_to_syslog
+- journald_storage
+- service_systemd-journald_enabled
+- socket_systemd-journal-remote_disabled
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+title: systemd-journald
+definition_location: /home/oscap/content/linux_os/guide/system/logging/journald/group.yml
+documentation_complete: true

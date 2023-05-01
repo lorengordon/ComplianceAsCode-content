@@ -1,0 +1,40 @@
+<def-group oval_version="5.11">
+  <definition class="compliance" id="sssd_offline_cred_expiration" version="1">
+    <metadata>
+        <title>Configure SSSD to Expire Offline Credentials</title>
+        
+    <affected family="unix">
+    <platform>Red Hat Enterprise Linux CoreOS 4</platform>
+      <platform>Red Hat Enterprise Linux 8</platform>
+      <platform>Ubuntu 20.04</platform>
+      <platform>Red Hat Enterprise Linux 9</platform>
+      <platform>Red Hat Enterprise Linux 7</platform>
+      <platform>Oracle Linux 9</platform>
+      <platform>Oracle Linux 7</platform>
+      <platform>Oracle Linux 8</platform>
+      <platform>Red Hat Virtualization 4</platform>
+      <platform>SUSE Linux Enterprise 12</platform>
+      <platform>Ubuntu 22.04</platform>
+      <platform>Fedora</platform>
+      <platform>SUSE Linux Enterprise 15</platform>
+    </affected>
+        <description>SSSD should be configured to expire offline credentials after 1 day.</description>
+    </metadata>
+    <criteria operator="OR">
+      <criterion comment="Check offline_credentials_expiration in /etc/sssd/sssd.conf"
+      test_ref="test_sssd_offline_cred_expiration" />
+      
+    </criteria>
+  </definition>
+  <ind:textfilecontent54_test check="all" check_existence="all_exist"
+  comment="tests the value of offline_credentials_expiration setting in the /etc/sssd/sssd.conf file"
+  id="test_sssd_offline_cred_expiration" version="1">
+    <ind:object object_ref="obj_sssd_offline_cred_expiration" />
+  </ind:textfilecontent54_test>
+  <ind:textfilecontent54_object id="obj_sssd_offline_cred_expiration" version="1">
+    <ind:filepath>/etc/sssd/sssd.conf</ind:filepath>
+    <ind:pattern operation="pattern match">^[\s]*\[pam](?:[^\n\[]*\n+)+?[\s]*offline_credentials_expiration[\s]*=[\s]*1\s*(?:#.*)?$</ind:pattern>
+    <ind:instance datatype="int">1</ind:instance>
+  </ind:textfilecontent54_object>
+  
+</def-group>

@@ -1,0 +1,48 @@
+prodtype: ubuntu2004,ubuntu2204
+description: 'The <code>ufw</code> package can be installed with the following command:
+
+    <pre>
+
+    $ apt-get install ufw</pre>'
+rationale: '<tt>ufw</tt> controls the Linux kernel network packet filtering
+
+    code. <tt>ufw</tt> allows system operators to set up firewalls and IP
+
+    masquerading, etc.'
+severity: medium
+references:
+    disa: CCI-002314
+    srg: SRG-OS-000297-GPOS-00115
+    stigid: UBTU-20-010433
+    cis: 3.5.1.1
+identifiers: {}
+ocil_clause: the package is not installed
+ocil: ' Run the following command to determine if the <code>ufw</code> package is
+    installed: <pre>$ dpkg -l  ufw</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Install ufw Package
+definition_location: /home/oscap/content/linux_os/guide/system/network/network-ufw/package_ufw_installed/rule.yml
+template:
+    name: package_installed
+    vars:
+        pkgname: ufw
+    backends: {}
+documentation_complete: true

@@ -1,0 +1,127 @@
+prodtype: rhel8,rhel9,ubuntu2004,ubuntu2204
+description: 'The Ubuntu 20.04 operating system audit tools must have the proper
+
+    permissions configured to protected against unauthorized access.
+
+
+    Verify it by running the following command:
+
+    <pre>$ stat -c "%n %a" /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace
+    /sbin/auditd /sbin/audispd /sbin/augenrules
+
+
+    /sbin/auditctl 755
+
+    /sbin/aureport 755
+
+    /sbin/ausearch 755
+
+    /sbin/autrace 755
+
+    /sbin/auditd 755
+
+    /sbin/audispd 755
+
+    /sbin/augenrules 755
+
+    </pre>
+
+
+    Audit tools needed to successfully view and manipulate audit information
+
+    system activity and records. Audit tools include custom queries and report
+
+    generators'
+rationale: 'Protecting audit information also includes identifying and protecting
+    the
+
+    tools used to view and manipulate log data. Therefore, protecting audit
+
+    tools is necessary to prevent unauthorized operation on audit information.
+
+
+    Operating systems providing tools to interface with audit information
+
+    will leverage user permissions and roles identifying the user accessing the
+
+    tools and the corresponding rights the user enjoys to make access decisions
+
+    regarding the access to audit tools.'
+severity: medium
+references:
+    disa: CCI-001493,CCI-001494
+    srg: SRG-OS-000256-GPOS-00097,SRG-OS-000257-GPOS-00098
+    stigid: UBTU-20-010199
+identifiers: {}
+ocil_clause: null
+ocil: 'Verify it by running the following command:
+
+    <pre>$ stat -c "%n %a" /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace
+    /sbin/auditd /sbin/audispd /sbin/augenrules
+
+
+    /sbin/auditctl 755
+
+    /sbin/aureport 755
+
+    /sbin/ausearch 755
+
+    /sbin/autrace 755
+
+    /sbin/auditd 755
+
+    /sbin/audispd 755
+
+    /sbin/augenrules 755
+
+    </pre>
+
+
+    If the command does not return all the above lines, the missing ones
+
+    need to be added.
+
+
+    Run the following command to correct the permissions of the missing
+
+    entries:
+
+    <pre>$ sudo chmod 0755 [audit_tool] </pre>
+
+
+    Replace "[audit_tool]" with the audit tool that does not have the
+
+    correct permissions.'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Verify that audit tools Have Mode 0755 or less
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/files/permissions_within_important_dirs/file_permissions_audit_binaries/rule.yml
+template:
+    name: file_permissions
+    vars:
+        filepath:
+        - /sbin/auditctl
+        - /sbin/aureport
+        - /sbin/ausearch
+        - /sbin/autrace
+        - /sbin/auditd
+        - /sbin/audispd
+        - /sbin/augenrules
+        filemode: '0755'
+    backends: {}
+documentation_complete: true

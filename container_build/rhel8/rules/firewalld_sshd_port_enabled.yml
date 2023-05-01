@@ -1,0 +1,173 @@
+prodtype: ol7,ol8,ol9,rhel7,rhel8,rhel9,rhv4
+description: 'If the SSH server is in use, inbound connections to SSH''s port should
+    be allowed to permit
+
+    remote access through SSH. In more restrictive firewalld settings, the SSH port
+    should be
+
+    added to the proper firewalld zone in order to allow SSH remote access.
+
+    <br /><br />
+
+
+
+
+    To configure <code>firewalld</code> to allow <code>ssh</code> access, run the
+    following command(s):
+
+    <pre>firewall-cmd --permanent --add-service=ssh</pre>
+
+
+    Then run the following command to load the newly created rule(s):
+
+    <pre>firewall-cmd --reload</pre>'
+rationale: 'If inbound SSH connections are expected, adding the SSH port to the proper
+    firewalld zone
+
+    will allow remote access through the SSH port.'
+severity: medium
+references:
+    cui: 3.1.12
+    ism: '1416'
+    nist: AC-17(a),CM-6(b),CM-7(a),CM-7(b)
+    srg: SRG-OS-000096-GPOS-00050
+identifiers:
+    cce: CCE-80820-4
+ocil_clause: sshd service is not enabled in the proper firewalld zone
+ocil: "\n\nTo determine if <code>firewalld</code> is configured to allow access to\
+    \ <code>ssh</code>\non port <code>22/tcp</code>, run the following command(s):\n\
+    \n    <code>firewall-cmd --list-ports</code>\n\n\n    <code>firewall-cmd --list-services</code>\n\
+    \nIf <code>firewalld</code> is configured to allow access through the firewall,\
+    \ something similar to the following will be output:\n\nIf it is a service:\n\
+    <code>ssh</code>\n\n\nIf it is a port:\n<code>22/tcp</code>\n"
+oval_external_content: null
+fixtext: 'Enable SSH service in firewalld configuration.
+
+
+
+
+
+    To configure <code>firewalld</code> to allow <code>ssh</code> access, run the
+    following command(s):
+
+    <pre>firewall-cmd --permanent --add-service=ssh</pre>
+
+
+    Then run the following command to load the newly created rule(s):
+
+    <pre>firewall-cmd --reload</pre>'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings:
+-   general: 'The remediation for this rule uses <tt>firewall-cmd</tt> and <tt>nmcli</tt>
+        tools.
+
+        Therefore, it will only be executed if <tt>firewalld</tt> and <tt>NetworkManager</tt>
+
+        services are running. Otherwise, the remediation will be aborted and a informative
+        message
+
+        will be shown in the remediation report.
+
+        These respective services will not be started in order to preserve any intentional
+        change
+
+        in network components related to firewall and network interfaces.'
+-   general: 'This rule also checks if the SSH port was modified by the administrator
+        in the firewalld
+
+        services definitions and is reflecting the expected port number. Although
+        this is checked,
+
+        fixing the custom ssh.xml file placed by the administrator at /etc/firewalld/services
+        it
+
+        is not in the scope of the remediation since there is no reliable way to manually
+        change
+
+        the respective file. If the default SSH port is modified, it is on the administrator
+
+        responsibility to ensure the firewalld customizations in the service port
+        level are
+
+        properly configured.'
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Red Hat Enterprise Linux 8 must be configured to prohibit
+            or restrict the use of functions, ports, protocols, and/or services, as
+            defined in the Ports, Protocols, and Services Management (PPSM) Category
+            Assignments List (CAL) and vulnerability assessments.
+        vuldiscussion: To prevent unauthorized connection of devices, unauthorized
+            transfer of information, or unauthorized tunneling (i.e., embedding of
+            data types within data types), organizations must disable or restrict
+            unused or unnecessary ports, protocols,and services on information systems.
+        checktext: 'Inspect the firewall configuration and running services to verify
+            it is configured to prohibit or restrict the use of functions, ports,
+            protocols, and/or services that are unnecessary or prohibited.
+
+
+            Check which services are currently active with the following command:
+
+
+            $ sudo firewall-cmd --list-all-zones
+
+
+            custom (active)
+
+            target: DROP
+
+            icmp-block-inversion: no
+
+            interfaces: ens33
+
+            sources:
+
+            services: dhcpv6-client dns http https ldaps rpc-bind ssh
+
+            ports:
+
+            masquerade: no
+
+            forward-ports:
+
+            icmp-blocks:
+
+            rich rules:
+
+
+            Ask the System Administrator for the site or program Ports, Protocols,
+            and Services Management Component Local Service Assessment (PPSM CLSA).
+            Verify the services allowed by the firewall match the PPSM CLSA.
+
+
+            If there are additional ports, protocols, or services that are not in
+            the PPSM CLSA, or there are ports, protocols, or services that are prohibited
+            by the PPSM Category Assurance List (CAL), this is a finding.'
+        fixtext: 'Update the host''s firewall settings and/or running services to
+            comply with the PPSM Component Local Service Assessment (CLSA) for the
+            site or program and the PPSM CAL.
+
+
+            Then run the following command to load the newly created rule(s):
+
+
+            $ sudo firewall-cmd --reload'
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Enable SSH Server firewalld Firewall Exception
+definition_location: /home/oscap/content/linux_os/guide/services/ssh/ssh_server/firewalld_sshd_port_enabled/rule.yml
+template: null
+documentation_complete: true

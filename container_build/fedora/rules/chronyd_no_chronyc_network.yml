@@ -1,0 +1,76 @@
+prodtype: fedora,ol8,ol9,rhcos4,rhel8,rhel9
+description: 'The <tt>cmdport</tt> option in <tt>/etc/chrony.conf</tt> can be set
+    to
+
+    <tt>0</tt> to stop chrony daemon from listening on the UDP port 323
+
+    for management connections made by chronyc.'
+rationale: 'Minimizing the exposure of the server functionality of the chrony
+
+    daemon diminishes the attack surface.'
+severity: low
+references:
+    disa: CCI-000381
+    nist: CM-7(1)
+    ospp: FMT_SMF_EXT.1
+    srg: SRG-OS-000096-GPOS-00050,SRG-OS-000095-GPOS-00049
+identifiers: {}
+ocil_clause: the "cmdport" option is not set to "0", is commented out, or is missing
+ocil: 'Verify Fedora disables network management of the chrony daemon with the following
+    command:
+
+    <pre>$ grep -w cmdport /etc/chrony.conf</pre>
+
+    <pre>cmdport 0</pre>'
+oval_external_content: null
+fixtext: 'Configure Fedora to disable network management of the chrony daemon by adding/modifying
+    the following line in the /etc/chrony.conf file:
+
+
+    cmdport 0'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Fedora must disable network management of the chrony daemon.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Fedora must disable network management of the chrony daemon.
+        vuldiscussion: 'Not exposing the management interface of the chrony daemon
+            on
+
+            the network diminishes the attack space.'
+        checktext: 'Verify Fedora disables network management of the chrony daemon
+            with the following command:
+
+
+            $ grep -w cmdport /etc/chrony.conf
+
+
+            cmdport 0
+
+
+            If the "cmdport" option is not set to "0", is commented out, or is missing,
+            this is a finding.'
+        fixtext: 'Configure Fedora to disable network management of the chrony daemon
+            by adding/modifying the following line in the /etc/chrony.conf file:
+
+
+            cmdport 0'
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Disable network management of chrony daemon
+definition_location: /home/oscap/content/linux_os/guide/services/ntp/chronyd_no_chronyc_network/rule.yml
+template: null
+documentation_complete: true

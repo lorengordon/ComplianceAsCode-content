@@ -1,0 +1,37 @@
+prodtype: all
+description: 'The Basic Security Module (BSM) security audit API and file format is
+    Apple''s
+
+    auditing system. The audit() function submits a record to the kernel for inclusion
+    in the
+
+    global audit trail. The record must already be in BSM format. To protect
+
+    the integrity of the audit trail, this system call must be made with sufficient
+
+    privileges. Libbsm can be used to create and manipulate BSM data. Length
+
+    is the length in bytes of the BSM record and record points to the data.
+
+    The audit service provides substantial capabilities for recording system
+
+    activities. Secure networks often have substantial auditing
+
+    requirements, and <tt>auditd</tt> can be configured to meet these
+
+    requirements.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups:
+- configure_auditing
+rules:
+- service_com_apple_auditd_enabled
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: System Accounting with audit
+definition_location: /home/oscap/content/apple_os/auditing/group.yml
+documentation_complete: true

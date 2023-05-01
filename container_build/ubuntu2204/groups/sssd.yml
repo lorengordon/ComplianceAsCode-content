@@ -1,0 +1,37 @@
+prodtype: all
+description: 'The System Security Services Daemon (SSSD) is a system daemon that provides
+    access
+
+    to different identity and authentication providers such as Red Hat''s IdM, Microsoft''s
+    AD,
+
+    openLDAP, MIT Kerberos, etc. It uses a common framework that can provide caching
+    and offline
+
+    support to systems utilizing SSSD. SSSD using caching to reduce load on authentication
+
+    servers permit offline authentication as well as store extended user data.
+
+    <br /><br />
+
+    For more information, see'
+warnings: []
+requires: []
+conflicts: []
+values:
+- var_sssd_certificate_verification_digest_function
+- var_sssd_memcache_timeout
+- var_sssd_ssh_known_hosts_timeout
+groups:
+- sssd-ldap
+rules:
+- sssd_offline_cred_expiration
+platform: package[sssd]
+platforms: !!set
+    package[sssd]: null
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    package_sssd: null
+title: System Security Services Daemon
+definition_location: /home/oscap/content/linux_os/guide/services/sssd/group.yml
+documentation_complete: true

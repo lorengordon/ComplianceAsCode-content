@@ -1,0 +1,39 @@
+prodtype: fedora,ol7,ol8,rhel7,rhel8,rhv4
+description: 'The <code>vim-enhanced</code> package can be installed with the following
+    command:
+
+    <pre>
+
+    $ sudo yum install vim-enhanced</pre>'
+rationale: 'Vim (Vi IMproved) is an almost compatible version of the UNIX editor <tt>vi</tt>. '
+severity: low
+references: {}
+identifiers: {}
+ocil_clause: the package is not installed
+ocil: 'Run the following command to determine if the <code>vim-enhanced</code> package
+    is installed: <pre>$ rpm -q vim-enhanced</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Install vim Package
+definition_location: /home/oscap/content/linux_os/guide/system/software/system-tools/package_vim_installed/rule.yml
+template:
+    name: package_installed
+    vars:
+        pkgname: vim-enhanced
+    backends: {}
+documentation_complete: true

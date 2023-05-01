@@ -1,0 +1,56 @@
+prodtype: firefox
+description: 'Enhanced Tracking Protection may be enabled by setting
+
+    <tt>browser.contentblocking.category</tt> to <tt>strict</tt>.'
+rationale: Tracking generally refers to content, cookies, or scripts that can collect
+    your browsing data across multiple sites.
+severity: medium
+references:
+    disa: CCI-000381
+    nist: CM-7
+    stigid: FFOX-00-000025
+identifiers: {}
+ocil_clause: null
+ocil: 'To verify that enhanced tracking protection is enabled,
+
+    type the following into the browser address bar:
+
+    <pre>about:policies</pre>
+
+    The output should have the following under Preferences -&gt; browser.contentblocking.category:
+
+    <pre>"Value": "strict"</pre>
+
+    <pre>"Status": "locked"</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Enabled Firefox Enhanced Tracking Protection
+definition_location: /home/oscap/content/products/firefox/guide/firefox/firefox_policy-enhanced_tracking/rule.yml
+template:
+    name: firefox_policy-setting
+    vars:
+        name: Enable enhanced tracking protection
+        policies:
+        -   path: Preferences browser.contentblocking.category
+            parameter: Value
+            value: strict
+        -   path: Preferences browser.contentblocking.category
+            parameter: Status
+            value: locked
+    backends: {}
+documentation_complete: true

@@ -1,0 +1,61 @@
+prodtype: fedora,ol7,ol8,ol9,rhel7,rhel8,rhel9,sle12,sle15
+description: 'To set the runtime status of the <code>net.ipv4.ip_local_port_range</code>
+    kernel parameter, run the following command: <pre>$ sudo sysctl -w net.ipv4.ip_local_port_range=32768
+    65535</pre>
+
+    To make sure that the setting is persistent, add the following line to a file
+    in the directory <tt>/etc/sysctl.d</tt>: <pre>net.ipv4.ip_local_port_range = 32768
+    65535</pre>'
+rationale: 'This setting defines the local port range that is used by TCP and UDP
+    to
+
+    choose the local port. The first number is the first, the second the last
+
+    local port number.'
+severity: medium
+references:
+    anssi: BP28(R22)
+identifiers:
+    cce: CCE-90834-3
+ocil_clause: the correct value is not returned
+ocil: 'The runtime status of the <code>net.ipv4.ip_local_port_range</code> kernel
+    parameter can be queried
+
+    by running the following command:
+
+    <pre>$ sysctl net.ipv4.ip_local_port_range</pre>
+
+    <code>32768 65535</code>.
+
+    '
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Set Kernel Parameter to Increase Local Port Range
+definition_location: /home/oscap/content/linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_ip_local_port_range/rule.yml
+template:
+    name: sysctl
+    vars:
+        sysctlvar: net.ipv4.ip_local_port_range
+        datatype: string
+        sysctlval: 32768 65535
+        operation: pattern match
+        sysctlval_regex: 32768\s*65535
+    backends: {}
+documentation_complete: true

@@ -1,0 +1,44 @@
+# platform = multi_platform_all
+# reboot = true
+# strategy = disable
+# complexity = low
+# disruption = medium
+
+- name: List /etc/sysctl.d/*.conf files
+
+  find:
+    paths:
+      - "/etc/sysctl.d/"
+      - "/run/sysctl.d/"
+
+
+      - "/usr/lib/sysctl.d/"
+
+    contains: '^[\s]*kernel.perf_event_paranoid.*$'
+    patterns: "*.conf"
+    file_type: any
+  register: find_sysctl_d
+
+- name: Comment out any occurrences of kernel.perf_event_paranoid from config files
+  replace:
+    path: "{{ item.path }}"
+    regexp: '^[\s]*kernel.perf_event_paranoid'
+    replace: '#kernel.perf_event_paranoid'
+  loop: "{{ find_sysctl_d.files }}"
+
+
+- name: Comment out any occurrences of kernel.perf_event_paranoid from /etc/sysctl.conf
+  replace:
+    path: "/etc/sysctl.conf"
+    regexp: '^[\s]*kernel.perf_event_paranoid'
+    replace: '#kernel.perf_event_paranoid'
+
+- name: Ensure sysctl kernel.perf_event_paranoid is set to 2
+  sysctl:
+    name: "kernel.perf_event_paranoid"
+    value: "2"
+
+    sysctl_file: "/etc/sysctl.d/kernel_perf_event_paranoid.conf"
+
+    state: present
+    reload: yes

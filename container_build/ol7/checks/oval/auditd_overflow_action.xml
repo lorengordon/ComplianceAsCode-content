@@ -1,0 +1,38 @@
+
+
+
+
+<def-group>
+  <definition class="compliance" id="auditd_overflow_action" version="1">
+    <metadata>
+        <title>Appropriate Action Must be Setup When the Internal Audit Event Queue is Full</title>
+        
+    <affected family="unix">
+    <platform>multi_platform_all</platform>
+    </affected>
+        <description>Ensure 'overflow_action' is configured with value '(syslog|single|halt)' in /etc/audisp/audispd.conf</description>
+    </metadata>
+    <criteria comment="The respective application or service is configured correctly"
+    operator="OR"><criterion comment="Check the overflow_action in /etc/audisp/audispd.conf"
+  test_ref="test_auditd_overflow_action" />
+    </criteria>
+  </definition>
+  
+<ind:textfilecontent54_test check="all" check_existence="all_exist"
+  comment="tests the value of overflow_action setting in the /etc/audisp/audispd.conf file"
+  id="test_auditd_overflow_action" version="1">
+  <ind:object object_ref="obj_auditd_overflow_action" />
+  <ind:state state_ref="state_auditd_overflow_action" />
+</ind:textfilecontent54_test>
+  
+<ind:textfilecontent54_object id="obj_auditd_overflow_action" version="1">
+  <ind:filepath>/etc/audisp/audispd.conf</ind:filepath>
+  <ind:pattern operation="pattern match">^[ \t]*(?i)overflow_action(?-i)[ \t]*=[ \t]*(.+?)[ \t]*(?:$|#)</ind:pattern>
+  <ind:instance operation="greater than or equal" datatype="int">1</ind:instance>
+</ind:textfilecontent54_object>
+  
+<ind:textfilecontent54_state id="state_auditd_overflow_action" version="1">
+  <ind:subexpression datatype="string" operation="pattern match">^(?i)(syslog|single|halt)(?-i)$</ind:subexpression>
+</ind:textfilecontent54_state>
+
+</def-group>

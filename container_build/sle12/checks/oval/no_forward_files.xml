@@ -1,0 +1,58 @@
+<def-group>
+  <definition class="compliance" id="no_forward_files" version="1">
+    <metadata>
+        <title>Verify No .forward Files Exist</title>
+        
+    <affected family="unix">
+    <platform>Alibaba Cloud Linux 2</platform>
+      <platform>Red Hat Enterprise Linux 8</platform>
+      <platform>SUSE Linux Enterprise 12</platform>
+      <platform>Alibaba Cloud Linux 3</platform>
+      <platform>Ubuntu 20.04</platform>
+      <platform>Red Hat Enterprise Linux 9</platform>
+      <platform>SUSE Linux Enterprise 15</platform>
+      <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+        <description>The .forward file specifies an email address to forward the user's mail to. Any .forward files should be removed.</description>
+    </metadata>
+    <criteria>
+      <criterion test_ref="test_accounts_users_home_forward_file_existance" negate="true" />
+    </criteria>
+  </definition>
+
+  <unix:password_object id="object_no_forward_files_objects" version="1">
+    <unix:username datatype="string" operation="pattern match">.*</unix:username>
+    <filter action="include">state_no_forward_files_users_uids</filter>
+    <filter action="exclude">state_no_forward_files_users_ignored</filter>
+    <filter action="exclude">state_no_forward_files_users_nologin_shell</filter>
+  </unix:password_object>
+
+  <unix:password_state id="state_no_forward_files_users_uids" version="1">
+    <unix:user_id datatype="int" operation="greater than or equal">1000</unix:user_id>
+  </unix:password_state>
+
+  <unix:password_state id="state_no_forward_files_users_ignored" version="1">
+    <unix:username datatype="string" operation="pattern match">^(nobody|nfsnobody)$</unix:username>
+  </unix:password_state>
+
+  <unix:password_state id="state_no_forward_files_users_nologin_shell" version="1">
+    <unix:login_shell datatype="string" operation="pattern match">^/sbin/nologin$</unix:login_shell>
+  </unix:password_state>
+
+  <local_variable id="var_accounts_users_home_forward_file_existance_dirs" datatype="string" version="1"
+                  comment="Variable including all home dirs from interactive users">
+    <object_component item_field="home_dir"
+                      object_ref="object_no_forward_files_objects"/>
+  </local_variable>
+
+  <unix:file_object id="object_accounts_users_home_forward_file_existance" version="1">
+    <unix:path var_ref="var_accounts_users_home_forward_file_existance_dirs" var_check="at least one"/>
+    <unix:filename operation="pattern match">\.forward$</unix:filename>
+  </unix:file_object>
+
+  <unix:file_test id="test_accounts_users_home_forward_file_existance" check="all"
+                  check_existence="at_least_one_exists" version="1"
+                  comment=".forward files are not group or world accessible">
+    <unix:object object_ref="object_accounts_users_home_forward_file_existance"/>
+  </unix:file_test>
+</def-group>

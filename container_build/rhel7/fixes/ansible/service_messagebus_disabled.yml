@@ -1,0 +1,74 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = disable
+# complexity = low
+# disruption = low
+- name: Block Disable service messagebus
+  block:
+
+  - name: Disable service messagebus
+    block:
+
+    - name: Disable service messagebus
+      systemd:
+        name: messagebus.service
+        enabled: 'no'
+        state: stopped
+        masked: 'yes'
+    rescue:
+
+    - name: Intentionally ignored previous 'Disable service messagebus' failure, service
+        was already disabled
+      meta: noop
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-80260-3
+  - NIST-800-53-CM-6(a)
+  - NIST-800-53-CM-7(a)
+  - NIST-800-53-CM-7(b)
+  - disable_strategy
+  - low_complexity
+  - low_disruption
+  - low_severity
+  - no_reboot_needed
+  - service_messagebus_disabled
+
+- name: Unit Socket Exists - messagebus.socket
+  command: systemctl list-unit-files messagebus.socket
+  register: socket_file_exists
+  changed_when: false
+  failed_when: socket_file_exists.rc not in [0, 1]
+  check_mode: false
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-80260-3
+  - NIST-800-53-CM-6(a)
+  - NIST-800-53-CM-7(a)
+  - NIST-800-53-CM-7(b)
+  - disable_strategy
+  - low_complexity
+  - low_disruption
+  - low_severity
+  - no_reboot_needed
+  - service_messagebus_disabled
+
+- name: Disable socket messagebus
+  systemd:
+    name: messagebus.socket
+    enabled: 'no'
+    state: stopped
+    masked: 'yes'
+  when:
+  - ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  - '"messagebus.socket" in socket_file_exists.stdout_lines[1]'
+  tags:
+  - CCE-80260-3
+  - NIST-800-53-CM-6(a)
+  - NIST-800-53-CM-7(a)
+  - NIST-800-53-CM-7(b)
+  - disable_strategy
+  - low_complexity
+  - low_disruption
+  - low_severity
+  - no_reboot_needed
+  - service_messagebus_disabled

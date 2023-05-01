@@ -1,0 +1,36 @@
+prodtype: fedora,rhel7,rhel8
+description: 'By default, the anonymous FTP root is the home directory of the FTP
+    user account. The df command can
+
+    be used to verify that this directory is on its own partition.'
+rationale: 'If there is a mission-critical reason for anonymous users to upload files,
+    precautions must be taken to prevent
+
+    these users from filling a disk used by other services.'
+severity: unknown
+references: {}
+identifiers:
+    cce: CCE-80251-2
+ocil_clause: null
+ocil: null
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Place the FTP Home Directory on its Own Partition
+definition_location: /home/oscap/content/linux_os/guide/services/ftp/ftp_configure_vsftpd/ftp_home_partition/rule.yml
+template: null
+documentation_complete: true

@@ -1,0 +1,53 @@
+prodtype: fedora,ol7,ol8,ol9,rhel7,rhel8,rhel9,sle12,sle15
+description: 'To set the runtime status of the <code>net.ipv6.conf.all.router_solicitations</code>
+    kernel parameter, run the following command: <pre>$ sudo sysctl -w net.ipv6.conf.all.router_solicitations=0</pre>
+
+    To make sure that the setting is persistent, add the following line to a file
+    in the directory <tt>/etc/sysctl.d</tt>: <pre>net.ipv6.conf.all.router_solicitations
+    = 0</pre>'
+rationale: To prevent discovery of the system by other systems, router solicitation
+    requests should be denied.
+severity: unknown
+references:
+    anssi: BP28(R22)
+identifiers:
+    cce: CCE-84281-5
+ocil_clause: the correct value is not returned
+ocil: 'The runtime status of the <code>net.ipv6.conf.all.router_solicitations</code>
+    kernel parameter can be queried
+
+    by running the following command:
+
+    <pre>$ sysctl net.ipv6.conf.all.router_solicitations</pre>
+
+    <code>0</code>.
+
+    '
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Configure Denying Router Solicitations on All IPv6 Interfaces
+definition_location: /home/oscap/content/linux_os/guide/system/network/network-ipv6/configuring_ipv6/sysctl_net_ipv6_conf_all_router_solicitations/rule.yml
+template:
+    name: sysctl
+    vars:
+        sysctlvar: net.ipv6.conf.all.router_solicitations
+        datatype: int
+    backends: {}
+documentation_complete: true

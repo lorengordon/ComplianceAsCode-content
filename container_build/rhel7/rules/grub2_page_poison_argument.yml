@@ -1,0 +1,159 @@
+prodtype: fedora,ol7,ol8,ol9,rhel7,rhel8,rhel9
+description: 'To enable poisoning of free pages,
+
+    add the argument <tt>page_poison=1</tt> to the default
+
+    GRUB 2 command line for the Linux operating system.
+
+    To ensure that <tt>page_poison=1</tt> is added as a kernel command line
+
+    argument to newly installed kernels, add <tt>page_poison=1</tt> to the
+
+    default Grub2 command line for Linux operating systems. Modify the line within
+
+    <tt>/etc/default/grub</tt> as shown below:
+
+    <pre>GRUB_CMDLINE_LINUX="... page_poison=1 ..."</pre>
+
+    Run the following command to update command line for already installed kernels:<pre>#
+    grubby --update-kernel=ALL --args="page_poison=1"</pre>'
+rationale: 'Poisoning writes an arbitrary value to freed pages, so any modification
+    or
+
+    reference to that page after being freed or before being initialized will be
+
+    detected and prevented.
+
+    This prevents many types of use-after-free vulnerabilities at little performance
+    cost.
+
+    Also prevents leak of data and detection of corrupted memory.'
+severity: medium
+references:
+    anssi: BP28(R8)
+    disa: CCI-001084
+    nist: CM-6(a)
+    srg: SRG-OS-000480-GPOS-00227,SRG-OS-000134-GPOS-00068
+identifiers:
+    cce: CCE-82158-7
+ocil_clause: page allocator poisoning is not enabled
+ocil: 'Inspect the form of default GRUB 2 command line for the Linux operating system
+
+    in <tt>/etc/default/grub</tt>. If it includes <tt>page_poison=1</tt>,
+
+    then the parameter will be configured for newly installed kernels.
+
+    First check if the GRUB recovery is enabled:
+
+    <pre>$ sudo grep ''GRUB_DISABLE_RECOVERY'' /etc/default/grub</pre>
+
+    If this option is set to true, then check that a line is output by the following
+    command:
+
+    <pre>$ sudo grep ''GRUB_CMDLINE_LINUX_DEFAULT.*page_poison=1.*'' /etc/default/grub</pre>
+
+    If the recovery is disabled, check the line with
+
+    <pre>$ sudo grep ''GRUB_CMDLINE_LINUX.*page_poison=1.*'' /etc/default/grub</pre>.Moreover,
+    command line parameters for currently installed kernels should be checked as well.
+
+    Run the following command:
+
+    <pre>$ sudo grubby --info=ALL | grep args | grep -v ''page_poison=1''</pre>
+
+    The command should not return any output.'
+oval_external_content: null
+fixtext: 'To ensure that <tt>page_poison=1</tt> is added as a kernel command line
+
+    argument to newly installed kernels, add <tt>page_poison=1</tt> to the
+
+    default Grub2 command line for Linux operating systems. Modify the line within
+
+    <tt>/etc/default/grub</tt> as shown below:
+
+    <pre>GRUB_CMDLINE_LINUX="... page_poison=1 ..."</pre>
+
+    Run the following command to update command line for already installed kernels:<pre>#
+    grubby --update-kernel=ALL --args="page_poison=1"</pre>'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Red Hat Enterprise Linux 7 must clear the page allocator to prevent
+    use-after-free attacks.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Red Hat Enterprise Linux 7 must clear the page allocator
+            to prevent use-after-free attacks.
+        vuldiscussion: 'Poisoning writes an arbitrary value to freed pages, so any
+            modification or
+
+            reference to that page after being freed or before being initialized will
+            be
+
+            detected and prevented.
+
+            This prevents many types of use-after-free vulnerabilities at little performance
+            cost.
+
+            Also prevents leak of data and detection of corrupted memory.'
+        checktext: 'Verify that GRUB 2 is configured to enable page poisoning to mitigate
+            use-after-free vulnerabilities.
+
+
+            Check that the current GRUB 2 configuration has page poisoning enabled  with
+            the following command:
+
+
+            $ sudo grubby --info=ALL | grep args | grep -v ''page_poison=1''
+
+
+            If any output is returned, this is a finding.
+
+
+            Check that page poisoning is enabled by default to persist in kernel updates
+            with the following command:
+
+
+            $ sudo grep page_poison /etc/default/grub
+
+
+            GRUB_CMDLINE_LINUX="page_poison=1"
+
+
+            If "page_poison" is not set to "1", is missing or commented out, this
+            is a finding.'
+        fixtext: 'Configure Red Hat Enterprise Linux 7 to enable page poisoning with
+            the following commands:
+
+
+            $ sudo grubby --update-kernel=ALL --args="page_poison=1"
+
+
+            Add or modify the following line in "/etc/default/grub" to ensure the
+            configuration survives kernel updates:
+
+
+            GRUB_CMDLINE_LINUX="page_poison=1"'
+platform: grub2
+platforms: !!set
+    grub2: null
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set
+    grub2: null
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Enable page allocator poisoning
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/restrictions/poisoning/grub2_page_poison_argument/rule.yml
+template:
+    name: grub2_bootloader_argument
+    vars:
+        arg_name: page_poison
+        arg_value: '1'
+    backends: {}
+documentation_complete: true

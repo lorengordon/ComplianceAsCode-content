@@ -1,0 +1,90 @@
+prodtype: fedora,ol7,ol8,ol9,rhcos4,rhel7,rhel8,rhel9,sle12,sle15
+description: 'The <tt>nosuid</tt> mount option can be used to prevent
+
+    execution of setuid programs in <tt>/boot</tt>. The SUID and SGID permissions
+
+    should not be required on the boot partition.
+
+    Add the <code>nosuid</code> option to the list of
+
+    <code>Options</code> in the <code>systemd.mount</code> unit that
+
+    controls mounting of
+
+    <code>/boot</code>.'
+rationale: 'The presence of SUID and SGID executables should be tightly controlled.
+    Users
+
+    should not be able to execute SUID or SGID binaries from boot partitions.'
+severity: medium
+references:
+    anssi: BP28(R12)
+    disa: CCI-000366
+    nerc-cip: CIP-003-8 R5.1.1,CIP-003-8 R5.3,CIP-004-6 R2.3,CIP-007-3 R2.1,CIP-007-3
+        R2.2,CIP-007-3 R2.3,CIP-007-3 R5.1,CIP-007-3 R5.1.1,CIP-007-3 R5.1.2
+    nist: CM-7(a),CM-7(b),CM-6(a),AC-6,AC-6(1),MP-7
+    nist-csf: PR.IP-1,PR.PT-2,PR.PT-3
+    srg: SRG-OS-000368-GPOS-00154,SRG-OS-000480-GPOS-00227
+identifiers: {}
+ocil_clause: the "/boot" file system does not have the "nosuid" option set
+ocil: "Verify the <tt>nosuid</tt> option is configured for the <tt>/boot</tt> mount\
+    \ point,\n    You'll need to log into a node in the cluster.\n    As a user with\
+    \ administrator privileges, log into a node in the relevant pool:\n    <pre>\n\
+    \    $ oc debug node/$NODE_NAME\n    </pre>\n    At the <pre>sh-4.4#</pre> prompt,\
+    \ run:\n    <pre>\n    # chroot /host\n    </pre>\n\n    Subsequently,run the\
+    \ following command:\n    <pre>$ sudo mount | grep '\\s/boot\\s'</pre>\n    <pre>.\
+    \ . . /boot . . . nosuid . . .</pre>\n"
+oval_external_content: null
+fixtext: Modify "/etc/fstab" to use the "nosuid" option on the "/boot" directory.
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Red Hat Enterprise Linux CoreOS 4 must mount /boot with the nosuid
+    option.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Red Hat Enterprise Linux CoreOS 4 must prevent files with
+            the setuid and setgid bit set from being executed on the /boot directory.
+        vuldiscussion: The "nosuid" mount option causes the system not to execute
+            "setuid" and "setgid" files with owner privileges. This option must be
+            used for mounting any file system not containing approved "setuid" and
+            "setguid" files. Executing files from untrusted file systems increases
+            the opportunity for unprivileged users to attain unauthorized administrative
+            access.
+        checktext: 'For systems that use UEFI, this is Not Applicable.
+
+
+            Verify the /boot directory is mounted with the "nosuid" option with the
+            following command:
+
+
+            $ mount | grep ''\s/boot\s''
+
+
+            /dev/sda1 on /boot type xfs (rw,nosuid,relatime,seclabe,attr2,inode64,noquota)
+
+
+            If the /boot file system does not have the "nosuid" option set, this is
+            a finding.'
+        fixtext: Modify "/etc/fstab" to use the "nosuid" option on the "/boot" directory.
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Add nosuid Option to /boot
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/partitions/mount_option_boot_nosuid/rule.yml
+template:
+    name: mount_option
+    vars:
+        mountpoint: /boot
+        mountoption: nosuid
+    backends: {}
+documentation_complete: true

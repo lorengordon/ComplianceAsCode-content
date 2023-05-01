@@ -1,0 +1,37 @@
+prodtype: all
+description: 'If the SSH server is expected to only receive connections from
+
+    the local network, then strengthen the default firewall rule for the SSH service
+
+    to only accept connections from the appropriate network segment(s).
+
+    <br /><br />
+
+    Determine an appropriate network block, <tt>netwk</tt>, network mask, <tt>mask</tt>,
+    and
+
+    network protocol, <tt>ip_protocol</tt>, representing the systems on your network
+    which will
+
+    be allowed to access this SSH server.
+
+    <br /><br />
+
+    Run the following command:
+
+    <pre>firewall-cmd --permanent --add-rich-rule=''rule family="ip_protocol" source
+    address="netwk/mask" service name="ssh" accept''</pre>'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules: {}
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+title: Strengthen Firewall Configuration if Possible
+definition_location: /home/oscap/content/linux_os/guide/services/ssh/ssh_server/sshd_strengthen_firewall/group.yml
+documentation_complete: true

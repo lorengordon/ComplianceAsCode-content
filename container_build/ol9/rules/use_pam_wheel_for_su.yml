@@ -1,0 +1,115 @@
+prodtype: alinux2,alinux3,anolis8,fedora,ol7,ol8,ol9,rhel7,rhel8,rhel9,rhv4,sle12,sle15
+description: 'To ensure that only users who are members of the <tt>wheel</tt> group
+    can
+
+    run commands with altered privileges through the <tt>su</tt> command, make
+
+    sure that the following line exists in the file <tt>/etc/pam.d/su</tt>:
+
+    <pre>auth required pam_wheel.so use_uid</pre>'
+rationale: 'The <tt>su</tt> program allows to run commands with a substitute user
+    and
+
+    group ID. It is commonly used to run commands as the root user. Limiting
+
+    access to such command is considered a good security practice.'
+severity: medium
+references:
+    ospp: FMT_SMF_EXT.1.1
+    pcidss4: 8.6.1
+    srg: SRG-OS-000373-GPOS-00156,SRG-OS-000312-GPOS-00123
+identifiers: {}
+ocil_clause: the line is not in the file or it is commented
+ocil: 'Run the following command to check if the line is present:
+
+    <pre>grep pam_wheel /etc/pam.d/su</pre>
+
+    The output should contain the following line:
+
+    <pre>auth required pam_wheel.so use_uid</pre>'
+oval_external_content: null
+fixtext: 'Configure Oracle Linux 9 to require users to be in the "wheel" group to
+    run "su" command.
+
+
+    In file "/etc/pam.d/su", uncomment the following line:
+
+
+    "#auth required pam_wheel.so use_uid"
+
+
+    $ sed ''/^[[:space:]]*#[[:space:]]*auth[[:space:]]\+required[[:space:]]\+pam_wheel\.so[[:space:]]\+use_uid$/s/^[[:space:]]*#//''
+    -i /etc/pam.d/su
+
+
+    If necessary, create a "wheel" group and add administrative users to the group.'
+checktext: ''
+vuldiscussion: 'Without re-authentication, users may access resources or perform tasks
+    for which they do not have authorization.
+
+    When operating systems provide the capability to escalate a functional capability,
+    it is critical the user re-authenticate.'
+srg_requirement: Oracle Linux 9 Must Require Users To Re-Authenticate For Privilege
+    Escalation.
+warnings:
+-   general: 'Members of "wheel" or GID 0 groups are checked by default if the group
+        option is not set
+
+        for pam_wheel.so module. Therefore, members of these groups should be manually
+        checked or
+
+        a different group should be informed according to the site policy.'
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Oracle Linux 9 Must Require Users To Re-Authenticate For
+            Privilege Escalation.
+        vuldiscussion: 'The "su" program allows to run commands with a substitute
+            user and
+
+            group ID. It is commonly used to run commands as the root user. Limiting
+
+            access to such command is considered a good security practice.'
+        checktext: 'Verify that Oracle Linux 9 requires uses to be members of the
+            "wheel" group with the following command:
+
+
+            $grep pam_wheel /etc/pam.d/su
+
+
+            auth             required        pam_wheel.so use_uid
+
+
+            If a line for "pam_wheel.so" does not exist, or is commented out, this
+            is a finding.'
+        fixtext: 'Configure Oracle Linux 9 to require users to be in the "wheel" group
+            to run "su" command.
+
+
+            In file "/etc/pam.d/su", uncomment the following line:
+
+
+            "#auth    required    pam_wheel.so use_uid"
+
+
+            $ sed ''/^[[:space:]]*#[[:space:]]*auth[[:space:]]\+required[[:space:]]\+pam_wheel\.so[[:space:]]\+use_uid$/s/^[[:space:]]*#//''
+            -i /etc/pam.d/su
+
+
+            If necessary, create a "wheel" group and add administrative users to the
+            group.'
+platform: package[pam]
+platforms: !!set
+    package[pam]: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    package_pam: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Enforce usage of pam_wheel for su authentication
+definition_location: /home/oscap/content/linux_os/guide/system/accounts/accounts-restrictions/root_logins/use_pam_wheel_for_su/rule.yml
+template: null
+documentation_complete: true

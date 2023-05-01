@@ -1,0 +1,74 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = disable
+# complexity = low
+# disruption = low
+- name: Block Disable service dhcpd
+  block:
+
+  - name: Disable service dhcpd
+    block:
+
+    - name: Disable service dhcpd
+      systemd:
+        name: dhcpd.service
+        enabled: 'no'
+        state: stopped
+        masked: 'yes'
+    rescue:
+
+    - name: Intentionally ignored previous 'Disable service dhcpd' failure, service
+        was already disabled
+      meta: noop
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-80330-4
+  - NIST-800-53-CM-6(a)
+  - NIST-800-53-CM-7(a)
+  - NIST-800-53-CM-7(b)
+  - disable_strategy
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+  - service_dhcpd_disabled
+
+- name: Unit Socket Exists - dhcpd.socket
+  command: systemctl list-unit-files dhcpd.socket
+  register: socket_file_exists
+  changed_when: false
+  failed_when: socket_file_exists.rc not in [0, 1]
+  check_mode: false
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-80330-4
+  - NIST-800-53-CM-6(a)
+  - NIST-800-53-CM-7(a)
+  - NIST-800-53-CM-7(b)
+  - disable_strategy
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+  - service_dhcpd_disabled
+
+- name: Disable socket dhcpd
+  systemd:
+    name: dhcpd.socket
+    enabled: 'no'
+    state: stopped
+    masked: 'yes'
+  when:
+  - ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  - '"dhcpd.socket" in socket_file_exists.stdout_lines[1]'
+  tags:
+  - CCE-80330-4
+  - NIST-800-53-CM-6(a)
+  - NIST-800-53-CM-7(a)
+  - NIST-800-53-CM-7(b)
+  - disable_strategy
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+  - service_dhcpd_disabled

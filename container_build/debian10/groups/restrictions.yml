@@ -1,0 +1,33 @@
+prodtype: all
+description: 'The recommendations in this section are designed to
+
+    ensure that the system''s features to protect against potentially
+
+    dangerous program execution are activated.
+
+    These protections are applied at the system initialization or
+
+    kernel level, and defend against certain types of badly-configured
+
+    or compromised programs.'
+warnings: []
+requires: []
+conflicts: []
+values:
+- sysctl_kernel_unprivileged_bpf_disabled_value
+groups:
+- coredumps
+- daemon_umask
+- enable_execshield_settings
+- enable_nx
+- poisoning
+rules:
+- kernel_module_uvcvideo_disabled
+- sysctl_kernel_panic_on_oops
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Restrict Programs from Dangerous Execution Patterns
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/restrictions/group.yml
+documentation_complete: true

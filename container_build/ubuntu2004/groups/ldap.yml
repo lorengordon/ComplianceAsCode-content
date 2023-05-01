@@ -1,0 +1,23 @@
+prodtype: all
+description: 'LDAP is a popular directory service, that is, a
+
+    standardized way of looking up information from a central database.
+
+    Ubuntu 20.04 includes software that enables a system to act as both
+
+    an LDAP client and server.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups:
+- openldap_client
+- openldap_server
+rules: {}
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: LDAP
+definition_location: /home/oscap/content/linux_os/guide/services/ldap/group.yml
+documentation_complete: true

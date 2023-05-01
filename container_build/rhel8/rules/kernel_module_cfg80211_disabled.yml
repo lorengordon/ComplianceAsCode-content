@@ -1,0 +1,72 @@
+prodtype: fedora,rhcos4,rhel8,rhel9
+description: '
+
+    To configure the system to prevent the <code>cfg80211</code>
+
+    kernel module from being loaded, add the following line to the file <code>/etc/modprobe.d/cfg80211.conf</code>:
+
+    <pre>install cfg80211 /bin/true</pre>
+
+
+    To configure the system to prevent the <code>cfg80211</code> from being used,
+
+    add the following line to file <code>/etc/modprobe.d/cfg80211.conf</code>:
+
+    <pre>blacklist cfg80211</pre>'
+rationale: 'If Wireless functionality must be disabled, preventing the kernel
+
+    from loading the kernel module provides an additional safeguard against its
+
+    activation.'
+severity: medium
+references:
+    nist: AC-18(a),AC-18(3),CM-7(a),CM-7(b),CM-6(a),MP-7,AC-18(4)
+identifiers: {}
+ocil_clause: no line is returned
+ocil: '
+
+    If the system is configured to prevent the loading of the <code>cfg80211</code>
+    kernel module,
+
+    it will contain lines inside any file in <code>/etc/modprobe.d</code> or the deprecated<code>
+    /etc/modprobe.conf</code>.
+
+    These lines instruct the module loading system to run another program (such as
+    <code>/bin/true</code>) upon a module <code>install</code> event.
+
+
+    These lines can also instruct the module loading system to ignore the <code>cfg80211</code>
+    kernel module via <code>blacklist</code> keyword.
+
+
+    Run the following command to search for such lines in all files in <code>/etc/modprobe.d</code>
+    and the deprecated <code>/etc/modprobe.conf</code>:
+
+    <pre>$ grep -r cfg80211 /etc/modprobe.conf /etc/modprobe.d</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Disable Kernel cfg80211 Module
+definition_location: /home/oscap/content/linux_os/guide/system/network/network-wireless/wireless_software/kernel_module_cfg80211_disabled/rule.yml
+template:
+    name: kernel_module_disabled
+    vars:
+        kernmodule: cfg80211
+    backends: {}
+documentation_complete: true

@@ -1,0 +1,101 @@
+# platform = Red Hat Enterprise Linux 8,multi_platform_fedora,Oracle Linux 8
+# reboot = true
+# strategy = restrict
+# complexity = medium
+# disruption = medium
+- (xccdf-var var_system_crypto_policy)
+
+- name: Check to see the current status of FIPS mode
+  command: /usr/bin/fips-mode-setup --check
+  register: is_fips_enabled
+  changed_when: false
+  when:
+  - ( ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+    and not ( lookup("env", "container") == "bwrap-osbuild" ) )
+  - ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - DISA-STIG-OL08-00-010020
+  - NIST-800-53-CM-3(6)
+  - NIST-800-53-CM-6(a)
+  - NIST-800-53-IA-7
+  - NIST-800-53-SC-12
+  - NIST-800-53-SC-12(2)
+  - NIST-800-53-SC-12(3)
+  - NIST-800-53-SC-13
+  - enable_fips_mode
+  - high_severity
+  - medium_complexity
+  - medium_disruption
+  - reboot_required
+  - restrict_strategy
+
+- name: Enable FIPS mode
+  command: /usr/bin/fips-mode-setup --enable
+  when:
+  - ( ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+    and not ( lookup("env", "container") == "bwrap-osbuild" ) )
+  - ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  - is_fips_enabled.stdout.find('FIPS mode is enabled.') == -1
+  tags:
+  - DISA-STIG-OL08-00-010020
+  - NIST-800-53-CM-3(6)
+  - NIST-800-53-CM-6(a)
+  - NIST-800-53-IA-7
+  - NIST-800-53-SC-12
+  - NIST-800-53-SC-12(2)
+  - NIST-800-53-SC-12(3)
+  - NIST-800-53-SC-13
+  - enable_fips_mode
+  - high_severity
+  - medium_complexity
+  - medium_disruption
+  - reboot_required
+  - restrict_strategy
+
+- name: Enable FIPS Mode
+  lineinfile:
+    path: /etc/crypto-policies/config
+    regexp: ^(?!#)(\S+)$
+    line: '{{ var_system_crypto_policy }}'
+    create: true
+  when:
+  - ( ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+    and not ( lookup("env", "container") == "bwrap-osbuild" ) )
+  - ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - DISA-STIG-OL08-00-010020
+  - NIST-800-53-CM-3(6)
+  - NIST-800-53-CM-6(a)
+  - NIST-800-53-IA-7
+  - NIST-800-53-SC-12
+  - NIST-800-53-SC-12(2)
+  - NIST-800-53-SC-12(3)
+  - NIST-800-53-SC-13
+  - enable_fips_mode
+  - high_severity
+  - medium_complexity
+  - medium_disruption
+  - reboot_required
+  - restrict_strategy
+
+- name: Verify that Crypto Policy is Set (runtime)
+  command: /usr/bin/update-crypto-policies --set {{ var_system_crypto_policy }}
+  when:
+  - ( ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+    and not ( lookup("env", "container") == "bwrap-osbuild" ) )
+  - ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - DISA-STIG-OL08-00-010020
+  - NIST-800-53-CM-3(6)
+  - NIST-800-53-CM-6(a)
+  - NIST-800-53-IA-7
+  - NIST-800-53-SC-12
+  - NIST-800-53-SC-12(2)
+  - NIST-800-53-SC-12(3)
+  - NIST-800-53-SC-13
+  - enable_fips_mode
+  - high_severity
+  - medium_complexity
+  - medium_disruption
+  - reboot_required
+  - restrict_strategy

@@ -1,0 +1,66 @@
+prodtype: all
+description: 'Unless needed, SSH should not permit extraneous or unnecessary
+
+    authentication mechanisms. To disable PubkeyAuthentication authentication, add
+    or
+
+    correct the following line in
+
+
+
+    <tt>/etc/ssh/sshd_config</tt>:
+
+
+    <pre>PubkeyAuthentication no</pre>'
+rationale: 'PubkeyAuthentication authentication is used to provide additional authentication
+    mechanisms to
+
+    applications. Allowing PubkeyAuthentication authentication through SSH allows
+    users to
+
+    generate their own authentication tokens, increasing the attack surface of the
+    system.'
+severity: medium
+references: {}
+identifiers:
+    cce: CCE-82345-0
+ocil_clause: the required value is not set
+ocil: 'To determine how the SSH daemon''s <tt>PubkeyAuthentication</tt> option is
+    set, run the following command:
+
+
+    <pre>$ sudo grep -i PubkeyAuthentication /etc/ssh/sshd_config</pre>
+
+
+    If a line indicating <tt>no</tt> is returned, then the required value is set.
+
+    '
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Disable PubkeyAuthentication Authentication
+definition_location: /home/oscap/content/linux_os/guide/services/ssh/ssh_server/sshd_disable_pubkey_auth/rule.yml
+template:
+    name: sshd_lineinfile
+    vars:
+        parameter: PubkeyAuthentication
+        rule_id: sshd_disable_pubkey_auth
+        value: 'no'
+    backends: {}
+documentation_complete: true

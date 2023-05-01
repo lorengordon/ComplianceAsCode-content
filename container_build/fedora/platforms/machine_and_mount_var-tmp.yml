@@ -1,0 +1,16 @@
+name: machine_and_mount_var-tmp
+original_expression: machine and mount[var-tmp]
+xml_content: <ns0:platform xmlns:ns0="http://cpe.mitre.org/language/2.0" id="machine_and_mount_var-tmp"><ns0:logical-test
+    operator="AND" negate="false"><ns0:check-fact-ref system="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+    href="ssg-fedora-cpe-oval.xml" id-ref="oval:ssg-installed_env_is_a_machine:def:1"
+    /><ns0:check-fact-ref system="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+    href="ssg-fedora-cpe-oval.xml" id-ref="oval:ssg-installed_env_mount_var-tmp:def:1"
+    /></ns0:logical-test></ns0:platform>
+bash_conditional: ( [ ! -f /.dockerenv ] && [ ! -f /run/.containerenv ] && findmnt
+    --kernel "/var/tmp" > /dev/null || findmnt --fstab "/var/tmp" > /dev/null )
+ansible_conditional: ( ansible_virtualization_type not in ["docker", "lxc", "openvz",
+    "podman", "container"] and "/var/tmp" in ansible_mounts | map(attribute="mount")
+    | list )
+title: ''
+definition_location: /home/oscap/content/build/fedora/platforms/machine_and_mount_var-tmp.yml
+documentation_complete: true

@@ -1,0 +1,51 @@
+<def-group>
+  <definition class="compliance" id="firefox_policy-sync" version="1">
+    <metadata>
+        <title>Firefox accounts must be disabled.</title>
+            <affected family="unix">
+                <platform>Mozilla Firefox</platform>
+            </affected>
+        <description>Check setting of Disable Firefox Sync in Firefox policy</description>
+    </metadata> 
+    <criteria operator="AND" comment="Test conditions - Firefox policy item is set.">
+     
+      <criterion comment="Check that Firefox administrative policy setting .DisableFirefoxAccounts to 'true'." test_ref="test_firefox_policy-sync__DisableFirefoxAccounts" />
+     
+    </criteria>
+  </definition>
+
+
+  <ind:textfilecontent54_test check="all"
+  comment="Check setting of .DisableFirefoxAccounts in Firefox policy file" 
+  id="test_firefox_policy-sync__DisableFirefoxAccounts" version="1">
+  <ind:object object_ref="obj_firefox_policy-sync__DisableFirefoxAccounts" />
+  <ind:state state_ref="state_firefox_policy-sync__DisableFirefoxAccounts" />
+  </ind:textfilecontent54_test>
+
+
+  <unix:file_object id="obj_firefox_policy-sync_firefox_path" version="1" comment="Find all installations of Firefox">
+    <unix:behaviors recurse_direction="down" max_depth="-1" recurse_file_system="all" />
+    <unix:path>/usr</unix:path>
+    <unix:filename operation="pattern match">^firefox.sh$|^firefox-bin$</unix:filename>
+  </unix:file_object>
+  <local_variable id="var_firefox_policy-sync_firefox_path" version="1" datatype="string" comment="policies.json path for Firefox.">
+      <unique>
+      <literal_component>/etc/firefox/policies</literal_component>
+      <concat>
+          <object_component object_ref="obj_firefox_policy-sync_firefox_path" item_field="path" />
+          <literal_component>/distribution</literal_component>
+      </concat>
+      </unique>
+  </local_variable>
+  
+  <ind:textfilecontent54_object id="obj_firefox_policy-sync__DisableFirefoxAccounts" version="1">
+    <ind:path var_ref="var_firefox_policy-sync_firefox_path" var_check="at least one" datatype="string" />
+    <ind:filename datatype="string">policies.json</ind:filename>
+    <ind:pattern operation="pattern match">^(?i)\{\s*(?="policies")"policies"[\s]*:[\s]*\{[\s\S]*(?=[^"])DisableFirefoxAccounts"[\s]*:[\s]*([^,}]+),?\s*</ind:pattern>
+    <ind:instance datatype="int">1</ind:instance>
+  </ind:textfilecontent54_object>
+  <ind:textfilecontent54_state id="state_firefox_policy-sync__DisableFirefoxAccounts" version="1">
+      <ind:subexpression datatype="string" entity_check="all" operation="pattern match">[Tt]rue</ind:subexpression>
+  </ind:textfilecontent54_state>
+  
+</def-group>

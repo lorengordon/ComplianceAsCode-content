@@ -1,0 +1,36 @@
+prodtype: all
+description: '
+
+    The default <tt>firewalld</tt> configuration does not allow inbound
+
+    access to any services. This modification will allow remote hosts to
+
+    initiate connections to the IMAP daemon, while keeping all other ports
+
+    on the server in their default protected state.
+
+
+
+    To configure <code>firewalld</code> to allow <code>143/tcp</code> access, run
+    the following command(s):
+
+    <pre>firewall-cmd --permanent --add-port=143/tcp</pre>
+
+
+
+    Then run the following command to load the newly created rule(s):
+
+    <pre>firewall-cmd --reload</pre>'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules: {}
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Allow IMAP Clients to Access the Server
+definition_location: /home/oscap/content/linux_os/guide/services/imap/configure_dovecot/dovecot_allow_imap_access/group.yml
+documentation_complete: true

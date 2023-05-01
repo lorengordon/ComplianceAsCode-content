@@ -1,0 +1,46 @@
+prodtype: ol8
+description: 'The <code>abrt-server-info-page</code> package can be removed with the
+    following command:
+
+    <pre>
+
+    $ sudo yum erase abrt-server-info-page</pre>'
+rationale: <tt>abrt-server-info-page</tt> provides a web page with summary of ABRT
+    services.
+severity: medium
+references:
+    disa: CCI-000381
+    srg: SRG-OS-000095-GPOS-00049
+    stigid: OL08-00-040001
+    stigref: SV-248824r780038_rule
+identifiers: {}
+ocil_clause: the package is installed
+ocil: 'Run the following command to determine if the <code>abrt-server-info-page</code>
+    package is installed:
+
+    <pre>$ rpm -q abrt-server-info-page</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Uninstall abrt-server-info-page Package
+definition_location: /home/oscap/content/linux_os/guide/system/software/system-tools/package_abrt-server-info-page_removed/rule.yml
+template:
+    name: package_removed
+    vars:
+        pkgname: abrt-server-info-page
+    backends: {}
+documentation_complete: true

@@ -1,0 +1,81 @@
+prodtype: alinux3,ol7,rhel7,rhel8,rhel9
+description: 'To capture kernel module unloading events, use following line, setting
+    ARCH to
+
+    either b32 for 32-bit system, or having two lines for both b32 and b64 in case
+    your system is 64-bit:
+
+    <pre>-a always,exit -F arch=<i>ARCH</i> -S create_module -F key=module-change</pre>
+
+
+    Place to add the line depends on a way <tt>auditd</tt> daemon is configured. If
+    it is configured
+
+    to use the <tt>augenrules</tt> program (the default), add the line to a file with
+    suffix
+
+    <tt>.rules</tt> in the directory <tt>/etc/audit/rules.d</tt>.
+
+
+    If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt> utility,
+
+    add the line to file <tt>/etc/audit/audit.rules</tt>.'
+rationale: 'The removal of kernel modules can be used to alter the behavior of
+
+    the kernel and potentially introduce malicious code into kernel space. It is important
+
+    to have an audit trail of modules that have been introduced into the kernel.'
+severity: medium
+references:
+    disa: CCI-000172
+    srg: SRG-OS-000471-GPOS-00216,SRG-OS-000477-GPOS-00222
+    stigid: OL07-00-030819
+    stigref: SV-221820r833097_rule
+identifiers: {}
+ocil_clause: no line is returned
+ocil: 'To determine if the system is configured to audit calls to the
+
+    <code>create_module</code> system call, run the following command:
+
+    <pre space="preserve">$ sudo grep "create_module" /etc/audit/audit.*</pre>
+
+    If the system is configured to audit this activity, it will return a line.
+
+    '
+oval_external_content: null
+fixtext: 'Configure the audit system to generate an audit event for any successful/unsuccessful
+    use of the "create_module" system call by adding or updating the following rules
+    in "/etc/audit/audit.rules" and adding the following rules to "/etc/audit/rules.d/module_chng.rules"
+    or updating the existing rules in files in the "/etc/audit/rules.d/" directory:
+
+
+
+    -a always,exit -F arch=b32 -S create_module -F auid>=1000 -F auid!=unset -k module_chng
+
+    -a always,exit -F arch=b64 -S create_module -F auid>=1000 -F auid!=unset -k module_chng
+
+
+    The audit daemon must be restarted for the changes to take effect.'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ' Oracle Linux 7 must audit all uses of the create_module command.'
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+    package[audit]: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+    package_audit: null
+bash_conditional: null
+fixes: {}
+title: Ensure auditd Collects Information on Kernel Module Unloading - create_module
+definition_location: /home/oscap/content/linux_os/guide/system/auditing/auditd_configure_rules/audit_kernel_module_loading/audit_rules_kernel_module_loading_create/rule.yml
+template: null
+documentation_complete: true

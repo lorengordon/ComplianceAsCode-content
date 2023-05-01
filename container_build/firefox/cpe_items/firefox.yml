@@ -1,0 +1,11 @@
+name: cpe:/a:mozilla:firefox
+check_id: installed_app_is_firefox
+bash_conditional: ''
+ansible_conditional: ''
+is_product_cpe: true
+versioned: false
+args: {}
+title: Mozilla Firefox
+definition_location: ''
+template: null
+documentation_complete: true

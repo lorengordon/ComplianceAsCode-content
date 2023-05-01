@@ -1,0 +1,74 @@
+prodtype: fedora,ol8,rhel8
+description: 'To set a key binding for the screen locking in <tt>tmux</tt> terminal
+    multiplexer,
+
+    the <tt>session-lock</tt> command must be bound to a key.
+
+    Add the following line to <tt>/etc/tmux.conf</tt>:
+
+    <pre>bind X lock-session</pre>.
+
+    The console can now be locked with the following key combination:
+
+    <pre>Ctrl+b Shift+x</pre>'
+rationale: 'The <tt>tmux</tt> package allows for a session lock to be implemented
+    and configured.
+
+    However, the session lock is implemented by an external command. The <tt>tmux</tt>
+
+    default configuration does not contain an effective session lock.'
+severity: low
+references:
+    disa: CCI-000056
+    srg: SRG-OS-000028-GPOS-00009,SRG-OS-000030-GPOS-00011
+    stigid: OL08-00-020040
+    stigref: SV-248675r902786_rule
+identifiers: {}
+ocil_clause: the "lock-session" is not bound to a specific key
+ocil: 'Verify Oracle Linux 8 enables the user to initiate a session lock trhough key
+    bindings with the following commands:
+
+
+    <pre>$ grep "lock-session" /etc/tmux.conf</pre>
+
+
+    <pre>bind X lock-session</pre>
+
+
+    Then, verify that the /etc/tmux.conf file can be read by other users than root:
+
+
+    <pre>$ sudo ls -al /etc/tmux.conf</pre>'
+oval_external_content: null
+fixtext: 'Configure Oracle Linux 8 to allow a user to lock a session through a key
+    binding by adding the following line to the file "/etc/tmux.conf":
+
+
+    <pre>bind X lock-session</pre>
+
+
+    Then, ensure a correct mode of /etc/tmux.conf using this command:
+
+
+    $ sudo chmod 0644 /etc/tmux.conf'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Configure the tmux lock session key binding
+definition_location: /home/oscap/content/linux_os/guide/system/accounts/accounts-physical/screen_locking/console_screen_locking/configure_tmux_lock_keybinding/rule.yml
+template: null
+documentation_complete: true

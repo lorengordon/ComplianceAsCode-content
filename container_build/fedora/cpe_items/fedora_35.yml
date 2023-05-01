@@ -1,0 +1,11 @@
+name: cpe:/o:fedoraproject:fedora:35
+check_id: installed_OS_is_fedora
+bash_conditional: ''
+ansible_conditional: ''
+is_product_cpe: true
+versioned: false
+args: {}
+title: Fedora 35
+definition_location: ''
+template: null
+documentation_complete: true

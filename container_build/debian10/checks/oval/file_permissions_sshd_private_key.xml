@@ -1,0 +1,76 @@
+
+
+
+
+
+
+
+
+
+
+<def-group>
+  <definition class="compliance" id="file_permissions_sshd_private_key" version="1">
+	  <metadata>
+        <title>Verify Permissions on SSH Server Private *_key Key Files</title>
+        
+    <affected family="unix">
+    <platform>multi_platform_all</platform>
+    </affected>
+        <description></description>
+    </metadata>
+
+    <criteria operator="AND">
+      <criterion comment="No keys that have unsafe ownership/permissions combination exist"
+      test_ref="test_no_offending_keys" />
+    </criteria>
+  </definition>
+
+  <unix:file_test check="all" check_existence="none_exist" comment="No keys that have unsafe ownership/permissions combination exist" id="test_no_offending_keys" version="1">
+	  <unix:object object_ref="object_offending_keys" />
+  </unix:file_test>
+
+  <unix:file_object comment="All keys in /etc/ssh with unsafe ownership/permission combination" id="object_offending_keys" version="1">
+      <unix:path>/etc/ssh</unix:path>
+      <unix:filename operation="pattern match">.*_key$</unix:filename>
+      <filter action="exclude">exclude_symlinks__sshd_private_key</filter>
+      <filter action="exclude">filter_ssh_key_owner_root</filter>
+    
+  </unix:file_object>
+
+  <unix:file_state id="exclude_symlinks__sshd_private_key" version="1">
+      <unix:type operation="equals">symbolic link</unix:type>
+  </unix:file_state>
+
+  
+
+  <unix:file_state comment="All keys in /etc/ssh groupowned by root have the right permissions" id="filter_ssh_key_owner_root" version="1">
+      <unix:path>/etc/ssh</unix:path>
+      <unix:filename operation="pattern match">.*_key$</unix:filename>
+
+      
+      <unix:group_id datatype="int">0</unix:group_id>
+      <unix:user_id datatype="int">0</unix:user_id>
+
+      <unix:suid datatype="boolean">false</unix:suid>
+      <unix:sgid datatype="boolean">false</unix:sgid>
+      <unix:sticky datatype="boolean">false</unix:sticky>
+
+      
+      
+      <unix:uexec datatype="boolean">false</unix:uexec>
+
+      <unix:gread datatype="boolean">false</unix:gread>
+      <unix:gwrite datatype="boolean">false</unix:gwrite>
+      <unix:gexec datatype="boolean">false</unix:gexec>
+
+      <unix:oread datatype="boolean">false</unix:oread>
+      <unix:owrite datatype="boolean">false</unix:owrite>
+      <unix:oexec datatype="boolean">false</unix:oexec>
+  
+
+  </unix:file_state>
+
+
+    
+
+</def-group>

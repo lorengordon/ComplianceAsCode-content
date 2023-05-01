@@ -1,0 +1,46 @@
+# platform = multi_platform_all
+# reboot = true
+# strategy = disable
+# complexity = low
+# disruption = medium
+
+- name: List /etc/sysctl.d/*.conf files
+
+  find:
+    paths:
+      - "/etc/sysctl.d/"
+      - "/run/sysctl.d/"
+
+
+      - "/usr/lib/sysctl.d/"
+
+    contains: '^[\s]*net.ipv4.conf.default.rp_filter.*$'
+    patterns: "*.conf"
+    file_type: any
+  register: find_sysctl_d
+
+- name: Comment out any occurrences of net.ipv4.conf.default.rp_filter from config files
+  replace:
+    path: "{{ item.path }}"
+    regexp: '^[\s]*net.ipv4.conf.default.rp_filter'
+    replace: '#net.ipv4.conf.default.rp_filter'
+  loop: "{{ find_sysctl_d.files }}"
+
+
+- name: Comment out any occurrences of net.ipv4.conf.default.rp_filter from /etc/sysctl.conf
+  replace:
+    path: "/etc/sysctl.conf"
+    regexp: '^[\s]*net.ipv4.conf.default.rp_filter'
+    replace: '#net.ipv4.conf.default.rp_filter'
+
+- (xccdf-var sysctl_net_ipv4_conf_default_rp_filter_value)
+
+- name: Ensure sysctl net.ipv4.conf.default.rp_filter is set
+  sysctl:
+    name: "net.ipv4.conf.default.rp_filter"
+    value: "{{ sysctl_net_ipv4_conf_default_rp_filter_value }}"
+
+    sysctl_file: "/etc/sysctl.d/net_ipv4_conf_default_rp_filter.conf"
+
+    state: present
+    reload: yes

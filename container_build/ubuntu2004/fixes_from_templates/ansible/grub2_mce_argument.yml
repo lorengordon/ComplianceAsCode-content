@@ -1,0 +1,30 @@
+# platform = multi_platform_rhel,multi_platform_fedora,multi_platform_ol,multi_platform_rhv,multi_platform_sle
+# reboot = true
+# strategy = restrict
+# complexity = medium
+# disruption = low
+
+
+
+
+- name: Check mce argument exists
+  command: grep 'GRUB_CMDLINE_LINUX.*mce=' /etc/default/grub
+  failed_when: False
+  register: argcheck
+
+- name: Replace existing mce argument
+  replace:
+      path: /etc/default/grub
+      regexp: 'mce=\w+'
+      replace: 'mce=0'
+  when: argcheck.rc == 0
+
+- name: Add mce argument
+  replace:
+      path: /etc/default/grub
+      regexp: '(GRUB_CMDLINE_LINUX=.*)"'
+      replace: '\1 mce=0"'
+  when: argcheck.rc != 0
+
+- name: Update grub defaults and the bootloader menu
+  command: /sbin/grubby --update-kernel=ALL --args="mce=0"

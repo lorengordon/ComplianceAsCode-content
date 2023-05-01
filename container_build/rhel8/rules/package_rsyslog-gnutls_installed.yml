@@ -1,0 +1,80 @@
+prodtype: fedora,ol8,ol9,rhel7,rhel8,rhel9,sle12,sle15
+description: 'TLS protocol support for rsyslog is installed.
+
+    The <code>rsyslog-gnutls</code> package can be installed with the following command:
+
+    <pre>
+
+    $ sudo yum install rsyslog-gnutls</pre>'
+rationale: 'The rsyslog-gnutls package provides Transport Layer Security (TLS) support
+
+    for the rsyslog daemon, which enables secure remote logging.'
+severity: medium
+references:
+    anssi: BP28(R43)
+    disa: CCI-000366
+    ospp: FTP_ITC_EXT.1.1
+    srg: SRG-OS-000480-GPOS-00227,SRG-OS-000120-GPOS-00061
+    stigid: RHEL-08-030680
+    stigref: SV-230478r744011_rule
+identifiers:
+    cce: CCE-82859-0
+ocil_clause: the package is not installed
+ocil: 'Run the following command to determine if the <code>rsyslog-gnutls</code> package
+    is installed: <pre>$ rpm -q rsyslog-gnutls</pre>'
+oval_external_content: null
+fixtext: 'The <code>rsyslog-gnutls</code> package can be installed with the following
+    command:
+
+    <pre>
+
+    $ sudo yum install rsyslog-gnutls</pre>'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Red Hat Enterprise Linux 8 must have the packages required for encrypting
+    offloaded audit logs installed.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Red Hat Enterprise Linux 8 must have the packages required
+            for encrypting offloaded audit logs installed.
+        vuldiscussion: 'The rsyslog-gnutls package provides Transport Layer Security
+            (TLS) support
+
+            for the rsyslog daemon, which enables secure remote logging.'
+        checktext: 'Verify that Red Hat Enterprise Linux 8 has the rsyslog-gnutls
+            package installed with the following command:
+
+
+            $ sudo dnf list --installed rsyslog-gnutls
+
+
+            rsyslog-gnutls.x86_64          8.2102.0-101.el9_0.1
+
+
+            If the "rsyslog-gnutls" package is not installed, this is a finding.'
+        fixtext: 'The  rsyslog-gnutls package can be installed with the following
+            command:
+
+
+            $ sudo dnf install rsyslog-gnutls'
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Ensure rsyslog-gnutls is installed
+definition_location: /home/oscap/content/linux_os/guide/system/logging/package_rsyslog-gnutls_installed/rule.yml
+template:
+    name: package_installed
+    vars:
+        pkgname: rsyslog-gnutls
+    backends: {}
+documentation_complete: true

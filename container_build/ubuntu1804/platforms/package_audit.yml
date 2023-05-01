@@ -1,0 +1,11 @@
+name: package_audit
+original_expression: package[audit]
+xml_content: <ns0:platform xmlns:ns0="http://cpe.mitre.org/language/2.0" id="package_audit"><ns0:logical-test
+    operator="AND" negate="false"><ns0:check-fact-ref system="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+    href="ssg-ubuntu1804-cpe-oval.xml" id-ref="oval:ssg-package_audit:def:1" /></ns0:logical-test></ns0:platform>
+bash_conditional: dpkg-query --show --showformat='${db:Status-Status}\n' 'auditd'
+    2>/dev/null | grep -q installed
+ansible_conditional: '"auditd" in ansible_facts.packages'
+title: ''
+definition_location: /home/oscap/content/build/ubuntu1804/platforms/package_audit.yml
+documentation_complete: true

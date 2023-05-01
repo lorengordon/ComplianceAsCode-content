@@ -1,0 +1,95 @@
+prodtype: ol8,rhel8
+description: 'The <tt>tmux</tt> terminal multiplexer is used to implement
+
+    automatic session locking. It should be started from
+
+    <tt>/etc/bashrc</tt> or drop-in files within <tt>/etc/profile.d/</tt>.'
+rationale: 'Unlike <tt>bash</tt> itself, the <tt>tmux</tt> terminal multiplexer
+
+    provides a mechanism to lock sessions after period of inactivity.
+
+    A session lock is a temporary action taken when a user stops work and moves away
+    from the
+
+    immediate physical vicinity of the information system but does not want to
+
+    log out because of the temporary nature of the absence.'
+severity: medium
+references:
+    disa: CCI-000056,CCI-000058
+    srg: SRG-OS-000031-GPOS-00012,SRG-OS-000028-GPOS-00009,SRG-OS-000030-GPOS-00011
+    stigid: OL08-00-020041
+    stigref: SV-248676r880538_rule
+identifiers: {}
+ocil_clause: the command does not produce output
+ocil: 'Verify Oracle Linux 8 shell initialization file is configured to start each
+    shell with the tmux terminal multiplexer.
+
+
+    Determine the location of the tmux script with the following command:
+
+
+    <pre>$ sudo grep tmux /etc/bashrc /etc/profile.d/*
+
+
+    /etc/profile.d/tmux.sh:  case "$name" in (sshd|login) tmux ;; esac</pre>
+
+
+    Review the tmux script by using the following example:
+
+
+    <pre>$ cat /etc/profile.d/tmux.sh
+
+
+    if [ "$PS1" ]; then
+
+    parent=$(ps -o ppid= -p $$)
+
+    name=$(ps -o comm= -p $parent)
+
+    case "$name" in (sshd|login) tmux ;; esac
+
+    fi</pre>
+
+
+    If the shell file is not configured as the example above, is commented out, or
+    is missing, this is a finding.
+
+
+    Determine if tmux is currently running with the following command:
+
+
+    <pre>$ sudo ps all | grep tmux | grep -v grep</pre>'
+oval_external_content: null
+fixtext: "Configure Oracle Linux 8 to initialize the tmux terminal multiplexer as\
+    \ each shell is called by adding the following to file \"/etc/profile.d/tmux.sh\"\
+    :\n\nif [ \"$PS1\" ]; then\n    parent=$(ps -o ppid= -p $$)\n    name=$(ps -o\
+    \ comm= -p $parent)\n    case \"$name\" in sshd|login) tmux ;; esac\nfi\n\nThen,\
+    \ ensure a correct mode of /etc/profile.d/tmux.sh using this command:\n\n$ sudo\
+    \ chmod 0644 /etc/profile.d/tmux.sh"
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Oracle Linux 8 must ensure session control is automatically started
+    at shell initialization.
+warnings:
+-   general: 'This rule configures Tmux to be executed in a way that exiting Tmux
+
+        drops the user into a regular shell instead of logging them out, therefore
+        the session locking mechanism is not enforced on the user.'
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: package[tmux]
+platforms: !!set
+    package[tmux]: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    package_tmux: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Support session locking with tmux (not enforcing)
+definition_location: /home/oscap/content/linux_os/guide/system/accounts/accounts-physical/screen_locking/console_screen_locking/configure_bashrc_tmux/rule.yml
+template: null
+documentation_complete: true

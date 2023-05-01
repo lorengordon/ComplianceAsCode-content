@@ -1,0 +1,160 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = configure
+# complexity = low
+# disruption = low
+- name: Find /lib/ file(s) matching ^.*$ recursively
+  command: find -H /lib/  -type f ! -uid 0 -regex "^.*$"
+  register: files_found
+  changed_when: false
+  failed_when: false
+  check_mode: false
+  tags:
+  - DISA-STIG-OL08-00-010340
+  - NIST-800-53-AC-6(1)
+  - NIST-800-53-CM-5(6)
+  - NIST-800-53-CM-5(6).1
+  - NIST-800-53-CM-6(a)
+  - configure_strategy
+  - file_ownership_library_dirs
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Ensure owner on /lib/ file(s) matching ^.*$
+  file:
+    path: '{{ item }}'
+    owner: '0'
+    state: file
+  with_items:
+  - '{{ files_found.stdout_lines }}'
+  tags:
+  - DISA-STIG-OL08-00-010340
+  - NIST-800-53-AC-6(1)
+  - NIST-800-53-CM-5(6)
+  - NIST-800-53-CM-5(6).1
+  - NIST-800-53-CM-6(a)
+  - configure_strategy
+  - file_ownership_library_dirs
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Find /lib64/ file(s) matching ^.*$ recursively
+  command: find -H /lib64/  -type f ! -uid 0 -regex "^.*$"
+  register: files_found
+  changed_when: false
+  failed_when: false
+  check_mode: false
+  tags:
+  - DISA-STIG-OL08-00-010340
+  - NIST-800-53-AC-6(1)
+  - NIST-800-53-CM-5(6)
+  - NIST-800-53-CM-5(6).1
+  - NIST-800-53-CM-6(a)
+  - configure_strategy
+  - file_ownership_library_dirs
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Ensure owner on /lib64/ file(s) matching ^.*$
+  file:
+    path: '{{ item }}'
+    owner: '0'
+    state: file
+  with_items:
+  - '{{ files_found.stdout_lines }}'
+  tags:
+  - DISA-STIG-OL08-00-010340
+  - NIST-800-53-AC-6(1)
+  - NIST-800-53-CM-5(6)
+  - NIST-800-53-CM-5(6).1
+  - NIST-800-53-CM-6(a)
+  - configure_strategy
+  - file_ownership_library_dirs
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Find /usr/lib/ file(s) matching ^.*$ recursively
+  command: find -H /usr/lib/  -type f ! -uid 0 -regex "^.*$"
+  register: files_found
+  changed_when: false
+  failed_when: false
+  check_mode: false
+  tags:
+  - DISA-STIG-OL08-00-010340
+  - NIST-800-53-AC-6(1)
+  - NIST-800-53-CM-5(6)
+  - NIST-800-53-CM-5(6).1
+  - NIST-800-53-CM-6(a)
+  - configure_strategy
+  - file_ownership_library_dirs
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Ensure owner on /usr/lib/ file(s) matching ^.*$
+  file:
+    path: '{{ item }}'
+    owner: '0'
+    state: file
+  with_items:
+  - '{{ files_found.stdout_lines }}'
+  tags:
+  - DISA-STIG-OL08-00-010340
+  - NIST-800-53-AC-6(1)
+  - NIST-800-53-CM-5(6)
+  - NIST-800-53-CM-5(6).1
+  - NIST-800-53-CM-6(a)
+  - configure_strategy
+  - file_ownership_library_dirs
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Find /usr/lib64/ file(s) matching ^.*$ recursively
+  command: find -H /usr/lib64/  -type f ! -uid 0 -regex "^.*$"
+  register: files_found
+  changed_when: false
+  failed_when: false
+  check_mode: false
+  tags:
+  - DISA-STIG-OL08-00-010340
+  - NIST-800-53-AC-6(1)
+  - NIST-800-53-CM-5(6)
+  - NIST-800-53-CM-5(6).1
+  - NIST-800-53-CM-6(a)
+  - configure_strategy
+  - file_ownership_library_dirs
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Ensure owner on /usr/lib64/ file(s) matching ^.*$
+  file:
+    path: '{{ item }}'
+    owner: '0'
+    state: file
+  with_items:
+  - '{{ files_found.stdout_lines }}'
+  tags:
+  - DISA-STIG-OL08-00-010340
+  - NIST-800-53-AC-6(1)
+  - NIST-800-53-CM-5(6)
+  - NIST-800-53-CM-5(6).1
+  - NIST-800-53-CM-6(a)
+  - configure_strategy
+  - file_ownership_library_dirs
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed

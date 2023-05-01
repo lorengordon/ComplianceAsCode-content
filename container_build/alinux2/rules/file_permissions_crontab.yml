@@ -1,0 +1,93 @@
+prodtype: alinux2,alinux3,anolis8,ol9,rhel7,rhel8,rhel9,rhv4,sle12,sle15,ubuntu2004,ubuntu2204
+description: '
+
+    To properly set the permissions of <code>/etc/crontab</code>, run the command:
+
+    <pre>$ sudo chmod 0600 /etc/crontab</pre>'
+rationale: 'Service configuration files enable or disable features of their respective
+    services that if configured incorrectly
+
+    can lead to insecure and vulnerable configurations. Therefore, service configuration
+    files should have the
+
+    correct access rights to prevent unauthorized changes.'
+severity: medium
+references:
+    cis-csc: 12,13,14,15,16,18,3,5
+    cobit5: APO01.06,DSS05.04,DSS05.07,DSS06.02
+    isa-62443-2009: 4.3.3.7.3
+    isa-62443-2013: SR 2.1,SR 5.2
+    iso27001-2013: A.10.1.1,A.11.1.4,A.11.1.5,A.11.2.1,A.13.1.1,A.13.1.3,A.13.2.1,A.13.2.3,A.13.2.4,A.14.1.2,A.14.1.3,A.6.1.2,A.7.1.1,A.7.1.2,A.7.3.1,A.8.2.2,A.8.2.3,A.9.1.1,A.9.1.2,A.9.2.3,A.9.4.1,A.9.4.4,A.9.4.5
+    nist: CM-6(a),AC-6(1)
+    nist-csf: PR.AC-4,PR.DS-5
+    pcidss4: 2.2.6
+    srg: SRG-OS-000480-GPOS-00227
+    cis: 5.1.2
+identifiers: {}
+ocil_clause: /etc/crontab does not have unix mode -rw-------
+ocil: 'To check the permissions of <code>/etc/crontab</code>,
+
+    run the command:
+
+    <pre>$ ls -l /etc/crontab</pre>
+
+    If properly configured, the output should indicate the following permissions:
+
+    <code>-rw-------</code>'
+oval_external_content: null
+fixtext: ' Configure the "/etc/cron.weekly/" file to "0600" by running the following
+    command:
+
+    $ sudo chmod 0600 /etc/cron.weekly/'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ' The Alibaba Cloud Linux 2 /etc/cron.weekly file must have mode
+    0600 or less permissive to prevent unauthorized access.'
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: The Alibaba Cloud Linux 2 /etc/crontab file must have mode
+            0600.
+        vuldiscussion: 'Service configuration files enable or disable features of
+            their respective services that if configured incorrectly
+
+            can lead to insecure and vulnerable configurations. Therefore, service
+            configuration files should have the
+
+            correct access rights to prevent unauthorized changes.'
+        checktext: 'Verify the permissions of /etc/crontab with the following command:
+
+
+            $ stat -c "%a %n" /etc/crontab
+
+
+            0600
+
+
+            If /etc/crontab does not have a mode of 0600, this is a finding.'
+        fixtext: 'Configure the Alibaba Cloud Linux 2 file /etc/crontab with mode
+            600.
+
+
+            $ sudo chmod 0600 /etc/crontab'
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Verify Permissions on crontab
+definition_location: /home/oscap/content/linux_os/guide/services/cron_and_at/file_permissions_crontab/rule.yml
+template:
+    name: file_permissions
+    vars:
+        filepath: /etc/crontab
+        filemode: '0600'
+    backends: {}
+documentation_complete: true

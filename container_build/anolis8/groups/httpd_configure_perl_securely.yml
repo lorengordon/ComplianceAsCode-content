@@ -1,0 +1,23 @@
+prodtype: all
+description: 'PERL (Practical Extraction and Report Language) is an interpreted language
+
+    optimized for scanning arbitrary text files, extracting information from those
+
+    text files, and printing reports based on that information. The language is
+
+    often used in shell scripting and is intended to be practical, easy to use, and
+
+    efficient means of generating interactive web pages for the user.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules: {}
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Configure PERL Securely
+definition_location: /home/oscap/content/linux_os/guide/services/http/securing_httpd/httpd_configure_perl_securely/group.yml
+documentation_complete: true

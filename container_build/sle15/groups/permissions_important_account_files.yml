@@ -1,0 +1,50 @@
+prodtype: all
+description: 'The default restrictive permissions for files which act as
+
+    important security databases such as <tt>passwd</tt>, <tt>shadow</tt>,
+
+    <tt>group</tt>, and <tt>gshadow</tt> files must be maintained.  Many utilities
+
+    need read access to the <tt>passwd</tt> file in order to function properly, but
+
+    read access to the <tt>shadow</tt> file allows malicious attacks against system
+
+    passwords, and should never be enabled.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- file_etc_security_opasswd
+- file_groupowner_backup_etc_group
+- file_groupowner_backup_etc_gshadow
+- file_groupowner_backup_etc_passwd
+- file_groupowner_backup_etc_shadow
+- file_groupowner_etc_group
+- file_groupowner_etc_gshadow
+- file_groupowner_etc_passwd
+- file_groupowner_etc_shadow
+- file_owner_backup_etc_group
+- file_owner_backup_etc_gshadow
+- file_owner_backup_etc_passwd
+- file_owner_backup_etc_shadow
+- file_owner_etc_group
+- file_owner_etc_gshadow
+- file_owner_etc_passwd
+- file_owner_etc_shadow
+- file_permissions_backup_etc_group
+- file_permissions_backup_etc_gshadow
+- file_permissions_backup_etc_passwd
+- file_permissions_backup_etc_shadow
+- file_permissions_etc_group
+- file_permissions_etc_gshadow
+- file_permissions_etc_passwd
+- file_permissions_etc_shadow
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Verify Permissions on Files with Local Account Information and Credentials
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/files/permissions_important_account_files/group.yml
+documentation_complete: true

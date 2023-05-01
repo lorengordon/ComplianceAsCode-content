@@ -1,0 +1,22 @@
+prodtype: all
+description: 'DHCP is the default network configuration method provided by the system
+
+    installer, and common on many networks. Nevertheless, manual management
+
+    of IP addresses for systems implies a greater degree of management and
+
+    accountability for network activity.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- sysconfig_networking_bootproto_ifcfg
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Disable DHCP Client
+definition_location: /home/oscap/content/linux_os/guide/services/dhcp/disabling_dhcp_client/group.yml
+documentation_complete: true

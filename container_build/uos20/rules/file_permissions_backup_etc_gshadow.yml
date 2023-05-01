@@ -1,0 +1,81 @@
+prodtype: all
+description: '
+
+    To properly set the permissions of <code>/etc/gshadow-</code>, run the command:
+
+    <pre>$ sudo chmod 0000 /etc/gshadow-</pre>'
+rationale: 'The <tt>/etc/gshadow-</tt> file is a backup of <tt>/etc/gshadow</tt>,
+    and as such,
+
+    it contains group password hashes. Protection of this file is critical for system
+    security.'
+severity: medium
+references:
+    disa: CCI-002223
+    nist: AC-6 (1)
+    srg: SRG-OS-000480-GPOS-00227
+identifiers: {}
+ocil_clause: /etc/gshadow- does not have unix mode ----------
+ocil: 'To check the permissions of <code>/etc/gshadow-</code>,
+
+    run the command:
+
+    <pre>$ ls -l /etc/gshadow-</pre>
+
+    If properly configured, the output should indicate the following permissions:
+
+    <code>----------</code>'
+oval_external_content: null
+fixtext: ' Configure the "/etc/gshadow-" file to "0000" by running the following command:
+
+    $ sudo chmod 0000 /etc/gshadow-'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ' The UnionTech OS Server 20 /etc/gshadow- file must have mode 0000
+    or less permissive to prevent unauthorized access.'
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: The UnionTech OS Server 20 /etc/gshadow- file must have mode
+            0000 or less permissive to prevent unauthorized access.
+        vuldiscussion: 'The "/etc/gshadow-" file is a backup of "/etc/gshadow", and
+            as such,
+
+            it contains group password hashes. Protection of this file is critical
+            for system security.'
+        checktext: 'Verify that the "/etc/gshadow-" file has mode "0000" with the
+            following command:
+
+
+            $ sudo stat -c "%a %n" /etc/gshadow-
+
+
+            0 /etc/gshadow-
+
+
+            If a value of "0" is not returned, this is a finding.'
+        fixtext: 'Change the mode of the file "/etc/gshadow-" to "0000" by running
+            the following command:
+
+
+            $ sudo chmod 0000 /etc/gshadow-'
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Verify Permissions on Backup gshadow File
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/files/permissions_important_account_files/file_permissions_backup_etc_gshadow/rule.yml
+template:
+    name: file_permissions
+    vars:
+        filepath: /etc/gshadow-
+        filemode: '0000'
+        missing_file_pass: 'true'
+    backends: {}
+documentation_complete: true

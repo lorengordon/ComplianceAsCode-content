@@ -1,0 +1,45 @@
+prodtype: sle12,sle15
+description: "A network port is identified by its number, the associated IP address,\
+    \ \nand the type of the communication protocol such as TCP or UDP.\nA listening\
+    \ port is a network port on which an application or process \nlistens on, acting\
+    \ as a communication endpoint.\nEach listening port can be open or closed (filtered)\
+    \ using a firewall. \nIn general terms, an open port is a network port that accepts\
+    \ \nincoming packets from remote locations."
+rationale: Services listening on the system pose a potential risk as an attack vector.
+    These services should be reviewed, and if not required, the service should be
+    stopped, and the package containing the service should be removed. If required
+    packages have a dependency, the service should be stopped and masked to reduce
+    the attack surface of the system.
+severity: low
+references:
+    pcidss4: 2.2.4
+    cis: '2.4'
+identifiers:
+    cce: CCE-92463-9
+ocil_clause: nonessential service is present and unmasked
+ocil: "Run the following command:\n<pre># lsof -i -P -n | grep -v \"(ESTABLISHED)\"\
+    </pre>\nReview the output to ensure that all services listed are required \non\
+    \ the system. If a listed service is not required, remove the \npackage containing\
+    \ the service. If the package containing the \nservice is required, stop and mask\
+    \ the service"
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Ensure nonessential services are removed or masked
+definition_location: /home/oscap/content/linux_os/guide/services/mask_nonessential_services/rule.yml
+template: null
+documentation_complete: true

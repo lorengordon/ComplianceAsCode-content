@@ -1,0 +1,208 @@
+prodtype: all
+description: 'To configure rsyslog to send logs to a remote log server,
+
+    open <tt>/etc/rsyslog.conf</tt> and read and understand the last section of the
+    file,
+
+    which describes the multiple directives necessary to activate remote
+
+    logging.
+
+    Along with these other directives, the system can be configured
+
+    to forward its logs to a particular log server by
+
+    adding or correcting one of the following lines,
+
+    substituting <tt><i><sub idref="rsyslog_remote_loghost_address" /></i></tt> appropriately.
+
+    The choice of protocol depends on the environment of the system;
+
+    although TCP and RELP provide more reliable message delivery,
+
+    they may not be supported in all environments.
+
+    <br />
+
+    To use UDP for log message delivery:
+
+    <pre>*.* @<i><sub idref="rsyslog_remote_loghost_address" /></i></pre>
+
+    <br />
+
+    To use TCP for log message delivery:
+
+    <pre>*.* @@<i><sub idref="rsyslog_remote_loghost_address" /></i></pre>
+
+    <br />
+
+    To use RELP for log message delivery:
+
+    <pre>*.* :omrelp:<i><sub idref="rsyslog_remote_loghost_address" /></i></pre>
+
+    <br />
+
+    There must be a resolvable DNS CNAME or Alias record set to "<sub idref="rsyslog_remote_loghost_address"
+    />" for logs to be sent correctly to the centralized logging utility.'
+rationale: 'A log server (loghost) receives syslog messages from one or more
+
+    systems. This data can be used as an additional log source in the event a
+
+    system is compromised and its local logs are suspect. Forwarding log messages
+
+    to a remote loghost also provides system administrators with a centralized
+
+    place to view the status of multiple hosts within the enterprise.'
+severity: medium
+references:
+    anssi: BP28(R7),NT28(R43),NT12(R5)
+    cis-csc: 1,13,14,15,16,2,3,5,6
+    cobit5: APO11.04,APO13.01,BAI03.05,BAI04.04,DSS05.04,DSS05.07,MEA02.01
+    disa: CCI-000366,CCI-001348,CCI-000136,CCI-001851
+    hipaa: 164.308(a)(1)(ii)(D),164.308(a)(5)(ii)(B),164.308(a)(5)(ii)(C),164.308(a)(6)(ii),164.308(a)(8),164.310(d)(2)(iii),164.312(b),164.314(a)(2)(i)(C),164.314(a)(2)(iii)
+    isa-62443-2009: 4.3.3.3.9,4.3.3.5.8,4.3.4.4.7,4.4.2.1,4.4.2.2,4.4.2.4
+    isa-62443-2013: SR 2.10,SR 2.11,SR 2.12,SR 2.8,SR 2.9,SR 7.1,SR 7.2
+    ism: 0988,1405
+    iso27001-2013: A.12.1.3,A.12.4.1,A.12.4.2,A.12.4.3,A.12.4.4,A.12.7.1,A.17.2.1
+    nerc-cip: CIP-003-8 R5.2,CIP-004-6 R3.3
+    nist: CM-6(a),AU-4(1),AU-9(2)
+    nist-csf: PR.DS-4,PR.PT-1
+    ospp: FAU_GEN.1.1.c
+    srg: SRG-OS-000479-GPOS-00224,SRG-OS-000480-GPOS-00227,SRG-OS-000342-GPOS-00133
+identifiers: {}
+ocil_clause: no evidence that the audit logs are being off-loaded to another system
+    or media
+ocil: 'To ensure logs are sent to a remote host, examine the file
+
+    <tt>/etc/rsyslog.conf</tt>.
+
+    If using UDP, a line similar to the following should be present:
+
+    <pre> *.* @<i><sub idref="rsyslog_remote_loghost_address" /></i></pre>
+
+    If using TCP, a line similar to the following should be present:
+
+    <pre> *.* @@<i><sub idref="rsyslog_remote_loghost_address" /></i></pre>
+
+    If using RELP, a line similar to the following should be present:
+
+    <pre> *.* :omrelp:<i><sub idref="rsyslog_remote_loghost_address" /></i></pre>'
+oval_external_content: null
+fixtext: 'Configure Red Hat Enterprise Linux CoreOS 4 to off-load audit records onto
+    a different system or media from the system being audited by specifying the remote
+    logging server in "/etc/rsyslog.conf" or "/etc/rsyslog.d/[customfile].conf" with
+    the name or IP address of the log aggregation server.
+
+
+    *.* @@[remoteloggingserver]:[port]"'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: The Red Hat Enterprise Linux CoreOS 4 audit records must be off-loaded
+    onto a different system or storage media from the system being audited.
+warnings:
+-   functionality: 'It is important to configure queues in case the client is sending
+        log
+
+        messages to a remote server. If queues are not configured,
+
+        the system will stop functioning when the connection
+
+        to the remote server is not available. Please consult Rsyslog
+
+        documentation for more information about configuration of queues. The
+
+        example configuration which should go into <tt>/etc/rsyslog.conf</tt>
+
+        can look like the following lines:
+
+        <pre>
+
+        $ActionQueueType LinkedList
+
+        $ActionQueueFileName queuefilename
+
+        $ActionQueueMaxDiskSpace 1g
+
+        $ActionQueueSaveOnShutdown on
+
+        $ActionResumeRetryCount -1
+
+        </pre>'
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Red Hat Enterprise Linux CoreOS 4 must be configured to forward
+            audit records via TCP to a different system or media from the system being
+            audited via rsyslog.
+        vuldiscussion: 'Information stored in one location is vulnerable to accidental
+            or incidental deletion or alteration.
+
+
+            Off-loading is a common process in information systems with limited audit
+            storage capacity.
+
+
+            Red Hat Enterprise Linux CoreOS 4 installation media provides "rsyslogd".  "rsyslogd"
+            is a system utility providing support for message logging.  Support for
+            both internet and UNIX domain sockets enables this utility to support
+            both local and remote logging.  Couple this utility with "gnutls" (which
+            is a secure communications library implementing the SSL, TLS and DTLS
+            protocols), and you have a method to securely encrypt and off-load auditing.
+
+
+            Rsyslog provides three ways to forward message: the traditional UDP transport,
+            which is extremely lossy but standard; the plain TCP based transport,
+            which loses messages only during certain situations but is widely available;
+            and the RELP transport, which does not lose messages but is currently
+            available only as part of the rsyslogd 3.15.0 and above.
+
+            Examples of each configuration:
+
+            UDP *.* @remotesystemname
+
+            TCP *.* @@remotesystemname
+
+            RELP *.* :omrelp:remotesystemname:2514
+
+            Note that a port number was given as there is no standard port for RELP.'
+        checktext: 'Verify that Red Hat Enterprise Linux CoreOS 4 audit system off-loads
+            audit records onto a different system or media from the system being audited
+            via rsyslog using TCP with the following command:
+
+
+            $ sudo grep @@ /etc/rsyslog.conf /etc/rsyslog.d/*.conf
+
+
+            /etc/rsyslog.conf:*.* @@[remoteloggingserver]:[port]
+
+
+            If a remote server is not configured, or the line is commented out, ask
+            the System Administrator to indicate how the audit logs are off-loaded
+            to a different system or media.
+
+
+            If there is no evidence that the audit logs are being off-loaded to another
+            system or media, this is a finding.'
+        fixtext: 'Configure Red Hat Enterprise Linux CoreOS 4 to off-load audit records
+            onto a different system or media from the system being audited via TCP
+            using rsyslog by specifying the remote logging server in "/etc/rsyslog.conf""
+            or "/etc/rsyslog.d/[customfile].conf" with the name or IP address of the
+            log aggregation server.
+
+
+            *.* @@[remoteloggingserver]:[port]"'
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Ensure Logs Sent To Remote Host
+definition_location: /home/oscap/content/linux_os/guide/system/logging/rsyslog_sending_messages/rsyslog_remote_loghost/rule.yml
+template: null
+documentation_complete: true
