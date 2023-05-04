@@ -1,0 +1,170 @@
+name: cpe:/a:{arg}:{ver_specs_cpe}
+check_id: ''
+bash_conditional: ''
+ansible_conditional: ''
+is_product_cpe: false
+versioned: true
+args:
+    audit:
+        pkgname: audit
+        id: package_audit
+        name: package
+        arg: audit
+        ver_specs: []
+        ver_specs_id: ''
+        ver_specs_cpe: ''
+        ver_specs_title: ''
+    chrony:
+        pkgname: chrony
+        id: package_chrony
+        name: package
+        arg: chrony
+        ver_specs: []
+        ver_specs_id: ''
+        ver_specs_cpe: ''
+        ver_specs_title: ''
+    gdm:
+        pkgname: gdm
+        id: package_gdm
+        name: package
+        arg: gdm
+        ver_specs: []
+        ver_specs_id: ''
+        ver_specs_cpe: ''
+        ver_specs_title: ''
+    libuser:
+        pkgname: libuser
+        id: package_libuser
+        name: package
+        arg: libuser
+        ver_specs: []
+        ver_specs_id: ''
+        ver_specs_cpe: ''
+        ver_specs_title: ''
+    net-snmp:
+        pkgname: net-snmp
+        id: package_net-snmp
+        name: package
+        arg: net-snmp
+        ver_specs: []
+        ver_specs_id: ''
+        ver_specs_cpe: ''
+        ver_specs_title: ''
+    nss-pam-ldapd:
+        pkgname: nss-pam-ldapd
+        id: package_nss-pam-ldapd
+        name: package
+        arg: nss-pam-ldapd
+        ver_specs: []
+        ver_specs_id: ''
+        ver_specs_cpe: ''
+        ver_specs_title: ''
+    ntp:
+        pkgname: ntp
+        title: NTP daemon and utilities
+        id: package_ntp
+        name: package
+        arg: ntp
+        ver_specs: []
+        ver_specs_id: ''
+        ver_specs_cpe: ''
+        ver_specs_title: ''
+    pam:
+        pkgname: pam
+        id: package_pam
+        name: package
+        arg: pam
+        ver_specs: []
+        ver_specs_id: ''
+        ver_specs_cpe: ''
+        ver_specs_title: ''
+    polkit:
+        pkgname: polkit
+    postfix:
+        pkgname: postfix
+        id: package_postfix
+        name: package
+        arg: postfix
+        ver_specs: []
+        ver_specs_id: ''
+        ver_specs_cpe: ''
+        ver_specs_title: ''
+    shadow-utils:
+        pkgname: shadow-utils
+        id: package_shadow-utils
+        name: package
+        arg: shadow-utils
+        ver_specs: []
+        ver_specs_id: ''
+        ver_specs_cpe: ''
+        ver_specs_title: ''
+    sssd:
+        pkgname: sssd-common
+        id: package_sssd
+        name: package
+        arg: sssd
+        ver_specs: []
+        ver_specs_id: ''
+        ver_specs_cpe: ''
+        ver_specs_title: ''
+    sudo:
+        pkgname: sudo
+        id: package_sudo
+        name: package
+        arg: sudo
+        ver_specs: []
+        ver_specs_id: ''
+        ver_specs_cpe: ''
+        ver_specs_title: ''
+    systemd:
+        pkgname: systemd
+        id: package_systemd
+        name: package
+        arg: systemd
+        ver_specs: []
+        ver_specs_id: ''
+        ver_specs_cpe: ''
+        ver_specs_title: ''
+    tftp-server:
+        pkgname: tftp-server
+        id: package_tftp-server
+        name: package
+        arg: tftp-server
+        ver_specs: []
+        ver_specs_id: ''
+        ver_specs_cpe: ''
+        ver_specs_title: ''
+    tmux:
+        pkgname: tmux
+        id: package_tmux
+        name: package
+        arg: tmux
+        ver_specs: []
+        ver_specs_id: ''
+        ver_specs_cpe: ''
+        ver_specs_title: ''
+    usbguard:
+        pkgname: usbguard
+        id: package_usbguard
+        name: package
+        arg: usbguard
+        ver_specs: []
+        ver_specs_id: ''
+        ver_specs_cpe: ''
+        ver_specs_title: ''
+    yum:
+        pkgname: yum
+        id: package_yum
+        name: package
+        arg: yum
+        ver_specs: []
+        ver_specs_id: ''
+        ver_specs_cpe: ''
+        ver_specs_title: ''
+    zypper:
+        pkgname: zypper
+title: Package {pkgname} is installed
+definition_location: /home/oscap/content/shared/applicability/package.yml
+template:
+    name: platform_package
+documentation_complete: true

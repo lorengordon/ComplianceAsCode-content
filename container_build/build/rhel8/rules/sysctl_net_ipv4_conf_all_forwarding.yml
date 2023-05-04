@@ -1,0 +1,85 @@
+prodtype: rhel7,rhel8,rhel9
+description: 'To set the runtime status of the <code>net.ipv4.conf.all.forwarding</code>
+    kernel parameter, run the following command: <pre>$ sudo sysctl -w net.ipv4.conf.all.forwarding=0</pre>
+
+    To make sure that the setting is persistent, add the following line to a file
+    in the directory <tt>/etc/sysctl.d</tt>: <pre>net.ipv4.conf.all.forwarding = 0</pre>'
+rationale: 'IP forwarding permits the kernel to forward packets from one network
+
+    interface to another. The ability to forward packets between two networks is
+
+    only appropriate for systems acting as routers.'
+severity: medium
+references:
+    disa: CCI-000366
+    nist: CM-6(b)
+    srg: SRG-OS-000480-GPOS-00227
+    stigid: RHEL-08-040259
+    stigref: SV-250317r858808_rule
+identifiers:
+    cce: CCE-86220-1
+ocil_clause: IP forwarding value is "1" and the system is not router
+ocil: 'The runtime status of the <code>net.ipv4.conf.all.forwarding</code> kernel
+    parameter can be queried
+
+    by running the following command:
+
+    <pre>$ sysctl net.ipv4.conf.all.forwarding</pre>
+
+    <code>0</code>.
+
+    The ability to forward packets is only appropriate for routers.'
+oval_external_content: null
+fixtext: 'Configure Red Hat Enterprise Linux 8 to not allow packet forwarding unless
+    the system is a router with the following commands:
+
+    Add or edit the following line in a system configuration file in the "/etc/sysctl.d/"
+    directory:
+
+    net.ipv4.conf.all.forwarding = 0
+
+
+    Load settings from all system configuration files with the following command:
+
+
+    $ sudo sysctl --system'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Red Hat Enterprise Linux 8 must not perform packet forwarding unless
+    the system is a router.
+warnings:
+-   general: 'There might be cases when certain applications can systematically override
+        this option.
+
+        One such case is <a xmlns=''http://www.w3.org/1999/xhtml'' href=''https://libvirt.org/''>Libvirt</a>;
+        a toolkit for managing of virtualization platforms.
+
+        By default, Libvirt requires IP forwarding to be enabled to facilitate
+
+        network communication between the virtualization host and guest
+
+        machines. It enables IP forwarding after every reboot.'
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Disable Kernel Parameter for IPv4 Forwarding on all IPv4 Interfaces
+definition_location: /home/oscap/content/linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_conf_all_forwarding/rule.yml
+template:
+    name: sysctl
+    vars:
+        sysctlvar: net.ipv4.conf.all.forwarding
+        datatype: int
+    backends: {}
+documentation_complete: true

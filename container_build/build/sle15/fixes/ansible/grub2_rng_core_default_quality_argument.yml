@@ -1,0 +1,78 @@
+# platform = multi_platform_rhel,multi_platform_fedora,multi_platform_ol,multi_platform_rhv,multi_platform_sle
+# reboot = true
+# strategy = restrict
+# complexity = medium
+# disruption = low
+- name: Gather the package facts
+  package_facts:
+    manager: auto
+  tags:
+  - grub2_rng_core_default_quality_argument
+  - low_disruption
+  - low_severity
+  - medium_complexity
+  - reboot_required
+  - restrict_strategy
+- (xccdf-var var_rng_core_default_quality)
+
+- name: Check rng_core.default_quality argument exists
+  command: grep 'GRUB_CMDLINE_LINUX.*rng_core.default_quality=' /etc/default/grub
+  failed_when: false
+  register: argcheck
+  when:
+  - '"grub2" in ansible_facts.packages'
+  - ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - grub2_rng_core_default_quality_argument
+  - low_disruption
+  - low_severity
+  - medium_complexity
+  - reboot_required
+  - restrict_strategy
+
+- name: Replace existing rng_core.default_quality argument
+  replace:
+    path: /etc/default/grub
+    regexp: rng_core.default_quality=\w+
+    replace: rng_core.default_quality={{ var_rng_core_default_quality }}
+  when:
+  - '"grub2" in ansible_facts.packages'
+  - ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  - argcheck.rc == 0
+  tags:
+  - grub2_rng_core_default_quality_argument
+  - low_disruption
+  - low_severity
+  - medium_complexity
+  - reboot_required
+  - restrict_strategy
+
+- name: Add rng_core.default_quality argument
+  replace:
+    path: /etc/default/grub
+    regexp: (GRUB_CMDLINE_LINUX=.*)"
+    replace: \1 rng_core.default_quality={{ var_rng_core_default_quality }}"
+  when:
+  - '"grub2" in ansible_facts.packages'
+  - ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  - argcheck.rc != 0
+  tags:
+  - grub2_rng_core_default_quality_argument
+  - low_disruption
+  - low_severity
+  - medium_complexity
+  - reboot_required
+  - restrict_strategy
+
+- name: Update grub defaults and the bootloader menu
+  command: /usr/sbin/grub2-mkconfig -o /boot/grub2/grub.cfg
+  when:
+  - '"grub2" in ansible_facts.packages'
+  - ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - grub2_rng_core_default_quality_argument
+  - low_disruption
+  - low_severity
+  - medium_complexity
+  - reboot_required
+  - restrict_strategy

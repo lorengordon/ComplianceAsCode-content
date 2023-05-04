@@ -1,0 +1,50 @@
+prodtype: all
+description: 'A mail server is required for sending emails.
+
+    The <code>postfix</code> package can be installed with the following command:
+
+    <pre>
+
+    $ sudo dnf install postfix</pre>'
+rationale: 'Emails can be used to notify designated personnel about important
+
+    system events such as failures or warnings.'
+severity: medium
+references:
+    srg: SRG-OS-000046-GPOS-00022
+identifiers:
+    cce: CCE-85984-3
+ocil_clause: the package is not installed
+ocil: 'Run the following command to determine if the <code>postfix</code> package
+    is installed: <pre>$ rpm -q postfix</pre>'
+oval_external_content: null
+fixtext: ' To install the Red Hat Enterprise Linux 9 package postfix run the following
+    command:
+
+
+    $ sudo dnf install postfix'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ' Red Hat Enterprise Linux 9 must have the postfix package installed.'
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: The Postfix package is installed
+definition_location: /home/oscap/content/linux_os/guide/services/mail/package_postfix_installed/rule.yml
+template:
+    name: package_installed
+    vars:
+        pkgname: postfix
+    backends: {}
+documentation_complete: true

@@ -1,0 +1,37 @@
+prodtype: rhel7,rhel8
+description: 'To prevent Dovecot from attempting plaintext authentication of clients,
+
+    edit <tt>/etc/dovecot/conf.d/10-auth.conf</tt> and add\or correct the
+
+    following line:
+
+    <pre>disable_plaintext_auth = yes</pre>'
+rationale: 'Using plain text authentication to the mail server could allow an attacker
+
+    access to credentials by monitoring network traffic.'
+severity: unknown
+references: {}
+identifiers: {}
+ocil_clause: null
+ocil: null
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Disable Plaintext Authentication
+definition_location: /home/oscap/content/linux_os/guide/services/imap/configure_dovecot/dovecot_enabling_ssl/dovecot_disable_plaintext_auth/rule.yml
+template: null
+documentation_complete: true

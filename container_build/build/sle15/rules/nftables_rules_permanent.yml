@@ -1,0 +1,82 @@
+prodtype: sle15
+description: 'nftables is a subsystem of the Linux kernel providing filtering and
+    classification of
+
+    network packets/datagrams/frames. The nftables service reads the
+
+    <sub idref="var_nftable_master_config_file" /> file for a nftables file or files
+    to
+
+    include in the nftables ruleset. A nftables ruleset containing the input, forward,
+    and output
+
+    base chains allow network traffic to be filtered.'
+rationale: 'Changes made to nftables ruleset only affect the live system, you will
+    also need to configure
+
+    the nftables ruleset to apply on boot'
+severity: medium
+references:
+    cis: 3.5.2.10
+identifiers:
+    cce: CCE-92485-2
+ocil_clause: no nftables configuration exist
+ocil: 'Run the following commands to verify that input, forward, and output base chains
+    are
+
+    configured to be applied to a nftables ruleset on boot.
+
+    Run the following command to verify the input base chain:
+
+    <pre>
+
+    # awk ''/hook input/,/}/'' $(awk ''$1 ~ /^\s*include/ { gsub("\"","",$2);print
+    $2 }'' \
+
+    <sub idref="var_nftable_master_config_file" />)
+
+    </pre>
+
+    or for forward base chain:
+
+    <pre>
+
+    # awk ''/hook forward/,/}/'' $(awk ''$1 ~ /^\s*include/ { gsub("\"","",$2);print
+    $2 }'' \
+
+    <sub idref="var_nftable_master_config_file" />)
+
+    </pre>
+
+    Review the base chains to ensure that they follow local site policy'
+oval_external_content: null
+fixtext: 'Edit the <sub idref="var_nftable_master_config_file" /> file and un-comment
+    or add
+
+    a line with include absolute path to nftables rules file for each nftables file
+    you want
+
+    included in the nftables ruleset on boot.
+
+    For example the  <sub idref="var_nftable_master_config_file" /> should contain
+
+    <pre>include "/etc/nftables/nftables.rules"</pre>'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Ensure nftables rules are permanent
+definition_location: /home/oscap/content/linux_os/guide/system/network/network-nftables/nftables_rules_permanent/rule.yml
+template: null
+documentation_complete: true

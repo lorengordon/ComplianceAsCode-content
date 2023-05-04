@@ -1,0 +1,22 @@
+prodtype: all
+description: 'Commands intended for shell execution, as well as configuration file
+    text,
+
+    are featured in a <tt>monospace font</tt>. <i>Italics</i> are used
+
+    to indicate instances where the system administrator must substitute
+
+    the appropriate information into a command or configuration file.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules: {}
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Formatting Conventions
+definition_location: /home/oscap/content/linux_os/guide/intro/how-to-use/intro-formatting-conventions/group.yml
+documentation_complete: true

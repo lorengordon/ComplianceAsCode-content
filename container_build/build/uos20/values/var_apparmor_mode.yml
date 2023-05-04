@@ -1,0 +1,14 @@
+description: 'enforce - Set all AppArmor profiles to enforce mode<br />
+
+    complain - Set all AppArmor profiles to complain mode'
+type: string
+operator: equals
+interactive: false
+options:
+    default: enforce
+    complain: complain
+    enforce: enforce
+warnings: []
+title: AppArmor profiles mode
+definition_location: /home/oscap/content/linux_os/guide/system/apparmor/var_apparmor_mode.var
+documentation_complete: true

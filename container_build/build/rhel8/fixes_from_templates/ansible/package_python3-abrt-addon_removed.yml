@@ -1,0 +1,9 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = disable
+# complexity = low
+# disruption = low
+- name: Ensure python3-abrt-addon is removed
+  package:
+    name: "python3-abrt-addon"
+    state: absent

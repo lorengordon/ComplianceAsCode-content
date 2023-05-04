@@ -1,0 +1,60 @@
+prodtype: firefox
+description: 'JavaScript can configure and make changes to the web browser''s appearance
+    by
+
+    specifically raising and lowering windows. This can be disabled by
+
+    setting <tt>dom.disable_window_flip</tt> to <tt>true</tt> in the policy file.'
+rationale: "JavaScript can make changes to the browser\u2019s appearance. Allowing\
+    \ a website\nto use JavaScript to raise and lower browser windows may disguise\
+    \ an attack."
+severity: medium
+references:
+    disa: CCI-000381
+    nist: CM-7
+    stigid: FFOX-00-000011
+identifiers: {}
+ocil_clause: it is not disabled
+ocil: 'To verify that JavaScript cannot change windows sizing,
+
+    type the following into the browser address bar:
+
+    <pre>about:policies</pre>
+
+    The output should have the following uder dom.disable_window_flip:
+
+    <pre>"Value": true,</pre>
+
+    <pre>"Status": "locked",</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Disable JavaScript's Raise Or Lower Windows Capability
+definition_location: /home/oscap/content/products/firefox/guide/firefox/firefox_policy-javascript_window_changes/rule.yml
+template:
+    name: firefox_policy-setting
+    vars:
+        name: Disable addon and plugin automatic update
+        policies:
+        -   path: Preferences dom.disable_window_flip
+            parameter: Value
+            value: 'true'
+        -   path: Preferences dom.disable_window_flip
+            parameter: Status
+            value: locked
+    backends: {}
+documentation_complete: true

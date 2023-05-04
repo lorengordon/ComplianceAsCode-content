@@ -1,0 +1,38 @@
+prodtype: rhel7,rhel8
+description: 'The <tt>mime_magic</tt> module provides a second layer of MIME support
+    that in most configurations
+
+    is likely extraneous. If its functionality is unnecessary, comment out the related
+    module:
+
+    <pre>#LoadModule mime_magic_module modules/mod_mime_magic.so</pre>'
+rationale: 'Minimizing the number of loadable modules available to the web server
+    reduces risk
+
+    by limiting the capabilities allowed by the web server.'
+severity: unknown
+references: {}
+identifiers: {}
+ocil_clause: null
+ocil: null
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Disable MIME Magic
+definition_location: /home/oscap/content/linux_os/guide/services/http/securing_httpd/httpd_minimize_loadable_modules/httpd_core_modules/httpd_mime_magic/rule.yml
+template: null
+documentation_complete: true

@@ -1,0 +1,55 @@
+prodtype: rhel7,rhel8
+description: 'The <tt>log_config_module</tt> should exist and be configured in
+
+    the <tt>/etc/httpd/conf/httpd.conf</tt> file by adding the following module to
+
+    configure logging:
+
+    <pre>log_config_module</pre>'
+rationale: 'A major tool in exploring the web site use, attempted use, unusual conditions,
+
+    and problems are reported in the access and error logs. In the event of a
+
+    security incident, these logs can provide the SA and the web manager with
+
+    valuable information. Without these log files, SAs and web managers are
+
+    seriously hindered in their efforts to respond appropriately to suspicious or
+
+    criminal actions targeted at the web site.'
+severity: medium
+references:
+    stigid: WG240
+identifiers:
+    cce: CCE-80552-3
+ocil_clause: it is not
+ocil: 'To verify that the <tt>log_config_module</tt> exists in
+
+    <tt>/etc/httpd/conf/httpd.conf</tt>, run the following command:
+
+    <pre>$ grep log_config_module /etc/httpd/conf/httpd.conf</pre>
+
+    The output should return:
+
+    <pre>&lt;IfModule log_config_module&gt;</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Enable log_config_module For HTTPD Logging
+definition_location: /home/oscap/content/linux_os/guide/services/http/securing_httpd/httpd_minimize_loadable_modules/httpd_core_modules/httpd_enable_log_config/rule.yml
+template: null
+documentation_complete: true

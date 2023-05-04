@@ -1,0 +1,57 @@
+prodtype: firefox
+description: 'Extension recommendations may be disabled by setting
+
+    <tt>extensions.htmlaboutaddons.recommendations.enabled</tt> to <tt>false</tt>
+    in the policy file.'
+rationale: The Recommended Extensions program will make it easier for users to discover
+    extensions that have been reviewed for security, functionality, and user experience.
+severity: medium
+references:
+    disa: CCI-000381
+    nist: CM-7
+    stigid: FFOX-00-000026
+identifiers: {}
+ocil_clause: null
+ocil: 'To verify that enhanced tracking protection is enabled,
+
+    type the following into the browser address bar:
+
+    <pre>about:policies</pre>
+
+    The output should have the following under Preferences -&gt; extensions.htmlaboutaddons.recommendations.enabled:
+
+    <pre>"Value": false</pre>
+
+    <pre>"Status": "locked"</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Disabled Firefox Extension Recommendations
+definition_location: /home/oscap/content/products/firefox/guide/firefox/firefox_policy-extension_recommendation/rule.yml
+template:
+    name: firefox_policy-setting
+    vars:
+        name: Disable Firefox extension recommendations
+        policies:
+        -   path: Preferences extensions.htmlaboutaddons.recommendations.enabled
+            parameter: Value
+            value: 'false'
+        -   path: Preferences extensions.htmlaboutaddons.recommendations.enabled
+            parameter: Status
+            value: locked
+    backends: {}
+documentation_complete: true

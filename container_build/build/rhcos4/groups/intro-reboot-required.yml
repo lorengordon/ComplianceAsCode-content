@@ -1,0 +1,23 @@
+prodtype: all
+description: 'A system reboot is implicitly required after some actions in order to
+
+    complete the reconfiguration of the system. In many cases, the changes
+
+    will not take effect until a reboot is performed. In order to ensure
+
+    that changes are applied properly and to test functionality, always
+
+    reboot the system after applying a set of recommendations from this guide.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules: {}
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Reboot Required
+definition_location: /home/oscap/content/linux_os/guide/intro/how-to-use/intro-reboot-required/group.yml
+documentation_complete: true

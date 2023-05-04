@@ -1,0 +1,67 @@
+prodtype: all
+description: 'All audit configuration files permissions must be 640 or more restrictive.
+
+    <pre>chmod 0640 /etc/audit/audit*.{rules,conf} /etc/audit/rules.d/*</pre>'
+rationale: 'Without the capability to restrict which roles and individuals can
+
+    select which events are audited, unauthorized personnel may be able
+
+    to prevent the auditing of critical events.
+
+    Misconfigured audits may degrade the system''s performance by
+
+    overwhelming the audit log. Misconfigured audits may also make it more
+
+    difficult to establish, correlate, and investigate the events relating
+
+    to an incident or identify those responsible for one.'
+severity: medium
+references: {}
+identifiers: {}
+ocil_clause: null
+ocil: '
+
+    To properly set the permissions of <code>/etc/audit/</code>, run the command:
+
+    <pre>$ sudo chmod 0640 /etc/audit/</pre>
+
+
+    To properly set the permissions of <code>/etc/audit/rules.d/</code>, run the command:
+
+    <pre>$ sudo chmod 0640 /etc/audit/rules.d/</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+    package[audit]: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+    package_audit: null
+bash_conditional: null
+fixes: {}
+title: Audit Configuration Files Permissions are 640 or More Restrictive
+definition_location: /home/oscap/content/linux_os/guide/system/auditing/auditd_configure_rules/file_permissions_audit_configuration/rule.yml
+template:
+    name: file_permissions
+    vars:
+        filepath:
+        - /etc/audit/
+        - /etc/audit/rules.d/
+        file_regex:
+        - .*audit\(\.rules\|d\.conf\)$
+        - .*\.rules$
+        allow_stricter_permissions: 'true'
+        filemode: '0640'
+    backends: {}
+documentation_complete: true

@@ -1,0 +1,12 @@
+name: cpe:/a:grub2
+check_id: installed_env_has_grub2_package
+bash_conditional: dpkg-query --show --showformat='${db:Status-Status}\n' 'grub2-common'
+    2>/dev/null | grep -q installed
+ansible_conditional: '"grub2-common" in ansible_facts.packages'
+is_product_cpe: false
+versioned: false
+args: {}
+title: Package grub2 is installed
+definition_location: /home/oscap/content/shared/applicability/grub2.yml
+template: null
+documentation_complete: true

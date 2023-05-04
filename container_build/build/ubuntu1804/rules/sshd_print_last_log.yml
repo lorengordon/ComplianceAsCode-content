@@ -1,0 +1,116 @@
+prodtype: all
+description: 'Ensure that SSH will display the date and time of the last successful
+    account logon.
+
+    <br/>
+
+    The default SSH configuration enables print of the date and time of the last login.
+
+    The appropriate configuration is used if no value is set for <tt>PrintLastLog</tt>.
+
+    <br/>
+
+    To explicitly enable LastLog in SSH, add or correct the following line in
+
+
+
+    <tt>/etc/ssh/sshd_config</tt>:
+
+
+    <pre>PrintLastLog yes</pre>'
+rationale: 'Providing users feedback on when account accesses last occurred facilitates
+    user
+
+    recognition and reporting of unauthorized account use.'
+severity: medium
+references:
+    cis-csc: 1,12,15,16
+    cobit5: DSS05.04,DSS05.10,DSS06.10
+    disa: CCI-000052
+    isa-62443-2009: 4.3.3.6.1,4.3.3.6.2,4.3.3.6.3,4.3.3.6.4,4.3.3.6.5,4.3.3.6.6,4.3.3.6.7,4.3.3.6.8,4.3.3.6.9
+    isa-62443-2013: SR 1.1,SR 1.10,SR 1.2,SR 1.5,SR 1.7,SR 1.8,SR 1.9
+    iso27001-2013: A.18.1.4,A.9.2.1,A.9.2.4,A.9.3.1,A.9.4.2,A.9.4.3
+    nist: AC-9,AC-9(1)
+    nist-csf: PR.AC-7
+    srg: SRG-OS-000480-GPOS-00227
+identifiers: {}
+ocil_clause: the required value is not set
+ocil: 'To determine how the SSH daemon''s <tt>PrintLastLog</tt> option is set, run
+    the following command:
+
+
+    <pre>$ sudo grep -i PrintLastLog /etc/ssh/sshd_config</pre>
+
+
+    If a line indicating <tt>yes</tt> is returned, then the required value is set.
+
+    '
+oval_external_content: null
+fixtext: 'To configure the system add or modify the following line in "/etc/ssh/sshd_config.d/00-complianceascode-hardening.conf".
+
+    PrintLastLog yes
+
+    Restart the SSH daemon for the settings to take effect:
+
+    $ sudo systemctl restart sshd.service'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Ubuntu 18.04 must display the date and time of the last successful
+    account logon upon an SSH logon.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: The Ubuntu 18.04 SSH daemon must display the date and time
+            of the last successful account logon upon an SSH logon.
+        vuldiscussion: Providing users feedback on when account accesses last occurred
+            facilitates user recognition and reporting of unauthorized account use.
+        checktext: 'Verify the SSH daemon provides users with feedback on when account
+            accesses last occurred with the following command:
+
+
+            $ sudo grep -ir printlast  /etc/ssh/sshd_config /etc/ssh/sshd_config.d/*
+
+
+            PrintLastLog yes
+
+
+            If the "PrintLastLog" keyword is set to "no", the returned line is commented
+            out, or no output is returned, this is a finding.'
+        fixtext: 'Configure the SSH daemon to provide users with feedback on when
+            account accesses last occurred.
+
+
+            Add the following line in "/etc/ssh/sshd_config", or uncomment the line
+            and set the value to "yes":
+
+
+            PrintLastLog yes
+
+
+            The SSH service must be restarted for changes to take effect:
+
+
+            $ sudo systemctl restart sshd.service'
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Enable SSH Print Last Log
+definition_location: /home/oscap/content/linux_os/guide/services/ssh/ssh_server/sshd_print_last_log/rule.yml
+template:
+    name: sshd_lineinfile
+    vars:
+        parameter: PrintLastLog
+        rule_id: sshd_print_last_log
+        value: 'yes'
+        is_default_value: 'true'
+    backends: {}
+documentation_complete: true

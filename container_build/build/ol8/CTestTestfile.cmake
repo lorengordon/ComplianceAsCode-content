@@ -1,0 +1,24 @@
+# CMake generated Testfile for 
+# Source directory: /home/oscap/content/products/ol8
+# Build directory: /home/oscap/content/build/ol8
+# 
+# This file includes the relevant testing commands required for 
+# testing this directory and lists subdirectories to be tested as well.
+add_test(validate-ssg-ol8-cpe-dictionary.xml "/usr/bin/oscap" "cpe" "validate" "/home/oscap/content/build/ssg-ol8-cpe-dictionary.xml")
+set_tests_properties(validate-ssg-ol8-cpe-dictionary.xml PROPERTIES  _BACKTRACE_TRIPLES "/home/oscap/content/cmake/SSGCommon.cmake;359;add_test;/home/oscap/content/cmake/SSGCommon.cmake;705;ssg_build_cpe_dictionary;/home/oscap/content/products/ol8/CMakeLists.txt;8;ssg_build_product;/home/oscap/content/products/ol8/CMakeLists.txt;0;")
+add_test(validate-ssg-ol8-cpe-oval.xml "/usr/bin/oscap" "oval" "validate" "--schematron" "/home/oscap/content/build/ssg-ol8-cpe-oval.xml")
+set_tests_properties(validate-ssg-ol8-cpe-oval.xml PROPERTIES  _BACKTRACE_TRIPLES "/home/oscap/content/cmake/SSGCommon.cmake;363;add_test;/home/oscap/content/cmake/SSGCommon.cmake;705;ssg_build_cpe_dictionary;/home/oscap/content/products/ol8/CMakeLists.txt;8;ssg_build_product;/home/oscap/content/products/ol8/CMakeLists.txt;0;")
+add_test(validate-ssg-ol8-oval.xml "/usr/bin/oscap" "oval" "validate" "--schematron" "/home/oscap/content/build/ssg-ol8-oval.xml")
+set_tests_properties(validate-ssg-ol8-oval.xml PROPERTIES  _BACKTRACE_TRIPLES "/home/oscap/content/cmake/SSGCommon.cmake;401;add_test;/home/oscap/content/cmake/SSGCommon.cmake;707;ssg_build_oval_final;/home/oscap/content/products/ol8/CMakeLists.txt;8;ssg_build_product;/home/oscap/content/products/ol8/CMakeLists.txt;0;")
+add_test(xccdf-values-ol8 "/home/oscap/content/tests/test_xccdf_values_in_ds.sh" "/home/oscap/content/build/ssg-ol8-ds.xml")
+set_tests_properties(xccdf-values-ol8 PROPERTIES  LABELS "quick" _BACKTRACE_TRIPLES "/home/oscap/content/cmake/SSGCommon.cmake;468;add_test;/home/oscap/content/cmake/SSGCommon.cmake;709;ssg_build_sds;/home/oscap/content/products/ol8/CMakeLists.txt;8;ssg_build_product;/home/oscap/content/products/ol8/CMakeLists.txt;0;")
+add_test(validate-ssg-ol8-ds.xml "/usr/bin/oscap" "ds" "sds-validate" "/home/oscap/content/build/ssg-ol8-ds.xml")
+set_tests_properties(validate-ssg-ol8-ds.xml PROPERTIES  _BACKTRACE_TRIPLES "/home/oscap/content/cmake/SSGCommon.cmake;491;add_test;/home/oscap/content/cmake/SSGCommon.cmake;709;ssg_build_sds;/home/oscap/content/products/ol8/CMakeLists.txt;8;ssg_build_product;/home/oscap/content/products/ol8/CMakeLists.txt;0;")
+add_test(validate-ssg-ol8-ds-1.2.xml "/usr/bin/oscap" "ds" "sds-validate" "/home/oscap/content/build/ssg-ol8-ds-1.2.xml")
+set_tests_properties(validate-ssg-ol8-ds-1.2.xml PROPERTIES  _BACKTRACE_TRIPLES "/home/oscap/content/cmake/SSGCommon.cmake;496;add_test;/home/oscap/content/cmake/SSGCommon.cmake;709;ssg_build_sds;/home/oscap/content/products/ol8/CMakeLists.txt;8;ssg_build_product;/home/oscap/content/products/ol8/CMakeLists.txt;0;")
+add_test(verify-ssg-ol8-ds.xml-override-true-all-profile-titles "/usr/bin/xmllint" "--xpath" "//*[local-name()=\"Profile\"]/*[local-name()=\"title\"][not(@override=\"true\")]" "/home/oscap/content/build/ssg-ol8-ds.xml")
+set_tests_properties(verify-ssg-ol8-ds.xml-override-true-all-profile-titles PROPERTIES  LABELS "quick" WILL_FAIL "true" _BACKTRACE_TRIPLES "/home/oscap/content/cmake/SSGCommon.cmake;502;add_test;/home/oscap/content/cmake/SSGCommon.cmake;709;ssg_build_sds;/home/oscap/content/products/ol8/CMakeLists.txt;8;ssg_build_product;/home/oscap/content/products/ol8/CMakeLists.txt;0;")
+add_test(verify-ssg-ol8-ds.xml-override-true-all-profile-descriptions "/usr/bin/xmllint" "--xpath" "//*[local-name()=\"Profile\"]/*[local-name()=\"description\"][not(@override=\"true\")]" "/home/oscap/content/build/ssg-ol8-ds.xml")
+set_tests_properties(verify-ssg-ol8-ds.xml-override-true-all-profile-descriptions PROPERTIES  LABELS "quick" WILL_FAIL "true" _BACKTRACE_TRIPLES "/home/oscap/content/cmake/SSGCommon.cmake;507;add_test;/home/oscap/content/cmake/SSGCommon.cmake;709;ssg_build_sds;/home/oscap/content/products/ol8/CMakeLists.txt;8;ssg_build_product;/home/oscap/content/products/ol8/CMakeLists.txt;0;")
+add_test(verify-references-ssg-ol8-ds.xml "env" "PYTHONPATH=/home/oscap/content" "/usr/bin/python3" "/home/oscap/content/build-scripts/verify_references.py" "--rules-with-invalid-checks" "--base-dir" "/home/oscap/content/build" "--ovaldefs-unused" "/home/oscap/content/build/ssg-ol8-ds.xml")
+set_tests_properties(verify-references-ssg-ol8-ds.xml PROPERTIES  LABELS "quick" _BACKTRACE_TRIPLES "/home/oscap/content/cmake/SSGCommon.cmake;521;add_test;/home/oscap/content/cmake/SSGCommon.cmake;709;ssg_build_sds;/home/oscap/content/products/ol8/CMakeLists.txt;8;ssg_build_product;/home/oscap/content/products/ol8/CMakeLists.txt;0;")

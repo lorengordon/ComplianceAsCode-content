@@ -1,0 +1,48 @@
+prodtype: fedora,rhel7,rhel8
+description: 'Is there a mission-critical reason for users to upload files via FTP?
+    If not,
+
+    edit the vsftpd configuration file to add or correct the following configuration
+    options:
+
+    <pre>write_enable=NO</pre>
+
+    If FTP uploads are necessary, follow the guidance in the remainder of this section
+    to secure these transactions
+
+    as much as possible.'
+rationale: 'Anonymous FTP can be a convenient way to make files available for universal
+    download. However, it is less
+
+    common to have a need to allow unauthenticated users to place files on the FTP
+    server. If this must be done, it
+
+    is necessary to ensure that files cannot be uploaded and downloaded from the same
+    directory.'
+severity: unknown
+references: {}
+identifiers:
+    cce: CCE-80250-4
+ocil_clause: null
+ocil: null
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Disable FTP Uploads if Possible
+definition_location: /home/oscap/content/linux_os/guide/services/ftp/ftp_configure_vsftpd/ftp_disable_uploads/rule.yml
+template: null
+documentation_complete: true

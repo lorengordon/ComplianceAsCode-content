@@ -1,0 +1,94 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = configure
+# complexity = low
+# disruption = low
+- name: Ensure group owner on /bin/ recursively
+  file:
+    path: /bin/
+    state: directory
+    recurse: true
+    group: '0'
+  tags:
+  - DISA-STIG-UBTU-20-010425
+  - configure_strategy
+  - dir_groupownership_binary_dirs
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Ensure group owner on /sbin/ recursively
+  file:
+    path: /sbin/
+    state: directory
+    recurse: true
+    group: '0'
+  tags:
+  - DISA-STIG-UBTU-20-010425
+  - configure_strategy
+  - dir_groupownership_binary_dirs
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Ensure group owner on /usr/bin/ recursively
+  file:
+    path: /usr/bin/
+    state: directory
+    recurse: true
+    group: '0'
+  tags:
+  - DISA-STIG-UBTU-20-010425
+  - configure_strategy
+  - dir_groupownership_binary_dirs
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Ensure group owner on /usr/sbin/ recursively
+  file:
+    path: /usr/sbin/
+    state: directory
+    recurse: true
+    group: '0'
+  tags:
+  - DISA-STIG-UBTU-20-010425
+  - configure_strategy
+  - dir_groupownership_binary_dirs
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Ensure group owner on /usr/local/bin/ recursively
+  file:
+    path: /usr/local/bin/
+    state: directory
+    recurse: true
+    group: '0'
+  tags:
+  - DISA-STIG-UBTU-20-010425
+  - configure_strategy
+  - dir_groupownership_binary_dirs
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Ensure group owner on /usr/local/sbin/ recursively
+  file:
+    path: /usr/local/sbin/
+    state: directory
+    recurse: true
+    group: '0'
+  tags:
+  - DISA-STIG-UBTU-20-010425
+  - configure_strategy
+  - dir_groupownership_binary_dirs
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed

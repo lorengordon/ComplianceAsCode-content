@@ -1,0 +1,49 @@
+prodtype: opensuse,sle12,sle15
+description: 'The <tt>openssh</tt> package should be installed.
+
+    The <code>openssh</code> package can be installed with the following command:
+
+    <pre>
+
+    $ sudo zypper install openssh</pre>'
+rationale: 'Without protection of the transmitted information, confidentiality, and
+
+    integrity may be compromised because unprotected communications can be
+
+    intercepted and either read or altered.'
+severity: medium
+references:
+    disa: CCI-002418,CCI-002420,CCI-002421,CCI-002422
+    nist: CM-6(a)
+    srg: SRG-OS-000423-GPOS-00187
+identifiers: {}
+ocil_clause: the package is not installed
+ocil: 'Run the following command to determine if the <code>openssh</code> package
+    is installed: <pre>$ rpm -q openssh</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Install the OpenSSH Client and Server Package
+definition_location: /home/oscap/content/linux_os/guide/services/ssh/package_openssh_installed/rule.yml
+template:
+    name: package_installed
+    vars:
+        pkgname: openssh
+    backends: {}
+documentation_complete: true

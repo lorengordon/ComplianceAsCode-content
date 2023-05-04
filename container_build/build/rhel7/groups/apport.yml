@@ -1,0 +1,17 @@
+prodtype: all
+description: 'The Apport service provides debugging and crash reporting
+
+    features on Ubuntu distributions.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules: {}
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Apport Service
+definition_location: /home/oscap/content/linux_os/guide/services/apport/group.yml
+documentation_complete: true

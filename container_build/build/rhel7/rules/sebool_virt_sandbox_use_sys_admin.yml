@@ -1,0 +1,55 @@
+prodtype: rhel7,rhel8,rhel9
+description: 'By default, the SELinux boolean <tt>virt_sandbox_use_sys_admin</tt>
+    is disabled.
+
+    If this setting is enabled, it should be disabled.
+
+
+    To disable the <code>virt_sandbox_use_sys_admin</code> SELinux boolean, run the
+    following command:
+
+    <pre>$ sudo setsebool -P virt_sandbox_use_sys_admin off</pre>'
+rationale: ''
+severity: medium
+references: {}
+identifiers: {}
+ocil_clause: virt_sandbox_use_sys_admin is not disabled
+ocil: '
+
+    Run the following command to determine if the <code>virt_sandbox_use_sys_admin</code>
+    SELinux boolean is disabled:
+
+    <pre>$ getsebool virt_sandbox_use_sys_admin</pre>
+
+    If properly configured, the output should show the following:
+
+    <code>virt_sandbox_use_sys_admin --> off</code>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+    not osbuild: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    not_osbuild: null
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Disable the virt_sandbox_use_sys_admin SELinux Boolean
+definition_location: /home/oscap/content/linux_os/guide/system/selinux/selinux-booleans/sebool_virt_sandbox_use_sys_admin/rule.yml
+template:
+    name: sebool
+    vars:
+        seboolid: virt_sandbox_use_sys_admin
+    backends: {}
+documentation_complete: true

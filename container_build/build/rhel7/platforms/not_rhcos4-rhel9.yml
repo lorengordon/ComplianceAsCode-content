@@ -1,0 +1,11 @@
+name: not_rhcos4-rhel9
+original_expression: not rhcos4-rhel9
+xml_content: <ns0:platform xmlns:ns0="http://cpe.mitre.org/language/2.0" id="not_rhcos4-rhel9"><ns0:logical-test
+    operator="AND" negate="true"><ns0:check-fact-ref system="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+    href="ssg-rhel7-cpe-oval.xml" id-ref="oval:ssg-installed_OS_is_rhcos4_rhel9:def:1"
+    /></ns0:logical-test></ns0:platform>
+bash_conditional: ''
+ansible_conditional: ''
+title: ''
+definition_location: /home/oscap/content/build/rhel7/platforms/not_rhcos4-rhel9.yml
+documentation_complete: true

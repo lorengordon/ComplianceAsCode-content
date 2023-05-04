@@ -1,0 +1,76 @@
+prodtype: ol7
+description: 'Configure the operating system to confine SELinux users to roles that
+    conform
+
+    to least privilege. Use the following command to map the "staff_u" SELinux user
+
+    to the "staff_r" and "sysadm_r" roles:
+
+    <pre>$ sudo semanage user -m staff_u -R staff_r -R sysadm_r</pre>
+
+    <br /><br />
+
+    Use the following command to map the "user_u" SELinux user to the "user_r" role:
+
+    <pre>$ sudo semanage -m user_u -R user_r</pre>'
+rationale: 'Preventing non-privileged users from executing privileged functions mitigates
+
+    the risk that unauthorized individuals or processes may gain unnecessary access
+
+    to information or privileges.
+
+    <br /><br />
+
+    Privileged functions include, for example,
+
+    establishing accounts, performing system integrity checks, or administering
+
+    cryptographic key management activities. Non-privileged users are individuals
+
+    who do not possess appropriate authorizations. Circumventing intrusion detection
+
+    and prevention mechanisms or malicious code protection mechanisms are examples
+
+    of privileged functions that require protection from non-privileged users.'
+severity: medium
+references:
+    disa: CCI-002165,CCI-002235
+    nist: AC-3(4),AC-6(10)
+    srg: SRG-OS-000324-GPOS-00125
+    stigid: OL07-00-020021
+    stigref: SV-250309r877392_rule
+identifiers: {}
+ocil_clause: selinux users are not confined to least privilege
+ocil: "Verify the operating system confines SELinux users to roles that conform to\
+    \ least\nprivilege. Check the SELinux User list to SELinux Roles mapping by using\
+    \ the \nfollowing command:\n<pre>sudo semanage user -l</pre>\nThe output should\
+    \ look like this:\n<pre>SELinuxUser LabelingPrefix MLS/MCSLevel MLS/MCSRange SELinuxRoles\n\
+    guest_u            user  s0  s0  guest_r\nroot                   user  s0  s0-s0:c0.c1023\
+    \  staff_r sysadm_r system_r unconfined_r\nstaff_u              user  s0  s0-s0:c0.c1023\
+    \  staff_r sysadm_r\nsysadm_u         user  s0  s0-s0:c0.c1023  sysadm_r\nsystem_u\
+    \          user  s0  s0-s0:c0.c1023  system_r unconfined_r\nunconfined_u  user\
+    \  s0  s0-s0:c0.c1023  system_r unconfined_r\nuser_u               user  s0  s0\
+    \  user_r\nxguest_u           user  s0  s0  xguest_r\n</pre>"
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Confine SELinux Users To Roles That Conform To Least Privilege
+definition_location: /home/oscap/content/linux_os/guide/system/selinux/selinux_confine_to_least_privilege/rule.yml
+template: null
+documentation_complete: true

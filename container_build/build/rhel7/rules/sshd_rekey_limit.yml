@@ -1,0 +1,109 @@
+prodtype: all
+description: 'The <tt>RekeyLimit</tt> parameter specifies how often
+
+    the session key of the is renegotiated, both in terms of
+
+    amount of data that may be transmitted and the time
+
+    elapsed.<br/>
+
+    To decrease the default limits, add or correct the following line in
+
+
+
+    <tt>/etc/ssh/sshd_config</tt>:
+
+
+    <pre>RekeyLimit <sub idref="var_rekey_limit_size" /> <sub idref="var_rekey_limit_time"
+    /></pre>'
+rationale: 'By decreasing the limit based on the amount of data and enabling
+
+    time-based limit, effects of potential attacks against
+
+    encryption keys are limited.'
+severity: medium
+references:
+    disa: CCI-000068
+    ospp: FCS_SSH_EXT.1.8
+    srg: SRG-OS-000480-GPOS-00227,SRG-OS-000033-GPOS-00014
+identifiers: {}
+ocil_clause: it is commented out or is not set
+ocil: 'To check if RekeyLimit is set correctly, run the
+
+    following command:
+
+
+    <pre>$ sudo grep RekeyLimit /etc/ssh/sshd_config</pre>
+
+
+    If configured properly, output should be
+
+    <pre>RekeyLimit <sub idref="var_rekey_limit_size" /> <sub idref="var_rekey_limit_time"
+    /></pre>'
+oval_external_content: null
+fixtext: '
+
+    Configure Red Hat Enterprise Linux 7 to force a frequent session key renegotiation
+    for SSH connections to the server by adding or modifying the following line in
+    the "/etc/ssh/sshd_config" file:
+
+
+
+    RekeyLimit <sub idref="var_rekey_limit_size" /> <sub idref="var_rekey_limit_time"
+    />
+
+
+    Restart the SSH daemon for the settings to take effect.
+
+
+    $ sudo systemctl restart sshd.service'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Red Hat Enterprise Linux 7 must force a frequent session key renegotiation
+    for SSH connections to the server.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Red Hat Enterprise Linux 7 Must Implement Dod-Approved Encryption
+            To Protect The Confidentiality Of Remote Access Sessions.
+        vuldiscussion: 'By decreasing the limit based on the amount of data and enabling
+
+            time-based limit, effects of potential attacks against
+
+            encryption keys are limited.'
+        checktext: "To check if RekeyLimit is set correctly, run the\nfollowing command:\n\
+            \n $ sudo grep RekeyLimit /etc/ssh/sshd_config /etc/ssh/sshd_config.d/*\n\
+            \nIf configured properly, output should be\n RekeyLimit 1G 1h\n\nIf it\
+            \ is commented out or is not set, then this is a finding."
+        fixtext: '
+
+            Configure Red Hat Enterprise Linux 7 to force a frequent session key renegotiation
+            for SSH connections to the server by adding or modifying the following
+            line in the "/etc/ssh/sshd_config.d/00-complianceascode-hardening.conf"
+            file:
+
+
+
+            RekeyLimit 1G 1h
+
+
+            Restart the SSH daemon for the settings to take effect.
+
+
+            $ sudo systemctl restart sshd.service'
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Force frequent session key renegotiation
+definition_location: /home/oscap/content/linux_os/guide/services/ssh/ssh_server/sshd_rekey_limit/rule.yml
+template: null
+documentation_complete: true

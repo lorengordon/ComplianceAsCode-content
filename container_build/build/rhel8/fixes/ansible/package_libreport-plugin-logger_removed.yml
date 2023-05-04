@@ -1,0 +1,18 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = disable
+# complexity = low
+# disruption = low
+- name: Ensure libreport-plugin-logger is removed
+  package:
+    name: libreport-plugin-logger
+    state: absent
+  tags:
+  - CCE-89201-8
+  - DISA-STIG-RHEL-08-040001
+  - disable_strategy
+  - low_complexity
+  - low_disruption
+  - low_severity
+  - no_reboot_needed
+  - package_libreport-plugin-logger_removed

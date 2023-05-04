@@ -1,0 +1,37 @@
+prodtype: all
+description: To set the default Chromium's HTTP Authentication Scheme, set <tt>AuthSchemes</tt>
+    to <tt><sub idref="var_auth_schema" /></tt> in the Chromium policy file.
+rationale: Specifies which HTTP Authentication schemes are supported by Google Chromium.
+severity: unknown
+references:
+    stigid: DTBC0012
+identifiers: {}
+ocil_clause: it is not set
+ocil: 'To verify that the HTTP Authentication Scheme is set, run the following command:
+
+    <pre>$ grep AuthSchemes /etc/chromium/policies/managed/*.json</pre>
+
+    The output should contain:
+
+    <pre>"AuthSchemes": "<sub idref="var_auth_schema" />",</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Set Chromium's HTTP Authentication Scheme
+definition_location: /home/oscap/content/products/chromium/guide/chromium/chromium_http_authentication/rule.yml
+template: null
+documentation_complete: true

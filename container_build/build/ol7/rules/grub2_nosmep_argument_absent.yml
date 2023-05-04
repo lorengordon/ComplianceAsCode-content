@@ -1,0 +1,66 @@
+prodtype: all
+description: 'The SMEP is used to prevent the supervisor mode from executing user
+    space code,
+
+    it is enabled by default since Linux kernel 3.0. But it could be disabled through
+
+    kernel boot parameters.
+
+
+    Ensure that Supervisor Mode Execution Prevention (SMEP) is not disabled by
+
+    the <tt>nosmep</tt> boot paramenter option.
+
+
+    Check that the line <pre>GRUB_CMDLINE_LINUX="..."</pre> within <tt>/etc/default/grub</tt>
+
+    doesn''t contain the argument <tt>nosmep</tt>.
+
+    Run the following command to update command line for already installed kernels:
+
+    <pre># grubby --update-kernel=ALL --remove-args="nosmep"</pre>'
+rationale: 'Disabling SMEP can facilitate exploitation of certain vulnerabilities
+    because it allows
+
+    the kernel to unintentionally execute code in less privileged memory space.'
+severity: medium
+references:
+    anssi: BP28(R1)
+identifiers: {}
+ocil_clause: the kernel is configured to disable SMEP
+ocil: 'Make sure that the kernel is not disabling SMEP with the following
+
+    commands.
+
+    <pre>grep -q nosmep /boot/config-`uname -r`</pre>
+
+    If the command returns a line, it means that SMEP is being disabled.'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set
+    grub2: null
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set
+    grub2: null
+bash_conditional: null
+fixes: {}
+title: Ensure SMEP is not disabled during boot
+definition_location: /home/oscap/content/linux_os/guide/system/bootloader-grub2/grub2_nosmep_argument_absent/rule.yml
+template:
+    name: grub2_bootloader_argument_absent
+    vars:
+        arg_name: nosmep
+    backends: {}
+documentation_complete: true

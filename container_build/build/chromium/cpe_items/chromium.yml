@@ -1,0 +1,11 @@
+name: cpe:/a:google:chromium-browser
+check_id: installed_app_is_chromium
+bash_conditional: ''
+ansible_conditional: ''
+is_product_cpe: true
+versioned: false
+args: {}
+title: Google Chromium Browser
+definition_location: ''
+template: null
+documentation_complete: true

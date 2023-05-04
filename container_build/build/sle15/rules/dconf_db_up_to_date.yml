@@ -1,0 +1,119 @@
+prodtype: fedora,ol7,ol8,ol9,rhel7,rhel8,rhel9,sle12,sle15
+description: 'By default, DConf uses a binary database as a data backend.
+
+    The system-level database is compiled from keyfiles in the /etc/dconf/db/
+
+    directory by the <pre>dconf update</pre> command. More specifically, content present
+
+    in the following directories:
+
+    <pre>/etc/dconf/db/gdm.d</pre>
+
+    <pre>/etc/dconf/db/local.d</pre>'
+rationale: 'Unlike text-based keyfiles, the binary database is impossible to check
+    by OVAL.
+
+    Therefore, in order to evaluate dconf configuration, both have to be true at the
+    same time -
+
+    configuration files have to be compliant, and the database needs to be more recent
+    than those keyfiles,
+
+    which gives confidence that it reflects them.'
+severity: high
+references:
+    hipaa: 164.308(a)(1)(ii)(B),164.308(a)(5)(ii)(A)
+    pcidss: Req-6.2
+    pcidss4: 6.3.3
+    srg: SRG-OS-000480-GPOS-00227
+identifiers:
+    cce: CCE-83288-1
+ocil_clause: The system-wide dconf databases are up-to-date with regards to respective
+    keyfiles
+ocil: 'In order to be sure that the databases are up-to-date, run the
+
+    <pre>dconf update</pre>
+
+    command as the administrator.'
+oval_external_content: null
+fixtext: 'Update the dconf databases by running the following command:
+
+
+    $ sudo dconf update'
+checktext: 'Check the last modification time of the local databases, comparing it
+    to the last modification time of the related keyfiles. The following command will
+    check every dconf database and compare its modification time to the related system
+    keyfiles:
+
+
+    Note: This requirement assumes the use of the SUSE Linux Enterprise 15 default
+    graphical user interface, Gnome Shell. If the system does not have any graphical
+    user interface installed, this requirement is Not Applicable.
+
+
+    $ function dconf_needs_update { for db in $(find /etc/dconf/db -maxdepth 1 -type
+    f); do db_mtime=$(stat -c %Y "$db"); keyfile_mtime=$(stat -c %Y "$db".d/* | sort
+    -n | tail -1); if [ -n "$db_mtime" ] && [ -n "$keyfile_mtime" ] && [ "$db_mtime"
+    -lt "$keyfile_mtime" ]; then echo "$db needs update"; return 1; fi; done; }; dconf_needs_update
+
+
+    If the command has any output, then a dconf database needs updated and this is
+    a finding.'
+vuldiscussion: ''
+srg_requirement: SUSE Linux Enterprise 15 effective dconf policy must match the policy
+    keyfiles.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: SUSE Linux Enterprise 15 effective dconf policy must match
+            the policy keyfiles.
+        vuldiscussion: 'Unlike text-based keyfiles, the binary database is impossible
+            to check through most automated and all manual means.
+
+            Therefore, in order to evaluate dconf configuration, both have to be true
+            at the same time - configuration files have to be compliant, and the database
+            needs to be more recent than those keyfiles, which gives confidence that
+            it reflects them.'
+        checktext: 'Check the last modification time of the local databases, comparing
+            it to the last modification time of the related keyfiles. The following
+            command will check every dconf database and compare its modification time
+            to the related system keyfiles:
+
+
+            Note: This requirement assumes the use of the SUSE Linux Enterprise 15
+            default graphical user interface, Gnome Shell. If the system does not
+            have any graphical user interface installed, this requirement is Not Applicable.
+
+
+            $ function dconf_needs_update { for db in $(find /etc/dconf/db -maxdepth
+            1 -type f); do db_mtime=$(stat -c %Y "$db"); keyfile_mtime=$(stat -c %Y
+            "$db".d/* | sort -n | tail -1); if [ -n "$db_mtime" ] && [ -n "$keyfile_mtime"
+            ] && [ "$db_mtime" -lt "$keyfile_mtime" ]; then echo "$db needs update";
+            return 1; fi; done; }; dconf_needs_update
+
+
+            If the command has any output, then a dconf database needs updated and
+            this is a finding.'
+        fixtext: 'Update the dconf databases by running the following command:
+
+
+            $ sudo dconf update'
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set
+    package[gdm]: null
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set
+    package_gdm: null
+bash_conditional: null
+fixes: {}
+title: Make sure that the dconf databases are up-to-date with regards to respective
+    keyfiles
+definition_location: /home/oscap/content/linux_os/guide/system/software/gnome/dconf_db_up_to_date/rule.yml
+template: null
+documentation_complete: true

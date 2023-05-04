@@ -1,0 +1,23 @@
+name: 'cpe:/a:audit:'
+check_id: ''
+bash_conditional: dpkg-query --show --showformat='${db:Status-Status}\n' 'auditd'
+    2>/dev/null | grep -q installed
+ansible_conditional: '"auditd" in ansible_facts.packages'
+is_product_cpe: false
+versioned: true
+args: {}
+title: Package auditd is installed
+definition_location: /home/oscap/content/shared/applicability/package.yml
+template:
+    name: platform_package
+    vars:
+        pkgname: auditd
+        id: package_audit
+        name: package
+        arg: audit
+        ver_specs: []
+        ver_specs_id: ''
+        ver_specs_cpe: ''
+        ver_specs_title: ''
+        _rule_id: package_audit
+documentation_complete: true

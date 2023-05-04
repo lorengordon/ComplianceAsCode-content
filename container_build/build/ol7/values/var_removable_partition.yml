@@ -1,0 +1,19 @@
+description: 'This value is used by the checks mount_option_nodev_removable_partitions,
+    mount_option_nodev_removable_partitions,
+
+    and mount_option_nodev_removable_partitions to ensure that the correct mount options
+    are set on partitions mounted from
+
+    removable media such as CD-ROMs, USB keys, and floppy drives. This value should
+    be modified to reflect any removable
+
+    partitions that are required on the local system.'
+type: string
+operator: equals
+interactive: false
+options:
+    dev_cdrom: /dev/cdrom
+warnings: []
+title: Removable Partition
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/partitions/var_removable_partition.var
+documentation_complete: true

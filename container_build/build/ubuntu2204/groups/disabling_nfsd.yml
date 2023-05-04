@@ -1,0 +1,21 @@
+prodtype: all
+description: 'There is no need to run the NFS server daemons <tt>nfs</tt> and
+
+    <tt>rpcsvcgssd</tt> except on a small number of properly secured systems
+
+    designated as NFS servers. Ensure that these daemons are turned off on
+
+    clients.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules: {}
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Disable NFS Server Daemons
+definition_location: /home/oscap/content/linux_os/guide/services/nfs_and_rpc/nfs_configuring_clients/disabling_nfsd/group.yml
+documentation_complete: true

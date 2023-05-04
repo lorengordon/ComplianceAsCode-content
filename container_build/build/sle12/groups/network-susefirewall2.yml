@@ -1,0 +1,19 @@
+prodtype: all
+description: The SuSEfirewall2 provides a managed firewall.
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- package_SuSEfirewall2_installed
+- service_SuSEfirewall2_enabled
+- susefirewall2_ddos_protection
+- susefirewall2_only_required_services
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: SuSEfirewall2
+definition_location: /home/oscap/content/linux_os/guide/system/network/network-susefirewall2/group.yml
+documentation_complete: true

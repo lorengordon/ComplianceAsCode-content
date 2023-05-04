@@ -1,0 +1,15 @@
+description: Chromium HTTP Authentication Types
+type: string
+operator: equals
+interactive: false
+options:
+    all: basic,digest,ntlm,negotiate
+    basic: basic
+    default: negotiate
+    digest: digest
+    negotiate: negotiate
+    ntlm: ntlm
+warnings: []
+title: Chromium HTTP Authentication Setting
+definition_location: /home/oscap/content/products/chromium/guide/chromium/var_auth_schema.var
+documentation_complete: true

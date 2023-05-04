@@ -1,0 +1,117 @@
+prodtype: ol8,ol9,rhel8,rhel9
+description: The Fapolicy module must be configured to employ a deny-all, permit-by-exception
+    policy to allow the execution of authorized software programs and to prevent unauthorized
+    software from running.
+rationale: 'Utilizing a whitelist provides a configuration management method for allowing
+    the execution of only authorized software.
+
+    Using only authorized software decreases risk by limiting the number of potential
+    vulnerabilities. Verification of whitelisted software occurs prior to execution
+    or at system startup.
+
+
+    Proceed with caution with enforcing the use of this daemon.
+
+    Improper configuration may render the system non-functional.
+
+    The "fapolicyd" API is not namespace aware and can cause issues when launching
+    or running containers.'
+severity: medium
+references:
+    disa: CCI-001764
+    nist: CM-7 (2),CM-7 (5) (b),CM-6 b
+    srg: SRG-OS-000368-GPOS-00154,SRG-OS-000370-GPOS-00155,SRG-OS-000480-GPOS-00232
+    stigid: RHEL-08-040137
+    stigref: SV-244546r858730_rule
+identifiers:
+    cce: CCE-86478-5
+ocil_clause: fapolicyd is not running in enforcement mode with a deny-all, permit-by-exception
+    policy
+ocil: 'Verify the Red Hat Enterprise Linux 8 "fapolicyd" employs a deny-all, permit-by-exception
+    policy.
+
+
+    Check that "fapolicyd" is in enforcement mode with the following command:
+
+
+    $ sudo grep permissive /etc/fapolicyd/fapolicyd.conf
+
+
+    permissive = 0
+
+
+    Check that fapolicyd employs a deny-all policy on system mounts with the following
+    commands:
+
+
+    For RHEL 8.5 systems and older:
+
+    $ sudo tail /etc/fapolicyd/fapolicyd.rules
+
+
+    For RHEL 8.6 systems and newer:
+
+    $ sudo tail /etc/fapolicyd/compiled.rules
+
+
+    allow exe=/usr/bin/python3.7 : ftype=text/x-python
+
+    deny_audit perm=any pattern=ld_so : all
+
+    deny perm=any all : all'
+oval_external_content: null
+fixtext: 'Configure Red Hat Enterprise Linux 8 to employ a deny-all, permit-by-exception
+    application whitelisting policy with "fapolicyd".
+
+
+    With the "fapolicyd" installed and enabled, configure the daemon to function in
+    permissive mode until the whitelist is built correctly to avoid system lockout.
+    Do this by editing the "/etc/fapolicyd/fapolicyd.conf" file with the following
+    line:
+
+
+    permissive = 1
+
+    For RHEL 8.5 systems and older:
+
+    Build the whitelist in the "/etc/fapolicyd/fapolicyd.rules" file ensuring the
+    last rule is "deny perm=any all : all".
+
+
+    For RHEL 8.6 systems and newer:
+
+    Build the whitelist in a file within the "/etc/fapolicyd/rules.d" directory ensuring
+    the last rule is "deny perm=any all : all".
+
+
+    Once it is determined the whitelist is built correctly, set the fapolicyd to enforcing
+    mode by editing the "permissive" line in the /etc/fapolicyd/fapolicyd.conf file.
+
+
+    permissive = 0'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: The Red Hat Enterprise Linux 8 fapolicy module must be configured
+    to employ a deny-all, permit-by-exception policy to allow the execution of authorized
+    software programs.
+warnings:
+-   general: This rule doesn't come with a remediation. Before remediating the system
+        administrator needs to create an allowlist of authorized software.
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Configure Fapolicy Module to Employ a Deny-all, Permit-by-exception Policy
+    to Allow the Execution of Authorized Software Programs.
+definition_location: /home/oscap/content/linux_os/guide/services/fapolicyd/fapolicy_default_deny/rule.yml
+template: null
+documentation_complete: true

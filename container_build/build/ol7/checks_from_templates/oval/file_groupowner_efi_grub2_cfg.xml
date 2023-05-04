@@ -1,0 +1,39 @@
+<def-group>
+  <definition class="compliance" id="file_groupowner_efi_grub2_cfg" version="1">
+   
+      <metadata>
+        <title>Verify the UEFI Boot Loader grub.cfg Group Ownership</title>
+        
+    <affected family="unix">
+    <platform>Oracle Linux 7</platform>
+    </affected>
+        <description>This test makes sure that /boot/efi/EFI/redhat/grub.cfg is group owned by 0.</description>
+    </metadata>
+      <criteria>
+    
+      <criterion comment="Check file group ownership of /boot/efi/EFI/redhat/grub.cfg" test_ref="test_file_groupowner_efi_grub2_cfg_0" />
+    
+   
+    </criteria>
+  </definition>
+
+  
+  <unix:file_test check="all" check_existence="none_exist" comment="Testing group ownership of /boot/efi/EFI/redhat/grub.cfg" id="test_file_groupowner_efi_grub2_cfg_0" version="1">
+    <unix:object object_ref="object_file_groupowner_efi_grub2_cfg_0" />
+  </unix:file_test>
+
+  <unix:file_object comment="/boot/efi/EFI/redhat/grub.cfg" id="object_file_groupowner_efi_grub2_cfg_0" version="1">
+      <unix:filepath>/boot/efi/EFI/redhat/grub.cfg</unix:filepath>
+    <filter action="exclude">symlink_file_groupowner_efi_grub2_cfg_uid_0</filter>
+    <filter action="exclude">state_file_groupowner_efi_grub2_cfg_gid_0_0</filter>
+  </unix:file_object>
+
+  <unix:file_state id="state_file_groupowner_efi_grub2_cfg_gid_0_0" version="1">
+    <unix:group_id datatype="int">0</unix:group_id>
+  </unix:file_state>
+  
+
+  <unix:file_state id="symlink_file_groupowner_efi_grub2_cfg_uid_0" version="1">
+    <unix:type operation="equals">symbolic link</unix:type>
+  </unix:file_state>
+</def-group>

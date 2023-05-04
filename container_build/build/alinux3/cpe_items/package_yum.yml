@@ -1,0 +1,22 @@
+name: 'cpe:/a:yum:'
+check_id: ''
+bash_conditional: rpm --quiet -q yum
+ansible_conditional: '"yum" in ansible_facts.packages'
+is_product_cpe: false
+versioned: true
+args: {}
+title: Package yum is installed
+definition_location: /home/oscap/content/shared/applicability/package.yml
+template:
+    name: platform_package
+    vars:
+        pkgname: yum
+        id: package_yum
+        name: package
+        arg: yum
+        ver_specs: []
+        ver_specs_id: ''
+        ver_specs_cpe: ''
+        ver_specs_title: ''
+        _rule_id: package_yum
+documentation_complete: true

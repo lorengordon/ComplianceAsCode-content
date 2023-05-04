@@ -1,0 +1,34 @@
+name: cpe:/o:ol:le:7.4
+check_id: ''
+bash_conditional: grep -qP "^ID=[\"']?ol[\"']?$" "/etc/os-release" && { real="$(grep
+    -P "^VERSION_ID=[\"']?[\w.]+[\"']?$" /etc/os-release | sed "s/^VERSION_ID=[\"']\?\([^\"']\+\)[\"']\?$/\1/")";
+    expected="7.4"; [[ "$real" != "$expected" ]] && printf "%s\n%s" "$real" "$expected"
+    | sort -VC; }
+ansible_conditional: ansible_distribution == 'OracleLinux' and ansible_distribution_version
+    is version('7.4', '<')
+is_product_cpe: false
+versioned: true
+args: {}
+title: Operating System is ol
+definition_location: /home/oscap/content/shared/applicability/os_linux.yml
+template:
+    name: platform_os_linux
+    vars:
+        os_name: Oracle Linux
+        os_id: ol
+        os_id_ansible: OracleLinux
+        id: os_linux_ol_le_7_4
+        name: os_linux
+        arg: ol
+        ver_specs:
+        -   id: le_7_4
+            op: <
+            ver: '7.4'
+            evr_op: less than
+            evr_ver: 0:7.4-0
+            ev_ver: '0:7.4'
+        ver_specs_id: le_7_4
+        ver_specs_cpe: le:7.4
+        ver_specs_title: less than 7.4
+        _rule_id: os_linux_ol_le_7_4
+documentation_complete: true

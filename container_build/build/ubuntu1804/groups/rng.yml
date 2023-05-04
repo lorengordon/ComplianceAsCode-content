@@ -1,0 +1,17 @@
+prodtype: all
+description: The rngd feeds random data from hardware device to kernel random device.
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules: {}
+platform: machine
+platforms: !!set
+    machine: null
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+title: Hardware RNG Entropy Gatherer Daemon
+definition_location: /home/oscap/content/linux_os/guide/services/rng/group.yml
+documentation_complete: true

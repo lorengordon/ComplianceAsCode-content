@@ -1,0 +1,39 @@
+# platform = multi_platform_all
+# reboot = true
+# strategy = disable
+# complexity = low
+# disruption = medium
+
+- name: List /etc/sysctl.d/*.conf files
+      
+  find:
+    paths:
+      - "/etc/sysctl.d/"
+      - "/run/sysctl.d/"
+      - "/usr/local/lib/sysctl.d/"
+
+
+      - "/usr/lib/sysctl.d/"
+
+    contains: '^[\s]*net.ipv6.conf.default.disable_ipv6.*$'
+    patterns: "*.conf"
+    file_type: any
+  register: find_sysctl_d
+
+- name: Comment out any occurrences of net.ipv6.conf.default.disable_ipv6 from config files
+  replace:
+    path: "{{ item.path }}"
+    regexp: '^[\s]*net.ipv6.conf.default.disable_ipv6'
+    replace: '#net.ipv6.conf.default.disable_ipv6'
+  loop: "{{ find_sysctl_d.files }}"
+
+
+- name: Ensure sysctl net.ipv6.conf.default.disable_ipv6 is set to 1
+  sysctl:
+    name: "net.ipv6.conf.default.disable_ipv6"
+    value: "1"
+
+    sysctl_file: "/etc/sysctl.conf"
+
+    state: present
+    reload: yes

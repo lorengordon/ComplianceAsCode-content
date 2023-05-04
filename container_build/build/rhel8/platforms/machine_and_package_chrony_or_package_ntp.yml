@@ -1,0 +1,17 @@
+name: machine_and_package_chrony_or_package_ntp
+original_expression: machine and (package[chrony] or package[ntp])
+xml_content: <ns0:platform xmlns:ns0="http://cpe.mitre.org/language/2.0" id="machine_and_package_chrony_or_package_ntp"><ns0:logical-test
+    operator="AND" negate="false"><ns0:logical-test operator="OR" negate="false"><ns0:check-fact-ref
+    system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="ssg-rhel8-cpe-oval.xml"
+    id-ref="oval:ssg-package_chrony:def:1" /><ns0:check-fact-ref system="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+    href="ssg-rhel8-cpe-oval.xml" id-ref="oval:ssg-package_ntp:def:1" /></ns0:logical-test><ns0:check-fact-ref
+    system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="ssg-rhel8-cpe-oval.xml"
+    id-ref="oval:ssg-installed_env_is_a_machine:def:1" /></ns0:logical-test></ns0:platform>
+bash_conditional: ( [ ! -f /.dockerenv ] && [ ! -f /run/.containerenv ] && ( rpm --quiet
+    -q chrony || rpm --quiet -q ntp ) )
+ansible_conditional: ( ansible_virtualization_type not in ["docker", "lxc", "openvz",
+    "podman", "container"] and ( "chrony" in ansible_facts.packages or "ntp" in ansible_facts.packages
+    ) )
+title: ''
+definition_location: /home/oscap/content/build/rhel8/platforms/machine_and_package_chrony_or_package_ntp.yml
+documentation_complete: true

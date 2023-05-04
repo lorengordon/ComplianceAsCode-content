@@ -1,0 +1,52 @@
+prodtype: fedora,ol7,ol8,rhel7,rhel8,sle12,sle15
+description: 'It is recommended that the <tt>/opt</tt> directory resides on a separate
+
+    partition.'
+rationale: 'The <tt>/opt</tt> partition contains additional software, usually installed
+
+    outside the packaging system. Putting this directory on a separate partition
+
+    makes it easier to apply restrictions e.g. through the <tt>nosuid</tt> mount
+
+    option.'
+severity: medium
+references:
+    anssi: BP28(R12)
+identifiers:
+    cce: CCE-83340-0
+ocil_clause: '"/opt is not a mountpoint" is returned'
+ocil: 'Verify that a separate file system/partition has been created for <code>/opt</code>
+    with the following command:
+
+
+    <pre>$ mountpoint /opt</pre>
+
+    '
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Ensure /opt Located On Separate Partition
+definition_location: /home/oscap/content/linux_os/guide/system/software/disk_partitioning/partition_for_opt/rule.yml
+template:
+    name: mount
+    vars:
+        mountpoint: /opt
+        min_size: 1073741824
+    backends: {}
+documentation_complete: true

@@ -1,0 +1,59 @@
+prodtype: all
+description: "On x86 architecture supporting VT-d, the IOMMU manages the access control\
+    \ policy between the hardware devices and some\n    of the system critical units\
+    \ such as the memory.\nConfigure the default Grub2 kernel command line to contain\
+    \ iommu=force as follows:\n<pre># grub2-editenv - set \"$(grub2-editenv - list\
+    \ | grep kernelopts) iommu=force\"</pre>"
+rationale: "On x86 architectures, activating the I/OMMU prevents the system from arbitrary\
+    \ accesses potentially made by\n    hardware devices."
+severity: unknown
+references:
+    anssi: BP28(R11)
+identifiers:
+    cce: CCE-91532-2
+ocil_clause: I/OMMU is not activated
+ocil: 'Inspect the form of default GRUB 2 command line for the Linux operating system
+
+    in <tt>grubenv</tt> that can be found either in <tt>/boot/grub2</tt> in case of
+    legacy BIOS systems, or in <tt>/boot/efi/EFI/sles</tt> in case of UEFI systems.
+
+    If they include <tt>iommu=force</tt>, then the parameter
+
+    is configured at boot time.
+
+    <pre>$ sudo grep ''kernelopts.*iommu=force.*'' GRUBENV_FILE_LOCATION</pre>
+
+    Fill in <tt>GRUBENV_FILE_LOCATION</tt> based on information above.'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings:
+-   functionality: Depending on the hardware, devices and operating system used, enabling
+        IOMMU can cause hardware instabilities. Proper function and stability should
+        be assessed before applying remediation to production systems.
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set
+    grub2: null
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set
+    grub2: null
+bash_conditional: null
+fixes: {}
+title: IOMMU configuration directive
+definition_location: /home/oscap/content/linux_os/guide/system/bootloader-grub2/grub2_enable_iommu_force/rule.yml
+template:
+    name: grub2_bootloader_argument
+    vars:
+        arg_name: iommu
+        arg_value: force
+    backends: {}
+documentation_complete: true

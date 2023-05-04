@@ -1,0 +1,48 @@
+prodtype: fedora,rhel8,rhel9
+description: "Enable this to use virtually-mapped kernel stacks with guard pages.\n\
+    This configuration is available from kernel 4.9.\n\nThe configuration that was\
+    \ used to build kernel is available at <tt>/boot/config-*</tt>.\n    To check\
+    \ the configuration value for <tt>CONFIG_VMAP_STACK</tt>, run the following command:\n\
+    \    <tt>grep CONFIG_VMAP_STACK /boot/config-*</tt>\n    \n    For each kernel\
+    \ installed, a line with value \"y\" should be returned.\n    "
+rationale: This causes kernel stack overflows to be caught immediately rather than
+    causing difficult-to-diagnose corruption.
+severity: medium
+references:
+    anssi: BP28(R15)
+identifiers:
+    cce: CCE-86252-4
+ocil_clause: the kernel was not built with the required value
+ocil: "To determine the config value the kernel was built with, run the following\
+    \ command:\n    <pre>$ grep CONFIG_VMAP_STACK /boot/config.*</pre>\n    \n   \
+    \ For each kernel installed, a line with value \"y\" should be returned.\n    "
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings:
+-   general: There is no remediation for this besides re-compiling the kernel with
+        the appropriate value for the config.
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: User a virtually-mapped stack
+definition_location: /home/oscap/content/linux_os/guide/system/kernel_build_config/kernel_config_vmap_stack/rule.yml
+template:
+    name: kernel_build_config
+    vars:
+        config: CONFIG_VMAP_STACK
+        value: y
+    backends: {}
+documentation_complete: true

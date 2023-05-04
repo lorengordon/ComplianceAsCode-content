@@ -1,0 +1,112 @@
+prodtype: ol7,rhel7
+description: 'Red Hat Enterprise Linux 7 must be configured to prevent overwriting
+    of custom authentication
+
+    configuration settings by the authconfig utility.
+
+    This can be avoided by creating new local configuration files and creating new
+    or moving
+
+    existing symbolic links to them. The authconfig utility will recognize the local
+    configuration
+
+    files and not overwrite them, while writing its own settings to the original configuration
+
+    files.'
+rationale: 'When using the authconfig utility to modify authentication configuration
+    settings,
+
+    the "system-auth" and "password-auth" files and any custom settings that they
+    may
+
+    contain are overwritten.'
+severity: medium
+references:
+    disa: CCI-000196
+    srg: SRG-OS-000073-GPOS-00041
+    stigid: RHEL-07-010199
+    stigref: SV-255928r880830_rule
+identifiers:
+    cce: CCE-86062-7
+ocil_clause: 'The system-auth and password-auth files are not symbolic links or they
+
+    do not point to system-auth-local password-auth-local'
+ocil: 'Verify "system-auth" and "password-auth" files are symbolic
+
+    links pointing to "system-auth-local" and "password-auth-local":
+
+    <pre>$ sudo ls -l /etc/pam.d/{password,system}-auth</pre>'
+oval_external_content: null
+fixtext: 'Create custom configuration files and their corresponding symbolic links:
+
+
+    Rename the existing configuration files
+
+    (skip this step if symbolic links are already present):
+
+    <pre>$ sudo mv /etc/pam.d/system-auth /etc/pam.d/system-auth-ac</pre>
+
+    <pre>$ sudo mv /etc/pam.d/password-auth /etc/pam.d/password-auth-ac</pre>
+
+
+    Create custom system- and password-auth configuration file:
+
+    <pre>$ sudo touch /etc/pam.d/{system,password}-auth-local</pre>
+
+
+    Make sure the custom config files include the -ac files:
+
+    <pre>(type)     include       password-auth-ac</pre>
+
+
+    Create new or move existing symbolic links to the new custom configuration files:
+
+    <pre>$ sudo ln -sf /etc/pam.d/system-auth-local /etc/pam.d/system-auth</pre>
+
+    <pre>$ sudo ln -sf /etc/pam.d/password-auth-local /etc/pam.d/password-auth</pre>
+
+
+    Once finished, the file structure should be the following:
+
+    <pre>$ sudo ls -1 /etc/pam.d/{password,system}-auth*
+
+
+    /etc/pam.d/password-auth
+
+    /etc/pam.d/password-auth-ac
+
+    /etc/pam.d/password-auth-local
+
+    /etc/pam.d/system-auth
+
+    /etc/pam.d/system-auth-ac
+
+    /etc/pam.d/system-auth-local</pre>'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings:
+-   general: 'This rule doesn''t come with a remediation. PAM files are very sensible
+        to ordering and
+
+        custom PAM files make it nearly impossible to design an automated remediation
+        that
+
+        is safe to use for all cases.'
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: 'Ensure system-auth and password-auth files are symbolic links pointing
+
+    to system-auth-local and password-auth-local'
+definition_location: /home/oscap/content/linux_os/guide/system/accounts/authconfig_config_files_symlinks/rule.yml
+template: null
+documentation_complete: true

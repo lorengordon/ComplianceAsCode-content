@@ -1,0 +1,146 @@
+prodtype: ol7,ol8,ol9,rhcos4,rhel7,rhel8,rhel9,sle15
+description: 'Make sure that the system is configured to limit the maximal rate for
+    sending
+
+    duplicate acknowledgments in response to incoming TCP packets that are for
+
+    an existing connection but that are invalid due to any of these reasons:
+
+
+    (a) out-of-window sequence number, (b) out-of-window acknowledgment number,
+
+    or (c) PAWS (Protection Against Wrapped Sequence numbers) check failure
+
+    This measure protects against or limits effects of DoS attacks against the system.
+
+    Set the system to implement rate-limiting measures by adding the following line
+    to
+
+    <tt>/etc/sysctl.conf</tt> or a configuration file in the <tt>/etc/sysctl.d/</tt>
+    directory
+
+    (or modify the line to have the required value):
+
+    <pre>net.ipv4.tcp_invalid_ratelimit = <sub idref="sysctl_net_ipv4_tcp_invalid_ratelimit_value"
+    /></pre>
+
+    Issue the following command to make the changes take effect:
+
+    <pre># sysctl --system</pre>'
+rationale: "Denial of Service (DoS) is a condition when a resource is not available\
+    \ for legitimate users. When\nthis occurs, the organization either cannot accomplish\
+    \ its mission or must\noperate at degraded capacity.\n<br /><br />\nThis can help\
+    \ mitigate simple \u201Cack loop\u201D DoS attacks, wherein a buggy or\nmalicious\
+    \ middlebox or man-in-the-middle can rewrite TCP header fields in\nmanner that\
+    \ causes each endpoint to think that the other is sending invalid\nTCP segments,\
+    \ thus causing each side to send an unterminating stream of\nduplicate acknowledgments\
+    \ for invalid segments."
+severity: medium
+references:
+    disa: CCI-002385
+    nerc-cip: CIP-007-3 R4,CIP-007-3 R4.1,CIP-007-3 R4.2,CIP-007-3 R5.1
+    nist: SC-5
+    srg: SRG-OS-000420-GPOS-00186
+identifiers: {}
+ocil_clause: rate limiting of duplicate TCP acknowledgments is not configured
+ocil: 'To verify that the operating system protects against or limits the effects
+    of DoS
+
+    attacks by ensuring implementation of rate-limiting measures
+
+    on impacted network interfaces, run the following command:
+
+    <pre># grep ''net.ipv4.tcp_invalid_ratelimit'' /etc/sysctl.conf /etc/sysctl.d/*</pre>
+
+    The command should output the following line:
+
+    <pre>/etc/sysctl.conf:net.ipv4.tcp_invalid_ratelimit = <sub idref="sysctl_net_ipv4_tcp_invalid_ratelimit_value"
+    /></pre>
+
+    The file where the line has been found can differ, but it must be either <tt>/etc/sysctl.conf</tt>
+
+    or a file located under the <tt>/etc/sysctl.d/</tt> directory.'
+oval_external_content: null
+fixtext: 'Configure Oracle Linux 9 to limit the maximal rate for sending duplicate
+    acknowledgments.
+
+
+    Add or edit the following line in a system configuration file in the "/etc/sysctl.d/"
+    directory:
+
+    net.ipv4.tcp_invalid_ratelimit = <sub idref="sysctl_net_ipv4_tcp_invalid_ratelimit_value"
+    />
+
+
+    Load settings from all system configuration files with the following command:
+
+
+    $ sudo sysctl --system'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Oracle Linux 9 must protect against or limit the effects of Denial
+    of Service (DoS) attacks by validating the operating system is implementing rate-limiting
+    measures on impacted network interfaces.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Oracle Linux 9 must protect against or limit the effects
+            of Denial of Service (DoS) attacks by ensuring rate-limiting measures
+            on impacted network interfaces are implemented.
+        vuldiscussion: 'DoS is a condition when a resource is not available for legitimate
+            users. When this occurs, the organization either cannot accomplish its
+            mission or must operate at degraded capacity.
+
+
+            This requirement addresses the configuration of Oracle Linux 9 to mitigate
+            the impact of DoS attacks that have occurred or are ongoing on system
+            availability. For each system, known and potential DoS attacks must be
+            identified and solutions for each type implemented. A variety of technologies
+            exists to limit or, in some cases, eliminate the effects of DoS attacks
+            (e.g., limiting processes or establishing memory partitions). Employing
+            increased capacity and bandwidth, combined with service redundancy, may
+            reduce the susceptibility to some DoS attacks.'
+        checktext: 'Verify "nftables" is configured to allow rate limits on any connection
+            to the system with the following command:
+
+
+            $ sudo grep -i firewallbackend /etc/firewalld/firewalld.conf
+
+
+            # FirewallBackend
+
+            FirewallBackend=nftables
+
+
+            If the "nftables" is not set as the "FirewallBackend" default, this is
+            a finding.'
+        fixtext: 'Configure "nftables" to be the default "firewallbackend" for "firewalld"
+            by adding or editing the following line in "etc/firewalld/firewalld.conf":
+
+
+            FirewallBackend=nftables
+
+
+            Establish rate-limiting rules based on organization-defined types of DoS
+            attacks on impacted network interfaces.'
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Configure Kernel to Rate Limit Sending of Duplicate TCP Acknowledgments
+definition_location: /home/oscap/content/linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_tcp_invalid_ratelimit/rule.yml
+template:
+    name: sysctl
+    vars:
+        sysctlvar: net.ipv4.tcp_invalid_ratelimit
+        datatype: int
+    backends: {}
+documentation_complete: true

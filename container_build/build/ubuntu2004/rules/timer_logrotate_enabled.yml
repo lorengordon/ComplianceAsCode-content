@@ -1,0 +1,58 @@
+prodtype: all
+description: '
+
+    The <code>logrotate</code> timer can be enabled with the following command:
+
+    <pre>$ sudo systemctl enable logrotate.timer</pre>'
+rationale: 'Log files that are not properly rotated run the risk of growing so large
+
+    that they fill up the /var/log partition. Valuable logging information could be
+    lost
+
+    if the /var/log partition becomes full.'
+severity: medium
+references:
+    anssi: BP28(R43),NT12(R18)
+    cis-csc: 1,14,15,16,3,5,6
+    cobit5: APO11.04,BAI03.05,DSS05.04,DSS05.07,MEA02.01
+    disa: CCI-000366
+    isa-62443-2009: 4.3.3.3.9,4.3.3.5.8,4.3.4.4.7,4.4.2.1,4.4.2.2,4.4.2.4
+    isa-62443-2013: SR 2.10,SR 2.11,SR 2.12,SR 2.8,SR 2.9
+    iso27001-2013: A.12.4.1,A.12.4.2,A.12.4.3,A.12.4.4,A.12.7.1
+    nist: CM-6(a)
+    nist-csf: PR.PT-1
+    pcidss: Req-10.7
+    cis: '4.3'
+identifiers: {}
+ocil_clause: logrotate timer is not enabled
+ocil: ' Run the following command to determine the current status of the <code>logrotate</code>
+    timer: <pre>$ sudo systemctl is-active logrotate.timer</pre> If the timer is running,
+    it should return the following: <pre>active</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Enable logrotate Timer
+definition_location: /home/oscap/content/linux_os/guide/system/logging/log_rotation/timer_logrotate_enabled/rule.yml
+template:
+    name: timer_enabled
+    vars:
+        timername: logrotate
+        packagename: logrotate
+    backends: {}
+documentation_complete: true

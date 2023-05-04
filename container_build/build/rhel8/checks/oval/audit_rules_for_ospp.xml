@@ -1,0 +1,141 @@
+
+
+
+
+<def-group>
+  <definition class="compliance" id="audit_rules_for_ospp" version="1">
+    <metadata>
+        <title>Configure audit according to OSPP requirements</title>
+        
+    <affected family="unix">
+    <platform>Oracle Linux 8</platform>
+      <platform>Oracle Linux 7</platform>
+      <platform>Red Hat Enterprise Linux 9</platform>
+      <platform>Red Hat Enterprise Linux 8</platform>
+      <platform>Red Hat Enterprise Linux 7</platform>
+      <platform>Red Hat Enterprise Linux CoreOS 4</platform>
+    </affected>
+        <description>Compare configure audit rules against the recommended pre-configured files.</description>
+    </metadata>
+
+    <criteria operator="AND">
+      <criterion comment="check 10-base-config.rules file" test_ref="test_compare_10-base-config_old" />
+
+      <criterion comment="check 11-loginuid.rules file" test_ref="test_compare_11-loginuid_old" />
+
+      <criterion comment="check 30-ospp-v42.rules file" test_ref="test_compare_30-ospp-v42_old" />
+
+      <criterion comment="check 43-module-load.rules file" test_ref="test_compare_43-module-load_old" />
+</criteria>
+  </definition>
+
+    
+  <ind:textfilecontent54_test check="all" check_existence="all_exist"
+  comment="Compare 10-base-config.rules file in /etc/audit/rules.d against file in /usr/share/doc/audit/"
+  id="test_compare_10-base-config_old" version="1">
+    <ind:object object_ref="object_etc_10-base-config_old" />
+    <ind:state state_ref="state_doc_10-base-config" />
+  </ind:textfilecontent54_test>
+  <ind:textfilecontent54_object id="object_etc_10-base-config_old" version="1">
+    <ind:filepath>/etc/audit/rules.d/10-base-config.rules</ind:filepath>
+    <ind:pattern operation="pattern match">(?:.*\n)*</ind:pattern>
+    <ind:instance datatype="int">1</ind:instance>
+  </ind:textfilecontent54_object>
+  <ind:textfilecontent54_state id="state_doc_10-base-config" version="1">
+    <ind:text operation="equals" var_check="all"
+    var_ref="var_doc_10-base-config" />
+  </ind:textfilecontent54_state>
+  <local_variable datatype="string"
+  comment="Contents of reference file in /usr/share/doc/10-base-config.rules"
+  id="var_doc_10-base-config" version="1">
+    <object_component item_field="text" object_ref="object_doc_10-base-config" />
+  </local_variable>
+  <ind:textfilecontent54_object id="object_doc_10-base-config" version="1">
+    <ind:filepath operation="pattern match">^/usr/share/doc/audit(?:-\d.\d.\d)?/rules/10-base-config.rules</ind:filepath>
+    <ind:pattern operation="pattern match">(?:.*\n)*</ind:pattern>
+    <ind:instance datatype="int">1</ind:instance>
+  </ind:textfilecontent54_object>
+
+    
+  <ind:textfilecontent54_test check="all" check_existence="all_exist"
+  comment="Compare 11-loginuid.rules file in /etc/audit/rules.d against file in /usr/share/doc/audit/"
+  id="test_compare_11-loginuid_old" version="1">
+    <ind:object object_ref="object_etc_11-loginuid_old" />
+    <ind:state state_ref="state_doc_11-loginuid" />
+  </ind:textfilecontent54_test>
+  <ind:textfilecontent54_object id="object_etc_11-loginuid_old" version="1">
+    <ind:filepath>/etc/audit/rules.d/11-loginuid.rules</ind:filepath>
+    <ind:pattern operation="pattern match">(?:.*\n)*</ind:pattern>
+    <ind:instance datatype="int">1</ind:instance>
+  </ind:textfilecontent54_object>
+  <ind:textfilecontent54_state id="state_doc_11-loginuid" version="1">
+    <ind:text operation="equals" var_check="all"
+    var_ref="var_doc_11-loginuid" />
+  </ind:textfilecontent54_state>
+  <local_variable datatype="string"
+  comment="Contents of reference file in /usr/share/doc/11-loginuid.rules"
+  id="var_doc_11-loginuid" version="1">
+    <object_component item_field="text" object_ref="object_doc_11-loginuid" />
+  </local_variable>
+  <ind:textfilecontent54_object id="object_doc_11-loginuid" version="1">
+    <ind:filepath operation="pattern match">^/usr/share/doc/audit(?:-\d.\d.\d)?/rules/11-loginuid.rules</ind:filepath>
+    <ind:pattern operation="pattern match">(?:.*\n)*</ind:pattern>
+    <ind:instance datatype="int">1</ind:instance>
+  </ind:textfilecontent54_object>
+
+    
+  <ind:textfilecontent54_test check="all" check_existence="all_exist"
+  comment="Compare 30-ospp-v42.rules file in /etc/audit/rules.d against file in /usr/share/doc/audit/"
+  id="test_compare_30-ospp-v42_old" version="1">
+    <ind:object object_ref="object_etc_30-ospp-v42_old" />
+    <ind:state state_ref="state_doc_30-ospp-v42" />
+  </ind:textfilecontent54_test>
+  <ind:textfilecontent54_object id="object_etc_30-ospp-v42_old" version="1">
+    <ind:filepath>/etc/audit/rules.d/30-ospp-v42.rules</ind:filepath>
+    <ind:pattern operation="pattern match">(?:.*\n)*</ind:pattern>
+    <ind:instance datatype="int">1</ind:instance>
+  </ind:textfilecontent54_object>
+  <ind:textfilecontent54_state id="state_doc_30-ospp-v42" version="1">
+    <ind:text operation="equals" var_check="all"
+    var_ref="var_doc_30-ospp-v42" />
+  </ind:textfilecontent54_state>
+  <local_variable datatype="string"
+  comment="Contents of reference file in /usr/share/doc/30-ospp-v42.rules"
+  id="var_doc_30-ospp-v42" version="1">
+    <object_component item_field="text" object_ref="object_doc_30-ospp-v42" />
+  </local_variable>
+  <ind:textfilecontent54_object id="object_doc_30-ospp-v42" version="1">
+    <ind:filepath operation="pattern match">^/usr/share/doc/audit(?:-\d.\d.\d)?/rules/30-ospp-v42.rules</ind:filepath>
+    <ind:pattern operation="pattern match">(?:.*\n)*</ind:pattern>
+    <ind:instance datatype="int">1</ind:instance>
+  </ind:textfilecontent54_object>
+
+    
+  <ind:textfilecontent54_test check="all" check_existence="all_exist"
+  comment="Compare 43-module-load.rules file in /etc/audit/rules.d against file in /usr/share/doc/audit/"
+  id="test_compare_43-module-load_old" version="1">
+    <ind:object object_ref="object_etc_43-module-load_old" />
+    <ind:state state_ref="state_doc_43-module-load" />
+  </ind:textfilecontent54_test>
+  <ind:textfilecontent54_object id="object_etc_43-module-load_old" version="1">
+    <ind:filepath>/etc/audit/rules.d/43-module-load.rules</ind:filepath>
+    <ind:pattern operation="pattern match">(?:.*\n)*</ind:pattern>
+    <ind:instance datatype="int">1</ind:instance>
+  </ind:textfilecontent54_object>
+  <ind:textfilecontent54_state id="state_doc_43-module-load" version="1">
+    <ind:text operation="equals" var_check="all"
+    var_ref="var_doc_43-module-load" />
+  </ind:textfilecontent54_state>
+  <local_variable datatype="string"
+  comment="Contents of reference file in /usr/share/doc/43-module-load.rules"
+  id="var_doc_43-module-load" version="1">
+    <object_component item_field="text" object_ref="object_doc_43-module-load" />
+  </local_variable>
+  <ind:textfilecontent54_object id="object_doc_43-module-load" version="1">
+    <ind:filepath operation="pattern match">^/usr/share/doc/audit(?:-\d.\d.\d)?/rules/43-module-load.rules</ind:filepath>
+    <ind:pattern operation="pattern match">(?:.*\n)*</ind:pattern>
+    <ind:instance datatype="int">1</ind:instance>
+  </ind:textfilecontent54_object>
+
+
+</def-group>

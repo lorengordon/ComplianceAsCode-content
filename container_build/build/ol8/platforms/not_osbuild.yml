@@ -1,0 +1,10 @@
+name: not_osbuild
+original_expression: not osbuild
+xml_content: <ns0:platform xmlns:ns0="http://cpe.mitre.org/language/2.0" id="not_osbuild"><ns0:logical-test
+    operator="AND" negate="true"><ns0:check-fact-ref system="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+    href="ssg-ol8-cpe-oval.xml" id-ref="oval:ssg-installed_env_is_osbuild:def:1" /></ns0:logical-test></ns0:platform>
+bash_conditional: '! ( [ "${container:-}" == "bwrap-osbuild" ] )'
+ansible_conditional: not ( lookup("env", "container") == "bwrap-osbuild" )
+title: ''
+definition_location: /home/oscap/content/build/ol8/platforms/not_osbuild.yml
+documentation_complete: true

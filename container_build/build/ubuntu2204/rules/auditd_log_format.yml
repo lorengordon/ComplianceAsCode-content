@@ -1,0 +1,103 @@
+prodtype: all
+description: 'To configure Audit daemon to resolve all uid, gid, syscall,
+
+    architecture, and socket address information before writing the
+
+    events to disk, set <tt>log_format</tt> to <tt>ENRICHED</tt>
+
+    in <tt>/etc/audit/auditd.conf</tt>.'
+rationale: 'If option <tt>log_format</tt> isn''t set to <tt>ENRICHED</tt>, the
+
+    audit records will be stored in a format exactly as the kernel sends them.'
+severity: low
+references:
+    disa: CCI-000366
+    nist: CM-6,AU-3
+    ospp: FAU_GEN.1.2
+    srg: SRG-OS-000255-GPOS-00096,SRG-OS-000480-GPOS-00227
+identifiers: {}
+ocil_clause: log_format isn't set to ENRICHED
+ocil: 'To verify that Audit Daemon is configured to resolve all uid, gid, syscall,
+
+    architecture, and socket address information before writing the event to disk,
+
+    run the following command:
+
+    <pre>$ sudo grep log_format /etc/audit/auditd.conf</pre>
+
+    The output should return the following:
+
+    <pre>log_format = ENRICHED</pre>'
+oval_external_content: null
+fixtext: 'Edit the file "/etc/audit/auditd.conf" and add or edit the following line:
+
+    log_format = ENRICHED'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Ubuntu 22.04 must resolve audit information before writing to disk.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Ubuntu 22.04 must produce audit records containing information
+            to establish the identity of any individual or process associated with
+            the event.
+        vuldiscussion: 'Without establishing what type of events occurred, the source
+            of events, where events occurred, and the outcome of events, it would
+            be difficult to establish, correlate, and investigate the events leading
+            up to an outage or attack.
+
+
+            Audit record content that may be necessary to satisfy this requirement
+            includes, for example, time stamps, source and destination addresses,
+            user/process identifiers, event descriptions, success/fail indications,
+            filenames involved, and access control or flow control rules invoked.
+
+
+            Enriched logging aids in making sense of who, what, and when events occur
+            on a system.  Without this, determining root cause of an event will be
+            much more difficult.'
+        checktext: 'Verify that Ubuntu 22.04 audit system is configured to resolve
+            audit information before writing to disk, with the following command:
+
+
+            $ sudo grep log_format /etc/audit/auditd.conf
+
+
+            log_format = ENRICHED
+
+
+            If the "log_format" option is not "ENRICHED", or the line is commented
+            out, this is a finding.'
+        fixtext: 'Edit the /etc/audit/auditd.conf file and add or update the "log_format"
+            option:
+
+
+            log_format = ENRICHED
+
+
+            The audit daemon must be restarted for changes to take effect.'
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+    package[audit]: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    package_audit: null
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Resolve information before writing to audit logs
+definition_location: /home/oscap/content/linux_os/guide/system/auditing/configure_auditd_data_retention/auditd_log_format/rule.yml
+template:
+    name: auditd_lineinfile
+    vars:
+        missing_parameter_pass: 'false'
+        parameter: log_format
+        rule_id: auditd_log_format
+        value: ENRICHED
+    backends: {}
+documentation_complete: true

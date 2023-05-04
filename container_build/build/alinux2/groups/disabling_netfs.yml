@@ -1,0 +1,23 @@
+prodtype: all
+description: 'To determine if any network filesystems handled by netfs are
+
+    currently mounted on the system execute the following command:
+
+    <pre>$ mount -t nfs,nfs4,smbfs,cifs,ncpfs</pre>
+
+    If the command did not return any output then disable netfs.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- service_netfs_disabled
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+title: Disable netfs if Possible
+definition_location: /home/oscap/content/linux_os/guide/services/nfs_and_rpc/disabling_nfs/disabling_netfs/group.yml
+documentation_complete: true

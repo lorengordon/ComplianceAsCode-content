@@ -1,0 +1,39 @@
+# platform = multi_platform_all
+# reboot = true
+# strategy = disable
+# complexity = low
+# disruption = medium
+
+- name: List /etc/sysctl.d/*.conf files
+      
+  find:
+    paths:
+      - "/etc/sysctl.d/"
+      - "/run/sysctl.d/"
+      - "/usr/local/lib/sysctl.d/"
+
+
+    contains: '^[\s]*kernel.unprivileged_bpf_disabled.*$'
+    patterns: "*.conf"
+    file_type: any
+  register: find_sysctl_d
+
+- name: Comment out any occurrences of kernel.unprivileged_bpf_disabled from config files
+  replace:
+    path: "{{ item.path }}"
+    regexp: '^[\s]*kernel.unprivileged_bpf_disabled'
+    replace: '#kernel.unprivileged_bpf_disabled'
+  loop: "{{ find_sysctl_d.files }}"
+
+
+- (xccdf-var sysctl_kernel_unprivileged_bpf_disabled_value)
+
+- name: Ensure sysctl kernel.unprivileged_bpf_disabled is set
+  sysctl:
+    name: "kernel.unprivileged_bpf_disabled"
+    value: "{{ sysctl_kernel_unprivileged_bpf_disabled_value }}"
+
+    sysctl_file: "/etc/sysctl.conf"
+
+    state: present
+    reload: yes

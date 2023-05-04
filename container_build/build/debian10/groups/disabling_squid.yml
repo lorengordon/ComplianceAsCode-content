@@ -1,0 +1,19 @@
+prodtype: all
+description: 'If Squid was installed and activated, but the system
+
+    does not need to act as a proxy server, then it should be disabled
+
+    and removed.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules: {}
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Disable Squid if Possible
+definition_location: /home/oscap/content/linux_os/guide/services/proxy/disabling_squid/group.yml
+documentation_complete: true

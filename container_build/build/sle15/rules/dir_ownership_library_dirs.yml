@@ -1,0 +1,122 @@
+prodtype: all
+description: 'System-wide shared library files, which are linked to executables
+
+    during process load time or run time, are stored in the following directories
+
+    by default:
+
+    <pre>/lib
+
+    /lib64
+
+    /usr/lib
+
+    /usr/lib64
+
+    </pre>
+
+    Kernel modules, which can be added to the kernel during runtime, are also
+
+    stored in <tt>/lib/modules</tt>. All files in these directories should be
+
+    owned by the <tt>root</tt> user. If the  directories, is found to be owned
+
+    by a user other than root correct its
+
+    ownership with the following command:
+
+    <pre>$ sudo chown root <i>DIR</i></pre>'
+rationale: 'Files from shared library directories are loaded into the address
+
+    space of processes (including privileged ones) or of the kernel itself at
+
+    runtime. Proper ownership of library directories is necessary to protect
+
+    the integrity of the system.'
+severity: medium
+references:
+    disa: CCI-001499
+    nist: CM-5(6),CM-5(6).1
+    srg: SRG-OS-000259-GPOS-00100
+    stigid: SLES-15-010354
+    stigref: SV-234837r622137_rule
+identifiers:
+    cce: CCE-85735-9
+ocil_clause: any system-wide shared library directory is not owned by root
+ocil: 'Verify the system-wide shared library directories are owned by "root" with
+    the following command:
+
+
+    $ sudo find /lib /lib64 /usr/lib /usr/lib64 ! -user root -type d -exec stat -c
+    "%n %U" ''{}'' \;'
+oval_external_content: null
+fixtext: 'Configure the system-wide shared library directories within (/lib, /lib64,
+    /usr/lib and /usr/lib64) to be protected from unauthorized access.
+
+
+    Run the following command, replacing "[DIRECTORY]" with any library directory
+    not owned by "root".
+
+
+    $ sudo chown root [DIRECTORY]'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: SUSE Linux Enterprise 15 library directories must be owned by root.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: SUSE Linux Enterprise 15 library directories must be owned
+            by root.
+        vuldiscussion: 'If SUSE Linux Enterprise 15 allowed any user to make changes
+            to software libraries, then those changes might be implemented without
+            undergoing the appropriate testing and approvals that are part of a robust
+            change management process.
+
+
+            This requirement applies to SUSE Linux Enterprise 15 with software libraries
+            that are accessible and configurable, as in the case of interpreted languages.
+            Software libraries also include privileged programs that execute with
+            escalated privileges.'
+        checktext: 'Verify the system-wide shared library directories are owned by
+            "root" with the following command:
+
+
+            $ sudo find /lib /lib64 /usr/lib /usr/lib64 ! -user root -type d -exec
+            stat -c "%n %U" ''{}'' \;
+
+
+            If any system-wide shared library directory is not owned by root, this
+            is a finding.'
+        fixtext: 'Configure the system-wide shared library directories within (/lib,
+            /lib64, /usr/lib and /usr/lib64) to be protected from unauthorized access.
+
+
+            Run the following command, replacing "[DIRECTORY]" with any library directory
+            not owned by "root".
+
+
+            $ sudo chown root [DIRECTORY]'
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Verify that Shared Library Directories Have Root Ownership
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/files/permissions_within_important_dirs/dir_ownership_library_dirs/rule.yml
+template:
+    name: file_owner
+    vars:
+        filepath:
+        - /lib/
+        - /lib64/
+        - /usr/lib/
+        - /usr/lib64/
+        recursive: 'true'
+        fileuid: '0'
+    backends: {}
+documentation_complete: true

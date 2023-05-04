@@ -1,0 +1,126 @@
+prodtype: fedora,ol8,ol9,rhel8,rhel9,sle12,sle15,ubuntu2004,ubuntu2204
+description: 'System-wide shared library files, which are linked to executables
+
+    during process load time or run time, are stored in the following directories
+
+    by default:
+
+    <pre>/lib
+
+    /lib64
+
+    /usr/lib
+
+    /usr/lib64
+
+    </pre>
+
+    Kernel modules, which can be added to the kernel during runtime, are also
+
+    stored in <tt>/lib/modules</tt>. All files in these directories should be
+
+    group-owned by the <tt>root</tt> user. If the  directories, is found to be owned
+
+    by a user other than root correct its
+
+    ownership with the following command:
+
+    <pre>$ sudo chgrp root <i>DIR</i></pre>'
+rationale: 'Files from shared library directories are loaded into the address
+
+    space of processes (including privileged ones) or of the kernel itself at
+
+    runtime. Proper ownership of library directories is necessary to protect
+
+    the integrity of the system.'
+severity: medium
+references:
+    disa: CCI-001499
+    nist: CM-5(6),CM-5(6).1
+    srg: SRG-OS-000259-GPOS-00100
+identifiers:
+    cce: CCE-89858-5
+ocil_clause: any system-wide shared library directory is returned and is not group-owned
+    by a required system account
+ocil: 'Verify the system-wide shared library directories are group-owned by "root"
+    with the following command:
+
+
+    $ sudo find /lib /lib64 /usr/lib /usr/lib64 ! -group root -type d -exec stat -c
+    "%n %G" ''{}'' \;
+
+
+    If any system-wide shared library directory is returned and is not group-owned
+    by a required system account, this is a finding.'
+oval_external_content: null
+fixtext: 'Configure the system-wide shared library directories (/lib, /lib64, /usr/lib
+    and /usr/lib64) to be protected from unauthorized access.
+
+
+    Run the following command, replacing "[DIRECTORY]" with any library directory
+    not group-owned by "root".
+
+
+    $ sudo chgrp root [DIRECTORY]'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Red Hat Enterprise Linux 9 library directories must be group-owned
+    by root or a system account.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Red Hat Enterprise Linux 9 library directories must be group-owned
+            by root or a system account.
+        vuldiscussion: 'If Red Hat Enterprise Linux 9 allowed any user to make changes
+            to software libraries, then those changes might be implemented without
+            undergoing the appropriate testing and approvals that are part of a robust
+            change management process.
+
+
+            This requirement applies to Red Hat Enterprise Linux 9 with software libraries
+            that are accessible and configurable, as in the case of interpreted languages.
+            Software libraries also include privileged programs that execute with
+            escalated privileges.'
+        checktext: 'Verify the system-wide shared library directories are group-owned
+            by "root" with the following command:
+
+
+            $ sudo find /lib /lib64 /usr/lib /usr/lib64 ! -group root -type d -exec
+            stat -c "%n %G" ''{}'' \;
+
+
+            If any system-wide shared library directory is returned and is not group-owned
+            by a required system account, this is a finding.'
+        fixtext: 'Configure the system-wide shared library directories (/lib, /lib64,
+            /usr/lib and /usr/lib64) to be protected from unauthorized access.
+
+
+            Run the following command, replacing "[DIRECTORY]" with any library directory
+            not group-owned by "root".
+
+
+            $ sudo chgrp root [DIRECTORY]'
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Verify that Shared Library Directories Have Root Group Ownership
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/files/permissions_within_important_dirs/dir_group_ownership_library_dirs/rule.yml
+template:
+    name: file_groupowner
+    vars:
+        filepath:
+        - /lib/
+        - /lib64/
+        - /usr/lib/
+        - /usr/lib64/
+        recursive: 'true'
+        filegid: '0'
+    backends: {}
+documentation_complete: true

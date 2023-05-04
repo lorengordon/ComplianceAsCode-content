@@ -1,0 +1,79 @@
+# platform = Red Hat Virtualization 4,multi_platform_fedora,multi_platform_ol,multi_platform_rhel,multi_platform_sle
+# reboot = false
+# strategy = restrict
+# complexity = low
+# disruption = low
+- (xccdf-var var_accounts_tmout)
+
+- name: Correct any occurrence of TMOUT in /etc/bashrc
+  replace:
+    path: /etc/bashrc
+    regexp: ^[^#].*TMOUT=.*
+    replace: declare -xr TMOUT={{ var_accounts_tmout }}
+  register: bashrc_replaced
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-27557-8
+  - DISA-STIG-RHEL-07-040160
+  - NIST-800-171-3.1.11
+  - NIST-800-53-AC-12
+  - NIST-800-53-AC-2(5)
+  - NIST-800-53-CM-6(a)
+  - NIST-800-53-SC-10
+  - PCI-DSSv4-8.6.1
+  - accounts_tmout
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+  - restrict_strategy
+
+- name: Correct any occurrence of TMOUT in /etc/profile
+  replace:
+    path: /etc/profile
+    regexp: ^[^#].*TMOUT=.*
+    replace: declare -xr TMOUT={{ var_accounts_tmout }}
+  register: profile_replaced
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-27557-8
+  - DISA-STIG-RHEL-07-040160
+  - NIST-800-171-3.1.11
+  - NIST-800-53-AC-12
+  - NIST-800-53-AC-2(5)
+  - NIST-800-53-CM-6(a)
+  - NIST-800-53-SC-10
+  - PCI-DSSv4-8.6.1
+  - accounts_tmout
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+  - restrict_strategy
+
+- name: Set Interactive Session Timeout
+  lineinfile:
+    path: /etc/profile.d/tmout.sh
+    create: true
+    regexp: TMOUT=
+    line: declare -xr TMOUT={{ var_accounts_tmout }}
+    state: present
+  when:
+  - ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  - profile_replaced is defined and not profile_replaced.changed and bashrc_replaced
+    is defined and not bashrc_replaced.changed
+  tags:
+  - CCE-27557-8
+  - DISA-STIG-RHEL-07-040160
+  - NIST-800-171-3.1.11
+  - NIST-800-53-AC-12
+  - NIST-800-53-AC-2(5)
+  - NIST-800-53-CM-6(a)
+  - NIST-800-53-SC-10
+  - PCI-DSSv4-8.6.1
+  - accounts_tmout
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+  - restrict_strategy

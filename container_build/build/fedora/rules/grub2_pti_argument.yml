@@ -1,0 +1,115 @@
+prodtype: fedora,ol8,ol9,rhel8,rhel9
+description: 'To enable Kernel page-table isolation,
+
+    add the argument <tt>pti=on</tt> to the default
+
+    GRUB 2 command line for the Linux operating system.
+
+    Configure the default Grub2 kernel command line to contain pti=on as follows:
+
+    <pre># grub2-editenv - set "$(grub2-editenv - list | grep kernelopts) pti=on"</pre>'
+rationale: 'Kernel page-table isolation is a kernel feature that mitigates
+
+    the Meltdown security vulnerability and hardens the kernel
+
+    against attempts to bypass kernel address space layout
+
+    randomization (KASLR).'
+severity: low
+references:
+    anssi: BP28(R8)
+    disa: CCI-000381
+    nist: SI-16
+    srg: SRG-OS-000433-GPOS-00193,SRG-OS-000095-GPOS-00049
+identifiers: {}
+ocil_clause: Kernel page-table isolation is not enabled
+ocil: 'Inspect the form of default GRUB 2 command line for the Linux operating system
+
+    in <tt>/boot/grub2/grubenv</tt>.
+
+    If they include <tt>pti=on</tt>, then the parameter
+
+    is configured at boot time.
+
+    <pre>$ sudo grep ''kernelopts.*pti=on.*'' GRUBENV_FILE_LOCATION</pre>
+
+    Fill in <tt>GRUBENV_FILE_LOCATION</tt> based on information above.'
+oval_external_content: null
+fixtext: 'Configure the default Grub2 kernel command line to contain pti=on as follows:
+
+    <pre># grub2-editenv - set "$(grub2-editenv - list | grep kernelopts) pti=on"</pre>'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Fedora must enable mitigations against processor-based vulnerabilities.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Fedora must enable mitigations against processor-based vulnerabilities.
+        vuldiscussion: 'Kernel page-table isolation is a kernel feature that mitigates
+
+            the Meltdown security vulnerability and hardens the kernel
+
+            against attempts to bypass kernel address space layout
+
+            randomization (KASLR).'
+        checktext: 'Verify Fedora enables kernel page-table isolation with the following
+            command:
+
+
+            $ sudo grubby --info=ALL | grep pti
+
+
+            args="ro crashkernel=auto resume=/dev/mapper/rhel-swap rd.lvm.lv=rhel/root
+            rd.lvm.lv=rhel/swap rhgb quiet fips=1 audit=1 audit_backlog_limit=8192
+            pti=on
+
+
+            If the "pti" entry does not equal "on", or is missing, this is a finding.
+
+
+            Check that kernel page-table isolation is enabled by default to persist
+            in kernel updates:
+
+
+            $ sudo grep pti /etc/default/grub
+
+
+            GRUB_CMDLINE_LINUX="pti=on"
+
+
+            If "pti" is not set to "on", is missing or commented out, this is a finding.'
+        fixtext: 'Configure Fedora to enable kernel page-table isolation with the
+            following command:
+
+
+            $ sudo grubby --update-kernel=ALL --args="pti=on"
+
+
+            Add or modify the following line in "/etc/default/grub" to ensure the
+            configuration survives kernel updates:
+
+
+            GRUB_CMDLINE_LINUX="pti=on"'
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set
+    grub2: null
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set
+    grub2: null
+bash_conditional: null
+fixes: {}
+title: Enable Kernel Page-Table Isolation (KPTI)
+definition_location: /home/oscap/content/linux_os/guide/system/bootloader-grub2/grub2_pti_argument/rule.yml
+template:
+    name: grub2_bootloader_argument
+    vars:
+        arg_name: pti
+        arg_value: 'on'
+    backends: {}
+documentation_complete: true

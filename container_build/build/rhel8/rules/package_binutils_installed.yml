@@ -1,0 +1,44 @@
+prodtype: fedora,ol7,ol8,rhel7,rhel8,rhv4
+description: 'The <code>binutils</code> package can be installed with the following
+    command:
+
+    <pre>
+
+    $ sudo yum install binutils</pre>'
+rationale: '<tt>binutils</tt> is a collection of binary utilities required for
+
+    foundational system operator activities, such as <tt>ld</tt>,
+
+    <tt>nm</tt>, <tt>objcopy</tt> and <tt>readelf</tt>.'
+severity: medium
+references: {}
+identifiers:
+    cce: CCE-82989-5
+ocil_clause: the package is not installed
+ocil: 'Run the following command to determine if the <code>binutils</code> package
+    is installed: <pre>$ rpm -q binutils</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Install binutils Package
+definition_location: /home/oscap/content/linux_os/guide/system/software/system-tools/package_binutils_installed/rule.yml
+template:
+    name: package_installed
+    vars:
+        pkgname: binutils
+    backends: {}
+documentation_complete: true

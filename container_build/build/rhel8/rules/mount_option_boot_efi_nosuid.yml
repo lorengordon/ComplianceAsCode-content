@@ -1,0 +1,84 @@
+prodtype: ol8,rhel8,rhel9
+description: 'The <tt>nosuid</tt> mount option can be used to prevent
+
+    execution of setuid programs in <tt>/boot/efi</tt>. The SUID and SGID permissions
+
+    should not be required on the boot partition.
+
+    Add the <code>nosuid</code> option to the fourth column of
+
+    <tt>/etc/fstab</tt> for the line which controls mounting of
+
+    <code>/boot/efi</code>.'
+rationale: 'The presence of SUID and SGID executables should be tightly controlled.
+    Users
+
+    should not be able to execute SUID or SGID binaries from boot partitions.'
+severity: medium
+references:
+    disa: CCI-000366
+    nist: CM-6(b),CM-6.1(iv)
+    srg: SRG-OS-000480-GPOS-00227
+    stigid: RHEL-08-010572
+    stigref: SV-244530r809336_rule
+identifiers:
+    cce: CCE-86038-7
+ocil_clause: the "/boot/efi" file system does not have the "nosuid" option set
+ocil: "Verify the <tt>nosuid</tt> option is configured for the <tt>/boot/efi</tt>\
+    \ mount point,\n    run the following command:\n    <pre>$ sudo mount | grep '\\\
+    s/boot/efi\\s'</pre>\n    <pre>. . . /boot/efi . . . nosuid . . .</pre>\n"
+oval_external_content: null
+fixtext: Modify "/etc/fstab" to use the "nosuid" option on the "/boot/efi" directory.
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Red Hat Enterprise Linux 8 must mount /boot/efi with the nosuid option.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Red Hat Enterprise Linux 8 must prevent files with the setuid
+            and setgid bit set from being executed on the /boot/efi directory directory.
+        vuldiscussion: The "nosuid" mount option causes the system not to execute
+            "setuid" and "setgid" files with owner privileges. This option must be
+            used for mounting any file system not containing approved "setuid" and
+            "setguid" files. Executing files from untrusted file systems increases
+            the opportunity for unprivileged users to attain unauthorized administrative
+            access.
+        checktext: 'For systems that use BIOS, this is Not Applicable.
+
+
+            Verify the /boot/efi directory is mounted with the "nosuid" option with
+            the following command:
+
+
+            $ mount | grep ''\s/boot/efi\s''
+
+
+            /dev/sda1 on /boot/efi type vfat (rw,nosuid,relatime,fmask=0077,dmask=0077,codepage=437,iocharset=ascii,shortname=winnt,errors=remount-ro)
+
+
+            If the /boot/efi file system does not have the "nosuid" option set, this
+            is a finding.'
+        fixtext: Modify "/etc/fstab" to use the "nosuid" option on the "/boot/efi"
+            directory.
+platform: machine and uefi
+platforms: !!set
+    machine and uefi: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine_and_uefi: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Add nosuid Option to /boot/efi
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/partitions/mount_option_boot_efi_nosuid/rule.yml
+template:
+    name: mount_option
+    vars:
+        mountpoint: /boot/efi
+        mountoption: nosuid
+    backends:
+        anaconda: 'off'
+documentation_complete: true

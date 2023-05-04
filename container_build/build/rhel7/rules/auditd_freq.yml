@@ -1,0 +1,91 @@
+prodtype: all
+description: 'To configure Audit daemon to issue an explicit flush to disk command
+
+    after writing <sub idref="var_auditd_freq" /> records, set <tt>freq</tt> to <tt><sub
+    idref="var_auditd_freq" /></tt>
+
+    in <tt>/etc/audit/auditd.conf</tt>.'
+rationale: 'If option <tt>freq</tt> isn''t set to <tt><sub idref="var_auditd_freq"
+    /></tt>, the flush to disk
+
+    may happen after higher number of records, increasing the danger
+
+    of audit loss.'
+severity: medium
+references:
+    nist: CM-6
+    ospp: FAU_GEN.1
+    srg: SRG-OS-000051-GPOS-00024
+identifiers:
+    cce: CCE-82358-3
+ocil_clause: freq isn't set to <sub idref="var_auditd_freq" />
+ocil: 'To verify that Audit Daemon is configured to flush to disk after
+
+    every <sub idref="var_auditd_freq" /> records, run the following command:
+
+    <pre>$ sudo grep freq /etc/audit/auditd.conf</pre>
+
+    The output should return the following:
+
+    <pre>freq = <sub idref="var_auditd_freq" /></pre>'
+oval_external_content: null
+fixtext: 'Edit the file "/etc/audit/auditd.conf" and add or edit the following line:
+
+    freq = <sub idref="var_auditd_freq" />'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Red Hat Enterprise Linux 7 must periodically flush audit records
+    to disk to ensure that audit records are not lost.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Red Hat Enterprise Linux 7 must periodically flush audit
+            records to disk to ensure that audit records are not lost.
+        vuldiscussion: If option "freq" isn't set to a value that requires audit records
+            being written to disk after a threshold number is reached then audit records
+            may be lost.
+        checktext: 'Verify that audit system is configured to flush to disk after
+            every 50 records with the following command:
+
+
+            $ sudo grep freq /etc/audit/auditd.conf
+
+
+            freq = 100
+
+
+            If "freq" isn''t set to a value of "100" or greater, the value is missing,
+            or the line is commented out, this is a finding.'
+        fixtext: 'Configure Red Hat Enterprise Linux 7 to flush audit to disk by adding
+            or updating the following rule in "/etc/audit/rules.d/audit.rules":
+
+
+            freq = 100
+
+
+            The audit daemon must be restarted for the changes to take effect.'
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+    package[audit]: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+    package_audit: null
+bash_conditional: null
+fixes: {}
+title: Set number of records to cause an explicit flush to audit logs
+definition_location: /home/oscap/content/linux_os/guide/system/auditing/configure_auditd_data_retention/auditd_freq/rule.yml
+template:
+    name: auditd_lineinfile
+    vars:
+        missing_parameter_pass: 'false'
+        parameter: freq
+        rule_id: auditd_freq
+        value: '50'
+    backends: {}
+documentation_complete: true

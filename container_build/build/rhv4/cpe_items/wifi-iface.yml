@@ -1,0 +1,11 @@
+name: cpe:/a:wifi-iface
+check_id: installed_env_has_wifi_interface
+bash_conditional: ''
+ansible_conditional: ''
+is_product_cpe: false
+versioned: false
+args: {}
+title: WiFi interface is present
+definition_location: /home/oscap/content/shared/applicability/wifi-iface.yml
+template: null
+documentation_complete: true

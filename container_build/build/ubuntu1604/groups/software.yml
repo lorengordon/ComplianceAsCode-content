@@ -1,0 +1,29 @@
+prodtype: all
+description: 'The following sections contain information on
+
+    security-relevant choices during the initial operating system
+
+    installation process and the setup of software
+
+    updates.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups:
+- disk_partitioning
+- gnome
+- integrity
+- sap_host
+- sudo
+- system-tools
+- updating
+rules:
+- prefer_64bit_os
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Installing and Maintaining Software
+definition_location: /home/oscap/content/linux_os/guide/system/software/group.yml
+documentation_complete: true

@@ -1,0 +1,32 @@
+prodtype: debian10,debian11,ubuntu1604,ubuntu1804,ubuntu2004,ubuntu2204
+description: Unauthenticated repositories should not be used for updates.
+rationale: "Repositories hosts all packages that will be intsalled on the system during\
+    \ update.\n    If a repository is not authenticated, the associated packages can't\
+    \ be trusted,\n    and then should not be installed localy."
+severity: unknown
+references:
+    anssi: BP28(R15)
+identifiers: {}
+ocil_clause: null
+ocil: null
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Disable unauthenticated repositories in APT configuration
+definition_location: /home/oscap/content/linux_os/guide/services/apt/apt_conf_disallow_unauthenticated/rule.yml
+template: null
+documentation_complete: true

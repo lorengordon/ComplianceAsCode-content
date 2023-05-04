@@ -1,0 +1,51 @@
+prodtype: rhel7,rhel8
+description: 'Remove the execute permission bit of <tt>/etc/bin/sudo</tt> for the
+    other users.
+
+
+    To properly set the permissions of <code>/usr/bin/sudo</code>, run the command:
+
+    <pre>$ sudo chmod 4110 /usr/bin/sudo</pre>'
+rationale: Restricting the set of users able to execute commands as privileged user
+    reduces the attack surface.
+severity: medium
+references:
+    anssi: BP28(R57)
+identifiers:
+    cce: CCE-83574-4
+ocil_clause: /usr/bin/sudo does not have unix mode ---s--x---
+ocil: 'To check the permissions of <code>/usr/bin/sudo</code>,
+
+    run the command:
+
+    <pre>$ ls -l /usr/bin/sudo</pre>
+
+    If properly configured, the output should indicate the following permissions:
+
+    <code>---s--x---</code>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Ensure only owner and members of group owner of /usr/bin/sudo can execute it
+definition_location: /home/oscap/content/linux_os/guide/system/software/sudo/sudo_restrict_others_executable_permission/rule.yml
+template:
+    name: file_permissions
+    vars:
+        filepath: /usr/bin/sudo
+        filemode: '4110'
+    backends: {}
+documentation_complete: true

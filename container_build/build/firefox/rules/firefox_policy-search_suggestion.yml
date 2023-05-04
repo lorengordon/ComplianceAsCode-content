@@ -1,0 +1,51 @@
+prodtype: firefox
+description: 'Search Suggestions may be disabled in an administrative policy by setting
+
+    the <tt>SearchSuggestEnabled</tt> key under <tt>policies</tt> to <tt>false</tt>.'
+rationale: Search suggestions must be disabled as this could lead to searches being
+    conducted that were never intended to be made.
+severity: medium
+references:
+    disa: CCI-000381
+    nist: CM-7
+    stigid: FFOX-00-000020
+identifiers: {}
+ocil_clause: null
+ocil: 'To verify that search suggestions are disabled,
+
+    type the following into the browser address bar:
+
+    <pre>about:policies</pre>
+
+    The output should have the following:
+
+    <pre>"SearchSuggestEnabled": false</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Firefox search suggestions must be disabled.
+definition_location: /home/oscap/content/products/firefox/guide/firefox/firefox_policy-search_suggestion/rule.yml
+template:
+    name: firefox_policy-setting
+    vars:
+        name: Disable search suggestion
+        policies:
+        -   path: policies
+            parameter: SearchSuggestEnabled
+            value: 'false'
+    backends: {}
+documentation_complete: true

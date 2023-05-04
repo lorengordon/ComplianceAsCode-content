@@ -1,0 +1,129 @@
+prodtype: fedora,ol8,ol9,rhcos4,rhel8,rhel9
+description: 'To set the runtime status of the <code>kernel.core_pattern</code> kernel
+    parameter, run the following command: <pre>$ sudo sysctl -w kernel.core_pattern=|/bin/false</pre>
+
+    To make sure that the setting is persistent, add the following line to a file
+    in the directory <tt>/etc/sysctl.d</tt>: <pre>kernel.core_pattern = |/bin/false</pre>'
+rationale: 'A core dump includes a memory image taken at the time the operating system
+
+    terminates an application. The memory image could contain sensitive data and is
+    generally useful
+
+    only for developers trying to debug problems.'
+severity: medium
+references:
+    disa: CCI-000366
+    nist: SC-7(10)
+    ospp: FMT_SMF_EXT.1
+    srg: SRG-OS-000480-GPOS-00227
+identifiers:
+    cce: CCE-82527-3
+ocil_clause: 'the returned line does not have a value of "|/bin/false", or a line
+    is not
+
+    returned and the need for core dumps is not documented with the Information
+
+    System Security Officer (ISSO) as an operational requirement'
+ocil: 'The runtime status of the <code>kernel.core_pattern</code> kernel parameter
+    can be queried
+
+    by running the following command:
+
+    <pre>$ sysctl kernel.core_pattern</pre>
+
+    <code>|/bin/false</code>.
+
+    '
+oval_external_content: null
+fixtext: 'Configure Red Hat Enterprise Linux CoreOS 4 to disable storing core dumps.
+
+    Add or edit the following line in a system configuration file in the "/etc/sysctl.d/"
+    directory:
+
+    kernel.core_pattern = |/bin/false
+
+
+    Load settings from all system configuration files with the following command:
+
+
+    $ sudo sysctl --system'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Red Hat Enterprise Linux CoreOS 4 must disable the kernel.core_pattern.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Red Hat Enterprise Linux CoreOS 4 must disable the kernel.core_pattern.
+        vuldiscussion: 'A core dump includes a memory image taken at the time the
+            operating system
+
+            terminates an application. The memory image could contain sensitive data
+
+            and is generally useful only for developers trying to debug problems.'
+        checktext: 'Verify Red Hat Enterprise Linux CoreOS 4 disables storing core
+            dumps with the following commands:
+
+
+            $ sysctl kernel.core_pattern
+
+
+            kernel.core_pattern = |/bin/false
+
+
+            If the returned line does not have a value of "|/bin/false", or a line
+            is not returned and the need for core dumps is not documented with the
+            Information System Security Officer (ISSO) as an operational requirement,
+            this is a finding.
+
+
+            Check that the configuration files are present to disable core dump storage.
+
+
+            $ sudo /usr/lib/systemd/systemd-sysctl --cat-config | egrep -v ''^(#|;)''
+            | grep -F kernel.core_pattern | tail -1
+
+
+            kernel.core_pattern = |/bin/false
+
+
+            If "kernel.core_pattern" is not set to "|/bin/false" and is not documented
+            with the Information System Security Officer (ISSO) as an operational
+            requirement, or is missing, this is a finding.'
+        fixtext: 'Configure Red Hat Enterprise Linux CoreOS 4 to disable storing core
+            dumps.
+
+
+            Add or edit the following line in a system configuration file, in the
+            "/etc/sysctl.d/" directory:
+
+
+            kernel.core_pattern = |/bin/false
+
+
+            The system configuration files need to be reloaded for the changes to
+            take effect. To reload the contents of the files, run the following command:
+
+
+            $ sudo sysctl --system'
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Disable storing core dumps
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/restrictions/sysctl_kernel_core_pattern/rule.yml
+template:
+    name: sysctl
+    vars:
+        sysctlvar: kernel.core_pattern
+        sysctlval: '|/bin/false'
+        datatype: string
+    backends: {}
+documentation_complete: true

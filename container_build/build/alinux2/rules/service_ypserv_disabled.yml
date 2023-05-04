@@ -1,0 +1,84 @@
+prodtype: alinux2,alinux3,anolis8,rhel8,rhel9
+description: 'The <tt>ypserv</tt> service, which allows the system to act as a client
+    in
+
+    a NIS or NIS+ domain, should be disabled.
+
+
+    The <code>ypserv</code> service can be disabled with the following command:
+
+    <pre>$ sudo systemctl mask --now ypserv.service</pre>'
+rationale: 'Disabling the <tt>ypserv</tt> service ensures the system is not acting
+
+    as a client in a NIS or NIS+ domain. This service should be disabled
+
+    unless in use.'
+severity: medium
+references:
+    cis: 2.1.16
+identifiers: {}
+ocil_clause: the "ypserv" is loaded and not masked
+ocil: 'To check that the <code>ypserv</code> service is disabled in system boot configuration,
+
+    run the following command:
+
+    <pre>$ sudo systemctl is-enabled <code>ypserv</code></pre>
+
+    Output should indicate the <code>ypserv</code> service has either not been installed,
+
+    or has been disabled at all runlevels, as shown in the example below:
+
+    <pre>$ sudo systemctl is-enabled <code>ypserv</code><br/> disabled</pre>
+
+
+    Run the following command to verify <code>ypserv</code> is not active (i.e. not
+    running) through current runtime configuration:
+
+    <pre>$ sudo systemctl is-active ypserv</pre>
+
+
+    If the service is not running the command will return the following output:
+
+    <pre>inactive</pre>
+
+
+    The service will also be masked, to check that the <code>ypserv</code> is masked,
+    run the following command:
+
+    <pre>$ sudo systemctl show <code>ypserv</code> | grep "LoadState\|UnitFileState"</pre>
+
+
+    If the service is masked the command will return the following outputs:
+
+
+    <pre>LoadState=masked</pre>
+
+
+    <pre>UnitFileState=masked</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Disable ypserv Service
+definition_location: /home/oscap/content/linux_os/guide/services/obsolete/nis/service_ypserv_disabled/rule.yml
+template:
+    name: service_disabled
+    vars:
+        servicename: ypserv
+    backends: {}
+documentation_complete: true

@@ -1,0 +1,49 @@
+prodtype: all
+description: 'The <tt>MaxSessions</tt> parameter specifies the maximum number of open
+    sessions permitted
+
+    from a given connection. To set MaxSessions edit
+
+    <tt>/etc/ssh/sshd_config</tt> as follows: <pre>MaxSessions <sub idref="var_sshd_max_sessions"
+    /></pre>'
+rationale: 'To protect a system from denial of service due to a large number of concurrent
+
+    sessions, use the rate limiting function of MaxSessions to protect availability
+
+    of sshd logins and prevent overwhelming the daemon.'
+severity: medium
+references:
+    pcidss4: 2.2.6
+    cis: 5.2.22
+identifiers: {}
+ocil_clause: MaxSessions is not configured or not configured correctly
+ocil: 'Run the following command to see what the max sessions number is:
+
+    <pre>$ sudo grep MaxSessions /etc/ssh/sshd_config</pre>
+
+    If properly configured, the output should be:
+
+    <pre>MaxSessions <sub idref="var_sshd_max_sessions" /></pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Set SSH MaxSessions limit
+definition_location: /home/oscap/content/linux_os/guide/services/ssh/ssh_server/sshd_set_max_sessions/rule.yml
+template: null
+documentation_complete: true

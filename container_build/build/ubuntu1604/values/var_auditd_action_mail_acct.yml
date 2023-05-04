@@ -1,0 +1,12 @@
+description: The setting for action_mail_acct in /etc/audit/auditd.conf
+type: string
+operator: equals
+interactive: false
+options:
+    admin: admin
+    default: root
+    root: root
+warnings: []
+title: Account for auditd to send email when actions occurs
+definition_location: /home/oscap/content/linux_os/guide/system/auditing/configure_auditd_data_retention/var_auditd_action_mail_acct.var
+documentation_complete: true

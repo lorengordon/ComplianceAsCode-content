@@ -1,0 +1,11 @@
+name: cpe:/o:uos:uniontech_os_server:20
+check_id: installed_OS_is_uos20
+bash_conditional: ''
+ansible_conditional: ''
+is_product_cpe: true
+versioned: false
+args: {}
+title: UnionTech OS Server 20
+definition_location: ''
+template: null
+documentation_complete: true

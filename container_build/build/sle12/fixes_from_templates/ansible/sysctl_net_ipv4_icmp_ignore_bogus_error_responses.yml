@@ -1,0 +1,46 @@
+# platform = multi_platform_all
+# reboot = true
+# strategy = disable
+# complexity = low
+# disruption = medium
+
+- name: List /etc/sysctl.d/*.conf files
+
+  find:
+    paths:
+      - "/etc/sysctl.d/"
+      - "/run/sysctl.d/"
+
+
+      - "/usr/lib/sysctl.d/"
+
+    contains: '^[\s]*net.ipv4.icmp_ignore_bogus_error_responses.*$'
+    patterns: "*.conf"
+    file_type: any
+  register: find_sysctl_d
+
+- name: Comment out any occurrences of net.ipv4.icmp_ignore_bogus_error_responses from config files
+  replace:
+    path: "{{ item.path }}"
+    regexp: '^[\s]*net.ipv4.icmp_ignore_bogus_error_responses'
+    replace: '#net.ipv4.icmp_ignore_bogus_error_responses'
+  loop: "{{ find_sysctl_d.files }}"
+
+
+- name: Comment out any occurrences of net.ipv4.icmp_ignore_bogus_error_responses from /etc/sysctl.conf
+  replace:
+    path: "/etc/sysctl.conf"
+    regexp: '^[\s]*net.ipv4.icmp_ignore_bogus_error_responses'
+    replace: '#net.ipv4.icmp_ignore_bogus_error_responses'
+
+- (xccdf-var sysctl_net_ipv4_icmp_ignore_bogus_error_responses_value)
+
+- name: Ensure sysctl net.ipv4.icmp_ignore_bogus_error_responses is set
+  sysctl:
+    name: "net.ipv4.icmp_ignore_bogus_error_responses"
+    value: "{{ sysctl_net_ipv4_icmp_ignore_bogus_error_responses_value }}"
+
+    sysctl_file: "/etc/sysctl.d/net_ipv4_icmp_ignore_bogus_error_responses.conf"
+
+    state: present
+    reload: yes

@@ -1,0 +1,33 @@
+<def-group>
+     <definition class="compliance" id="sudoers_no_command_negation" version="1">
+     <metadata>
+        <title>Don't define allowed commands in sudoers by means of exclusion</title>
+        
+    <affected family="unix">
+    <platform>multi_platform_all</platform>
+    </affected>
+        <description>Check that sudoers doesn't contain command negations</description>
+    </metadata>
+     <criteria operator="AND">
+	     <criterion comment="Make sure that no command in user spec contains negation" test_ref="test_sudoers_no_command_negation" />
+     </criteria>
+  </definition>
+
+  <ind:textfilecontent54_test check="all" check_existence="none_exist"
+  comment="Make sure that no command in user spec contains negation"
+	  id="test_sudoers_no_command_negation" version="1">
+  <ind:object object_ref="object_sudoers_no_command_negation" />
+  </ind:textfilecontent54_test>
+
+  <ind:textfilecontent54_object id="object_sudoers_no_command_negation" version="1">
+    <ind:filepath operation="pattern match">^/etc/sudoers(\.d/.*)?$</ind:filepath>
+    <!-- The regex idea: <user list> <host list> = (<the whole command without negation>,)* <command with negation> <whatever>
+         where a command is <runas spec>?<anything except , or !>+,
+           - ',' is a command delimiter, while
+           - '!' as the leading character outside of a runas spec is a command negation we are after,
+         The last non-capturing group holds the offending command.
+    -->
+    <ind:pattern operation="pattern match">^(?:\s*[^#=]+)=(?:\s*(?:\([^\)]+\))?\s*(?!\s*\()[^,!\n][^,\n]+,)*\s*(?:\([^\)]+\))?\s*(?!\s*\()(!\S+).*</ind:pattern>
+    <ind:instance datatype="int">1</ind:instance>
+  </ind:textfilecontent54_object>
+</def-group>

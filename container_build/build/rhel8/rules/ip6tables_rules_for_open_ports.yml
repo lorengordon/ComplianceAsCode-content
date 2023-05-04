@@ -1,0 +1,51 @@
+prodtype: rhel7,rhel8,ubuntu2204
+description: 'Any ports that have been opened on non-loopback addresses
+
+    need firewall rules to govern traffic.'
+rationale: 'Without a firewall rule configured for open ports default
+
+    firewall policy will drop all packets to these ports.'
+severity: medium
+references:
+    cis: 3.4.3.3.3
+identifiers:
+    cce: CCE-86801-8
+ocil_clause: open ports are denied connection
+ocil: 'Run the following command to determine open ports:
+
+    <pre># ss -6tuln</pre>
+
+    Run the following command to determine firewall rules:
+
+    <pre># ip6tables -L INPUT -v -n</pre>
+
+    For each port identified in the audit which does not have a firewall
+
+    rule, add rule for accepting or denying inbound connections
+
+    <pre># ip6tables -A INPUT -p \<protocol\> --dport \<port\> -m state --state NEW
+    -j ACCEPT</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings:
+-   general: 'Changing firewall settings while connected over network can
+
+        result in being locked out of the system.'
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Ensure ip6tables Firewall Rules Exist for All Open Ports
+definition_location: /home/oscap/content/linux_os/guide/system/network/network-iptables/iptables_ruleset_modifications/ip6tables_rules_for_open_ports/rule.yml
+template: null
+documentation_complete: true

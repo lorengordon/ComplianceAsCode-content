@@ -1,0 +1,11 @@
+name: no_ovirt
+original_expression: no_ovirt
+xml_content: <ns0:platform xmlns:ns0="http://cpe.mitre.org/language/2.0" id="no_ovirt"><ns0:logical-test
+    operator="AND" negate="false"><ns0:check-fact-ref system="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+    href="ssg-rhel8-cpe-oval.xml" id-ref="oval:ssg-installed_env_has_no_ovirt:def:1"
+    /></ns0:logical-test></ns0:platform>
+bash_conditional: ''
+ansible_conditional: ''
+title: ''
+definition_location: /home/oscap/content/build/rhel8/platforms/no_ovirt.yml
+documentation_complete: true

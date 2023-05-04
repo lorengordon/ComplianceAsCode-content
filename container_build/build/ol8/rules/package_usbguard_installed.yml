@@ -1,0 +1,86 @@
+prodtype: fedora,ol7,ol8,ol9,rhcos4,rhel7,rhel8,rhel9,rhv4
+description: '
+
+    The <code>usbguard</code> package can be installed with the following command:
+
+    <pre>
+
+    $ sudo yum install usbguard</pre>'
+rationale: '<tt>usbguard</tt> is a software framework that helps to protect
+
+    against rogue USB devices by implementing basic whitelisting/blacklisting
+
+    capabilities based on USB device attributes.'
+severity: medium
+references:
+    disa: CCI-001958
+    ism: '1418'
+    nist: CM-8(3),IA-3
+    srg: SRG-OS-000378-GPOS-00163
+    stigid: OL08-00-040139
+    stigref: SV-248862r853871_rule
+identifiers: {}
+ocil_clause: the package is not installed
+ocil: 'Run the following command to determine if the <code>usbguard</code> package
+    is installed: <pre>$ rpm -q usbguard</pre>'
+oval_external_content: null
+fixtext: 'The <code>usbguard</code> package can be installed with the following command:
+
+    <pre>
+
+    $ sudo yum install usbguard</pre>'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ' Oracle Linux 8 must have the usbguard package installed.'
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Oracle Linux 8 must have the USBGuard package installed.
+        vuldiscussion: 'The USBguard-daemon is the main component of the USBGuard
+            software framework. It runs as a service in the background and enforces
+            the USB device authorization policy for all USB devices. The policy is
+            defined by a set of rules using a rule language described in the usbguard-rules.conf
+            file. The policy and the authorization state of USB devices can be modified
+            during runtime using the usbguard tool.
+
+
+            The System Administrator (SA) must work with the site Information System
+            Security Officer (ISSO) to determine a list of authorized peripherals
+            and establish rules within the USBGuard software framework to allow only
+            authorized devices.'
+        checktext: 'Verify that Oracle Linux 8 usbguard package is installed with
+            the following command:
+
+
+            $ sudo dnf list --installed usbguard
+
+
+            usbguard.x86_64      1.0.0-10.el9
+
+
+            If the usbguard package is not installed, this is a finding.'
+        fixtext: 'Install the usbguard package (if the package is not already installed)
+            with the following command:
+
+
+            $ sudo dnf install usbguard'
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    not_s390x_arch and machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine_and_not_s390x_arch: null
+bash_conditional: null
+fixes: {}
+title: Install usbguard Package
+definition_location: /home/oscap/content/linux_os/guide/services/usbguard/package_usbguard_installed/rule.yml
+template:
+    name: package_installed
+    vars:
+        pkgname: usbguard
+    backends: {}
+documentation_complete: true

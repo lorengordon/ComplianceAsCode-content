@@ -1,0 +1,80 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = configure
+# complexity = low
+# disruption = low
+- name: Set permissions for /lib/ recursively
+  file:
+    path: /lib/
+    state: directory
+    recurse: true
+    mode: g-w,o-w
+  tags:
+  - CCE-88692-9
+  - DISA-STIG-RHEL-08-010331
+  - NIST-800-53-CM-5
+  - NIST-800-53-CM-5(6)
+  - NIST-800-53-CM-5(6).1
+  - configure_strategy
+  - dir_permissions_library_dirs
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Set permissions for /lib64/ recursively
+  file:
+    path: /lib64/
+    state: directory
+    recurse: true
+    mode: g-w,o-w
+  tags:
+  - CCE-88692-9
+  - DISA-STIG-RHEL-08-010331
+  - NIST-800-53-CM-5
+  - NIST-800-53-CM-5(6)
+  - NIST-800-53-CM-5(6).1
+  - configure_strategy
+  - dir_permissions_library_dirs
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Set permissions for /usr/lib/ recursively
+  file:
+    path: /usr/lib/
+    state: directory
+    recurse: true
+    mode: g-w,o-w
+  tags:
+  - CCE-88692-9
+  - DISA-STIG-RHEL-08-010331
+  - NIST-800-53-CM-5
+  - NIST-800-53-CM-5(6)
+  - NIST-800-53-CM-5(6).1
+  - configure_strategy
+  - dir_permissions_library_dirs
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Set permissions for /usr/lib64/ recursively
+  file:
+    path: /usr/lib64/
+    state: directory
+    recurse: true
+    mode: g-w,o-w
+  tags:
+  - CCE-88692-9
+  - DISA-STIG-RHEL-08-010331
+  - NIST-800-53-CM-5
+  - NIST-800-53-CM-5(6)
+  - NIST-800-53-CM-5(6).1
+  - configure_strategy
+  - dir_permissions_library_dirs
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed

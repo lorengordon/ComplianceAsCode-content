@@ -1,0 +1,22 @@
+prodtype: all
+description: 'The DHCP server <tt>dhcpd</tt> is not installed or activated by
+
+    default. If the software was installed and activated, but the
+
+    system does not need to act as a DHCP server, it should be disabled
+
+    and removed.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- service_dhcpd_disabled
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Disable DHCP Server
+definition_location: /home/oscap/content/linux_os/guide/services/dhcp/disabling_dhcp_server/group.yml
+documentation_complete: true

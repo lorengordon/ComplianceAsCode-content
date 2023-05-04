@@ -1,0 +1,39 @@
+# platform = multi_platform_all
+# reboot = true
+# strategy = disable
+# complexity = low
+# disruption = medium
+
+- name: List /etc/sysctl.d/*.conf files
+      
+  find:
+    paths:
+      - "/etc/sysctl.d/"
+      - "/run/sysctl.d/"
+      - "/usr/local/lib/sysctl.d/"
+
+
+      - "/usr/lib/sysctl.d/"
+
+    contains: '^[\s]*kernel.randomize_va_space.*$'
+    patterns: "*.conf"
+    file_type: any
+  register: find_sysctl_d
+
+- name: Comment out any occurrences of kernel.randomize_va_space from config files
+  replace:
+    path: "{{ item.path }}"
+    regexp: '^[\s]*kernel.randomize_va_space'
+    replace: '#kernel.randomize_va_space'
+  loop: "{{ find_sysctl_d.files }}"
+
+
+- name: Ensure sysctl kernel.randomize_va_space is set to 2
+  sysctl:
+    name: "kernel.randomize_va_space"
+    value: "2"
+
+    sysctl_file: "/etc/sysctl.conf"
+
+    state: present
+    reload: yes

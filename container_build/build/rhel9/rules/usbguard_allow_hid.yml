@@ -1,0 +1,65 @@
+prodtype: fedora,ol8,rhcos4,rhel8,rhel9
+description: 'To allow authorization of Human Interface Devices (keyboard, mouse)
+
+    by USBGuard daemon,
+
+    add the line
+
+    <tt>allow with-interface match-all { 03:*:* }</tt>
+
+    to <tt>/etc/usbguard/rules.conf</tt>.'
+rationale: 'Without allowing Human Interface Devices, it might not be possible
+
+    to interact with the system.'
+severity: medium
+references:
+    ospp: FMT_SMF_EXT.1
+    srg: SRG-OS-000114-GPOS-00059
+identifiers:
+    cce: CCE-85990-0
+ocil_clause: USB devices of class 3 are not authorized
+ocil: 'To verify that USB Human Interface Devices will be authorized by the USBGuard
+    daemon,
+
+    run the following command:
+
+    <pre>$ sudo grep allow /etc/usbguard/rules.conf</pre>
+
+    The output lines should include
+
+    <pre>allow with-interface match-all { 03:*:* }</pre>'
+oval_external_content: null
+fixtext: 'Configure the USBGuard daemon to allow USB Human Interface Devices.
+
+
+    Add or edit the following line in "/etc/usbguard/rules.conf":
+
+
+    allow with-interface match-all { 03:*:* }'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings:
+-   general: This rule should be understood primarily as a convenience administration
+        feature. This rule ensures that if the USBGuard default rules.conf file is
+        present, it will alter it so that USB human interface devices are allowed.
+        However, if the rules.conf file is altered by system administrator, the rule
+        does not check if USB human interface devices are allowed. This assumes that
+        an administrator modified the file with some purpose in mind.
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    not_s390x_arch and machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine_and_not_s390x_arch: null
+bash_conditional: null
+fixes: {}
+title: Authorize Human Interface Devices in USBGuard daemon
+definition_location: /home/oscap/content/linux_os/guide/services/usbguard/usbguard_allow_hid/rule.yml
+template: null
+documentation_complete: true

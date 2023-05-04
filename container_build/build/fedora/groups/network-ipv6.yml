@@ -1,0 +1,25 @@
+prodtype: all
+description: 'The system includes support for Internet Protocol
+
+    version 6. A major and often-mentioned improvement over IPv4 is its
+
+    enormous increase in the number of available addresses. Another
+
+    important feature is its support for automatic configuration of
+
+    many network settings.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups:
+- configuring_ipv6
+- disabling_ipv6
+rules: {}
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: IPv6
+definition_location: /home/oscap/content/linux_os/guide/system/network/network-ipv6/group.yml
+documentation_complete: true

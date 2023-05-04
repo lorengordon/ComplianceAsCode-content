@@ -1,0 +1,39 @@
+# platform = multi_platform_all
+# reboot = true
+# strategy = disable
+# complexity = low
+# disruption = medium
+
+- name: List /etc/sysctl.d/*.conf files
+      
+  find:
+    paths:
+      - "/etc/sysctl.d/"
+      - "/run/sysctl.d/"
+      - "/usr/local/lib/sysctl.d/"
+
+
+      - "/usr/lib/sysctl.d/"
+
+    contains: '^[\s]*kernel.perf_cpu_time_max_percent.*$'
+    patterns: "*.conf"
+    file_type: any
+  register: find_sysctl_d
+
+- name: Comment out any occurrences of kernel.perf_cpu_time_max_percent from config files
+  replace:
+    path: "{{ item.path }}"
+    regexp: '^[\s]*kernel.perf_cpu_time_max_percent'
+    replace: '#kernel.perf_cpu_time_max_percent'
+  loop: "{{ find_sysctl_d.files }}"
+
+
+- name: Ensure sysctl kernel.perf_cpu_time_max_percent is set to 1
+  sysctl:
+    name: "kernel.perf_cpu_time_max_percent"
+    value: "1"
+
+    sysctl_file: "/etc/sysctl.conf"
+
+    state: present
+    reload: yes

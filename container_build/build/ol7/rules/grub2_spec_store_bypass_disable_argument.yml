@@ -1,0 +1,121 @@
+prodtype: all
+description: 'Certain CPUs are vulnerable to an exploit against a common wide industry
+    wide performance
+
+    optimization known as Speculative Store Bypass (SSB).
+
+
+    In such cases, recent stores to the same memory location cannot always be observed
+    by later
+
+    loads during speculative execution. However, such stores are unlikely and thus
+    they can be
+
+    detected prior to instruction retirement at the end of a particular speculation
+    execution
+
+    window.
+
+
+    Since Linux Kernel 4.17 you can check the SSB mitigation state with the following
+    command:
+
+    <tt>cat /sys/devices/system/cpu/vulnerabilities/spec_store_bypass</tt>
+
+
+    Select the appropriate SSB state by adding the argument
+
+    <tt>spec_store_bypass_disable=<sub idref="var_spec_store_bypass_disable_options"
+    /></tt> to the default
+
+    GRUB 2 command line for the Linux operating system.
+
+    To ensure that <tt>spec_store_bypass_disable=<sub idref="var_spec_store_bypass_disable_options"
+    /></tt> is added as a kernel command line
+
+    argument to newly installed kernels, add <tt>spec_store_bypass_disable=<sub idref="var_spec_store_bypass_disable_options"
+    /></tt> to the
+
+    default Grub2 command line for Linux operating systems. Modify the line within
+
+    <tt>/etc/default/grub</tt> as shown below:
+
+    <pre>GRUB_CMDLINE_LINUX="... spec_store_bypass_disable=<sub idref="var_spec_store_bypass_disable_options"
+    /> ..."</pre>
+
+    Run the following command to update command line for already installed kernels:<pre>#
+    grubby --update-kernel=ALL --args="spec_store_bypass_disable=<sub idref="var_spec_store_bypass_disable_options"
+    />"</pre>'
+rationale: 'In vulnerable processsors, the speculatively forwarded store can be used
+    in a cache side channel
+
+    attack. An example of this is reading memory to which the attacker does not directly
+    have access,
+
+    for example inside the sandboxed code.'
+severity: medium
+references:
+    anssi: BP28(R8)
+identifiers: {}
+ocil_clause: SSB is not configured appropriately
+ocil: 'Inspect the form of default GRUB 2 command line for the Linux operating system
+
+    in <tt>/etc/default/grub</tt>. If it includes <tt>spec_store_bypass_disable=<sub
+    idref="var_spec_store_bypass_disable_options" /></tt>,
+
+    then the parameter will be configured for newly installed kernels.
+
+    First check if the GRUB recovery is enabled:
+
+    <pre>$ sudo grep ''GRUB_DISABLE_RECOVERY'' /etc/default/grub</pre>
+
+    If this option is set to true, then check that a line is output by the following
+    command:
+
+    <pre>$ sudo grep ''GRUB_CMDLINE_LINUX_DEFAULT.*spec_store_bypass_disable=<sub
+    idref="var_spec_store_bypass_disable_options" />.*'' /etc/default/grub</pre>
+
+    If the recovery is disabled, check the line with
+
+    <pre>$ sudo grep ''GRUB_CMDLINE_LINUX.*spec_store_bypass_disable=<sub idref="var_spec_store_bypass_disable_options"
+    />.*'' /etc/default/grub</pre>.Moreover, command line parameters for currently
+    installed kernels should be checked as well.
+
+    Run the following command:
+
+    <pre>$ sudo grubby --info=ALL | grep args | grep -v ''spec_store_bypass_disable=<sub
+    idref="var_spec_store_bypass_disable_options" />''</pre>
+
+    The command should not return any output.'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings:
+-   performance: Disabling Speculative Store Bypass may impact performance of the
+        system.
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set
+    grub2: null
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set
+    grub2: null
+bash_conditional: null
+fixes: {}
+title: Configure Speculative Store Bypass Mitigation
+definition_location: /home/oscap/content/linux_os/guide/system/bootloader-grub2/grub2_spec_store_bypass_disable_argument/rule.yml
+template:
+    name: grub2_bootloader_argument
+    vars:
+        arg_name: spec_store_bypass_disable
+        arg_variable: var_spec_store_bypass_disable_options
+    backends: {}
+documentation_complete: true

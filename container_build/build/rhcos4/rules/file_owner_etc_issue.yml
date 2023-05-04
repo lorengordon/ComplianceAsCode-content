@@ -1,0 +1,73 @@
+prodtype: alinux2,alinux3,anolis8,fedora,ol7,ol8,rhcos4,rhel7,rhel8,rhel9,rhv4,sle12,sle15,ubuntu2004,ubuntu2204
+description: '
+
+    To properly set the owner of <code>/etc/issue</code>, run the command:
+
+    <pre>$ sudo chown root /etc/issue </pre>'
+rationale: 'Display of a standardized and approved use notification before granting
+
+    access to the operating system ensures privacy and security notification
+
+    verbiage used is consistent with applicable federal laws, Executive Orders,
+
+    directives, policies, regulations, standards, and guidance.<br />
+
+    Proper ownership will ensure that only root user can modify the banner.'
+severity: medium
+references: {}
+identifiers: {}
+ocil_clause: /etc/issue does not have an owner of root
+ocil: 'To check the ownership of <code>/etc/issue</code>,
+
+    you''ll need to log into a node in the cluster.
+
+    As a user with administrator privileges, log into a node in the relevant pool:
+
+    <pre>
+
+    $ oc debug node/$NODE_NAME
+
+    </pre>
+
+    At the <pre>sh-4.4#</pre> prompt, run:
+
+    <pre>
+
+    # chroot /host
+
+    </pre>
+
+
+    Then,run the command:
+
+    <pre>$ ls -lL /etc/issue</pre>
+
+    If properly configured, the output should indicate the following owner:
+
+    <code>root</code>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Verify ownership of System Login Banner
+definition_location: /home/oscap/content/linux_os/guide/system/accounts/accounts-banners/file_owner_etc_issue/rule.yml
+template:
+    name: file_owner
+    vars:
+        filepath: /etc/issue
+        fileuid: '0'
+    backends: {}
+documentation_complete: true

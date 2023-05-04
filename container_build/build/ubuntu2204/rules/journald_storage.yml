@@ -1,0 +1,59 @@
+prodtype: alinux3,anolis8,rhel7,rhel8,rhel9,sle12,sle15,ubuntu2004,ubuntu2204
+description: 'The journald system may store log files in volatile memory or locally
+    on disk.
+
+    If the logs are only stored in volatile memory they will we lost upon reboot.'
+rationale: Log files contain valuable data and need to be persistent to aid in possible
+    investigations.
+severity: medium
+references:
+    cis: 4.2.1.4
+identifiers: {}
+ocil_clause: is commented out or not configured correctly
+ocil: 'Storing logs with persistent storage ensures they are available after a reboot
+    or system crash.
+
+    Run the command below to verify that logs are being persistently stored to disk.
+
+    <pre>
+
+    grep "^\sStorage" /etc/systemd/journald.conf
+
+    </pre>
+
+    and it should return
+
+    <pre>
+
+    Storage=persistent
+
+    </pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Ensure journald is configured to write log files to persistent disk
+definition_location: /home/oscap/content/linux_os/guide/system/logging/journald/journald_storage/rule.yml
+template:
+    name: shell_lineinfile
+    vars:
+        path: /etc/systemd/journald.conf
+        parameter: Storage
+        value: persistent
+    backends: {}
+documentation_complete: true

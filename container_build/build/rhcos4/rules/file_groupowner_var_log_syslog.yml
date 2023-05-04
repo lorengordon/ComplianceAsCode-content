@@ -1,0 +1,66 @@
+prodtype: all
+description: ' To properly set the group owner of <code>/var/log/syslog</code>, run
+    the command: <pre>$ sudo chgrp adm /var/log/syslog</pre>'
+rationale: 'The <tt>/var/log/syslog</tt> file contains logs of error messages in
+
+    the system and should only be accessed by authorized personnel.'
+severity: medium
+references:
+    disa: CCI-001314
+    srg: SRG-OS-000206-GPOS-00084
+identifiers: {}
+ocil_clause: /var/log/syslog does not have a group owner of adm
+ocil: 'To check the group ownership of <code>/var/log/syslog</code>,
+
+    you''ll need to log into a node in the cluster.
+
+    As a user with administrator privileges, log into a node in the relevant pool:
+
+    <pre>
+
+    $ oc debug node/$NODE_NAME
+
+    </pre>
+
+    At the <pre>sh-4.4#</pre> prompt, run:
+
+    <pre>
+
+    # chroot /host
+
+    </pre>
+
+
+    Then,run the command:
+
+    <pre>$ ls -lL /var/log/syslog</pre>
+
+    If properly configured, the output should indicate the following group-owner:
+
+    <code>adm</code>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Verify Group Who Owns /var/log/syslog File
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/files/permissions_var_log_dir/file_groupowner_var_log_syslog/rule.yml
+template:
+    name: file_groupowner
+    vars:
+        filepath: /var/log/syslog
+        filegid: '4'
+    backends: {}
+documentation_complete: true

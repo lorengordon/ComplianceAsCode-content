@@ -1,0 +1,91 @@
+prodtype: fedora,ol7,ol8,ol9,rhel7,rhel8,rhel9,rhv4,sle12,sle15,ubuntu2004,ubuntu2204
+description: '<tt>yum</tt> should be configured to remove previous software components
+    after
+
+    new versions have been installed. To configure <tt>yum</tt> to remove the
+
+
+    previous software components after updating, set the <tt>clean_requirements_on_remove</tt>
+
+
+
+    to <tt>1</tt> in <tt>/etc/yum.conf</tt>.'
+rationale: 'Previous versions of software components that are not removed from the
+    information
+
+    system after updates have been installed may be exploited by some adversaries.'
+severity: low
+references:
+    cis-csc: 18,20,4
+    cobit5: APO12.01,APO12.02,APO12.03,APO12.04,BAI03.10,DSS05.01,DSS05.02
+    cui: 3.4.8
+    disa: CCI-002617
+    isa-62443-2009: 4.2.3,4.2.3.12,4.2.3.7,4.2.3.9
+    iso27001-2013: A.12.6.1,A.14.2.3,A.16.1.3,A.18.2.2,A.18.2.3
+    nist: SI-2(6),CM-11(a),CM-11(b),CM-6(a)
+    nist-csf: ID.RA-1,PR.IP-12
+    srg: SRG-OS-000437-GPOS-00194
+    stigid: RHEL-07-020200
+    stigref: SV-204452r853894_rule
+identifiers:
+    cce: CCE-80346-0
+ocil_clause: '''"clean_requirements_on_remove" is not set to "1"'''
+ocil: 'Verify Red Hat Enterprise Linux 7 removes all software components after updated
+    versions have been installed.
+
+
+
+    <pre>$ grep clean_requirements_on_remove /etc/yum.conf</pre>
+
+    <pre>clean_requirements_on_remove=1</pre>'
+oval_external_content: null
+fixtext: 'Configure Red Hat Enterprise Linux 7 to remove all software components after
+    updated versions have been installed.
+
+
+    Edit the file /etc/yum.conf by adding or editing the following line:
+
+
+    <pre>clean_requirements_on_remove=1</pre>'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Red Hat Enterprise Linux 7 must remove all software components after
+    updated versions have been installed.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Red Hat Enterprise Linux 7 must remove all software components
+            after updated versions have been installed.
+        vuldiscussion: Previous versions of software components that are not removed
+            from the information system after updates have been installed may be exploited
+            by some adversaries.
+        checktext: 'Verify Red Hat Enterprise Linux 7 removes all software components
+            after updated versions have been installed with the following command:
+
+
+            $ grep clean /etc/dnf/dnf.conf
+
+
+            clean_requirements_on_remove=1
+
+
+            If "clean_requirements_on_remove" is not set to "1", this is a finding.'
+        fixtext: "Configure Red Hat Enterprise Linux 7 to remove all software components\
+            \ after updated versions have been installed.\n\nEdit the file /etc/dnf/dnf.conf\
+            \ by adding or editing the following line:\n\n clean_requirements_on_remove=1"
+platform: package[yum]
+platforms: !!set
+    package[yum]: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    package_yum: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Ensure yum Removes Previous Package Versions
+definition_location: /home/oscap/content/linux_os/guide/system/software/updating/clean_components_post_updating/rule.yml
+template: null
+documentation_complete: true

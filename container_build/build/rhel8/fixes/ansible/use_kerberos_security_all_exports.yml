@@ -1,0 +1,46 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = configure
+# complexity = low
+# disruption = low
+- name: Drop any security clause for every export
+  replace:
+    path: /etc/exports
+    regexp: ^(/.*\w+.*\(.*),sec=[^,]*(.*\)\w*$)
+    replace: \1\2
+  tags:
+  - CCE-80924-4
+  - NIST-800-53-AC-17(a)
+  - NIST-800-53-CM-6(a)
+  - NIST-800-53-CM-7(a)
+  - NIST-800-53-CM-7(b)
+  - NIST-800-53-IA-2
+  - NIST-800-53-IA-2(8)
+  - NIST-800-53-IA-2(9)
+  - configure_strategy
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+  - use_kerberos_security_all_exports
+
+- name: Add kerberos security when no security is defined for an export
+  replace:
+    path: /etc/exports
+    regexp: ^(/.*\w+.*\(.*)(\)\w*$)
+    replace: \1,sec=krb5:krb5i:krb5p\2
+  tags:
+  - CCE-80924-4
+  - NIST-800-53-AC-17(a)
+  - NIST-800-53-CM-6(a)
+  - NIST-800-53-CM-7(a)
+  - NIST-800-53-CM-7(b)
+  - NIST-800-53-IA-2
+  - NIST-800-53-IA-2(8)
+  - NIST-800-53-IA-2(9)
+  - configure_strategy
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+  - use_kerberos_security_all_exports

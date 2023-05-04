@@ -1,0 +1,49 @@
+prodtype: debian10,debian11,fedora,ol7,ol8,rhcos4,rhel7,rhel8,rhel9,rhv4,sle12,sle15,ubuntu2004,ubuntu2204
+description: '
+
+    The <tt>net-snmp</tt> package provides the snmpd service.
+
+    The <code>net-snmp</code> package can be removed with the following command:
+
+    <pre>
+
+    $ sudo dnf erase net-snmp</pre>'
+rationale: 'If there is no need to run SNMP server software,
+
+    removing the package provides a safeguard against its
+
+    activation.'
+severity: unknown
+references:
+    pcidss4: 2.2.4
+identifiers: {}
+ocil_clause: the package is installed
+ocil: 'Run the following command to determine if the <code>net-snmp</code> package
+    is installed:
+
+    <pre>$ rpm -q net-snmp</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Uninstall net-snmp Package
+definition_location: /home/oscap/content/linux_os/guide/services/snmp/disabling_snmp_service/package_net-snmp_removed/rule.yml
+template:
+    name: package_removed
+    vars:
+        pkgname: net-snmp
+    backends: {}
+documentation_complete: true

@@ -1,0 +1,80 @@
+prodtype: sle12,sle15
+description: 'System commands are stored in the following directories by default:
+
+    <pre>/bin
+
+    /sbin
+
+    /usr/bin
+
+    /usr/sbin
+
+    /usr/local/bin
+
+    /usr/local/sbin</pre>
+
+    All files in these directories should not be group-writable or world-writable.
+
+    If any file <i>FILE</i> in these directories is found
+
+    to be group-writable or world-writable, correct its permission with the
+
+    following command:
+
+    <pre>$ sudo chmod 755 <i>FILE</i></pre>'
+rationale: 'System binaries are executed by privileged users, as well as system services,
+
+    and restrictive permissions are necessary to ensure execution of these programs
+
+    cannot be co-opted.'
+severity: medium
+references:
+    disa: CCI-001499
+    nist: CM-5(6),CM-5(6).1
+    srg: SRG-OS-000259-GPOS-00100
+    stigid: SLES-12-010877
+    stigref: SV-237613r646802_rule
+identifiers:
+    cce: CCE-83239-4
+ocil_clause: any system commands are found to be group or world writable
+ocil: 'System commands are stored in the following directories by default:
+
+    <pre>/bin
+
+    /sbin
+
+    /usr/bin
+
+    /usr/local/bin
+
+    /usr/local/sbin
+
+    /usr/sbin</pre>
+
+    To find system commands that have mode 0755 or less permissive,
+
+    run the following command for each directory <i>DIR</i> which contains system
+    executables:
+
+    <pre>$ sudo find -L <i>DIR</i> -perm /022 -type f</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Verify that system commands are protected from unauthorized access
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/files/permissions_within_important_dirs/file_permissions_system_commands_dirs/rule.yml
+template: null
+documentation_complete: true

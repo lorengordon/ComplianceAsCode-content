@@ -1,0 +1,45 @@
+prodtype: rhcos4
+description: 'The <code>iptables-nft</code> package can be installed with the following
+    command:
+
+    <pre></pre>'
+rationale: '<tt>iptables-nft</tt> controls the Linux kernel network packet filtering
+
+    code. <tt>iptables-nft</tt> allows system operators to set up firewalls and IP
+
+    masquerading, etc.'
+severity: medium
+references:
+    nist: CM-6(a)
+identifiers:
+    cce: CCE-86834-9
+ocil_clause: the package is not installed
+ocil: 'Run the following command to determine if the <code>iptables-nft</code> package
+    is installed: <pre>$ rpm -q iptables-nft</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: rhcos4-rhel9
+platforms: !!set
+    rhcos4-rhel9: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    rhcos4-rhel9: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Install iptables-nft Package
+definition_location: /home/oscap/content/linux_os/guide/system/network/network-iptables/package_iptables-nft_installed/rule.yml
+template:
+    name: package_installed
+    vars:
+        pkgname: iptables-nft
+    backends: {}
+documentation_complete: true

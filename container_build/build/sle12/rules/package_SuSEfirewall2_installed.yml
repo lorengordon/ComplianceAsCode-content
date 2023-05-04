@@ -1,0 +1,46 @@
+prodtype: sle12
+description: 'The <code>SuSEfirewall2</code> package can be installed with the following
+    command:
+
+    <pre>
+
+    $ sudo zypper install SuSEfirewall2</pre>'
+rationale: The SuSEfirewall2 package should be installed to provide access control
+    methods.
+severity: medium
+references:
+    disa: CCI-000382,CCI-002080,CCI-002314
+    nist: CM-7,CA-3(5),AC-17(1)
+    srg: SRG-OS-000420-GPOS-00186,SRG-OS-000096-GPOS-00050
+    stigid: SLES-12-030030
+    stigref: SV-217261r603262_rule
+identifiers:
+    cce: CCE-83157-8
+ocil_clause: the package is not installed
+ocil: 'Run the following command to determine if the <code>SuSEfirewall2</code> package
+    is installed: <pre>$ rpm -q SuSEfirewall2</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Install SuSEfirewall2 Package
+definition_location: /home/oscap/content/linux_os/guide/system/network/network-susefirewall2/package_SuSEfirewall2_installed/rule.yml
+template:
+    name: package_installed
+    vars:
+        pkgname: SuSEfirewall2
+    backends: {}
+documentation_complete: true

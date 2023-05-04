@@ -1,0 +1,53 @@
+# platform = multi_platform_sle,multi_platform_ubuntu
+- name: Check if IPv6 is enabled
+  command: sysctl -n net.ipv6.conf.all.disable_ipv6
+  register: ipv6_status
+  failed_when: ipv6_status.stdout != "0"
+  tags:
+  - CCE-92215-3
+  - PCI-DSS-Req-1.3
+  - PCI-DSSv4-1.4.1
+  - medium_severity
+  - set_ipv6_loopback_traffic
+
+- name: Allow incoming traffic on the loopback interface
+  ansible.builtin.iptables:
+    ipv6: true
+    chain: INPUT
+    in_interface: lo
+    jump: ACCEPT
+  when: ipv6_status.stdout == '0'
+  tags:
+  - CCE-92215-3
+  - PCI-DSS-Req-1.3
+  - PCI-DSSv4-1.4.1
+  - medium_severity
+  - set_ipv6_loopback_traffic
+
+- name: Allow outgoing traffic on the loopback interface
+  ansible.builtin.iptables:
+    ipv6: true
+    chain: OUTPUT
+    out_interface: lo
+    jump: ACCEPT
+  when: ipv6_status.stdout == '0'
+  tags:
+  - CCE-92215-3
+  - PCI-DSS-Req-1.3
+  - PCI-DSSv4-1.4.1
+  - medium_severity
+  - set_ipv6_loopback_traffic
+
+- name: Drop incoming traffic from the localhost
+  ansible.builtin.iptables:
+    ipv6: true
+    chain: INPUT
+    source: ::1
+    jump: DROP
+  when: ipv6_status.stdout == '0'
+  tags:
+  - CCE-92215-3
+  - PCI-DSS-Req-1.3
+  - PCI-DSSv4-1.4.1
+  - medium_severity
+  - set_ipv6_loopback_traffic

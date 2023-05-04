@@ -1,0 +1,17 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = disable
+# complexity = low
+# disruption = low
+- name: Ensure cyrus-imapd is removed
+  package:
+    name: cyrus-imapd
+    state: absent
+  tags:
+  - CCE-88119-3
+  - disable_strategy
+  - low_complexity
+  - low_disruption
+  - no_reboot_needed
+  - package_cyrus-imapd_removed
+  - unknown_severity

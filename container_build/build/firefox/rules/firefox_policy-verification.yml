@@ -1,0 +1,56 @@
+prodtype: firefox
+description: 'Firefox can be configured to prompt the user to choose a certificate
+
+    to present to a website when asked. To enable certificate verification,
+
+    set <tt>security.default_personal_cert</tt> to <tt>Ask Every Time</tt>
+
+    in an administrative policies file'
+rationale: 'Websites within DoD require user authentication for access which increases
+
+    security for DoD information. Access will be denied to the user if
+
+    certificate management is not configured.'
+severity: medium
+references:
+    disa: CCI-000187
+    nist: IA-5(2)
+    stigid: FFOX-00-000003
+identifiers: {}
+ocil_clause: it is not enabled
+ocil: "To verify that certificate verification is enabled, type the following into\
+    \ the browser address bar:\n    <pre>about:policies</pre>\nThe output should have\
+    \ the following under security.default_personal_cert:\n<pre>Value: \"Ask Every\
+    \ Time\"</pre>\n<pre>Status: \"locked\"</pre>"
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Enable Certificate Verification
+definition_location: /home/oscap/content/products/firefox/guide/firefox/firefox_policy-verification/rule.yml
+template:
+    name: firefox_policy-setting
+    vars:
+        name: Configure Default Personal Certificate to Ask Every Time
+        policies:
+        -   path: Preferences security.default_personal_cert
+            parameter: Value
+            value: Ask Every Time
+        -   path: Preferences security.default_personal_cert
+            parameter: Status
+            value: locked
+    backends: {}
+documentation_complete: true

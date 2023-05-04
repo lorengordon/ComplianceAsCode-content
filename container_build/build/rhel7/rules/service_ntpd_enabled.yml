@@ -1,0 +1,80 @@
+prodtype: all
+description: '
+
+    The <code>ntpd</code> service can be enabled with the following command:
+
+    <pre>$ sudo systemctl enable ntpd.service</pre>'
+rationale: 'Enabling the <tt>ntpd</tt> service ensures that the <tt>ntpd</tt>
+
+    service will be running and that the system will synchronize its time to
+
+    any servers specified. This is important whether the system is configured to be
+
+    a client (and synchronize only its own clock) or it is also acting as an NTP
+
+    server to other systems.  Synchronizing time is essential for authentication
+
+    services such as Kerberos, but it is also important for maintaining accurate
+
+    logs and auditing possible security breaches.
+
+    <br /><br />
+
+    The NTP daemon offers all of the functionality of <tt>ntpdate</tt>, which is now
+
+    deprecated.'
+severity: medium
+references:
+    cis-csc: 1,14,15,16,3,5,6
+    cobit5: APO11.04,BAI03.05,DSS05.04,DSS05.07,MEA02.01
+    isa-62443-2009: 4.3.3.3.9,4.3.3.5.8,4.3.4.4.7,4.4.2.1,4.4.2.2,4.4.2.4
+    isa-62443-2013: SR 2.10,SR 2.11,SR 2.12,SR 2.8,SR 2.9
+    iso27001-2013: A.12.4.1,A.12.4.2,A.12.4.3,A.12.4.4,A.12.7.1
+    nist: CM-6(a),AU-8(1)(a)
+    nist-csf: PR.PT-1
+    pcidss: Req-10.4
+    pcidss4: 10.6.1
+    cis: 2.2.1.3
+identifiers:
+    cce: CCE-84253-4
+ocil_clause: null
+ocil: '
+
+
+    Run the following command to determine the current status of the
+
+    <code>ntpd</code> service:
+
+    <pre>$ sudo systemctl is-active ntpd</pre>
+
+    If the service is running, it should return the following: <pre>active</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: package[ntp]
+platforms: !!set
+    package[ntp]: null
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set
+    package_ntp: null
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Enable the NTP Daemon
+definition_location: /home/oscap/content/linux_os/guide/services/ntp/service_ntpd_enabled/rule.yml
+template:
+    name: service_enabled
+    vars:
+        servicename: ntpd
+        packagename: ntp
+    backends: {}
+documentation_complete: true

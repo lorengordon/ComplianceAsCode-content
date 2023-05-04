@@ -1,0 +1,53 @@
+prodtype: all
+description: "In support of Kernel Address Space Layout Randomization (KASLR), this\
+    \ randomizes the physical\naddress at which the kernel image is decompressed and\
+    \ the virtual address where the kernel\nimage is mapped.\n\nThe configuration\
+    \ that was used to build kernel is available at <tt>/boot/config-*</tt>.\n   \
+    \ To check the configuration value for <tt>CONFIG_RANDOMIZE_BASE</tt>, run the\
+    \ following command:\n    <tt>grep CONFIG_RANDOMIZE_BASE /boot/config-*</tt>\n\
+    \    \n    For each kernel installed, a line with value \"y\" should be returned.\n\
+    \    "
+rationale: 'An unpredictable kernel address makes it more difficult to succeed with
+    exploits that rely on
+
+    knowledge of the location of kernel code internals.'
+severity: medium
+references:
+    anssi: BP28(R25),BP28(R27)
+identifiers:
+    cce: CCE-88317-3
+ocil_clause: the kernel was not built with the required value
+ocil: "To determine the config value the kernel was built with, run the following\
+    \ command:\n    <pre>$ grep CONFIG_RANDOMIZE_BASE /boot/config.*</pre>\n    \n\
+    \    For each kernel installed, a line with value \"y\" should be returned.\n\
+    \    "
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings:
+-   general: There is no remediation for this besides re-compiling the kernel with
+        the appropriate value for the config.
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Randomize the address of the kernel image (KASLR)
+definition_location: /home/oscap/content/linux_os/guide/system/kernel_build_config/kernel_config_randomize_base/rule.yml
+template:
+    name: kernel_build_config
+    vars:
+        config: CONFIG_RANDOMIZE_BASE
+        value: y
+    backends: {}
+documentation_complete: true

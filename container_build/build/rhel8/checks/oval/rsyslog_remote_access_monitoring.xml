@@ -1,0 +1,76 @@
+<def-group>
+  <definition class="compliance"
+  id="rsyslog_remote_access_monitoring" version="1">
+    <metadata>
+        <title>Ensure remote access methods are monitored in Rsyslog</title>
+        
+    <affected family="unix">
+    <platform>Oracle Linux 8</platform>
+      <platform>Red Hat Enterprise Linux 9</platform>
+      <platform>Red Hat Enterprise Linux 8</platform>
+      <platform>Oracle Linux 9</platform>
+      <platform>Ubuntu 22.04</platform>
+      <platform>Ubuntu 20.04</platform>
+      <platform>Fedora</platform>
+    </affected>
+        <description>Rsyslog should be configured to monitor remote access methods.</description>
+    </metadata>
+    <criteria comment="remote access methods are configured in rsyslog" operator="AND">
+      <criterion comment="ensure 'auth.*' remote method is configured in rsyslog"
+      test_ref="test_remote_method_monitoring_auth" />
+      <criterion comment="ensure 'authpriv.*' remote method is configured in rsyslog"
+      test_ref="test_remote_method_monitoring_authpriv" />
+      <criterion comment="ensure 'daemon.*' remote method is configured in rsyslog"
+      test_ref="test_remote_method_monitoring_daemon" />
+    </criteria>
+  </definition>
+
+  
+
+  
+  <ind:textfilecontent54_test check="all" check_existence="at_least_one_exists"
+  comment="remote method auth monitoring configured in rsyslog'"
+  id="test_remote_method_monitoring_auth" version="1">
+    <ind:object object_ref="obj_remote_method_monitoring_auth" />
+  </ind:textfilecontent54_test>
+  
+  
+  <ind:textfilecontent54_test check="all" check_existence="at_least_one_exists"
+  comment="remote method authpriv monitoring configured in rsyslog'"
+  id="test_remote_method_monitoring_authpriv" version="1">
+    <ind:object object_ref="obj_remote_method_monitoring_authpriv" />
+  </ind:textfilecontent54_test>
+  
+  
+  <ind:textfilecontent54_test check="all" check_existence="at_least_one_exists"
+  comment="remote method daemon monitoring configured in rsyslog'"
+  id="test_remote_method_monitoring_daemon" version="1">
+    <ind:object object_ref="obj_remote_method_monitoring_daemon" />
+  </ind:textfilecontent54_test>
+  
+
+  
+
+  
+  <ind:textfilecontent54_object id="obj_remote_method_monitoring_auth" version="1">
+    <ind:filepath operation="pattern match">^/etc/rsyslog\.(conf|d/.+\.conf)$</ind:filepath>
+    <ind:pattern operation="pattern match">^[^#]*auth\.\*.*$</ind:pattern>
+    <ind:instance datatype="int">1</ind:instance>
+  </ind:textfilecontent54_object>
+  
+  
+  <ind:textfilecontent54_object id="obj_remote_method_monitoring_authpriv" version="1">
+    <ind:filepath operation="pattern match">^/etc/rsyslog\.(conf|d/.+\.conf)$</ind:filepath>
+    <ind:pattern operation="pattern match">^[^#]*authpriv\.\*.*$</ind:pattern>
+    <ind:instance datatype="int">1</ind:instance>
+  </ind:textfilecontent54_object>
+  
+  
+  <ind:textfilecontent54_object id="obj_remote_method_monitoring_daemon" version="1">
+    <ind:filepath operation="pattern match">^/etc/rsyslog\.(conf|d/.+\.conf)$</ind:filepath>
+    <ind:pattern operation="pattern match">^[^#]*daemon\.\*.*$</ind:pattern>
+    <ind:instance datatype="int">1</ind:instance>
+  </ind:textfilecontent54_object>
+  
+
+</def-group>

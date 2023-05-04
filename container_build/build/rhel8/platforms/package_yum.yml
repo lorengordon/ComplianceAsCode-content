@@ -1,0 +1,10 @@
+name: package_yum
+original_expression: package[yum]
+xml_content: <ns0:platform xmlns:ns0="http://cpe.mitre.org/language/2.0" id="package_yum"><ns0:logical-test
+    operator="AND" negate="false"><ns0:check-fact-ref system="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+    href="ssg-rhel8-cpe-oval.xml" id-ref="oval:ssg-package_yum:def:1" /></ns0:logical-test></ns0:platform>
+bash_conditional: rpm --quiet -q yum
+ansible_conditional: '"yum" in ansible_facts.packages'
+title: ''
+definition_location: /home/oscap/content/build/rhel8/platforms/package_yum.yml
+documentation_complete: true

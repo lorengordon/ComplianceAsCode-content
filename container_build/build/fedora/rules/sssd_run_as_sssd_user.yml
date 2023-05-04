@@ -1,0 +1,43 @@
+prodtype: fedora,ol8,rhcos4,rhel8
+description: SSSD processes should be configured to run as user sssd, not root.
+rationale: 'To minimize privileges of SSSD processes, they are configured to
+
+    run as non-root user.'
+severity: medium
+references:
+    ospp: FMT_SMF_EXT.1
+    srg: SRG-OS-000480-GPOS-00227
+identifiers: {}
+ocil_clause: it does not exist or is not configured properly
+ocil: 'To verify that SSSD is configured to run as user sssd, run the following command:
+
+    <pre>$ sudo grep -r ''\buser\b'' /etc/sssd</pre>
+
+    If configured properly, output should similar to <pre>/etc/sssd/conf.d/ospp.conf:user
+    = sssd</pre>.
+
+    Sanity of SSSD configuration in general can be checked using <pre>$ sudo sssctl
+    config-check</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    package[sssd]: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    package_sssd: null
+bash_conditional: null
+fixes: {}
+title: Configure SSSD to run as user sssd
+definition_location: /home/oscap/content/linux_os/guide/services/sssd/sssd_run_as_sssd_user/rule.yml
+template: null
+documentation_complete: true

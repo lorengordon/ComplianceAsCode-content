@@ -1,0 +1,75 @@
+# platform = multi_platform_all
+# reboot = true
+# strategy = disable
+# complexity = low
+# disruption = medium
+- name: List /etc/sysctl.d/*.conf files
+  find:
+    paths:
+    - /etc/sysctl.d/
+    - /run/sysctl.d/
+    - /usr/local/lib/sysctl.d/
+    contains: ^[\s]*kernel.randomize_va_space.*$
+    patterns: '*.conf'
+    file_type: any
+  register: find_sysctl_d
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - DISA-STIG-OL07-00-040201
+  - NIST-800-171-3.1.7
+  - NIST-800-53-CM-6(a)
+  - NIST-800-53-SC-30
+  - NIST-800-53-SC-30(2)
+  - PCI-DSS-Req-2.2.1
+  - PCI-DSSv4-2.2.3
+  - disable_strategy
+  - low_complexity
+  - medium_disruption
+  - medium_severity
+  - reboot_required
+  - sysctl_kernel_randomize_va_space
+
+- name: Comment out any occurrences of kernel.randomize_va_space from config files
+  replace:
+    path: '{{ item.path }}'
+    regexp: ^[\s]*kernel.randomize_va_space
+    replace: '#kernel.randomize_va_space'
+  loop: '{{ find_sysctl_d.files }}'
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - DISA-STIG-OL07-00-040201
+  - NIST-800-171-3.1.7
+  - NIST-800-53-CM-6(a)
+  - NIST-800-53-SC-30
+  - NIST-800-53-SC-30(2)
+  - PCI-DSS-Req-2.2.1
+  - PCI-DSSv4-2.2.3
+  - disable_strategy
+  - low_complexity
+  - medium_disruption
+  - medium_severity
+  - reboot_required
+  - sysctl_kernel_randomize_va_space
+
+- name: Ensure sysctl kernel.randomize_va_space is set to 2
+  sysctl:
+    name: kernel.randomize_va_space
+    value: '2'
+    sysctl_file: /etc/sysctl.conf
+    state: present
+    reload: true
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - DISA-STIG-OL07-00-040201
+  - NIST-800-171-3.1.7
+  - NIST-800-53-CM-6(a)
+  - NIST-800-53-SC-30
+  - NIST-800-53-SC-30(2)
+  - PCI-DSS-Req-2.2.1
+  - PCI-DSSv4-2.2.3
+  - disable_strategy
+  - low_complexity
+  - medium_disruption
+  - medium_severity
+  - reboot_required
+  - sysctl_kernel_randomize_va_space

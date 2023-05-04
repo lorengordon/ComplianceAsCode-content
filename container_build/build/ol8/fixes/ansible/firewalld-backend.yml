@@ -1,0 +1,46 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = restrict
+# complexity = low
+# disruption = low
+- name: Setting shell-quoted shell-style assignment of 'FirewallBackend' to 'nftables'
+    in '/etc/firewalld/firewalld.conf'
+  block:
+
+  - name: Check for duplicate values
+    lineinfile:
+      path: /etc/firewalld/firewalld.conf
+      create: false
+      regexp: ^\s*FirewallBackend=
+      state: absent
+    check_mode: true
+    changed_when: false
+    register: dupes
+
+  - name: Deduplicate values from /etc/firewalld/firewalld.conf
+    lineinfile:
+      path: /etc/firewalld/firewalld.conf
+      create: false
+      regexp: ^\s*FirewallBackend=
+      state: absent
+    when: dupes.found is defined and dupes.found > 1
+
+  - name: Insert correct line to /etc/firewalld/firewalld.conf
+    lineinfile:
+      path: /etc/firewalld/firewalld.conf
+      create: true
+      regexp: ^\s*FirewallBackend=
+      line: FirewallBackend="nftables"
+      state: present
+      insertbefore: ^# FirewallBackend
+      validate: /usr/bin/bash -n %s
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - DISA-STIG-OL08-00-040150
+  - NIST-800-53-SC-5
+  - firewalld-backend
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+  - restrict_strategy

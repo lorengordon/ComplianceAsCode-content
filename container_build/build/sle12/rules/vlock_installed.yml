@@ -1,0 +1,74 @@
+prodtype: ol8,sle12,sle15,ubuntu2004
+description: 'The SUSE Linux Enterprise 12 operating system must have vlock installed
+    to allow for session locking.
+
+
+
+    The <code>kbd</code> package can be installed with the following command:
+
+    <pre>
+
+    $ sudo zypper install kbd</pre>'
+rationale: 'A session lock is a temporary action taken when a user stops work and
+
+    moves away from the immediate physical vicinity of the information
+
+    system but does not want to log out because of the temporary nature of
+
+    the absence.
+
+
+    The session lock is implemented at the point where session activity can
+
+    be determined.
+
+
+    Regardless of where the session lock is determined and implemented,
+
+    once invoked, the session lock must remain in place until the user
+
+    reauthenticates. No other activity aside from reauthentication must
+
+    unlock the system.'
+severity: medium
+references:
+    disa: CCI-000056,CCI-000058,CCI-000060
+    nist: AC-11(a),AC-11(b),AC-11(1)
+    srg: SRG-OS-000028-GPOS-00009,SRG-OS-000030-GPOS-00011
+    stigid: SLES-12-010070
+    stigref: SV-217108r603262_rule
+identifiers:
+    cce: CCE-83009-1
+ocil_clause: the package is not installed
+ocil: '
+
+    Run the following command to determine if the <code>kbd</code> package is installed:
+
+    <pre>$ rpm -q kbd</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Check that vlock is installed to allow session locking
+definition_location: /home/oscap/content/linux_os/guide/system/accounts/accounts-physical/screen_locking/console_screen_locking/vlock_installed/rule.yml
+template:
+    name: package_installed
+    vars:
+        pkgname: kbd
+    backends: {}
+documentation_complete: true

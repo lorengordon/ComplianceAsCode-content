@@ -1,0 +1,21 @@
+prodtype: all
+description: 'If Quagga was installed and activated, but the system
+
+    does not need to act as a router, then it should be disabled
+
+    and removed.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- package_quagga_removed
+- service_zebra_disabled
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Disable Quagga if Possible
+definition_location: /home/oscap/content/linux_os/guide/services/routing/disabling_quagga/group.yml
+documentation_complete: true

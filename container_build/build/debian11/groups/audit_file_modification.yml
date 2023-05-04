@@ -1,0 +1,39 @@
+prodtype: all
+description: "At a minimum, the audit system should collect unauthorized file\naccesses\
+    \ for all users and root. Note that the \"-F arch=b32\" lines should be\npresent\
+    \ even on a 64 bit system. These commands identify system calls for\nauditing.\
+    \ Even if the system is 64 bit it can still execute 32 bit system\ncalls. Additionally,\
+    \ these rules can be configured in a number of ways while\nstill achieving the\
+    \ desired effect. An example of this is that the \"-S\" calls\ncould be split\
+    \ up and placed on separate lines, however, this is less efficient.\nAdd the following\
+    \ to <tt>/etc/audit/audit.rules</tt>:\n<pre>-a always,exit -F arch=b32 -S creat,open,openat,open_by_handle_at,truncate,ftruncate\
+    \ -F exit=-EACCES -F auid&gt;=1000 -F auid!=unset -F key=access\n    -a always,exit\
+    \ -F arch=b32 -S creat,open,openat,open_by_handle_at,truncate,ftruncate -F exit=-EPERM\
+    \ -F auid&gt;=1000 -F auid!=unset -F key=access</pre>\nIf your system is 64 bit\
+    \ then these lines should be duplicated and the\narch=b32 replaced with arch=b64\
+    \ as follows:\n<pre>-a always,exit -F arch=b64 -S creat,open,openat,open_by_handle_at,truncate,ftruncate\
+    \ -F exit=-EACCES -F auid&gt;=1000 -F auid!=unset -F key=access\n    -a always,exit\
+    \ -F arch=b64 -S creat,open,openat,open_by_handle_at,truncate,ftruncate -F exit=-EPERM\
+    \ -F auid&gt;=1000 -F auid!=unset -F key=access</pre>"
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- audit_rules_unsuccessful_file_modification
+- audit_rules_unsuccessful_file_modification_creat
+- audit_rules_unsuccessful_file_modification_ftruncate
+- audit_rules_unsuccessful_file_modification_open
+- audit_rules_unsuccessful_file_modification_open_by_handle_at
+- audit_rules_unsuccessful_file_modification_openat
+- audit_rules_unsuccessful_file_modification_truncate
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set
+    machine: null
+    package[audit]: null
+cpe_platform_names: !!set {}
+title: Record Unauthorized Access Attempts Events to Files (unsuccessful)
+definition_location: /home/oscap/content/linux_os/guide/system/auditing/auditd_configure_rules/audit_file_modification/group.yml
+documentation_complete: true

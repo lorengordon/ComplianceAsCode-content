@@ -1,0 +1,13 @@
+description: '''A regular expression describing a list of file names
+
+    for files that are sourced at login time for interactive users'''
+type: string
+operator: equals
+interactive: false
+options:
+    default: ^(\.bashrc|\.zshrc|\.cshrc|\.profile|\.bash_login|\.bash_profile)$
+    all_dotfiles: ^\.[\w\- ]+$
+warnings: []
+title: Interactive users initialization files
+definition_location: /home/oscap/content/linux_os/guide/system/accounts/accounts-session/var_user_initialization_files_regex.var
+documentation_complete: true

@@ -1,0 +1,11 @@
+name: cpe:/o:redhat:enterprise_linux_coreos:4
+check_id: installed_OS_is_rhcos4
+bash_conditional: ''
+ansible_conditional: ''
+is_product_cpe: true
+versioned: false
+args: {}
+title: Red Hat Enterprise Linux CoreOS 4
+definition_location: ''
+template: null
+documentation_complete: true

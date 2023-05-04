@@ -1,0 +1,11 @@
+name: cpe:/o:oracle:linux:8
+check_id: installed_OS_is_ol8_family
+bash_conditional: ''
+ansible_conditional: ''
+is_product_cpe: true
+versioned: false
+args: {}
+title: Oracle Linux 8
+definition_location: ''
+template: null
+documentation_complete: true

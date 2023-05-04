@@ -1,0 +1,54 @@
+prodtype: ol7,ol8,rhel7,rhel8,rhel9,rhv4
+description: 'By default, the SELinux boolean <tt>domain_fd_use</tt> is enabled.
+
+    If this setting is disabled, it should be enabled.
+
+
+    To enable the <code>domain_fd_use</code> SELinux boolean, run the following command:
+
+    <pre>$ sudo setsebool -P domain_fd_use on</pre>'
+rationale: ''
+severity: medium
+references: {}
+identifiers:
+    cce: CCE-82292-4
+ocil_clause: domain_fd_use is not enabled
+ocil: '
+
+    Run the following command to determine if the <code>domain_fd_use</code> SELinux
+    boolean is enabled:
+
+    <pre>$ getsebool domain_fd_use</pre>
+
+    If properly configured, the output should show the following:
+
+    <code>domain_fd_use --> on</code>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+    not osbuild: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    not_osbuild: null
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Enable the domain_fd_use SELinux Boolean
+definition_location: /home/oscap/content/linux_os/guide/system/selinux/selinux-booleans/sebool_domain_fd_use/rule.yml
+template:
+    name: sebool
+    vars:
+        seboolid: domain_fd_use
+    backends: {}
+documentation_complete: true

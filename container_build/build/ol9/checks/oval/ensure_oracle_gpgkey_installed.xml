@@ -1,0 +1,63 @@
+
+
+<def-group>
+  <definition class="compliance" id="ensure_oracle_gpgkey_installed" version="1">
+    <metadata>
+        <title>Ensure Oracle Linux GPG Key Installed</title>
+        
+    <affected family="unix">
+    <platform>Oracle Linux 8</platform>
+      <platform>Oracle Linux 7</platform>
+      <platform>Oracle Linux 9</platform>
+    </affected>
+        <description>The Oracle Linux key packages are required to be installed.</description>
+    </metadata>
+    <criteria comment="Oracle Vendor Keys" operator="AND">
+      <criteria comment="Oracle Installed" operator="OR">
+        <extend_definition comment="ol9 installed" definition_ref="installed_OS_is_ol9_family" />
+      </criteria>
+      <criteria comment="Oracle Vendor Keys Installed" operator="OR">
+        <criterion comment="package gpg-pubkey-8d8b756f-629e59ec is installed"
+            test_ref="test_package_gpgkey-8d8b756f-629e59ec_installed" />
+        
+        <criterion comment="package gpg-pubkey-8b4efbe6-629ec292 is installed"
+            test_ref="test_package_gpgkey-8b4efbe6-629ec292_installed" />
+        
+      </criteria>
+    </criteria>
+  </definition>
+
+  <!-- First define global "object_package_gpg-pubkey" to be shared (reused) across multiple tests -->
+  <linux:rpminfo_object id="object_package_gpg-pubkey" version="1">
+    <linux:name>gpg-pubkey</linux:name>
+  </linux:rpminfo_object>
+
+  <!-- Test for Oracle release key -->
+  <linux:rpminfo_test check="only one" check_existence="at_least_one_exists"
+      id="test_package_gpgkey-8d8b756f-629e59ec_installed" version="1"
+      comment="Oracle release key package is installed">
+    <linux:object object_ref="object_package_gpg-pubkey" />
+    <linux:state state_ref="state_package_gpg-pubkey-8d8b756f-629e59ec" />
+  </linux:rpminfo_test>
+
+  <linux:rpminfo_state id="state_package_gpg-pubkey-8d8b756f-629e59ec" version="1">
+    <linux:release>629e59ec</linux:release>
+    <linux:version>8d8b756f</linux:version>
+  </linux:rpminfo_state>
+
+  <!-- Test for Oracle auxiliary key -->
+  
+  <linux:rpminfo_test check="only one" check_existence="at_least_one_exists"
+  id="test_package_gpgkey-8b4efbe6-629ec292_installed" version="1"
+  comment="Oracle auxiliary key package is installed">
+    <linux:object object_ref="object_package_gpg-pubkey" />
+    <linux:state state_ref="state_package_gpg-pubkey-8b4efbe6-629ec292" />
+  </linux:rpminfo_test>
+
+  <linux:rpminfo_state id="state_package_gpg-pubkey-8b4efbe6-629ec292" version="1">
+    <linux:release>629ec292</linux:release>
+    <linux:version>8b4efbe6</linux:version>
+  </linux:rpminfo_state>
+  
+
+</def-group>

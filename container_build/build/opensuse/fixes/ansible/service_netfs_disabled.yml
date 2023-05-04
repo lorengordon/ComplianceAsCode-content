@@ -1,0 +1,62 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = disable
+# complexity = low
+# disruption = low
+- name: Block Disable service netfs
+  block:
+
+  - name: Disable service netfs
+    block:
+
+    - name: Disable service netfs
+      systemd:
+        name: netfs.service
+        enabled: 'no'
+        state: stopped
+        masked: 'yes'
+    rescue:
+
+    - name: Intentionally ignored previous 'Disable service netfs' failure, service
+        was already disabled
+      meta: noop
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - disable_strategy
+  - low_complexity
+  - low_disruption
+  - no_reboot_needed
+  - service_netfs_disabled
+  - unknown_severity
+
+- name: Unit Socket Exists - netfs.socket
+  command: systemctl list-unit-files netfs.socket
+  register: socket_file_exists
+  changed_when: false
+  failed_when: socket_file_exists.rc not in [0, 1]
+  check_mode: false
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - disable_strategy
+  - low_complexity
+  - low_disruption
+  - no_reboot_needed
+  - service_netfs_disabled
+  - unknown_severity
+
+- name: Disable socket netfs
+  systemd:
+    name: netfs.socket
+    enabled: 'no'
+    state: stopped
+    masked: 'yes'
+  when:
+  - ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  - '"netfs.socket" in socket_file_exists.stdout_lines[1]'
+  tags:
+  - disable_strategy
+  - low_complexity
+  - low_disruption
+  - no_reboot_needed
+  - service_netfs_disabled
+  - unknown_severity

@@ -1,0 +1,9 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = disable
+# complexity = low
+# disruption = low
+- name: Ensure nfs-kernel-server is removed
+  package:
+    name: "nfs-kernel-server"
+    state: absent

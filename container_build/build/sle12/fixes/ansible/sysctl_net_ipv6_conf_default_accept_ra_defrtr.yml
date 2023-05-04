@@ -1,0 +1,75 @@
+# platform = multi_platform_all
+# reboot = true
+# strategy = disable
+# complexity = low
+# disruption = medium
+- name: List /etc/sysctl.d/*.conf files
+  find:
+    paths:
+    - /etc/sysctl.d/
+    - /run/sysctl.d/
+    - /usr/lib/sysctl.d/
+    contains: ^[\s]*net.ipv6.conf.default.accept_ra_defrtr.*$
+    patterns: '*.conf'
+    file_type: any
+  register: find_sysctl_d
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-91523-1
+  - disable_strategy
+  - low_complexity
+  - medium_disruption
+  - reboot_required
+  - sysctl_net_ipv6_conf_default_accept_ra_defrtr
+  - unknown_severity
+
+- name: Comment out any occurrences of net.ipv6.conf.default.accept_ra_defrtr from
+    config files
+  replace:
+    path: '{{ item.path }}'
+    regexp: ^[\s]*net.ipv6.conf.default.accept_ra_defrtr
+    replace: '#net.ipv6.conf.default.accept_ra_defrtr'
+  loop: '{{ find_sysctl_d.files }}'
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-91523-1
+  - disable_strategy
+  - low_complexity
+  - medium_disruption
+  - reboot_required
+  - sysctl_net_ipv6_conf_default_accept_ra_defrtr
+  - unknown_severity
+
+- name: Comment out any occurrences of net.ipv6.conf.default.accept_ra_defrtr from
+    /etc/sysctl.conf
+  replace:
+    path: /etc/sysctl.conf
+    regexp: ^[\s]*net.ipv6.conf.default.accept_ra_defrtr
+    replace: '#net.ipv6.conf.default.accept_ra_defrtr'
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-91523-1
+  - disable_strategy
+  - low_complexity
+  - medium_disruption
+  - reboot_required
+  - sysctl_net_ipv6_conf_default_accept_ra_defrtr
+  - unknown_severity
+- (xccdf-var sysctl_net_ipv6_conf_default_accept_ra_defrtr_value)
+
+- name: Ensure sysctl net.ipv6.conf.default.accept_ra_defrtr is set
+  sysctl:
+    name: net.ipv6.conf.default.accept_ra_defrtr
+    value: '{{ sysctl_net_ipv6_conf_default_accept_ra_defrtr_value }}'
+    sysctl_file: /etc/sysctl.d/net_ipv6_conf_default_accept_ra_defrtr.conf
+    state: present
+    reload: true
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-91523-1
+  - disable_strategy
+  - low_complexity
+  - medium_disruption
+  - reboot_required
+  - sysctl_net_ipv6_conf_default_accept_ra_defrtr
+  - unknown_severity

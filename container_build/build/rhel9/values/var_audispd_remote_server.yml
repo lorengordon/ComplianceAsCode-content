@@ -1,0 +1,12 @@
+description: '
+
+    The setting for remote_server in /etc/audisp/audisp-remote.conf'
+type: string
+operator: equals
+interactive: true
+options:
+    default: logcollector
+warnings: []
+title: Remote server for audispd to send audit records
+definition_location: /home/oscap/content/linux_os/guide/system/auditing/configure_auditd_data_retention/var_audispd_remote_server.var
+documentation_complete: true

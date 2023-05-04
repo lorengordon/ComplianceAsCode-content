@@ -1,0 +1,50 @@
+prodtype: alinux3,fedora,ol7,ol8,ol9,rhcos4,rhel7,rhel8,rhel9,sle12,sle15,ubuntu2204
+description: 'The <tt>nosuid</tt> mount option can be used to prevent
+
+    execution of setuid programs in <tt>/var</tt>. The SUID and SGID permissions
+
+    should not be required for this directory.
+
+    Add the <code>nosuid</code> option to the fourth column of
+
+    <tt>/etc/fstab</tt> for the line which controls mounting of
+
+    <code>/var</code>.'
+rationale: The presence of SUID and SGID executables should be tightly controlled.
+severity: unknown
+references:
+    anssi: BP28(R12)
+identifiers:
+    cce: CCE-83378-0
+ocil_clause: the "/var" file system does not have the "nosuid" option set
+ocil: "Verify the <tt>nosuid</tt> option is configured for the <tt>/var</tt> mount\
+    \ point,\n    run the following command:\n    <pre>$ sudo mount | grep '\\s/var\\\
+    s'</pre>\n    <pre>. . . /var . . . nosuid . . .</pre>\n"
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Add nosuid Option to /var
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/partitions/mount_option_var_nosuid/rule.yml
+template:
+    name: mount_option
+    vars:
+        mountpoint: /var
+        mountoption: nosuid
+    backends: {}
+documentation_complete: true

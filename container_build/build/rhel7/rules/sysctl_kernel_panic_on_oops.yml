@@ -1,0 +1,58 @@
+prodtype: all
+description: 'To set the runtime status of the <code>kernel.panic_on_oops</code> kernel
+    parameter, run the following command: <pre>$ sudo sysctl -w kernel.panic_on_oops=1</pre>
+
+    To make sure that the setting is persistent, add the following line to a file
+    in the directory <tt>/etc/sysctl.d</tt>: <pre>kernel.panic_on_oops = 1</pre>'
+rationale: 'An attacker trying to exploit the kernel may trigger kernel OOPSes,
+
+    panicking the system will impede them from continuing.'
+severity: medium
+references:
+    anssi: BP28(R9)
+identifiers:
+    cce: CCE-90766-7
+ocil_clause: the correct value is not returned
+ocil: 'The runtime status of the <code>kernel.panic_on_oops</code> kernel parameter
+    can be queried
+
+    by running the following command:
+
+    <pre>$ sysctl kernel.panic_on_oops</pre>
+
+    <code>1</code>.
+
+    '
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings:
+-   functionality: 'The system may start to panic when it normally wouldn''t. A non-catastrophic
+        error that
+
+        would have allowed the system to continue operating will now result in a panic.'
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Kernel panic on oops
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/restrictions/sysctl_kernel_panic_on_oops/rule.yml
+template:
+    name: sysctl
+    vars:
+        sysctlvar: kernel.panic_on_oops
+        sysctlval: '1'
+        datatype: int
+    backends: {}
+documentation_complete: true

@@ -1,0 +1,32 @@
+# platform = multi_platform_rhel,multi_platform_fedora,multi_platform_ol,multi_platform_rhv,multi_platform_sle
+# reboot = true
+# strategy = restrict
+# complexity = medium
+# disruption = low
+- name: Gather the package facts
+  package_facts:
+    manager: auto
+  tags:
+  - CCE-90567-9
+  - grub2_rng_core_default_quality_argument
+  - low_disruption
+  - low_severity
+  - medium_complexity
+  - reboot_required
+  - restrict_strategy
+- (xccdf-var var_rng_core_default_quality)
+
+- name: Update grub defaults and the bootloader menu
+  command: /sbin/grubby --update-kernel=ALL --args="rng_core.default_quality={{ var_rng_core_default_quality
+    }}"
+  when:
+  - '"grub2-common" in ansible_facts.packages'
+  - ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-90567-9
+  - grub2_rng_core_default_quality_argument
+  - low_disruption
+  - low_severity
+  - medium_complexity
+  - reboot_required
+  - restrict_strategy

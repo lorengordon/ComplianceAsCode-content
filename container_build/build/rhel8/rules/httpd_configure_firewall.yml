@@ -1,0 +1,90 @@
+prodtype: rhel7,rhel8
+description: '
+
+    By default, <tt>iptables</tt>
+
+    blocks access to the ports used by the web server.
+
+    To configure <tt>iptables</tt> to allow port 80 traffic, one must edit
+
+    <tt>/etc/sysconfig/iptables</tt> and
+
+    <tt>/etc/sysconfig/ip6tables</tt> (if IPv6 is in use).
+
+    Add the following line, ensuring that it appears before the final LOG and DROP
+    lines for the INPUT chain:
+
+    <pre>-A INPUT -m state --state NEW -p tcp --dport 80 -j ACCEPT</pre>
+
+    To configure <tt>iptables</tt> to allow port 443 traffic, one must edit
+
+    <tt>/etc/sysconfig/iptables</tt> and
+
+    <tt>/etc/sysconfig/ip6tables</tt> (if IPv6 is in use).
+
+    Add the following line, ensuring that it appears before the final LOG and DROP
+    lines for the INPUT chain:
+
+    <pre>-A INPUT -m state --state NEW -p tcp --dport 443 -j ACCEPT</pre>'
+rationale: 'Failure to comply with DoD ports, protocols, and services (PPS) requirements
+
+    can result in compromise of enclave boundary protections and/or functionality
+
+    of the AIS.'
+severity: low
+references:
+    stigid: WG610
+identifiers: {}
+ocil_clause: it is not
+ocil: 'Review the web site to determine if HTTP and HTTPs are used in accordance with
+
+    well known ports (e.g., 80 and 443) or those ports and services as registered
+
+    and approved for use by the DoD PPSM.
+
+
+
+
+    To configure <code>firewalld</code> to allow <code>http</code> access, run the
+    following command(s):
+
+    <pre>firewall-cmd --permanent --add-service=http</pre>
+
+
+    Then run the following command to load the newly created rule(s):
+
+    <pre>firewall-cmd --reload</pre>
+
+
+
+
+    To configure <code>firewalld</code> to allow <code>https</code> access, run the
+    following command(s):
+
+    <pre>firewall-cmd --permanent --add-service=https</pre>
+
+
+    Then run the following command to load the newly created rule(s):
+
+    <pre>firewall-cmd --reload</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Configure firewall to Allow Access to the Web Server
+definition_location: /home/oscap/content/linux_os/guide/services/http/securing_httpd/httpd_configure_os_protect_web_server/httpd_configure_firewall/rule.yml
+template: null
+documentation_complete: true

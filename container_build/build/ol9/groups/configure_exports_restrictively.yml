@@ -1,0 +1,24 @@
+prodtype: all
+description: "Linux's NFS implementation uses the file <tt>/etc/exports</tt> to control\
+    \ what filesystems\nand directories may be accessed via NFS. (See the <tt>exports(5)</tt>\
+    \ manpage for more information about the\nformat of this file.)\n<br /><br />\n\
+    The syntax of the <tt>exports</tt> file is not necessarily checked fully on reload,\
+    \ and syntax errors\ncan leave your NFS configuration more open than intended.\
+    \ Therefore, exercise caution when modifying\nthe file.\n<br /><br />\nThe syntax\
+    \ of each line in <tt>/etc/exports</tt> is:\n<pre>/DIR\thost1(opt1,opt2) host2(opt3)</pre>\n\
+    where <tt>/DIR</tt> is a directory or filesystem to export, <tt>hostN</tt> is\
+    \ an IP address, netblock,\nhostname, domain, or netgroup to which to export,\
+    \ and <tt>optN</tt> is an option."
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules: {}
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Configure the Exports File Restrictively
+definition_location: /home/oscap/content/linux_os/guide/services/nfs_and_rpc/nfs_configuring_servers/configure_exports_restrictively/group.yml
+documentation_complete: true

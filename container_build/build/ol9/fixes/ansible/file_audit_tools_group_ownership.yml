@@ -1,0 +1,214 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = configure
+# complexity = low
+# disruption = low
+- name: Test for existence /sbin/auditctl
+  stat:
+    path: /sbin/auditctl
+  register: file_exists
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - NIST-800-53-AU-9
+  - configure_strategy
+  - file_audit_tools_group_ownership
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Ensure group owner 0 on /sbin/auditctl
+  file:
+    path: /sbin/auditctl
+    group: '0'
+  when:
+  - ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  - file_exists.stat is defined and file_exists.stat.exists
+  tags:
+  - NIST-800-53-AU-9
+  - configure_strategy
+  - file_audit_tools_group_ownership
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Test for existence /sbin/aureport
+  stat:
+    path: /sbin/aureport
+  register: file_exists
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - NIST-800-53-AU-9
+  - configure_strategy
+  - file_audit_tools_group_ownership
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Ensure group owner 0 on /sbin/aureport
+  file:
+    path: /sbin/aureport
+    group: '0'
+  when:
+  - ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  - file_exists.stat is defined and file_exists.stat.exists
+  tags:
+  - NIST-800-53-AU-9
+  - configure_strategy
+  - file_audit_tools_group_ownership
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Test for existence /sbin/ausearch
+  stat:
+    path: /sbin/ausearch
+  register: file_exists
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - NIST-800-53-AU-9
+  - configure_strategy
+  - file_audit_tools_group_ownership
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Ensure group owner 0 on /sbin/ausearch
+  file:
+    path: /sbin/ausearch
+    group: '0'
+  when:
+  - ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  - file_exists.stat is defined and file_exists.stat.exists
+  tags:
+  - NIST-800-53-AU-9
+  - configure_strategy
+  - file_audit_tools_group_ownership
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Test for existence /sbin/autrace
+  stat:
+    path: /sbin/autrace
+  register: file_exists
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - NIST-800-53-AU-9
+  - configure_strategy
+  - file_audit_tools_group_ownership
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Ensure group owner 0 on /sbin/autrace
+  file:
+    path: /sbin/autrace
+    group: '0'
+  when:
+  - ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  - file_exists.stat is defined and file_exists.stat.exists
+  tags:
+  - NIST-800-53-AU-9
+  - configure_strategy
+  - file_audit_tools_group_ownership
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Test for existence /sbin/auditd
+  stat:
+    path: /sbin/auditd
+  register: file_exists
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - NIST-800-53-AU-9
+  - configure_strategy
+  - file_audit_tools_group_ownership
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Ensure group owner 0 on /sbin/auditd
+  file:
+    path: /sbin/auditd
+    group: '0'
+  when:
+  - ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  - file_exists.stat is defined and file_exists.stat.exists
+  tags:
+  - NIST-800-53-AU-9
+  - configure_strategy
+  - file_audit_tools_group_ownership
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Test for existence /sbin/rsyslogd
+  stat:
+    path: /sbin/rsyslogd
+  register: file_exists
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - NIST-800-53-AU-9
+  - configure_strategy
+  - file_audit_tools_group_ownership
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Ensure group owner 0 on /sbin/rsyslogd
+  file:
+    path: /sbin/rsyslogd
+    group: '0'
+  when:
+  - ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  - file_exists.stat is defined and file_exists.stat.exists
+  tags:
+  - NIST-800-53-AU-9
+  - configure_strategy
+  - file_audit_tools_group_ownership
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Test for existence /sbin/augenrules
+  stat:
+    path: /sbin/augenrules
+  register: file_exists
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - NIST-800-53-AU-9
+  - configure_strategy
+  - file_audit_tools_group_ownership
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Ensure group owner 0 on /sbin/augenrules
+  file:
+    path: /sbin/augenrules
+    group: '0'
+  when:
+  - ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  - file_exists.stat is defined and file_exists.stat.exists
+  tags:
+  - NIST-800-53-AU-9
+  - configure_strategy
+  - file_audit_tools_group_ownership
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed

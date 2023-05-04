@@ -1,0 +1,137 @@
+prodtype: fedora,ol7,ol8,ol9,rhel7,rhel8,rhel9
+description: 'To enable poisoning of SLUB/SLAB objects,
+
+    add the argument <tt>slub_debug=<sub idref="var_slub_debug_options" /></tt> to
+    the default
+
+    GRUB 2 command line for the Linux operating system.
+
+    Configure the default Grub2 kernel command line to contain slub_debug=<sub idref="var_slub_debug_options"
+    /> as follows:
+
+    <pre># grub2-editenv - set "$(grub2-editenv - list | grep kernelopts) slub_debug=<sub
+    idref="var_slub_debug_options" />"</pre>'
+rationale: 'Poisoning writes an arbitrary value to freed objects, so any modification
+    or
+
+    reference to that object after being freed or before being initialized will be
+
+    detected and prevented.
+
+    This prevents many types of use-after-free vulnerabilities at little performance
+    cost.
+
+    Also prevents leak of data and detection of corrupted memory.'
+severity: medium
+references:
+    anssi: BP28(R8)
+    disa: CCI-001084
+    nist: CM-6(a)
+    srg: SRG-OS-000433-GPOS-00192,SRG-OS-000134-GPOS-00068
+identifiers: {}
+ocil_clause: SLUB/SLAB poisoning is not enabled
+ocil: 'Inspect the form of default GRUB 2 command line for the Linux operating system
+
+    in <tt>/boot/grub2/grubenv</tt>.
+
+    If they include <tt>slub_debug=<sub idref="var_slub_debug_options" /></tt>, then
+    the parameter
+
+    is configured at boot time.
+
+    <pre>$ sudo grep ''kernelopts.*slub_debug=<sub idref="var_slub_debug_options"
+    />.*'' GRUBENV_FILE_LOCATION</pre>
+
+    Fill in <tt>GRUBENV_FILE_LOCATION</tt> based on information above.'
+oval_external_content: null
+fixtext: 'Configure the default Grub2 kernel command line to contain slub_debug=<sub
+    idref="var_slub_debug_options" /> as follows:
+
+    <pre># grub2-editenv - set "$(grub2-editenv - list | grep kernelopts) slub_debug=<sub
+    idref="var_slub_debug_options" />"</pre>'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Fedora must clear SLUB/SLAB objects to prevent use-after-free attacks.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Fedora must clear SLUB/SLAB objects to prevent use-after-free
+            attacks.
+        vuldiscussion: 'Some adversaries launch attacks with the intent of executing
+            code in non-executable regions of memory or in memory locations that are
+            prohibited. Security safeguards employed to protect memory include, for
+            example, data execution prevention and address space layout randomization.
+            Data execution prevention safeguards can be either hardware-enforced or
+            software-enforced with hardware providing the greater strength of mechanism.
+
+
+            Poisoning writes an arbitrary value to freed pages, so any modification
+            or reference to that page after being freed or before being initialized
+            will be detected and prevented. This prevents many types of use-after-free
+            vulnerabilities at little performance cost. Also prevents leak of data
+            and detection of corrupted memory.
+
+
+            SLAB objects are blocks of physically-contiguous memory. SLUB is the unqueued
+            SLAB allocator.'
+        checktext: 'Verify that GRUB 2 is configured to enable poisoning of SLUB/SLAB
+            objects to mitigate use-after-free vulnerabilities with the following
+            commands:
+
+
+            Check that the current GRUB 2 configuration has poisoning of SLUB/SLAB
+            objects enabled:
+
+
+            $  sudo grubby --info=ALL | grep args | grep -v ''slub_debug=P''
+
+            If any output is returned, this is a finding.
+
+
+            Check that poisoning of SLUB/SLAB objects is enabled by default to persist
+            in kernel updates:
+
+
+            $ sudo grep slub_debug /etc/default/grub
+
+
+            GRUB_CMDLINE_LINUX="slub_debug=P"
+
+
+            If "slub_debug" is not set to "P", is missing or commented out, this is
+            a finding.'
+        fixtext: 'Configure Fedora to enable poisoning of SLUB/SLAB objects with the
+            following commands:
+
+
+            $ sudo grubby --update-kernel=ALL --args="slub_debug=P"
+
+
+            Add or modify the following line in "/etc/default/grub" to ensure the
+            configuration survives kernel updates:
+
+
+            GRUB_CMDLINE_LINUX="slub_debug=P"'
+platform: grub2
+platforms: !!set
+    grub2: null
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set
+    grub2: null
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Enable SLUB/SLAB allocator poisoning
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/restrictions/poisoning/grub2_slub_debug_argument/rule.yml
+template:
+    name: grub2_bootloader_argument
+    vars:
+        arg_name: slub_debug
+        arg_variable: var_slub_debug_options
+    backends: {}
+documentation_complete: true

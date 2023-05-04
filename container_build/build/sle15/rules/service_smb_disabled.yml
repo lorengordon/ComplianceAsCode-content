@@ -1,0 +1,81 @@
+prodtype: alinux2,alinux3,anolis8,rhel7,rhel8,rhel9,sle12,sle15
+description: '
+
+    The <code>smb</code> service can be disabled with the following command:
+
+    <pre>$ sudo systemctl mask --now smb.service</pre>'
+rationale: 'Running a Samba server provides a network-based avenue of attack, and
+
+    should be disabled if not needed.'
+severity: low
+references:
+    disa: CCI-001436
+    cis: 2.2.13
+identifiers:
+    cce: CCE-91370-7
+ocil_clause: the "smb" is loaded and not masked
+ocil: 'To check that the <code>smb</code> service is disabled in system boot configuration,
+
+    run the following command:
+
+    <pre>$ sudo systemctl is-enabled <code>smb</code></pre>
+
+    Output should indicate the <code>smb</code> service has either not been installed,
+
+    or has been disabled at all runlevels, as shown in the example below:
+
+    <pre>$ sudo systemctl is-enabled <code>smb</code><br/> disabled</pre>
+
+
+    Run the following command to verify <code>smb</code> is not active (i.e. not running)
+    through current runtime configuration:
+
+    <pre>$ sudo systemctl is-active smb</pre>
+
+
+    If the service is not running the command will return the following output:
+
+    <pre>inactive</pre>
+
+
+    The service will also be masked, to check that the <code>smb</code> is masked,
+    run the following command:
+
+    <pre>$ sudo systemctl show <code>smb</code> | grep "LoadState\|UnitFileState"</pre>
+
+
+    If the service is masked the command will return the following outputs:
+
+
+    <pre>LoadState=masked</pre>
+
+
+    <pre>UnitFileState=masked</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Disable Samba
+definition_location: /home/oscap/content/linux_os/guide/services/smb/disabling_samba/service_smb_disabled/rule.yml
+template:
+    name: service_disabled
+    vars:
+        servicename: smb
+        packagename: samba
+    backends: {}
+documentation_complete: true

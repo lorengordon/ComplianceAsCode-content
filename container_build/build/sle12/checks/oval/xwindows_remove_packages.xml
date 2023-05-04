@@ -1,0 +1,67 @@
+<def-group>
+  <definition class="compliance" id="xwindows_remove_packages" version="1">
+    <metadata>
+        <title>Disable graphical user interface</title>
+        
+    <affected family="unix">
+    <platform>Oracle Linux 8</platform>
+      <platform>Alibaba Cloud Linux 2</platform>
+      <platform>Red Hat Enterprise Linux 8</platform>
+      <platform>Red Hat Enterprise Linux 7</platform>
+      <platform>Red Hat Enterprise Linux 9</platform>
+      <platform>SUSE Linux Enterprise 15</platform>
+      <platform>Oracle Linux 7</platform>
+      <platform>SUSE Linux Enterprise 12</platform>
+      <platform>Oracle Linux 9</platform>
+      <platform>Alibaba Cloud Linux 3</platform>
+    </affected>
+        <description>Ensure that the default runlevel target is set to multi-user.target.</description>
+    </metadata>
+    <criteria>
+      <criterion comment="package xorg-x11-server-Xorg is not installed"
+        test_ref="package_xorg-x11-server-Xorg_removed" />
+      <extend_definition comment="package xorg-x11-server-common is removed"
+        definition_ref="package_xorg-x11-server-common_removed" />
+      <criterion comment="package xorg-x11-server-utils is removed"
+        test_ref="package_xorg-x11-server-utils_removed" />
+
+      <criterion comment="package xorg-x11-server-Xwayland is removed"
+        test_ref="package_xorg-x11-server-Xwayland_removed" />
+
+    </criteria>
+  </definition>
+
+  
+  <linux:rpminfo_test check="all" check_existence="none_exist"
+  id="package_xorg-x11-server-Xorg_removed" version="1"
+  comment="package xorg-x11-server-Xorg is removed">
+    <linux:object object_ref="obj_package_xorg-x11-server-Xorg_removed" />
+  </linux:rpminfo_test>
+  <linux:rpminfo_object id="obj_package_xorg-x11-server-Xorg_removed" version="1">
+    <linux:name>xorg-x11-server-Xorg</linux:name>
+  </linux:rpminfo_object>
+
+  
+  <linux:rpminfo_test check="all" check_existence="none_exist"
+  id="package_xorg-x11-server-utils_removed" version="1"
+  comment="package xorg-x11-server-utils is removed">
+    <linux:object object_ref="obj_package_xorg-x11-server-utils_removed" />
+  </linux:rpminfo_test>
+  <linux:rpminfo_object id="obj_package_xorg-x11-server-utils_removed" version="1">
+    <linux:name>xorg-x11-server-utils</linux:name>
+  </linux:rpminfo_object>
+
+
+  
+  <linux:rpminfo_test check="all" check_existence="none_exist"
+  id="package_xorg-x11-server-Xwayland_removed" version="1"
+  comment="package xorg-x11-server-Xwayland is removed">
+    <linux:object object_ref="obj_package_xorg-x11-server-Xwayland_removed" />
+  </linux:rpminfo_test>
+  <linux:rpminfo_object id="obj_package_xorg-x11-server-Xwayland_removed" version="1">
+    <linux:name>xorg-x11-server-Xwayland</linux:name>
+  </linux:rpminfo_object>
+
+
+
+</def-group>

@@ -1,0 +1,44 @@
+prodtype: firefox
+description: 'The update check may be disabled in an administrative policy by setting
+
+    the <tt>DisableFormHistory</tt> key under <tt>policies</tt> to <tt>true</tt>.'
+rationale: To protect privacy and sensitive data, Firefox provides the ability to
+    configure the program so that data entered into forms is not saved. This mitigates
+    the risk of a website gleaning private information from prefilled information.
+severity: medium
+references:
+    disa: CCI-000381
+    nist: CM-7
+    stigid: FFOX-00-000007
+identifiers: {}
+ocil_clause: null
+ocil: null
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Firefox must be configured to disable form fill assistance.
+definition_location: /home/oscap/content/products/firefox/guide/firefox/firefox_policy-disable_form_history/rule.yml
+template:
+    name: firefox_policy-setting
+    vars:
+        name: Disable form fill history.
+        policies:
+        -   path: policies
+            parameter: DisableFormHistory
+            value: 'true'
+    backends: {}
+documentation_complete: true

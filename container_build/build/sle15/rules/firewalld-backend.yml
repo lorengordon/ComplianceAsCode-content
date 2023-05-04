@@ -1,0 +1,67 @@
+prodtype: ol8,ol9,rhel8,rhel9,sle15
+description: Firewalld can be configured with many backends, such as nftables.
+rationale: 'Nftables is modern kernel module for controling network connections coming
+    into a system.
+
+    Utilizing the limit statement in "nftables" can help to mitigate DoS attacks.'
+severity: medium
+references:
+    disa: CCI-002385
+    nist: SC-5
+    srg: SRG-OS-000420-GPOS-00186
+    cis: 3.5.2.1
+identifiers:
+    cce: CCE-92470-4
+ocil_clause: the "nftables" is not set as the "firewallbackend"
+ocil: 'Verify "nftables" is configured to allow rate limits on any connection to the
+    system with the following command:
+
+
+    Verify "firewalld" has "nftables" set as the default backend:
+
+
+    $ sudo grep -i firewallbackend /etc/firewalld/firewalld.conf
+
+
+    # FirewallBackend
+
+    FirewallBackend=nftables'
+oval_external_content: null
+fixtext: 'Configure "nftables" to be the default "firewallbackend" for "firewalld"
+    by adding or editing the following line in "/etc/firewalld/firewalld.conf":
+
+
+    FirewallBackend=nftables
+
+
+    Establish rate-limiting rules based on organization-defined types of DoS attacks
+    on impacted network interfaces.'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: A firewall must be able to protect against or limit the effects of
+    Denial of Service (DoS) attacks by ensuring SUSE Linux Enterprise 15 can implement
+    rate-limiting measures on impacted network interfaces.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Configure Firewalld to Use the Nftables Backend
+definition_location: /home/oscap/content/linux_os/guide/system/network/network-firewalld/firewalld-backend/rule.yml
+template:
+    name: shell_lineinfile
+    vars:
+        path: /etc/firewalld/firewalld.conf
+        parameter: FirewallBackend
+        value: nftables
+    backends: {}
+documentation_complete: true

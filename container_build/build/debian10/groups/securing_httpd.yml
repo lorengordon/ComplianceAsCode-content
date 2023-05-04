@@ -1,0 +1,30 @@
+prodtype: all
+description: 'The <tt>httpd</tt> configuration file is
+
+    <tt>/etc/httpd/conf/httpd.conf</tt>. Apply the recommendations in the remainder
+
+    of this section to this file.'
+warnings: []
+requires: []
+conflicts: []
+values:
+- var_httpd_loglevel
+- var_max_keepalive_requests
+groups:
+- httpd_configure_os_protect_web_server
+- httpd_configure_perl_securely
+- httpd_configure_php_securely
+- httpd_directory_restrictions
+- httpd_minimize_loadable_modules
+- httpd_modules_improve_security
+- httpd_restrict_info_leakage
+- httpd_secure_content
+- httpd_use_dos_protection_modules
+rules: {}
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Secure Apache Configuration
+definition_location: /home/oscap/content/linux_os/guide/services/http/securing_httpd/group.yml
+documentation_complete: true

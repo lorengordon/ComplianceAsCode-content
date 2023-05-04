@@ -1,0 +1,47 @@
+prodtype: all
+description: 'The umask setting controls the default permissions
+
+    for the creation of new files.
+
+    With a default <tt>umask</tt> setting of 077, files and directories
+
+    created by users will not be readable by any other user on the
+
+    system. Users who wish to make specific files group- or
+
+    world-readable can accomplish this by using the chmod command.
+
+    Additionally, users can make all their files readable to their
+
+    group by default by setting a <tt>umask</tt> of 027 in their shell
+
+    configuration files. If default per-user groups exist (that is, if
+
+    every user has a default group whose name is the same as that
+
+    user''s username and whose only member is the user), then it may
+
+    even be safe for users to select a <tt>umask</tt> of 007, making it very
+
+    easy to intentionally share files with groups of which the user is
+
+    a member.
+
+    <br /><br />'
+warnings: []
+requires: []
+conflicts: []
+values:
+- var_accounts_user_umask
+groups: {}
+rules:
+- accounts_umask_etc_bashrc
+- accounts_umask_etc_login_defs
+- accounts_umask_etc_profile
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Ensure that Users Have Sensible Umask Values
+definition_location: /home/oscap/content/linux_os/guide/system/accounts/accounts-session/user_umask/group.yml
+documentation_complete: true

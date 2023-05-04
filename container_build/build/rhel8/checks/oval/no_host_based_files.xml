@@ -1,0 +1,31 @@
+<def-group>
+  <definition class="compliance" id="no_host_based_files" version="1">
+    <metadata>
+        <title>Remove Host-Based Authentication Files</title>
+        
+    <affected family="unix">
+    <platform>Oracle Linux 8</platform>
+      <platform>Oracle Linux 7</platform>
+      <platform>Red Hat Enterprise Linux 9</platform>
+      <platform>Red Hat Virtualization 4</platform>
+      <platform>Red Hat Enterprise Linux 8</platform>
+      <platform>Oracle Linux 9</platform>
+      <platform>Red Hat Enterprise Linux 7</platform>
+      <platform>SUSE Linux Enterprise 12</platform>
+      <platform>SUSE Linux Enterprise 15</platform>
+    </affected>
+        <description>There should not be any shosts.equiv files on the system.</description>
+    </metadata>
+    <criteria>
+      <criterion test_ref="test_no_shosts_equiv"/>
+    </criteria>
+  </definition>
+  <unix:file_test check="all" check_existence="none_exist" comment="look for shosts.equiv in /" id="test_no_shosts_equiv" version="1">
+    <unix:object object_ref="object_no_shosts_equiv_files_root" />
+  </unix:file_test>
+  <unix:file_object comment="look for any shosts.equiv file on the system" id="object_no_shosts_equiv_files_root" version="1">
+    <unix:behaviors recurse="directories" recurse_direction="down" max_depth="-1" recurse_file_system="local" />
+    <unix:path operation="equals">/</unix:path>
+    <unix:filename operation="equals">shosts.equiv</unix:filename>
+  </unix:file_object>
+</def-group>

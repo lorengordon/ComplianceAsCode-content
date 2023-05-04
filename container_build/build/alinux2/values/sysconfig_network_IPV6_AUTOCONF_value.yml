@@ -1,0 +1,14 @@
+description: 'Toggle global IPv6 auto-configuration (only, if global
+
+    forwarding is disabled)'
+type: string
+operator: equals
+interactive: false
+options:
+    default: 'no'
+    disabled: 'no'
+    enabled: 'yes'
+warnings: []
+title: IPV6_AUTOCONF
+definition_location: /home/oscap/content/linux_os/guide/system/network/network-ipv6/configuring_ipv6/sysconfig_network_IPV6_AUTOCONF_value.var
+documentation_complete: true

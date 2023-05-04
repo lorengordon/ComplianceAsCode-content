@@ -1,0 +1,33 @@
+<def-group>
+  <definition class="compliance" id="audit_rules_kernel_module_loading" version="1">
+    <metadata>
+        <title>Ensure auditd Collects Information on Kernel Module Loading and Unloading</title>
+        
+    <affected family="unix">
+    <platform>Alibaba Cloud Linux 3</platform>
+      <platform>Anolis OS 8</platform>
+      <platform>Debian 10</platform>
+      <platform>Alibaba Cloud Linux 2</platform>
+      <platform>Oracle Linux 8</platform>
+      <platform>Debian 11</platform>
+      <platform>Red Hat Enterprise Linux 7</platform>
+      <platform>Red Hat Virtualization 4</platform>
+      <platform>Oracle Linux 9</platform>
+      <platform>Oracle Linux 7</platform>
+      <platform>Red Hat Enterprise Linux 9</platform>
+      <platform>Red Hat Enterprise Linux CoreOS 4</platform>
+      <platform>SUSE Linux Enterprise 12</platform>
+      <platform>Red Hat Enterprise Linux 8</platform>
+      <platform>SUSE Linux Enterprise 15</platform>
+      <platform>Fedora</platform>
+    </affected>
+        <description>The audit rules should be configured to log information about kernel module loading and unloading.</description>
+    </metadata>
+    <criteria operator="AND">
+      <extend_definition comment="audit init_module" definition_ref="audit_rules_kernel_module_loading_init" />
+      <extend_definition comment="audit delete_module" definition_ref="audit_rules_kernel_module_loading_delete" />
+      <extend_definition comment="audit finit_module" definition_ref="audit_rules_kernel_module_loading_finit" />
+    </criteria>
+  </definition>
+
+</def-group>

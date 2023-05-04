@@ -1,0 +1,18 @@
+prodtype: all
+description: GNOME remote access settings that apply to the graphical interface.
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- dconf_gnome_remote_access_credential_prompt
+- dconf_gnome_remote_access_encryption
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set
+    package[gdm]: null
+cpe_platform_names: !!set {}
+title: GNOME Remote Access Settings
+definition_location: /home/oscap/content/linux_os/guide/system/software/gnome/gnome_remote_access_settings/group.yml
+documentation_complete: true

@@ -1,0 +1,161 @@
+prodtype: fedora,ol7,ol8,ol9,rhcos4,rhel7,rhel8,rhel9,rhv4,sle12,sle15
+description: 'SSSD should be configured to authenticate access to the system using
+    smart cards.
+
+    To enable smart cards in SSSD, set <tt>pam_cert_auth</tt> to <tt>True</tt> under
+    the
+
+    <tt>[pam]</tt> section in <tt>/etc/sssd/sssd.conf</tt>. For example:
+
+    <pre>[pam]
+
+    pam_cert_auth = True
+
+    </pre>
+
+
+    Add or update "pam_sss.so" line in auth section of "/etc/pam.d/system-auth" file
+    to include
+
+    "try_cert_auth" or "require_cert_auth" option, like in the following example:
+
+    <pre>
+
+    /etc/pam.d/system-auth:auth [success=done authinfo_unavail=ignore ignore=ignore
+    default=die] pam_sss.so try_cert_auth
+
+    </pre>
+
+    Also add or update "pam_sss.so" line in auth section of "/etc/pam.d/smartcard-auth"
+    file to
+
+    include the "allow_missing_name" option, like in the following example:
+
+    <pre>/etc/pam.d/smartcard-auth:auth sufficient pam_sss.so allow_missing_name</pre>'
+rationale: 'Using an authentication device, such as a CAC or token that is separate
+    from
+
+    the information system, ensures that even if the information system is
+
+    compromised, that compromise will not affect credentials stored on the
+
+    authentication device.
+
+    <br /><br />
+
+    Multi-Factor Authentication (MFA) solutions that require devices separate from
+
+    information systems gaining access include, for example, hardware tokens
+
+    providing time-based or challenge-response authenticators and smart cards such
+
+    as the U.S. Government Personal Identity Verification card and the DoD Common
+
+    Access Card.'
+severity: medium
+references:
+    disa: CCI-001954,CCI-000765,CCI-000766,CCI-000767,CCI-000768
+    ism: 0421,0422,0431,0974,1173,1401,1504,1505,1546,1557,1558,1559,1560,1561
+    pcidss: Req-8.3
+    pcidss4: '8.4'
+    srg: SRG-OS-000375-GPOS-00160,SRG-OS-000105-GPOS-00052,SRG-OS-000106-GPOS-00053,SRG-OS-000107-GPOS-00054,SRG-OS-000108-GPOS-00055
+    stigid: OL08-00-020250
+    stigref: SV-248702r779672_rule
+identifiers: {}
+ocil_clause: smart cards are not enabled in SSSD
+ocil: 'To verify that smart cards are enabled in SSSD, run the following command:
+
+    <pre>$ sudo grep pam_cert_auth /etc/sssd/sssd.conf</pre>
+
+    If configured properly, output should be
+
+    <pre>pam_cert_auth = True</pre>
+
+
+
+    To verify that smart cards are enabled in PAM files, run the following command:
+
+    <pre>$ sudo grep -e "auth.*pam_sss\.so.*\(allow_missing_name\|try_cert_auth\)"
+    /etc/pam.d/smartcard-auth /etc/pam.d/system-auth</pre>
+
+    If configured properly, output should be
+
+    <pre>
+
+    /etc/pam.d/smartcard-auth:auth        sufficient                                   pam_sss.so
+    allow_missing_name
+
+    /etc/pam.d/system-auth:auth        [success=done authinfo_unavail=ignore ignore=ignore
+    default=die] pam_sss.so try_cert_auth
+
+    </pre>'
+oval_external_content: null
+fixtext: 'Edit the file "/etc/sssd/sssd.conf" and add or edit the following line:
+
+
+    pam_cert_auth = True
+
+
+
+    Enable the <tt>with-smartcard</tt> feature using the <tt>authselect</tt> command:
+
+    sudo authselect enable-feature with-smartcard
+
+    sudo authselect apply-changes -b'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Oracle Linux 8 must implement smart card logon for multifactor authentication
+    for access to interactive accounts.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Oracle Linux 8 must enable certificate based smartcard authentication.
+        vuldiscussion: 'Without the use of multifactor authentication, the ease of
+            access to
+
+            privileged functions is greatly increased. Multifactor authentication
+
+            requires using two or more factors to achieve authentication.
+
+            A privileged account is defined as an information system account with
+
+            authorizations of a privileged user.
+
+            The DoD CAC with DoD-approved PKI is an example of multifactor
+
+            authentication.'
+        checktext: 'Verify that Oracle Linux 8 has smart cards are enabled in SSSD,
+            run the following command:
+
+
+            $ sudo grep pam_cert_auth /etc/sssd/sssd.conf
+
+
+            pam_cert_auth = True
+
+
+            If "pam_cert_auth" is not set to "True", the line is commented out, or
+            the line is missing, this is a finding.'
+        fixtext: 'Edit the file "/etc/sssd/sssd.conf" and add or edit the following
+            line:
+
+
+            pam_cert_auth = True'
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set
+    package[sssd]: null
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set
+    package_sssd: null
+bash_conditional: null
+fixes: {}
+title: Enable Smartcards in SSSD
+definition_location: /home/oscap/content/linux_os/guide/services/sssd/sssd_enable_smartcards/rule.yml
+template: null
+documentation_complete: true

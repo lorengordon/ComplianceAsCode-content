@@ -1,0 +1,15 @@
+name: machine_and_not_s390x_arch
+original_expression: not_s390x_arch and machine
+xml_content: <ns0:platform xmlns:ns0="http://cpe.mitre.org/language/2.0" id="machine_and_not_s390x_arch"><ns0:logical-test
+    operator="AND" negate="false"><ns0:check-fact-ref system="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+    href="ssg-ubuntu2004-cpe-oval.xml" id-ref="oval:ssg-installed_env_is_a_machine:def:1"
+    /><ns0:check-fact-ref system="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+    href="ssg-ubuntu2004-cpe-oval.xml" id-ref="oval:ssg-proc_sys_kernel_osrelease_arch_not_s390x:def:1"
+    /></ns0:logical-test></ns0:platform>
+bash_conditional: ( [ ! -f /.dockerenv ] && [ ! -f /run/.containerenv ] && ! grep
+    -q s390x /proc/sys/kernel/osrelease )
+ansible_conditional: ( ansible_virtualization_type not in ["docker", "lxc", "openvz",
+    "podman", "container"] and ansible_architecture != "s390x" )
+title: ''
+definition_location: /home/oscap/content/build/ubuntu2004/platforms/machine_and_not_s390x_arch.yml
+documentation_complete: true

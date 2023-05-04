@@ -1,0 +1,39 @@
+prodtype: all
+description: 'For each solid-state drive on the system, run:
+
+    <pre> # echo 0 &gt; /sys/block/DRIVE/queue/add_random</pre>'
+rationale: 'In contrast to traditional electromechanical magnetic disks, containing
+
+    spinning disks and / or movable read / write heads, the solid-state storage
+
+    devices (SSDs) do not contain moving / mechanical components. Therefore the
+
+    I/O operation completion times are much more predictable for them.'
+severity: medium
+references: {}
+identifiers: {}
+ocil_clause: null
+ocil: null
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Ensure Solid State Drives Do Not Contribute To Random-Number Entropy Pool
+definition_location: /home/oscap/content/linux_os/guide/system/entropy/kernel_disable_entropy_contribution_for_solid_state_drives/rule.yml
+template: null
+documentation_complete: true

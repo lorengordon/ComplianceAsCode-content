@@ -1,0 +1,21 @@
+prodtype: all
+description: Non-UEFI GRUB2 bootloader configuration
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- file_groupowner_grub2_cfg
+- file_owner_grub2_cfg
+- file_permissions_grub2_cfg
+platform: non-uefi
+platforms: !!set
+    non-uefi: null
+inherited_platforms: !!set
+    grub2: null
+cpe_platform_names: !!set
+    non-uefi: null
+title: Non-UEFI GRUB2 bootloader configuration
+definition_location: /home/oscap/content/linux_os/guide/system/bootloader-grub2/non-uefi/group.yml
+documentation_complete: true

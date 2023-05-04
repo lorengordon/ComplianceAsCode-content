@@ -1,0 +1,19 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = configure
+# complexity = low
+# disruption = low
+
+
+
+
+
+- name: Ensure group owner on /etc/cron.monthly/
+  file:
+    path: "/etc/cron.monthly/"
+    state: directory
+
+    group: "0"
+
+
+

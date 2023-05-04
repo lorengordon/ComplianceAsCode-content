@@ -1,0 +1,51 @@
+prodtype: rhel7
+description: "The docker service is commonly needed to\n  create containers.\n\nThe\
+    \ <code>docker</code> service can be enabled with the following command:\n<pre>$\
+    \ sudo systemctl enable docker.service</pre>"
+rationale: 'To be able to find any problems with misconfiguration of
+
+    the docker daemon and running containers, the docker service
+
+    has to be enabled.'
+severity: medium
+references: {}
+identifiers:
+    cce: CCE-80440-1
+ocil_clause: null
+ocil: '
+
+
+    Run the following command to determine the current status of the
+
+    <code>docker</code> service:
+
+    <pre>$ sudo systemctl is-active docker</pre>
+
+    If the service is running, it should return the following: <pre>active</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Enable the Docker service
+definition_location: /home/oscap/content/linux_os/guide/services/docker/service_docker_enabled/rule.yml
+template:
+    name: service_enabled
+    vars:
+        servicename: docker
+    backends: {}
+documentation_complete: true

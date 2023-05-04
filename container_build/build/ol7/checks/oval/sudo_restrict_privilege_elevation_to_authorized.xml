@@ -1,0 +1,53 @@
+<def-group>
+  
+  
+  <definition class="compliance" id="sudo_restrict_privilege_elevation_to_authorized" version="1">
+     <metadata>
+        <title>The operating system must restrict privilege elevation to authorized personnel</title>
+        
+    <affected family="unix">
+    <platform>Red Hat Enterprise Linux 7</platform>
+      <platform>Oracle Linux 9</platform>
+      <platform>Red Hat Enterprise Linux 9</platform>
+      <platform>Red Hat Enterprise Linux 8</platform>
+      <platform>SUSE Linux Enterprise 15</platform>
+      <platform>Oracle Linux 8</platform>
+      <platform>SUSE Linux Enterprise 12</platform>
+      <platform>Oracle Linux 7</platform>
+    </affected>
+        <description>Check that sudoers doesn't allow all users to run commands via sudo</description>
+    </metadata>
+     <criteria operator="AND">
+        <criterion comment="Make sure that sudoers has restrictions on which users can run sudo for any target user" test_ref="test_not_all_users_can_sudo_to_users" />
+        <criterion comment="Make sure that sudoers has restrictions on which users can run sudo for any target group" test_ref="test_not_all_users_can_sudo_to_group" />
+     </criteria>
+  </definition>
+
+  
+  <ind:textfilecontent54_test check="all" check_existence="none_exist"
+  comment="Make sure that sudoers has restrictions on which users can run sudo"
+  id="test_not_all_users_can_sudo_to_users" version="1">
+    <ind:object object_ref="object_sudoers_cfg_spec_all_users" />
+  </ind:textfilecontent54_test>
+
+  <ind:textfilecontent54_object id="object_sudoers_cfg_spec_all_users" version="1">
+    <ind:filepath operation="pattern match">^/etc/sudoers(\.d/.*)?$</ind:filepath>
+    <ind:pattern operation="pattern match">^\s*ALL\s+ALL\=\(ALL\)\s+ALL\s*$</ind:pattern>
+    <ind:instance datatype="int">1</ind:instance>
+  </ind:textfilecontent54_object>
+  
+  
+  <ind:textfilecontent54_test check="all" check_existence="none_exist"
+  comment="Make sure that sudoers has restrictions on which users can run sudo"
+  id="test_not_all_users_can_sudo_to_group" version="1">
+    <ind:object object_ref="object_sudoers_cfg_spec_all_group" />
+  </ind:textfilecontent54_test>
+
+  <ind:textfilecontent54_object id="object_sudoers_cfg_spec_all_group" version="1">
+    <ind:filepath operation="pattern match">^/etc/sudoers(\.d/.*)?$</ind:filepath>
+    <ind:pattern operation="pattern match">^\s*ALL\s+ALL\=\(ALL\:ALL\)\s+ALL\s*</ind:pattern>
+    <ind:instance datatype="int">1</ind:instance>
+  </ind:textfilecontent54_object>
+  
+
+</def-group>

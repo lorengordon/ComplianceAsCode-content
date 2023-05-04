@@ -1,0 +1,53 @@
+prodtype: firefox
+description: 'Audio/Video autoplay may be disabled in an administrative policy by
+    setting
+
+    the <tt>Default</tt> key under <tt>Permissions</tt>, <tt>Autoplay</tt> to <tt>"block-audio-video"</tt>.'
+rationale: Autoplay allows the user to control whether videos can play automatically
+    (without user consent) with audio content. The user must be able to select content
+    that is run within the browser window.
+severity: medium
+references:
+    disa: CCI-000381
+    nist: CM-7
+    stigid: FFOX-00-000021
+identifiers: {}
+ocil_clause: null
+ocil: 'To verify that search suggestions are disabled,
+
+    type the following into the browser address bar:
+
+    <pre>about:policies</pre>
+
+    The output should have the following under Permissions -> Autoplay:
+
+    <pre>"Default": "block-audio-video"</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Firefox autoplay must be disabled.
+definition_location: /home/oscap/content/products/firefox/guide/firefox/firefox_policy-autoplay_video/rule.yml
+template:
+    name: firefox_policy-setting
+    vars:
+        name: Disable autoplay for videos with audio content
+        policies:
+        -   path: Permissions Autoplay
+            parameter: Default
+            value: block-audio-video
+    backends: {}
+documentation_complete: true

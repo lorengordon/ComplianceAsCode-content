@@ -1,0 +1,39 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = restrict
+# complexity = low
+# disruption = low
+
+
+
+# Find the include keyword, extract from the line the glob expression representing included files.
+# And if it is a relative path prepend '/etc/ssh/'
+included_files=$(grep -oP "^\s*(?i)include.*" /etc/ssh/sshd_config | sed -e 's/Include\s*//i' | sed -e 's|^[^/]|/etc/ssh/&|')
+for included_file in ${included_files} ; do
+    
+    LC_ALL=C sed -i "/^\s*LogLevel/Id" "$included_file"
+done
+
+if [ -e "/etc/ssh/sshd_config" ] ; then
+    
+    LC_ALL=C sed -i "/^\s*LogLevel\s\+/Id" "/etc/ssh/sshd_config"
+else
+    touch "/etc/ssh/sshd_config"
+fi
+# make sure file has newline at the end
+sed -i -e '$a\' "/etc/ssh/sshd_config"
+
+cp "/etc/ssh/sshd_config" "/etc/ssh/sshd_config.bak"
+# Insert before the line matching the regex '^Match'.
+line_number="$(LC_ALL=C grep -n "^Match" "/etc/ssh/sshd_config.bak" | LC_ALL=C sed 's/:.*//g')"
+if [ -z "$line_number" ]; then
+    # There was no match of '^Match', insert at
+    # the end of the file.
+    printf '%s\n' "LogLevel VERBOSE" >> "/etc/ssh/sshd_config"
+else
+    head -n "$(( line_number - 1 ))" "/etc/ssh/sshd_config.bak" > "/etc/ssh/sshd_config"
+    printf '%s\n' "LogLevel VERBOSE" >> "/etc/ssh/sshd_config"
+    tail -n "+$(( line_number ))" "/etc/ssh/sshd_config.bak" >> "/etc/ssh/sshd_config"
+fi
+# Clean up after ourselves.
+rm "/etc/ssh/sshd_config.bak"

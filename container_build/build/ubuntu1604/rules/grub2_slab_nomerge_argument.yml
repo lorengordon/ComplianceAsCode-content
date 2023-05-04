@@ -1,0 +1,106 @@
+prodtype: all
+description: 'The kernel may merge similar slabs together to reduce overhead and increase
+
+    cache hotness of objects.
+
+    Disabling merging of slabs keeps the slabs separate and reduces the risk of
+
+    kernel heap overflows overwriting objects in merged caches.
+
+
+    To disable merging of slabs in the Kernel add the argument <tt>slab_nomerge=yes</tt>
+
+    to the default GRUB 2 command line for the Linux operating system.
+
+    To ensure that <tt>slab_nomerge=yes</tt> is added as a kernel command line
+
+    argument to newly installed kernels, add <tt>slab_nomerge=yes</tt> to the
+
+    default Grub2 command line for Linux operating systems. Modify the line within
+
+    <tt>/etc/default/grub</tt> as shown below:
+
+    <pre>GRUB_CMDLINE_LINUX="... slab_nomerge=yes ..."</pre>
+
+    Run the following command to update command line for already installed kernels:<pre>#
+    update-grub</pre>'
+rationale: 'Disabling the merge of slabs of similar sizes prevents the kernel from
+
+    merging a seemingly useless but vulnerable slab with a useful and valuable slab.
+
+    This increase the risk that a heap overflow could overwrite objects from merged
+    caches,
+
+    with unmerged caches the heap overflow would only affect the objects in the same
+    cache.
+
+    Overall, this reduces the kernel attack surface area by isolating slabs from each
+    other.'
+severity: medium
+references:
+    anssi: BP28(R8)
+identifiers: {}
+ocil_clause: merging of slabs with similar size is enabled
+ocil: 'Inspect the form of default GRUB 2 command line for the Linux operating system
+
+    in <tt>/etc/default/grub</tt>. If it includes <tt>slab_nomerge=yes</tt>,
+
+    then the parameter will be configured for newly installed kernels.
+
+    First check if the GRUB recovery is enabled:
+
+    <pre>$ sudo grep ''GRUB_DISABLE_RECOVERY'' /etc/default/grub</pre>
+
+    If this option is set to true, then check that a line is output by the following
+    command:
+
+    <pre>$ sudo grep ''GRUB_CMDLINE_LINUX_DEFAULT.*slab_nomerge=yes.*'' /etc/default/grub</pre>
+
+    If the recovery is disabled, check the line with
+
+    <pre>$ sudo grep ''GRUB_CMDLINE_LINUX.*slab_nomerge=yes.*'' /etc/default/grub</pre>.Moreover,
+    current Grub config file <tt>grub.cfg</tt> must be checked. The file can be found
+
+    either in <tt>/boot/grub</tt> in case of legacy BIOS systems, or in <tt>/boot/efi/EFI/ubuntu</tt>
+    in case of UEFI systems.
+
+    If they include <tt>slab_nomerge=yes</tt>, then the parameter
+
+    is configured at boot time.
+
+    <pre>$ sudo grep vmlinuz GRUB_CFG_FILE_PATH | grep -v ''slab_nomerge=yes''</pre>
+
+    Fill in <tt>GRUB_CFG_FILE_PATH</tt> based on information above.
+
+    This command should not return any output.'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings:
+-   performance: Disabling merge of slabs will slightly increase kernel memory utilization.
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set
+    grub2: null
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set
+    grub2: null
+bash_conditional: null
+fixes: {}
+title: Disable merging of slabs with similar size
+definition_location: /home/oscap/content/linux_os/guide/system/bootloader-grub2/grub2_slab_nomerge_argument/rule.yml
+template:
+    name: grub2_bootloader_argument
+    vars:
+        arg_name: slab_nomerge
+        arg_value: 'yes'
+    backends: {}
+documentation_complete: true

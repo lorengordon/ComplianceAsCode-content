@@ -1,0 +1,34 @@
+# platform = multi_platform_rhel,multi_platform_fedora,multi_platform_ol,multi_platform_rhv,multi_platform_sle
+# reboot = true
+# strategy = restrict
+# complexity = medium
+# disruption = low
+- name: Gather the package facts
+  package_facts:
+    manager: auto
+  tags:
+  - CCE-82887-1
+  - PCI-DSS-Req-1.3.1
+  - PCI-DSS-Req-1.3.2
+  - PCI-DSSv4-1.4.2
+  - grub2_ipv6_disable_argument
+  - low_disruption
+  - low_severity
+  - medium_complexity
+  - reboot_required
+  - restrict_strategy
+
+- name: Update grub defaults and the bootloader menu
+  command: /sbin/grubby --update-kernel=ALL --args="ipv6.disable=1"
+  when: '"grub2-common" in ansible_facts.packages'
+  tags:
+  - CCE-82887-1
+  - PCI-DSS-Req-1.3.1
+  - PCI-DSS-Req-1.3.2
+  - PCI-DSSv4-1.4.2
+  - grub2_ipv6_disable_argument
+  - low_disruption
+  - low_severity
+  - medium_complexity
+  - reboot_required
+  - restrict_strategy

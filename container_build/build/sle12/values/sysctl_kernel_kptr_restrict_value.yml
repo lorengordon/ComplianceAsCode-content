@@ -1,0 +1,12 @@
+description: 'Configure exposition of kernel pointer addresses '
+type: number
+operator: equals
+interactive: false
+options:
+    default: 1
+    1: 1
+    2: 2
+warnings: []
+title: kernel.kptr_restrict
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/restrictions/enable_execshield_settings/sysctl_kernel_kptr_restrict_value.var
+documentation_complete: true

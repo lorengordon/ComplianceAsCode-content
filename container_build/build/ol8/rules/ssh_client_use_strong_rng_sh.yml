@@ -1,0 +1,60 @@
+prodtype: ol8,rhel8
+description: 'To set up SSH client to use entropy from a high-quality source, make
+    sure
+
+    that the appropriate shell environment variable is configured. The
+
+    <tt>SSH_USE_STRONG_RNG</tt> environment variable determines how many bytes
+
+    of entropy to use. Make sure that the file
+
+    <tt>/etc/profile.d/cc-ssh-strong-rng.sh</tt> contains line
+
+    <pre>export SSH_USE_STRONG_RNG=32</pre>.'
+rationale: 'Some SSH implementations use the openssl library for entropy, which by
+    default, doesn''t use high-entropy sources.
+
+    Randomness is needed to generate considerably more secure data-encryption keys.
+    Plaintext padding, initialization vectors
+
+    in encryption algorithms, and high-quality entropy eliminates the possibility
+    that the output of
+
+    the random number generator used by SSH would be known to potential attackers.'
+severity: medium
+references:
+    ospp: FCS_CKM.1.1
+    srg: SRG-OS-000480-GPOS-00227
+identifiers: {}
+ocil_clause: SSH client is not configured to use 32 bytes of entropy or more
+ocil: 'Run the following command to verify that SSH client is configured to use 32
+    bytes of entropy:
+
+    <pre>grep SSH_USE_STRONG_RNG /etc/profile.d/cc-ssh-strong-rng.sh</pre>
+
+    The output should be:
+
+    <pre>export SSH_USE_STRONG_RNG=32</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: SSH client uses strong entropy to seed (Bash-like shells)
+definition_location: /home/oscap/content/linux_os/guide/services/ssh/ssh_client/ssh_client_use_strong_rng_sh/rule.yml
+template: null
+documentation_complete: true

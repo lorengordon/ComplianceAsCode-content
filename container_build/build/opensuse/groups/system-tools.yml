@@ -1,0 +1,20 @@
+prodtype: all
+description: 'The following checks evaluate the system for recommended base packages
+    -- both for installation
+
+    and removal.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- package_gnutls-utils_installed
+- package_nss-tools_installed
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: System Tooling / Utilities
+definition_location: /home/oscap/content/linux_os/guide/system/software/system-tools/group.yml
+documentation_complete: true

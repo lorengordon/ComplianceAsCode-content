@@ -1,0 +1,26 @@
+prodtype: all
+description: 'If it is impossible to remove the wireless hardware
+
+    from the device in question, disable as much of it as possible
+
+    through software. The following methods can disable software
+
+    support for wireless networking, but note that these methods do not
+
+    prevent malicious software or careless users from re-activating the
+
+    devices.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- wireless_disable_interfaces
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Disable Wireless Through Software Configuration
+definition_location: /home/oscap/content/linux_os/guide/system/network/network-wireless/wireless_software/group.yml
+documentation_complete: true

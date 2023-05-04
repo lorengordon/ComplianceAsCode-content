@@ -1,0 +1,161 @@
+prodtype: fedora,ol8,ol9,rhcos4,rhel8,rhel9
+description: 'To set the runtime status of the <code>user.max_user_namespaces</code>
+    kernel parameter,
+
+    run the following command:
+
+    <pre>$ sudo sysctl -w user.max_user_namespaces=0</pre>
+
+
+    To make sure that the setting is persistent,
+
+    add the following line to a file in the directory <tt>/etc/sysctl.d</tt>:
+
+    <pre>user.max_user_namespaces = 0</pre>
+
+    When containers are deployed on the machine, the value should be set
+
+    to large non-zero value.'
+rationale: 'It is detrimental for operating systems to provide, or install by default,
+    functionality exceeding requirements or system objectives.
+
+    These unnecessary capabilities or services are often overlooked and therefore
+    may remain unsecured.
+
+    They increase the risk to the platform by providing additional attack vectors.
+
+    User namespaces are used primarily for Linux containers. The value 0
+
+    disallows the use of user namespaces.'
+severity: medium
+references:
+    disa: CCI-000366
+    nist: SC-39,CM-6(a)
+    ospp: FMT_SMF_EXT.1
+    srg: SRG-OS-000480-GPOS-00227
+identifiers:
+    cce: CCE-82503-4
+ocil_clause: the correct value is not returned
+ocil: 'Verify that Red Hat Enterprise Linux CoreOS 4 disables the use of user namespaces
+    with the following commands:
+
+
+    Note: User namespaces are used primarily for Linux containers. If containers are
+    in use, this requirement is not applicable.
+
+
+    The runtime status of the <code>user.max_user_namespaces</code> kernel parameter
+    can be queried
+
+    by running the following command:
+
+    <pre>$ sysctl user.max_user_namespaces</pre>
+
+    <code>0</code>.
+
+    '
+oval_external_content: null
+fixtext: 'Configure Red Hat Enterprise Linux CoreOS 4 to disable the use of user namespace.
+
+
+    Note: User namespaces are used primarily for Linux containers. If containers are
+    in use, this requirement is not applicable.
+
+
+    Add or edit the following line in a system configuration file in the "/etc/sysctl.d/"
+    directory:
+
+    user.max_user_namespaces = 0
+
+
+    Load settings from all system configuration files with the following command:
+
+
+    $ sudo sysctl --system'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Red Hat Enterprise Linux CoreOS 4 must disable the use of user namespaces.
+warnings:
+-   general: 'This configuration baseline was created to deploy the base operating
+        system for general purpose
+
+        workloads. When the operating system is configured for certain purposes, such
+        as to host Linux Containers,
+
+        it is expected that <tt>user.max_user_namespaces</tt> will be enabled.'
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Red Hat Enterprise Linux CoreOS 4 must disable the use of
+            user namespaces.
+        vuldiscussion: 'User namespaces are used primarily for Linux containers. The
+            value 0
+
+            disallows the use of user namespaces.'
+        checktext: 'Verify Red Hat Enterprise Linux CoreOS 4 disables the use of user
+            namespaces with the following commands:
+
+
+            Note: User namespaces are used primarily for Linux containers. If containers
+            are in use, this requirement is not applicable.
+
+
+            $ sysctl user.max_user_namespaces
+
+
+            user.max_user_namespaces = 0
+
+
+            If the returned line does not have a value of "0", or a line is not returned,
+            this is a finding.
+
+
+            Check that the configuration files are present to enable this kernel parameter.
+
+
+            $ sudo /usr/lib/systemd/systemd-sysctl --cat-config | egrep -v ''^(#|;)''
+            | grep -F user.max_user_namespaces | tail -1
+
+            user.max_user_namespaces = 0
+
+
+            If the network parameter "user.max_user_namespaces" is not equal to "0"
+            or nothing is returned, this is a finding.'
+        fixtext: 'Configure Red Hat Enterprise Linux CoreOS 4 to disable the use of
+            user namespaces by adding the following line to a file, in the "/etc/sysctl.d"
+            directory:
+
+
+            Note: User namespaces are used primarily for Linux containers. If containers
+            are in use, this requirement is not applicable.
+
+
+            user.max_user_namespaces = 0
+
+
+            The system configuration files need to be reloaded for the changes to
+            take effect. To reload the contents of the files, run the following command:
+
+
+            $ sudo sysctl --system'
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Disable the use of user namespaces
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/restrictions/sysctl_user_max_user_namespaces/rule.yml
+template:
+    name: sysctl
+    vars:
+        sysctlvar: user.max_user_namespaces
+        sysctlval: '0'
+        datatype: int
+    backends: {}
+documentation_complete: true

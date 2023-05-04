@@ -1,0 +1,26 @@
+prodtype: all
+description: 'Most organizations have an operational need to run at
+
+    least one nameserver. However, there are many common attacks
+
+    involving DNS server software, and this server software should
+
+    be disabled on any system
+
+    on which it is not needed.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups:
+- disabling_dns_server
+- dns_server_isolation
+- dns_server_protection
+rules: {}
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: DNS Server
+definition_location: /home/oscap/content/linux_os/guide/services/dns/group.yml
+documentation_complete: true

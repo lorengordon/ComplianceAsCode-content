@@ -1,0 +1,28 @@
+prodtype: all
+description: 'The following configuration changes apply to the SSH client. They can
+
+    improve security parameters relwevant to the client user, e.g. increasing
+
+    entropy while generating initialization vectors. Note that these changes
+
+    influence only the default SSH client configuration. Changes in this group
+
+    can be overridden by the client user by modifying files within the
+
+    <pre>~/.ssh</pre> directory or by supplying parameters on the command line.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- ssh_client_rekey_limit
+- ssh_keys_passphrase_protected
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+title: Configure OpenSSH Client if Necessary
+definition_location: /home/oscap/content/linux_os/guide/services/ssh/ssh_client/group.yml
+documentation_complete: true

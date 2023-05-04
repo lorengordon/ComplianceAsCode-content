@@ -1,0 +1,60 @@
+prodtype: ol7,ol8,rhcos4,rhel7,rhel8,rhel9
+description: 'Kerberos is not an approved key distribution method for
+
+    Common Criteria. To prevent using Kerberos by system daemons,
+
+    remove the Kerberos keytab files, especially
+
+    <tt>/etc/krb5.keytab</tt>.'
+rationale: The key derivation function (KDF) in Kerberos is not FIPS compatible.
+severity: medium
+references:
+    disa: CCI-000803
+    ism: 0418,1055,1402
+    ospp: FTP_ITC_EXT.1
+    srg: SRG-OS-000120-GPOS-00061
+    stigid: RHEL-08-010161
+    stigref: SV-230238r646862_rule
+identifiers:
+    cce: CCE-82175-1
+ocil_clause: a keytab file is present on the system
+ocil: 'Run the following command to see if there are some keytabs
+
+    that would potentially allow the use of Kerberos by system daemons.
+
+    <pre>$ ls -la /etc/*.keytab</pre>
+
+    The expected result is
+
+    <pre>ls: cannot access ''/etc/*.keytab'': No such file or directory</pre>'
+oval_external_content: null
+fixtext: 'Configure Red Hat Enterprise Linux 8 to prevent system daemons from using
+    Kerberos for authentication.
+
+
+    Remove any files with the .keytab extension from the operating system.
+
+    rm -f /etc/*.keytab'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set
+    krb5_server_older_than_1_17-18 and krb5_workstation_older_than_1_17-18: null
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set
+    krb5_server_older_than_1_17-18_and_krb5_workstation_older_than_1_17-18: null
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Disable Kerberos by removing host keytab
+definition_location: /home/oscap/content/linux_os/guide/services/kerberos/kerberos_disable_no_keytab/rule.yml
+template: null
+documentation_complete: true

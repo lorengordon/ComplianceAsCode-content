@@ -1,0 +1,38 @@
+<def-group>
+    <definition class="compliance" id="is_fips_mode_enabled" version="1">
+      <metadata>
+        <title>Verify '/proc/sys/crypto/fips_enabled' exists</title>
+        
+    <affected family="unix">
+    <platform>SUSE Linux Enterprise 12</platform>
+      <platform>Ubuntu 22.04</platform>
+      <platform>SUSE Linux Enterprise 15</platform>
+      <platform>Ubuntu 20.04</platform>
+    </affected>
+        <description>Inspect the contents of /proc/sys/crypto/fips_enabled</description>
+    </metadata>
+      <criteria>
+          <criterion comment="Check contents of file" test_ref="is_fips_mode_enabled_test_whole_file_contents_fips_equal_to_one" />
+      </criteria>
+    </definition>
+
+    <ind:textfilecontent54_test check="all" check_existence="all_exist"
+    comment="Tests if contents of /proc/sys/crypto/fips_enabled is exactly what is defined in rule description"
+    id="is_fips_mode_enabled_test_whole_file_contents_fips_equal_to_one" version="1">
+      <ind:object object_ref="is_fips_mode_enabled_object_whole_file_contents_fips_equal_to_one" />
+      <ind:state state_ref="is_fips_mode_enabled_state_whole_file_contents_fips_equal_to_one" />
+    </ind:textfilecontent54_test>
+
+    <ind:textfilecontent54_object id="is_fips_mode_enabled_object_whole_file_contents_fips_equal_to_one" version="1">
+      <ind:behaviors singleline="true" multiline="false" />
+      <ind:filepath>/proc/sys/crypto/fips_enabled</ind:filepath>
+      <ind:pattern operation="pattern match">^.*$</ind:pattern>
+      <ind:instance datatype="int">1</ind:instance>
+    </ind:textfilecontent54_object>
+
+    <ind:textfilecontent54_state id="is_fips_mode_enabled_state_whole_file_contents_fips_equal_to_one" version="1">
+      <ind:text operation="equals">1
+</ind:text>
+    </ind:textfilecontent54_state>
+
+  </def-group>

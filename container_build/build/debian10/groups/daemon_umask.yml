@@ -1,0 +1,22 @@
+prodtype: all
+description: 'The umask is a per-process setting which limits
+
+    the default permissions for creation of new files and directories.
+
+    The system includes initialization scripts which set the default umask
+
+    for system daemons.'
+warnings: []
+requires: []
+conflicts: []
+values:
+- var_umask_for_daemons
+groups: {}
+rules: {}
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Daemon Umask
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/restrictions/daemon_umask/group.yml
+documentation_complete: true

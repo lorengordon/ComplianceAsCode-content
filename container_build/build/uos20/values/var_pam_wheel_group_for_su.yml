@@ -1,0 +1,16 @@
+description: 'pam_wheel module has a parameter called group, which controls which
+    groups
+
+    can access the su command.
+
+    This variable holds the valid value for the parameter.'
+type: string
+operator: equals
+interactive: false
+options:
+    default: ''
+    cis: sugroup
+warnings: []
+title: Group Name Used by pam_wheel Group Parameter
+definition_location: /home/oscap/content/linux_os/guide/system/accounts/accounts-restrictions/root_logins/var_pam_wheel_group_for_su.var
+documentation_complete: true

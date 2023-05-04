@@ -1,0 +1,20 @@
+prodtype: all
+description: 'If Apache was installed and activated, but the system
+
+    does not need to act as a web server, then it should be disabled
+
+    and removed from the system.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- package_httpd_removed
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Disable Apache if Possible
+definition_location: /home/oscap/content/linux_os/guide/services/http/disabling_httpd/group.yml
+documentation_complete: true

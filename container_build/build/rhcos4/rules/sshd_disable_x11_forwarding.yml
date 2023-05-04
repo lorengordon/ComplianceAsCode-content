@@ -1,0 +1,127 @@
+prodtype: all
+description: 'The X11Forwarding parameter provides the ability to tunnel X11 traffic
+
+    through the connection to enable remote graphic connections.
+
+    SSH has the capability to encrypt remote X11 connections when SSH''s
+
+    <tt>X11Forwarding</tt> option is enabled.
+
+    <br />
+
+    The default SSH configuration disables X11Forwarding. The appropriate
+
+    configuration is used if no value is set for <tt>X11Forwarding</tt>.
+
+    <br />
+
+    To explicitly disable X11 Forwarding, add or correct the following line in
+
+
+
+    <tt>/etc/ssh/sshd_config</tt>:
+
+
+    <pre>X11Forwarding no</pre>'
+rationale: 'Disable X11 forwarding unless there is an operational requirement to use
+    X11
+
+    applications directly. There is a small risk that the remote X11 servers of
+
+    users who are logged in via SSH with X11 forwarding could be compromised by
+
+    other users on the X11 server. Note that even if X11 forwarding is disabled,
+
+    users can always install their own forwarders.'
+severity: medium
+references:
+    disa: CCI-000366
+    nist: CM-6(b)
+    pcidss4: 2.2.4
+    srg: SRG-OS-000480-GPOS-00227
+identifiers: {}
+ocil_clause: the required value is not set
+ocil: 'To determine how the SSH daemon''s <tt>X11Forwarding</tt> option is set, run
+    the following command:
+
+
+    <pre>$ sudo grep -i X11Forwarding /etc/ssh/sshd_config</pre>
+
+
+    If a line indicating <tt>no</tt> is returned, then the required value is set.
+
+    '
+oval_external_content: null
+fixtext: 'To configure the system add or modify the following line in "/etc/ssh/sshd_config.d/00-complianceascode-hardening.conf".
+
+    X11Forwarding no
+
+    Restart the SSH daemon for the settings to take effect:
+
+    $ sudo systemctl restart sshd.service'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Red Hat Enterprise Linux CoreOS 4 remote X connections for interactive
+    users must be disabled unless to fulfill documented and validated mission requirements.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: The Red Hat Enterprise Linux CoreOS 4 SSH daemon must disable
+            remote X connections for interactive users.
+        vuldiscussion: When X11 forwarding is enabled, there may be additional exposure
+            to the server and client displays if the sshd proxy display is configured
+            to listen on the wildcard address.  By default, sshd binds the forwarding
+            server to the loopback address and sets the hostname part of the DIPSLAY
+            environment variable to localhost.  This prevents remote hosts from connecting
+            to the proxy display.
+        checktext: 'Verify the SSH daemon does not allow X11Forwarding with the following
+            command:
+
+
+            $ sudo grep -ir x11for  /etc/ssh/sshd_config /etc/ssh/sshd_config.d/*
+
+
+            X11forwarding no
+
+
+            If the value is returned as "yes", the returned line is commented out,
+            or no output is returned, and X11 forwarding is not documented with the
+            Information System Security Officer (ISSO) as an operational requirement,
+            this is a finding.'
+        fixtext: 'Configure the SSH daemon to not allow X11 forwarding.
+
+
+            Add the following line in "/etc/ssh/sshd_config", or uncomment the line
+            and set the value to "yes":
+
+
+            X11forwarding no
+
+
+            The SSH service must be restarted for changes to take effect:
+
+
+            $ sudo systemctl restart sshd.service'
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Disable X11 Forwarding
+definition_location: /home/oscap/content/linux_os/guide/services/ssh/ssh_server/sshd_disable_x11_forwarding/rule.yml
+template:
+    name: sshd_lineinfile
+    vars:
+        parameter: X11Forwarding
+        rule_id: sshd_disable_x11_forwarding
+        value: 'no'
+        is_default_value: 'true'
+    backends: {}
+documentation_complete: true

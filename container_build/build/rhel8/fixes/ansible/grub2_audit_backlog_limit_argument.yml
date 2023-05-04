@@ -1,0 +1,34 @@
+# platform = multi_platform_rhel,multi_platform_fedora,multi_platform_ol,multi_platform_rhv,multi_platform_sle
+# reboot = true
+# strategy = restrict
+# complexity = medium
+# disruption = low
+- name: Gather the package facts
+  package_facts:
+    manager: auto
+  tags:
+  - CCE-80943-4
+  - DISA-STIG-RHEL-08-030602
+  - NIST-800-53-CM-6(a)
+  - grub2_audit_backlog_limit_argument
+  - low_disruption
+  - low_severity
+  - medium_complexity
+  - reboot_required
+  - restrict_strategy
+
+- name: Update grub defaults and the bootloader menu
+  command: /sbin/grubby --update-kernel=ALL --args="audit_backlog_limit=8192"
+  when:
+  - ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  - '"grub2-common" in ansible_facts.packages'
+  tags:
+  - CCE-80943-4
+  - DISA-STIG-RHEL-08-030602
+  - NIST-800-53-CM-6(a)
+  - grub2_audit_backlog_limit_argument
+  - low_disruption
+  - low_severity
+  - medium_complexity
+  - reboot_required
+  - restrict_strategy

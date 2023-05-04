@@ -1,0 +1,18 @@
+name: cpe:/a:mount-{arg}
+check_id: installed_env_mount_{arg}
+bash_conditional: findmnt --kernel "{mountpoint}" > /dev/null || findmnt --fstab "{mountpoint}"
+    > /dev/null
+ansible_conditional: '"{mountpoint}" in ansible_mounts | map(attribute="mount") |
+    list'
+is_product_cpe: false
+versioned: false
+args:
+    tmp:
+        mountpoint: /tmp
+    var-tmp:
+        mountpoint: /var/tmp
+title: The {mountpoint} mountpoint is active (mounted) or configured in /etc/fstab
+definition_location: /home/oscap/content/shared/applicability/mount.yml
+template:
+    name: platform_mount
+documentation_complete: true

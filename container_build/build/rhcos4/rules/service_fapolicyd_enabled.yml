@@ -1,0 +1,125 @@
+prodtype: ol8,ol9,rhcos4,rhel8,rhel9
+description: "The File Access Policy service should be enabled.\n\nThe <code>fapolicyd</code>\
+    \ service can be enabled with the following manifest:\n<pre>\n---\napiVersion:\
+    \ machineconfiguration.openshift.io/v1\nkind: MachineConfig\nmetadata:\n  labels:\n\
+    \    machineconfiguration.openshift.io/role: master\n  name: 75-master-fapolicyd-enable\n\
+    spec:\n  config:\n    ignition:\n      version: 3.1.0\n    systemd:\n      units:\n\
+    \      - name: fapolicyd.service\n        enabled: true\n</pre>\n<p>\nThis will\
+    \ enable the <tt>fapolicyd</tt> service in all the\nnodes labeled with the \"\
+    master\" role.\n</p>\n<p>\nNote that this needs to be done for each <tt>MachineConfigPool</tt>\n\
+    </p>\n<p>\nFor more information on how to configure nodes with the Machine Config\n\
+    Operator see\n<a xmlns='http://www.w3.org/1999/xhtml' href='https://docs.openshift.com/container-platform/4.6/post_installation_configuration/machine-configuration-tasks.html'>the\
+    \ relevant documentation</a>.\n</p>"
+rationale: 'The <tt>fapolicyd</tt> service (File Access Policy Daemon)
+
+    implements application whitelisting to decide file access rights.'
+severity: medium
+references:
+    disa: CCI-001764,CCI-001774
+    nist: CM-6(a),SI-4(22)
+    ospp: FMT_SMF_EXT.1
+    srg: SRG-OS-000370-GPOS-00155,SRG-OS-000368-GPOS-00154,SRG-OS-000480-GPOS-00230
+identifiers:
+    cce: CCE-82534-9
+ocil_clause: the service is not enabled
+ocil: '
+
+    As a user with administrator privileges, log into a node in the relevant pool:
+
+    <pre>
+
+    $ oc debug node/$NODE_NAME
+
+    </pre>
+
+    At the <pre>sh-4.4#</pre> prompt, run:
+
+    <pre>
+
+    # chroot /host
+
+    </pre>
+
+
+    Run the following command to determine the current status of the
+
+    <code>fapolicyd</code> service:
+
+    <pre>$ sudo systemctl is-active fapolicyd</pre>
+
+    If the service is running, it should return the following: <pre>active</pre>'
+oval_external_content: null
+fixtext: 'To enable the fapolicyd service run the following command:
+
+
+    $ sudo systemctl enable --now fapolicyd'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: The Red Hat Enterprise Linux CoreOS 4 service fapolicyd must be enabled.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: The Red Hat Enterprise Linux CoreOS 4 fapolicy module must
+            be enabled.
+        vuldiscussion: 'The organization must identify authorized software programs
+            and permit execution of authorized software. The process used to identify
+            software programs that are authorized to execute on organizational information
+            systems is commonly referred to as whitelisting.
+
+
+            Utilizing a whitelist provides a configuration management method for allowing
+            the execution of only authorized software. Using only authorized software
+            decreases risk by limiting the number of potential vulnerabilities. Verification
+            of whitelisted software occurs prior to execution or at system startup.
+
+
+            User home directories/folders may contain information of a sensitive nature.
+            Non-privileged users should coordinate any sharing of information with
+            an SA through shared resources.
+
+
+            Red Hat Enterprise Linux CoreOS 4 ships with many optional packages. One
+            such package is a file access policy daemon called "fapolicyd". "fapolicyd"
+            is a userspace daemon that determines access rights to files based on
+            attributes of the process and file. It can be used to either blacklist
+            or whitelist processes or file access.
+
+
+            Proceed with caution with enforcing the use of this daemon. Improper configuration
+            may render the system non-functional. The "fapolicyd" API is not namespace
+            aware and can cause issues when launching or running containers.'
+        checktext: 'Verify that Red Hat Enterprise Linux CoreOS 4 fapolicyd is active
+            with the following command:
+
+
+            $ systemctl is-active fapolicyd
+
+
+            active
+
+
+            If fapolicyd module is not active, this is a finding.'
+        fixtext: 'Enable the fapolicyd with the following command:
+
+
+            $ systemctl enable --now fapolicyd'
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Enable the File Access Policy Service
+definition_location: /home/oscap/content/linux_os/guide/services/fapolicyd/service_fapolicyd_enabled/rule.yml
+template:
+    name: service_enabled
+    vars:
+        servicename: fapolicyd
+    backends: {}
+documentation_complete: true

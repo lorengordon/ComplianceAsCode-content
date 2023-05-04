@@ -1,0 +1,44 @@
+prodtype: alinux2,alinux3,fedora,ol7,ol8,rhcos4,rhel7,rhel8,rhel9,rhv4,sle12,sle15,ubuntu1604,ubuntu1804,ubuntu2004,ubuntu2204
+description: 'The Lightweight Directory Access Protocol (LDAP) is a service that provides
+
+    a method for looking up information from a central database.
+
+    The <code>openldap-clients</code> package can be removed with the following command:
+
+    <pre></pre>'
+rationale: If the system does not need to act as an LDAP client, it is recommended
+    that the software is removed to reduce the potential attack surface.
+severity: low
+references:
+    pcidss4: 2.2.4
+identifiers: {}
+ocil_clause: the package is installed
+ocil: 'Run the following command to determine if the <code>openldap-clients</code>
+    package is installed:
+
+    <pre>$ rpm -q openldap-clients</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Ensure LDAP client is not installed
+definition_location: /home/oscap/content/linux_os/guide/services/ldap/openldap_client/package_openldap-clients_removed/rule.yml
+template:
+    name: package_removed
+    vars:
+        pkgname: openldap-clients
+    backends: {}
+documentation_complete: true

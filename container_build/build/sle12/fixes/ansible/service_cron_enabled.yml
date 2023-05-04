@@ -1,0 +1,31 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = enable
+# complexity = low
+# disruption = low
+- name: Enable service cron
+  block:
+
+  - name: Gather the package facts
+    package_facts:
+      manager: auto
+
+  - name: Enable service cron
+    systemd:
+      name: cron
+      enabled: 'yes'
+      state: started
+      masked: 'no'
+    when:
+    - '"cron" in ansible_facts.packages'
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-91680-9
+  - NIST-800-53-CM-6(a)
+  - PCI-DSSv4-2.2.6
+  - enable_strategy
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+  - service_cron_enabled

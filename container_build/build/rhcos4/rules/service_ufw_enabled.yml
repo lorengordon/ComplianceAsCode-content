@@ -1,0 +1,75 @@
+prodtype: all
+description: "\nThe <code>ufw</code> service can be enabled with the following manifest:\n\
+    <pre>\n---\napiVersion: machineconfiguration.openshift.io/v1\nkind: MachineConfig\n\
+    metadata:\n  labels:\n    machineconfiguration.openshift.io/role: master\n  name:\
+    \ 75-master-ufw-enable\nspec:\n  config:\n    ignition:\n      version: 3.1.0\n\
+    \    systemd:\n      units:\n      - name: ufw.service\n        enabled: true\n\
+    </pre>\n<p>\nThis will enable the <tt>ufw</tt> service in all the\nnodes labeled\
+    \ with the \"master\" role.\n</p>\n<p>\nNote that this needs to be done for each\
+    \ <tt>MachineConfigPool</tt>\n</p>\n<p>\nFor more information on how to configure\
+    \ nodes with the Machine Config\nOperator see\n<a xmlns='http://www.w3.org/1999/xhtml'\
+    \ href='https://docs.openshift.com/container-platform/4.6/post_installation_configuration/machine-configuration-tasks.html'>the\
+    \ relevant documentation</a>.\n</p>"
+rationale: The ufw service must be enabled and running in order for ufw to protect
+    the system
+severity: medium
+references:
+    disa: CCI-002314
+    srg: SRG-OS-000297-GPOS-00115
+identifiers: {}
+ocil_clause: the service is not enabled
+ocil: '
+
+    As a user with administrator privileges, log into a node in the relevant pool:
+
+    <pre>
+
+    $ oc debug node/$NODE_NAME
+
+    </pre>
+
+    At the <pre>sh-4.4#</pre> prompt, run:
+
+    <pre>
+
+    # chroot /host
+
+    </pre>
+
+
+    Run the following command to determine the current status of the
+
+    <code>ufw</code> service:
+
+    <pre>$ sudo systemctl is-active ufw</pre>
+
+    If the service is running, it should return the following: <pre>active</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Verify ufw Enabled
+definition_location: /home/oscap/content/linux_os/guide/system/network/network-ufw/service_ufw_enabled/rule.yml
+template:
+    name: service_enabled
+    vars:
+        servicename: ufw
+    backends: {}
+documentation_complete: true

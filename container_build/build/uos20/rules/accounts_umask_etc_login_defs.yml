@@ -1,0 +1,124 @@
+prodtype: all
+description: 'To ensure the default umask controlled by <tt>/etc/login.defs</tt> is
+    set properly,
+
+    add or correct the <tt>UMASK</tt> setting in <tt>/etc/login.defs</tt> to read
+    as follows:
+
+    <pre>UMASK <sub idref="var_accounts_user_umask" /></pre>'
+rationale: 'The umask value influences the permissions assigned to files when they
+    are created.
+
+    A misconfigured umask value could result in files with excessive permissions that
+    can be read and
+
+    written to by unauthorized users.'
+severity: medium
+references:
+    anssi: BP28(R35)
+    cis-csc: 11,18,3,9
+    cobit5: APO13.01,BAI03.01,BAI03.02,BAI03.03,BAI10.01,BAI10.02,BAI10.03,BAI10.05
+    disa: CCI-000366
+    isa-62443-2009: 4.3.4.3.2,4.3.4.3.3
+    isa-62443-2013: SR 7.6
+    iso27001-2013: A.12.1.2,A.12.5.1,A.12.6.2,A.14.1.1,A.14.2.1,A.14.2.2,A.14.2.3,A.14.2.4,A.14.2.5,A.6.1.5
+    nerc-cip: CIP-003-8 R5.1.1,CIP-003-8 R5.3,CIP-004-6 R2.3,CIP-007-3 R2.1,CIP-007-3
+        R2.2,CIP-007-3 R2.3,CIP-007-3 R5.1,CIP-007-3 R5.1.1,CIP-007-3 R5.1.2
+    nist: AC-6(1),CM-6(a)
+    nist-csf: PR.IP-1,PR.IP-2
+    pcidss4: 8.6.1
+    srg: SRG-OS-000480-GPOS-00228
+identifiers: {}
+ocil_clause: the value for the "UMASK" parameter is not "<sub idref="var_accounts_user_umask"
+    />", or the "UMASK" parameter is missing or is commented out
+ocil: 'Verify UnionTech OS Server 20 defines default permissions for all authenticated
+    users in such a way that the user can only read and modify their own files with
+    the following command:
+
+
+    <pre># grep -i umask /etc/login.defs
+
+
+    UMASK <sub idref="var_accounts_user_umask" /></pre>'
+oval_external_content: null
+fixtext: 'Configure the UnionTech OS Server 20 to define default permissions for all
+    authenticated users in such a way that the user can only read and modify their
+    own files.
+
+
+    Add or edit the lines for the "UMASK" parameter in the "/etc/login.defs" file
+    to "<sub idref="var_accounts_user_umask" />":
+
+
+    UMASK <sub idref="var_accounts_user_umask" />'
+checktext: 'Verify UnionTech OS Server 20 defines default permissions for all authenticated
+    users in such a way that the user can only read and modify their own files with
+    the following command:
+
+
+    Note: If the value of the "UMASK" parameter is set to "000" in "/etc/login.defs"
+    file, the Severity is raised to a CAT I.
+
+
+    # grep -i umask /etc/login.defs
+
+
+    UMASK 077
+
+
+    If the value for the "UMASK" parameter is not "077", or the "UMASK" parameter
+    is missing or is commented out, this is a finding.'
+vuldiscussion: ''
+srg_requirement: UnionTech OS Server 20 must define default permissions for all authenticated
+    users in such a way that the user can only read and modify their own files.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: UnionTech OS Server 20 must define default permissions for
+            all authenticated users in such a way that the user can only read and
+            modify their own files.
+        vuldiscussion: Setting the most restrictive default permissions ensures that
+            when new accounts are created, they do not have unnecessary access.
+        checktext: 'Verify UnionTech OS Server 20 defines default permissions for
+            all authenticated users in such a way that the user can only read and
+            modify their own files with the following command:
+
+
+            Note: If the value of the "UMASK" parameter is set to "000" in "/etc/login.defs"
+            file, the Severity is raised to a CAT I.
+
+
+            # grep -i umask /etc/login.defs
+
+
+            UMASK 077
+
+
+            If the value for the "UMASK" parameter is not "077", or the "UMASK" parameter
+            is missing or is commented out, this is a finding.'
+        fixtext: 'Configure UnionTech OS Server 20 to define default permissions for
+            all authenticated users in such a way that the user can only read and
+            modify their own files.
+
+
+            Add or edit the lines for the "UMASK" parameter in the "/etc/login.defs"
+            file to "077":
+
+
+            UMASK 077'
+platform: package[shadow-utils]
+platforms: !!set
+    package[shadow-utils]: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    package_shadow-utils: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Ensure the Default Umask is Set Correctly in login.defs
+definition_location: /home/oscap/content/linux_os/guide/system/accounts/accounts-session/user_umask/accounts_umask_etc_login_defs/rule.yml
+template: null
+documentation_complete: true

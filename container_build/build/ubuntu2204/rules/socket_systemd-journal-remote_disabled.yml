@@ -1,0 +1,83 @@
+prodtype: rhel8,rhel9,ubuntu2204
+description: "Journald supports the ability to receive messages from remote hosts,\n\
+    thus acting as a log server. Clients should not receive data from\nother hosts.\n\
+    NOTE:\n    The same package, systemd-journal-remote , is used for both sending\n\
+    \    logs to remote hosts and receiving incoming logs.\n    With regards to receiving\
+    \ logs, there are two Systemd unit files;\n    systemd-journal-remote.socket and\
+    \ systemd-journal-remote.service."
+rationale: 'If a client is configured to also receive data, thus turning it into
+
+    a server, the client system is acting outside it''s operational boundary.'
+severity: medium
+references:
+    cis: 4.2.1.1.4
+identifiers: {}
+ocil_clause: the systemd-journal-remote socket is not masked
+ocil: '
+
+    To check that the <code>systemd-journal-remote.socket</code> socket is disabled
+    in system boot configuration with systemd, run the following command:
+
+    <pre>$ systemctl is-enabled <code>systemd-journal-remote.socket</code></pre>
+
+    Output should indicate the <code>systemd-journal-remote.socket</code> socket has
+    either not been installed,
+
+    or has been disabled at all runlevels, as shown in the example below:
+
+    <pre>$ sudo systemctl is-enabled <code>systemd-journal-remote.socket</code><br/>disabled</pre>
+
+
+    Run the following command to verify <code>systemd-journal-remote.socket</code>
+    is not active (i.e. not running) through current runtime configuration:
+
+    <pre>$ sudo systemctl is-active systemd-journal-remote.socket</pre>
+
+
+    If the socket is not running the command will return the following output:
+
+    <pre>inactive</pre>
+
+
+    The socket will also be masked, to check that the <code>systemd-journal-remote.socket</code>
+    is masked, run the following command:
+
+    <pre>$ sudo systemctl show <code>systemd-journal-remote.socket</code> | grep "LoadState\|UnitFileState"</pre>
+
+
+    If the socket is masked the command will return the following outputs:
+
+
+    <pre>LoadState=masked</pre>
+
+
+    <pre>UnitFileState=masked</pre>'
+oval_external_content: null
+fixtext: 'To disable the systemd-journal-remote.socket socket run the following command:
+
+
+    $ sudo systemctl disable --now systemd-journal-remote.socket
+
+
+    $ sudo systemctl mask --now systemd-journal-remote.socket'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Disable systemd-journal-remote Socket
+definition_location: /home/oscap/content/linux_os/guide/system/logging/journald/socket_systemd-journal-remote_disabled/rule.yml
+template: null
+documentation_complete: true

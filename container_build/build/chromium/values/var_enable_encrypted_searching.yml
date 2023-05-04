@@ -1,0 +1,13 @@
+description: Encrypted search URL for the Default Search Provider
+type: string
+operator: equals
+interactive: false
+options:
+    bing: https://www.bing.com/search?q={searchTerms}
+    default: https://www.google.com/#q={searchTerms}
+    google: https://www.google.com/#q={searchTerms}
+    yahoo: https://www.yahoo.com/search?q={searchTerms}
+warnings: []
+title: Encrypted Chromium Search URLs
+definition_location: /home/oscap/content/products/chromium/guide/chromium/var_enable_encrypted_searching.var
+documentation_complete: true

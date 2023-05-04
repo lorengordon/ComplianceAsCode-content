@@ -1,0 +1,77 @@
+prodtype: alinux2,alinux3,ol7,ol8,ol9,rhcos4,rhel7,rhel8,rhel9,sle12,sle15,ubuntu1804,ubuntu2004,ubuntu2204
+description: 'The <tt>nosuid</tt> mount option can be used to prevent
+
+    execution of setuid programs in <tt>/var/tmp</tt>. The SUID and SGID permissions
+
+    should not be required in these world-writable directories.
+
+    Add the <code>nosuid</code> option to the fourth column of
+
+    <tt>/etc/fstab</tt> for the line which controls mounting of
+
+    <code>/var/tmp</code>.'
+rationale: 'The presence of SUID and SGID executables should be tightly controlled.
+    Users
+
+    should not be able to execute SUID or SGID binaries from temporary storage partitions.'
+severity: medium
+references:
+    anssi: BP28(R12)
+    disa: CCI-001764
+    srg: SRG-OS-000368-GPOS-00154
+    stigid: OL08-00-040133
+    stigref: SV-248857r853866_rule
+identifiers: {}
+ocil_clause: the "/var/tmp" file system does not have the "nosuid" option set
+ocil: "Verify the <tt>nosuid</tt> option is configured for the <tt>/var/tmp</tt> mount\
+    \ point,\n    run the following command:\n    <pre>$ sudo mount | grep '\\s/var/tmp\\\
+    s'</pre>\n    <pre>. . . /var/tmp . . . nosuid . . .</pre>\n"
+oval_external_content: null
+fixtext: Modify "/etc/fstab" to use the "nosuid" option on the "/var/tmp" directory.
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Oracle Linux 8 must mount /var/tmp with the nosuid option.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Oracle Linux 8 must mount /var/tmp with the nosuid option.
+        vuldiscussion: The "nosuid" mount option causes the system to not execute
+            "setuid" and "setgid" files with owner privileges. This option must be
+            used for mounting any file system not containing approved "setuid" and
+            "setguid" files. Executing files from untrusted file systems increases
+            the opportunity for unprivileged users to attain unauthorized administrative
+            access.
+        checktext: 'Verify "/var/tmp" is mounted with the "nosuid" option:
+
+
+            $ mount | grep /var/tmp
+
+
+            /dev/mapper/rhel-var-tmp on /var/tmp type xfs (rw,nodev,nosuid,noexec,seclabel)
+
+
+            If the "/var/tmp" file system is mounted without the "nosuid" option,
+            this is a finding.'
+        fixtext: Modify "/etc/fstab" to use the "nosuid" option on the "/var/tmp"
+            directory.
+platform: machine and mount[var-tmp]
+platforms: !!set
+    machine and mount[var-tmp]: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine_and_mount_var-tmp: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Add nosuid Option to /var/tmp
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/partitions/mount_option_var_tmp_nosuid/rule.yml
+template:
+    name: mount_option
+    vars:
+        mountpoint: /var/tmp
+        mountoption: nosuid
+    backends: {}
+documentation_complete: true

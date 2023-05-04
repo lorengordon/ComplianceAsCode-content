@@ -1,0 +1,24 @@
+prodtype: all
+description: 'If the system is not going to be used as a router, then setting certain
+
+    kernel parameters ensure that the host will not perform routing
+
+    of network traffic.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- sysctl_net_ipv4_conf_all_send_redirects
+- sysctl_net_ipv4_conf_default_send_redirects
+- sysctl_net_ipv4_ip_forward
+platform: machine
+platforms: !!set
+    machine: null
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+title: Network Parameters for Hosts Only
+definition_location: /home/oscap/content/linux_os/guide/system/network/network-kernel/network_host_parameters/group.yml
+documentation_complete: true

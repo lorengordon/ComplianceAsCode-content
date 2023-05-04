@@ -1,0 +1,11 @@
+description: Blacklisted Protocol Schemas in Chromium
+type: string
+operator: equals
+interactive: false
+options:
+    default: javascript://*
+    javascript: javascript://*
+warnings: []
+title: Blacklisted Chromium Protocols
+definition_location: /home/oscap/content/products/chromium/guide/chromium/var_url_blacklist.var
+documentation_complete: true

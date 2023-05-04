@@ -1,0 +1,101 @@
+prodtype: fedora,rhel9
+description: 'Microarchitectural Data Sampling (MDS) is a hardware vulnerability which
+    allows unprivileged
+
+    speculative access to data which is available in various CPU internal buffers.
+
+
+    When performing store, load, L1 refill operations, processors write data into
+    temporary
+
+    microarchitectural structures (buffers), and the data in the buffer can be forwarded
+    to load
+
+    operations as an optimization.
+
+
+    Under certain conditions, data unrelated to the load operations can be speculatively
+
+    forwarded from the buffers to a disclosure gadget which allows in turn to infer
+    the value
+
+    via a cache side channel attack.
+
+
+    Select the appropriate mitigation by adding the argument
+
+    <tt>mds=<sub idref="var_mds_options" /></tt> to the default
+
+    GRUB 2 command line for the Linux operating system.
+
+    Configure the default Grub2 kernel command line to contain mds=<sub idref="var_mds_options"
+    /> as follows:
+
+    <pre># grub2-editenv - set "$(grub2-editenv - list | grep kernelopts) mds=<sub
+    idref="var_mds_options" />"</pre>
+
+
+    Not all processors are affected by all variants of MDS, but the mitigation mechanism
+    is
+
+    identical for all of them.
+
+
+    Since Linux Kernel 5.2 you can check whether the system is vulnerable or mitigated
+    with the
+
+    following command:
+
+    <tt>cat /sys/devices/system/cpu/vulnerabilities/mds</tt>'
+rationale: The MDS vulnerability allows an attacker to sample data from internal CPU
+    buffers.
+severity: medium
+references: {}
+identifiers: {}
+ocil_clause: MDS mitigations are not configured appropriately
+ocil: 'Inspect the form of default GRUB 2 command line for the Linux operating system
+
+    in <tt>/boot/grub2/grubenv</tt>.
+
+    If they include <tt>mds=<sub idref="" /></tt>, then the parameter
+
+    is configured at boot time.
+
+    <pre>$ sudo grep ''kernelopts.*mds=<sub idref="" />.*'' GRUBENV_FILE_LOCATION</pre>
+
+    Fill in <tt>GRUBENV_FILE_LOCATION</tt> based on information above.'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings:
+-   performance: 'Enabling MDS mitigations will impact performance of the system,
+        mainly by workloads with
+
+        high rates of user-kernel-user space transitions. For example, system calls,
+        NMIs and interrupts.'
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set
+    grub2: null
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set
+    grub2: null
+bash_conditional: null
+fixes: {}
+title: Configure Microarchitectural Data Sampling mitigation
+definition_location: /home/oscap/content/linux_os/guide/system/bootloader-grub2/grub2_mds_argument/rule.yml
+template:
+    name: grub2_bootloader_argument
+    vars:
+        arg_name: mds
+        arg_variable: var_mds_options
+    backends: {}
+documentation_complete: true

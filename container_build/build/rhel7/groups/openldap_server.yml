@@ -1,0 +1,19 @@
+prodtype: all
+description: "This section details some security-relevant settings\nfor an OpenLDAP\
+    \ server.\n\nInstallation and configuration of OpenLDAP on Red Hat Enterprise\
+    \ Linux 7 is available at:\n\n    <a xmlns='http://www.w3.org/1999/xhtml' href='https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system-level_authentication_guide/openldap'>https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system-level_authentication_guide/openldap</a>."
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups:
+- ldap_server_config_certificate_files
+rules:
+- package_openldap-servers_removed
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Configure OpenLDAP Server
+definition_location: /home/oscap/content/linux_os/guide/services/ldap/openldap_server/group.yml
+documentation_complete: true

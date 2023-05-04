@@ -1,0 +1,53 @@
+prodtype: fedora,ol7,ol8,rhel7,rhel8,sle12,sle15
+description: 'It is recommended that the <tt>/boot</tt> directory resides on a separate
+
+    partition. This makes it easier to apply restrictions e.g. through the
+
+    <tt>noexec</tt> mount option. Eventually, the <tt>/boot</tt> partition can
+
+    be configured not to be mounted automatically with the <tt>noauto</tt> mount
+
+    option.'
+rationale: 'The <tt>/boot</tt> partition contains the kernel and bootloader files.
+
+    Access to this partition should be restricted.'
+severity: medium
+references:
+    anssi: BP28(R12)
+identifiers: {}
+ocil_clause: '"/boot is not a mountpoint" is returned'
+ocil: 'Verify that a separate file system/partition has been created for <code>/boot</code>
+    with the following command:
+
+
+    <pre>$ mountpoint /boot</pre>
+
+    '
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Ensure /boot Located On Separate Partition
+definition_location: /home/oscap/content/linux_os/guide/system/software/disk_partitioning/partition_for_boot/rule.yml
+template:
+    name: mount
+    vars:
+        mountpoint: /boot
+        min_size: 1073741824
+    backends: {}
+documentation_complete: true

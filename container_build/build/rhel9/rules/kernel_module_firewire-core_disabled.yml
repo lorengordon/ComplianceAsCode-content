@@ -1,0 +1,67 @@
+prodtype: fedora,ol8,ol9,rhcos4,rhel7,rhel8,rhel9
+description: 'The IEEE 1394 (FireWire) is a serial bus standard for
+
+    high-speed real-time communication.
+
+
+    To configure the system to prevent the <code>firewire-core</code>
+
+    kernel module from being loaded, add the following line to the file <code>/etc/modprobe.d/firewire-core.conf</code>:
+
+    <pre>install firewire-core /bin/true</pre>'
+rationale: 'Disabling FireWire protects the system against exploitation of any
+
+    flaws in its implementation.'
+severity: low
+references:
+    disa: CCI-000381
+    nist: AC-18
+    ospp: FMT_SMF_EXT.1
+    srg: SRG-OS-000095-GPOS-00049
+identifiers:
+    cce: CCE-84060-3
+ocil_clause: no line is returned
+ocil: '
+
+    If the system is configured to prevent the loading of the <code>firewire-core</code>
+    kernel module,
+
+    it will contain lines inside any file in <code>/etc/modprobe.d</code> or the deprecated<code>
+    /etc/modprobe.conf</code>.
+
+    These lines instruct the module loading system to run another program (such as
+    <code>/bin/true</code>) upon a module <code>install</code> event.
+
+
+    Run the following command to search for such lines in all files in <code>/etc/modprobe.d</code>
+    and the deprecated <code>/etc/modprobe.conf</code>:
+
+    <pre>$ grep -r firewire-core /etc/modprobe.conf /etc/modprobe.d</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ' The kernel module firewire-core must be disabled in Red Hat Enterprise
+    Linux 9.'
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Disable IEEE 1394 (FireWire) Support
+definition_location: /home/oscap/content/linux_os/guide/system/network/network-uncommon/kernel_module_firewire-core_disabled/rule.yml
+template:
+    name: kernel_module_disabled
+    vars:
+        kernmodule: firewire-core
+    backends: {}
+documentation_complete: true

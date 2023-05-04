@@ -1,0 +1,11 @@
+name: cpe:/a:not_s390x_arch
+check_id: proc_sys_kernel_osrelease_arch_not_s390x
+bash_conditional: '! grep -q s390x /proc/sys/kernel/osrelease'
+ansible_conditional: ansible_architecture != "s390x"
+is_product_cpe: false
+versioned: false
+args: {}
+title: System architecture is not S390X
+definition_location: /home/oscap/content/shared/applicability/not_s390x_arch.yml
+template: null
+documentation_complete: true

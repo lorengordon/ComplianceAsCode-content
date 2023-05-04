@@ -1,0 +1,21 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = configure
+# complexity = low
+# disruption = low
+
+
+
+
+- name: Test for existence /var/log/syslog
+  stat:
+    path: "/var/log/syslog"
+  register: file_exists
+
+- name: Ensure owner 104 on /var/log/syslog
+  file:
+    path: "/var/log/syslog"
+    owner: "104"
+  when: file_exists.stat is defined and file_exists.stat.exists
+
+

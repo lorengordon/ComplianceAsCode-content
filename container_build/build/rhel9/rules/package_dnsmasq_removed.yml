@@ -1,0 +1,53 @@
+prodtype: rhel9
+description: 'dnsmasq is a lightweight tool that provides DNS caching, DNS forwarding
+    and
+
+    DHCP (Dynamic Host Configuration Protocol) services.
+
+    <br />
+
+    The <code>dnsmasq</code> package can be removed with the following command:
+
+    <pre>
+
+    $ sudo dnf erase dnsmasq</pre>'
+rationale: 'Unless a system is specifically designated to act as a DNS
+
+    caching, DNS forwarding and/or DHCP server, it is recommended that the
+
+    package be removed to reduce the potential attack surface.'
+severity: low
+references:
+    cis: 2.2.14
+identifiers:
+    cce: CCE-86063-5
+ocil_clause: the package is installed
+ocil: 'Run the following command to determine if the <code>dnsmasq</code> package
+    is installed:
+
+    <pre>$ rpm -q dnsmasq</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Uninstall dnsmasq Package
+definition_location: /home/oscap/content/linux_os/guide/services/dns/package_dnsmasq_removed/rule.yml
+template:
+    name: package_removed
+    vars:
+        pkgname: dnsmasq
+    backends: {}
+documentation_complete: true

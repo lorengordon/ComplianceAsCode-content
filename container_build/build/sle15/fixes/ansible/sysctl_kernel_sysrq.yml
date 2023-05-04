@@ -1,0 +1,72 @@
+# platform = multi_platform_all
+# reboot = true
+# strategy = disable
+# complexity = low
+# disruption = medium
+- name: List /etc/sysctl.d/*.conf files
+  find:
+    paths:
+    - /etc/sysctl.d/
+    - /run/sysctl.d/
+    - /usr/lib/sysctl.d/
+    contains: ^[\s]*kernel.sysrq.*$
+    patterns: '*.conf'
+    file_type: any
+  register: find_sysctl_d
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-91261-8
+  - disable_strategy
+  - low_complexity
+  - medium_disruption
+  - medium_severity
+  - reboot_required
+  - sysctl_kernel_sysrq
+
+- name: Comment out any occurrences of kernel.sysrq from config files
+  replace:
+    path: '{{ item.path }}'
+    regexp: ^[\s]*kernel.sysrq
+    replace: '#kernel.sysrq'
+  loop: '{{ find_sysctl_d.files }}'
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-91261-8
+  - disable_strategy
+  - low_complexity
+  - medium_disruption
+  - medium_severity
+  - reboot_required
+  - sysctl_kernel_sysrq
+
+- name: Comment out any occurrences of kernel.sysrq from /etc/sysctl.conf
+  replace:
+    path: /etc/sysctl.conf
+    regexp: ^[\s]*kernel.sysrq
+    replace: '#kernel.sysrq'
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-91261-8
+  - disable_strategy
+  - low_complexity
+  - medium_disruption
+  - medium_severity
+  - reboot_required
+  - sysctl_kernel_sysrq
+
+- name: Ensure sysctl kernel.sysrq is set to 0
+  sysctl:
+    name: kernel.sysrq
+    value: '0'
+    sysctl_file: /etc/sysctl.d/kernel_sysrq.conf
+    state: present
+    reload: true
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-91261-8
+  - disable_strategy
+  - low_complexity
+  - medium_disruption
+  - medium_severity
+  - reboot_required
+  - sysctl_kernel_sysrq

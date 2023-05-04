@@ -1,0 +1,94 @@
+prodtype: fedora,ol7,ol8,ol9,rhel7,rhel8,rhel9,rhv4,sle12,sle15
+description: 'All directories in local partitions which are world-writable should
+    be owned
+
+    by root. If any world-writable directories are not owned by root, this
+
+    should be investigated. Following this, the files should be deleted or
+
+    assigned to root user.'
+rationale: 'Allowing a user account to own a world-writable directory is
+
+    undesirable because it allows the owner of that directory to remove
+
+    or replace any files that may be placed in the directory by other
+
+    users.'
+severity: medium
+references:
+    anssi: BP28(R40)
+    disa: CCI-000366
+    srg: SRG-OS-000480-GPOS-00227,SRG-OS-000138-GPOS-00069
+identifiers: {}
+ocil_clause: there is output
+ocil: 'The following command will discover and print world-writable directories that
+
+    are not owned by root.  Run it once for each local partition <i>PART</i>:
+
+    <pre>$ sudo find <i>PART</i> -xdev -type d -perm -0002 -uid +0 -print</pre>'
+oval_external_content: null
+fixtext: 'Configure all public directories to be owned by root or a system account
+    to prevent unauthorized and unintended information transferred via shared system
+    resources.
+
+
+    Set the owner of all public directories as root or a system account using the
+    command, replace "[Public Directory]" with any directory path not owned by root
+    or a system account:
+
+
+    $ sudo chown root [Public Directory]'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: All Oracle Linux 7 world-writable directories must be owned by root,
+    sys, bin, or an application user.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: All Oracle Linux 7 world-writable directories must be owned
+            by root, sys, bin, or an application user.
+        vuldiscussion: 'If a world-writable directory is not owned by root, sys, bin,
+            or an application User Identifier (UID), unauthorized users may be able
+            to modify files created by others.
+
+
+            The only authorized public directories are those temporary directories
+            supplied with the system or those designed to be temporary file repositories.
+            The setting is normally reserved for directories used by the system and
+            by users for temporary file storage, (e.g., /tmp), and for directories
+            requiring global read/write access.'
+        checktext: 'Verify that world writable directories are owned by root, a system
+            account, or an application account with the following command. It will
+            discover and print world-writable directories that are not owned by root.  Run
+            it once for each local partition [PART]:
+
+
+            $ sudo find  PART  -xdev -type d -perm -0002 -uid +0 -print
+
+
+            If there is output, this is a finding.'
+        fixtext: 'Configure all public directories to be owned by root or a system
+            account to prevent unauthorized and unintended information transferred
+            via shared system resources.
+
+
+            Set the owner of all public directories as root or a system account using
+            the command, replace "[Public Directory]" with any directory path not
+            owned by root or a system account:
+
+
+            $ sudo chown root [Public Directory]'
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Ensure All World-Writable Directories Are Owned by root user
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/files/dir_perms_world_writable_root_owned/rule.yml
+template: null
+documentation_complete: true

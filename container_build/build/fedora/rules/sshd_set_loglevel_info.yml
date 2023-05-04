@@ -1,0 +1,85 @@
+prodtype: all
+description: 'The INFO parameter specifices that record login and logout activity
+    will be logged.
+
+    <br/>
+
+    The default SSH configuration sets the log level to INFO. The appropriate
+
+    configuration is used if no value is set for <tt>LogLevel</tt>.
+
+    <br/>
+
+    To explicitly specify the log level in SSH, add or correct the following line
+    in
+
+
+
+    <tt>/etc/ssh/sshd_config.d/00-complianceascode-hardening.conf</tt>:
+
+
+    <pre>LogLevel INFO</pre>'
+rationale: 'SSH provides several logging levels with varying amounts of verbosity.
+    <tt>DEBUG</tt> is specifically
+
+    not recommended other than strictly for debugging SSH communications since it
+    provides
+
+    so much data that it is difficult to identify important security information.
+    <tt>INFO</tt> level is the
+
+    basic level that only records login activity of SSH users. In many situations,
+    such as Incident
+
+    Response, it is important to determine when a particular user was active on a
+    system. The
+
+    logout record can eliminate those users who disconnected, which helps narrow the
+    field.'
+severity: low
+references:
+    nist: AC-17(a),CM-6(a)
+identifiers: {}
+ocil_clause: the required value is not set
+ocil: 'To determine how the SSH daemon''s <tt>LogLevel</tt> option is set, run the
+    following command:
+
+
+    <pre>$ sudo grep -i LogLevel /etc/ssh/sshd_config.d/00-complianceascode-hardening.conf</pre>
+
+    <pre>$ sudo grep -i LogLevel /etc/ssh/sshd_config.d/01-complianceascode-reinforce-os-defaults.conf</pre>
+
+
+    If a line indicating <tt>INFO</tt> is returned, then the required value is set.
+
+    '
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Set LogLevel to INFO
+definition_location: /home/oscap/content/linux_os/guide/services/ssh/ssh_server/sshd_set_loglevel_info/rule.yml
+template:
+    name: sshd_lineinfile
+    vars:
+        parameter: LogLevel
+        rule_id: sshd_set_loglevel_info
+        value: INFO
+        is_default_value: 'true'
+    backends: {}
+documentation_complete: true

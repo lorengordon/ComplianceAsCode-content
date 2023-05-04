@@ -1,0 +1,31 @@
+<def-group>
+  <definition class="inventory" id="package_shadow-utils"
+  version="1"><metadata>
+        <title>Package login is installed</title>
+            <affected family="unix">
+                <platform>multi_platform_all</platform>
+            </affected>
+        <description>The DPKG package login should be installed.</description>
+    </metadata>
+    <criteria>
+    
+      <criterion comment="Platform package login is installed"
+      test_ref="inventory_test_package_shadow-utils_installed" />
+    
+    </criteria>
+  </definition>
+
+
+  <linux:dpkginfo_test check="all" check_existence="all_exist"
+  id="inventory_test_package_shadow-utils_installed" version="1"
+  comment="package login is installed">
+    <linux:object object_ref="obj_inventory_test_package_shadow-utils_installed" />
+    
+  </linux:dpkginfo_test>
+  <linux:dpkginfo_object id="obj_inventory_test_package_shadow-utils_installed" version="1">
+    <linux:name>login</linux:name>
+  </linux:dpkginfo_object>
+  
+
+
+</def-group>

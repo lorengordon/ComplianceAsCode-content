@@ -1,0 +1,49 @@
+prodtype: firefox
+description: 'Firefox must be configured to not automatically execute or download
+    MIME types that are not
+
+    authorized for auto-download.'
+rationale: 'This setting ensures that some file types that may be downloaded or executed
+    without user interaction
+
+    are not downloaded and/or executed.'
+severity: medium
+references:
+    disa: CCI-001242
+    nist: SI-3 c
+    stigid: FFOX-00-000006
+identifiers: {}
+ocil_clause: null
+ocil: "To verify that any proscribed file types are configured for automatic download,\n\
+    type \"about:preferences\" into the search bar,  then\ntype \"Applications\" in\
+    \ the Find bar in the upper-right corner.\nIf any of the following file extensions\
+    \ are listed and the Action item associated with it \nis an application that does\
+    \ or can execute the code, this is a finding.\nIf the entry exists and the \"\
+    Action\" is \"Save File\" or \"Always Ask\", this is not a finding.\n<ul>\n  <li>HTA</li>\n\
+    \  <li>JSE</li>\n  <li>JS</li>\n  <li>MOCHA</li>\n  <li>SHS</li>\n  <li>VBE</li>\n\
+    \  <li>VBS</li>\n  <li>SCT</li>\n  <li>WSC</li>\n  <li>FDF</li>\n  <li>XFDF</li>\n\
+    \  <li>LSL</li>\n  <li>LSO</li>\n  <li>LSS</li>\n  <li>IQY</li>\n  <li>RQY</li>\n\
+    \  <li>DOS</li>\n  <li>BAT</li>\n  <li>PS</li>\n  <li>EPS</li>\n  <li>WCH</li>\n\
+    \  <li>WCM</li>\n  <li>WB1</li>\n  <li>WB3</li>\n  <li>WCH</li>\n  <li>WCM</li>\n\
+    \  <li>AD</li>\n</ul>"
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Disable auto-download for proscribed MIME types.
+definition_location: /home/oscap/content/products/firefox/guide/firefox/firefox_preferences-auto-download_actions/rule.yml
+template: null
+documentation_complete: true

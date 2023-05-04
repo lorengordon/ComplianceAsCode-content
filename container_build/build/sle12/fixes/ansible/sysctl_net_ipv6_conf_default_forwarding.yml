@@ -1,0 +1,86 @@
+# platform = multi_platform_all
+# reboot = true
+# strategy = disable
+# complexity = low
+# disruption = medium
+- name: List /etc/sysctl.d/*.conf files
+  find:
+    paths:
+    - /etc/sysctl.d/
+    - /run/sysctl.d/
+    - /usr/lib/sysctl.d/
+    contains: ^[\s]*net.ipv6.conf.default.forwarding.*$
+    patterns: '*.conf'
+    file_type: any
+  register: find_sysctl_d
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-83248-5
+  - DISA-STIG-SLES-12-030363
+  - NIST-800-53-CM-6(b)
+  - NIST-800-53-CM-6.1(iv)
+  - disable_strategy
+  - low_complexity
+  - medium_disruption
+  - medium_severity
+  - reboot_required
+  - sysctl_net_ipv6_conf_default_forwarding
+
+- name: Comment out any occurrences of net.ipv6.conf.default.forwarding from config
+    files
+  replace:
+    path: '{{ item.path }}'
+    regexp: ^[\s]*net.ipv6.conf.default.forwarding
+    replace: '#net.ipv6.conf.default.forwarding'
+  loop: '{{ find_sysctl_d.files }}'
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-83248-5
+  - DISA-STIG-SLES-12-030363
+  - NIST-800-53-CM-6(b)
+  - NIST-800-53-CM-6.1(iv)
+  - disable_strategy
+  - low_complexity
+  - medium_disruption
+  - medium_severity
+  - reboot_required
+  - sysctl_net_ipv6_conf_default_forwarding
+
+- name: Comment out any occurrences of net.ipv6.conf.default.forwarding from /etc/sysctl.conf
+  replace:
+    path: /etc/sysctl.conf
+    regexp: ^[\s]*net.ipv6.conf.default.forwarding
+    replace: '#net.ipv6.conf.default.forwarding'
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-83248-5
+  - DISA-STIG-SLES-12-030363
+  - NIST-800-53-CM-6(b)
+  - NIST-800-53-CM-6.1(iv)
+  - disable_strategy
+  - low_complexity
+  - medium_disruption
+  - medium_severity
+  - reboot_required
+  - sysctl_net_ipv6_conf_default_forwarding
+- (xccdf-var sysctl_net_ipv6_conf_default_forwarding_value)
+
+- name: Ensure sysctl net.ipv6.conf.default.forwarding is set
+  sysctl:
+    name: net.ipv6.conf.default.forwarding
+    value: '{{ sysctl_net_ipv6_conf_default_forwarding_value }}'
+    sysctl_file: /etc/sysctl.d/net_ipv6_conf_default_forwarding.conf
+    state: present
+    reload: true
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-83248-5
+  - DISA-STIG-SLES-12-030363
+  - NIST-800-53-CM-6(b)
+  - NIST-800-53-CM-6.1(iv)
+  - disable_strategy
+  - low_complexity
+  - medium_disruption
+  - medium_severity
+  - reboot_required
+  - sysctl_net_ipv6_conf_default_forwarding

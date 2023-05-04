@@ -1,0 +1,76 @@
+prodtype: alinux2,alinux3,anolis8,rhel8,rhel9
+description: The Lightweight Directory Access Protocol (LDAP) is a service that provides
+    a method for looking up information from a central database.
+rationale: 'If the system will not need to act as an LDAP server, it is recommended
+    that the software be
+
+    disabled to reduce the potential attack surface.'
+severity: medium
+references: {}
+identifiers: {}
+ocil_clause: the "slapd" is loaded and not masked
+ocil: 'To check that the <code>slapd</code> service is disabled in system boot configuration,
+
+    run the following command:
+
+    <pre>$ sudo systemctl is-enabled <code>slapd</code></pre>
+
+    Output should indicate the <code>slapd</code> service has either not been installed,
+
+    or has been disabled at all runlevels, as shown in the example below:
+
+    <pre>$ sudo systemctl is-enabled <code>slapd</code><br/> disabled</pre>
+
+
+    Run the following command to verify <code>slapd</code> is not active (i.e. not
+    running) through current runtime configuration:
+
+    <pre>$ sudo systemctl is-active slapd</pre>
+
+
+    If the service is not running the command will return the following output:
+
+    <pre>inactive</pre>
+
+
+    The service will also be masked, to check that the <code>slapd</code> is masked,
+    run the following command:
+
+    <pre>$ sudo systemctl show <code>slapd</code> | grep "LoadState\|UnitFileState"</pre>
+
+
+    If the service is masked the command will return the following outputs:
+
+
+    <pre>LoadState=masked</pre>
+
+
+    <pre>UnitFileState=masked</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Disable LDAP Server (slapd)
+definition_location: /home/oscap/content/linux_os/guide/services/ldap/openldap_server/service_slapd_disabled/rule.yml
+template:
+    name: service_disabled
+    vars:
+        servicename: slapd
+        packagename: openldap-servers
+    backends: {}
+documentation_complete: true

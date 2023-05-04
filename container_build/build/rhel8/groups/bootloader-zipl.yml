@@ -1,0 +1,33 @@
+prodtype: all
+description: 'During the boot process, the bootloader is
+
+    responsible for starting the execution of the kernel and passing
+
+    options to it.
+
+    The default Red Hat Enterprise Linux 8 boot loader for s390x systems is called
+    zIPL.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- zipl_audit_argument
+- zipl_audit_backlog_limit_argument
+- zipl_bls_entries_only
+- zipl_bootmap_is_up_to_date
+- zipl_enable_selinux
+- zipl_page_poison_argument
+- zipl_slub_debug_argument
+- zipl_systemd_debug-shell_argument_absent
+- zipl_vsyscall_argument
+platform: s390x_arch
+platforms: !!set
+    s390x_arch: null
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    s390x_arch: null
+title: zIPL bootloader configuration
+definition_location: /home/oscap/content/linux_os/guide/system/bootloader-zipl/group.yml
+documentation_complete: true

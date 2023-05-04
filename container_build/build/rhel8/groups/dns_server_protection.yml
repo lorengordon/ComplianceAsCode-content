@@ -1,0 +1,24 @@
+prodtype: all
+description: 'This section discusses DNS configuration options which make it
+
+    more difficult for attackers to gain access to private DNS data or to modify
+
+    DNS data.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups:
+- dns_server_partition_with_views
+- dns_server_separate_internal_external
+rules:
+- dns_server_authenticate_zone_transfers
+- dns_server_disable_dynamic_updates
+- dns_server_disable_zone_transfers
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Protect DNS Data from Tampering or Attack
+definition_location: /home/oscap/content/linux_os/guide/services/dns/dns_server_protection/group.yml
+documentation_complete: true

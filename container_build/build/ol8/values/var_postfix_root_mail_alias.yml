@@ -1,0 +1,11 @@
+description: Specify an email address (string) for a root mail alias.
+type: string
+operator: equals
+interactive: true
+options:
+    default: system.administrator@mail.mil
+    mil_sysadmin: system.administrator@mail.mil
+warnings: []
+title: Postfix Root Mail Alias
+definition_location: /home/oscap/content/linux_os/guide/services/mail/postfix_client/var_postfix_root_mail_alias.var
+documentation_complete: true

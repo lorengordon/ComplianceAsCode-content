@@ -1,0 +1,22 @@
+prodtype: all
+description: 'Among the modules available for <tt>httpd</tt> are several whose use
+    may improve the
+
+    security of the web server installation. This section recommends and discusses
+
+    the deployment of security-relevant modules.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups:
+- httpd_deploy_mod_security
+- httpd_deploy_mod_ssl
+rules: {}
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Use Appropriate Modules to Improve httpd's Security
+definition_location: /home/oscap/content/linux_os/guide/services/http/securing_httpd/httpd_modules_improve_security/group.yml
+documentation_complete: true

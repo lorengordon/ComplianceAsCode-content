@@ -1,0 +1,87 @@
+# platform = multi_platform_rhel,multi_platform_fedora,multi_platform_ol,multi_platform_rhv,multi_platform_sle
+# reboot = true
+# strategy = restrict
+# complexity = medium
+# disruption = low
+- name: Gather the package facts
+  package_facts:
+    manager: auto
+  tags:
+  - CCE-92254-2
+  - NIST-800-53-CM-6(a)
+  - grub2_audit_backlog_limit_argument
+  - low_disruption
+  - low_severity
+  - medium_complexity
+  - reboot_required
+  - restrict_strategy
+
+- name: Check audit_backlog_limit argument exists
+  command: grep 'GRUB_CMDLINE_LINUX.*audit_backlog_limit=' /etc/default/grub
+  failed_when: false
+  register: argcheck
+  when:
+  - ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  - '"grub2" in ansible_facts.packages'
+  tags:
+  - CCE-92254-2
+  - NIST-800-53-CM-6(a)
+  - grub2_audit_backlog_limit_argument
+  - low_disruption
+  - low_severity
+  - medium_complexity
+  - reboot_required
+  - restrict_strategy
+
+- name: Replace existing audit_backlog_limit argument
+  replace:
+    path: /etc/default/grub
+    regexp: audit_backlog_limit=\w+
+    replace: audit_backlog_limit=8192
+  when:
+  - ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  - '"grub2" in ansible_facts.packages'
+  - argcheck.rc == 0
+  tags:
+  - CCE-92254-2
+  - NIST-800-53-CM-6(a)
+  - grub2_audit_backlog_limit_argument
+  - low_disruption
+  - low_severity
+  - medium_complexity
+  - reboot_required
+  - restrict_strategy
+
+- name: Add audit_backlog_limit argument
+  replace:
+    path: /etc/default/grub
+    regexp: (GRUB_CMDLINE_LINUX=.*)"
+    replace: \1 audit_backlog_limit=8192"
+  when:
+  - ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  - '"grub2" in ansible_facts.packages'
+  - argcheck.rc != 0
+  tags:
+  - CCE-92254-2
+  - NIST-800-53-CM-6(a)
+  - grub2_audit_backlog_limit_argument
+  - low_disruption
+  - low_severity
+  - medium_complexity
+  - reboot_required
+  - restrict_strategy
+
+- name: Update grub defaults and the bootloader menu
+  command: /usr/sbin/grub2-mkconfig -o /boot/grub2/grub.cfg
+  when:
+  - ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  - '"grub2" in ansible_facts.packages'
+  tags:
+  - CCE-92254-2
+  - NIST-800-53-CM-6(a)
+  - grub2_audit_backlog_limit_argument
+  - low_disruption
+  - low_severity
+  - medium_complexity
+  - reboot_required
+  - restrict_strategy

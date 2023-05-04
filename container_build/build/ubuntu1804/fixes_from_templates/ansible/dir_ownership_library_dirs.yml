@@ -1,0 +1,66 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = configure
+# complexity = low
+# disruption = low
+
+
+
+
+
+- name: Ensure owner on directory /lib/ recursively
+  file:
+    path: "/lib/"
+    state: directory
+
+    recurse: yes
+
+    owner: "0"
+
+
+
+
+
+
+
+- name: Ensure owner on directory /lib64/ recursively
+  file:
+    path: "/lib64/"
+    state: directory
+
+    recurse: yes
+
+    owner: "0"
+
+
+
+
+
+
+
+- name: Ensure owner on directory /usr/lib/ recursively
+  file:
+    path: "/usr/lib/"
+    state: directory
+
+    recurse: yes
+
+    owner: "0"
+
+
+
+
+
+
+
+- name: Ensure owner on directory /usr/lib64/ recursively
+  file:
+    path: "/usr/lib64/"
+    state: directory
+
+    recurse: yes
+
+    owner: "0"
+
+
+

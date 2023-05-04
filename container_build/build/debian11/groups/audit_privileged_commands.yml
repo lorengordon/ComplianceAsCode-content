@@ -1,0 +1,24 @@
+prodtype: all
+description: 'At a minimum, the audit system should collect the execution of
+
+    privileged commands for all users and root.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- audit_privileged_commands_init
+- audit_privileged_commands_poweroff
+- audit_privileged_commands_reboot
+- audit_privileged_commands_shutdown
+- audit_rules_privileged_commands
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set
+    machine: null
+    package[audit]: null
+cpe_platform_names: !!set {}
+title: Record Information on the Use of Privileged Commands
+definition_location: /home/oscap/content/linux_os/guide/system/auditing/auditd_configure_rules/audit_privileged_commands/group.yml
+documentation_complete: true

@@ -1,0 +1,28 @@
+prodtype: all
+description: 'The <tt>/var/log</tt> directory contains files with logs of error
+
+    messages in the system and should only be accessed by authorized
+
+    personnel.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- file_groupowner_var_log
+- file_groupowner_var_log_messages
+- file_groupowner_var_log_syslog
+- file_owner_var_log
+- file_owner_var_log_messages
+- file_owner_var_log_syslog
+- file_permissions_var_log
+- file_permissions_var_log_messages
+- file_permissions_var_log_syslog
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Verify Permissions on Files within /var/log Directory
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/files/permissions_var_log_dir/group.yml
+documentation_complete: true

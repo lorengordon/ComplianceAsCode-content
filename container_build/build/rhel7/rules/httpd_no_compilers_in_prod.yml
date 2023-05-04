@@ -1,0 +1,53 @@
+prodtype: rhel7,rhel8
+description: 'The presence of a compiler on a production server facilitates the malicious
+
+    user''s task of creating custom versions of programs and installing Trojan
+
+    Horses or viruses.'
+rationale: 'An attacker''s code could be uploaded and compiled on the server
+
+    under attack.'
+severity: medium
+references:
+    stigid: WG080
+identifiers: {}
+ocil_clause: 'the web server is part of an application suite and a comiler is needed
+
+    for installation, patching, and upgrading of the suite or if the compiler
+
+    is embedded and can''t be removed without breaking the suite, document the
+
+    installation of the compiler with the ISSO/ISSM and verify that the compiler
+
+    is restricted to administrative users only. If documented and restricted to
+
+    administrative users, this is not a finding.
+
+
+    If an undocumented compiler is present, and available to non-administrative
+
+    users'
+ocil: 'Query the SA and the Web Manager to determine if a compiler is present on
+
+    the server.'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Installation of a compiler on production web server is prohibited
+definition_location: /home/oscap/content/linux_os/guide/services/http/securing_httpd/httpd_no_compilers_in_prod/rule.yml
+template: null
+documentation_complete: true

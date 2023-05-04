@@ -1,0 +1,50 @@
+
+<def-group>
+  <definition class="compliance" id="dnf-automatic_security_updates_only" version="1">
+    <metadata>
+        <title>Configure dnf-automatic to Install Only Security Updates</title>
+        
+    <affected family="unix">
+    <platform>Red Hat Enterprise Linux 8</platform>
+      <platform>SUSE Linux Enterprise 12</platform>
+      <platform>Fedora</platform>
+      <platform>Oracle Linux 9</platform>
+      <platform>Red Hat Enterprise Linux 9</platform>
+      <platform>SUSE Linux Enterprise 15</platform>
+      <platform>Oracle Linux 8</platform>
+    </affected>
+        <description>Ensure 'upgrade_type' is configured with value 'security in section 'commands' in /etc/dnf/automatic.conf</description>
+    </metadata>
+    <criteria comment="dnf-automatic is configured correctly and configuration file exists"
+    operator="AND">
+    <criteria comment="dnf-automatic is configured correctly"
+    operator="OR"><criterion comment="Check the upgrade_type in /etc/dnf/automatic.conf"
+  test_ref="test_dnf-automatic_security_updates_only" />
+    </criteria><criterion comment="test if configuration file /etc/dnf/automatic.conf exists for dnf-automatic_security_updates_only" test_ref="test_dnf-automatic_security_updates_only_config_file_exists" />
+    </criteria>
+  </definition>
+  
+<ind:textfilecontent54_test check="all" check_existence="all_exist"
+  comment="tests the value of upgrade_type setting in the /etc/dnf/automatic.conf file"
+  id="test_dnf-automatic_security_updates_only" version="1">
+  <ind:object object_ref="obj_dnf-automatic_security_updates_only" />
+  <ind:state state_ref="state_dnf-automatic_security_updates_only" />
+</ind:textfilecontent54_test>
+  
+<ind:textfilecontent54_object id="obj_dnf-automatic_security_updates_only" version="1">
+  <ind:filepath>/etc/dnf/automatic.conf</ind:filepath>
+  <ind:pattern operation="pattern match">^\s*\[commands\].*(?:\n\s*[^[\s].*)*\n^\s*upgrade_type[ \t]*=[ \t]*(.+?)[ \t]*(?:$|#)</ind:pattern>
+  <ind:instance operation="greater than or equal" datatype="int">1</ind:instance>
+</ind:textfilecontent54_object>
+  
+<ind:textfilecontent54_state id="state_dnf-automatic_security_updates_only" version="1">
+  <ind:subexpression datatype="string" operation="pattern match">^security$</ind:subexpression>
+</ind:textfilecontent54_state>
+  <unix:file_test id="test_dnf-automatic_security_updates_only_config_file_exists" check="all" check_existence="all_exist" comment="The configuration file /etc/dnf/automatic.conf exists for dnf-automatic_security_updates_only" version="1">
+    <unix:object object_ref="obj_dnf-automatic_security_updates_only_config_file" />
+  </unix:file_test>
+  <unix:file_object id="obj_dnf-automatic_security_updates_only_config_file" comment="The configuration file /etc/dnf/automatic.conf for dnf-automatic_security_updates_only" version="1">
+    <unix:filepath operation="pattern match">^/etc/dnf/automatic.conf</unix:filepath>
+  </unix:file_object>
+
+</def-group>

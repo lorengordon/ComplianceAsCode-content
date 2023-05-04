@@ -1,0 +1,98 @@
+prodtype: rhel7,rhel8,rhel9,rhv4
+description: 'The <code>subscription-manager</code> package can be installed with
+    the following command:
+
+    <pre>
+
+    $ sudo yum install subscription-manager</pre>'
+rationale: 'Red Hat Subscription Manager is a local service which tracks installed
+    products
+
+    and subscriptions on a local system to help manage subscription assignments.
+
+    It communicates with the backend subscription service (the Customer Portal
+
+    or an on-premise server such as Subscription Asset Manager) and works with
+
+    content management tools such as .'
+severity: medium
+references:
+    ism: 0940,1144,1467,1472,1483,1493,1494,1495
+    ospp: FPT_TUD_EXT.1,FPT_TUD_EXT.2
+    srg: SRG-OS-000366-GPOS-00153
+identifiers:
+    cce: CCE-82316-1
+ocil_clause: the package is not installed
+ocil: 'Run the following command to determine if the <code>subscription-manager</code>
+    package is installed: <pre>$ rpm -q subscription-manager</pre>'
+oval_external_content: null
+fixtext: 'The <code>subscription-manager</code> package can be installed with the
+    following command:
+
+    <pre>
+
+    $ sudo yum install subscription-manager</pre>'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ' Red Hat Enterprise Linux 8 must have the subscription-manager package
+    installed.'
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: The Red Hat Enterprise Linux 8 subscription-manager package
+            must be installed.
+        vuldiscussion: 'Red Hat Subscription Manager is a local service which tracks
+            installed products
+
+            and subscriptions on a local system to help manage subscription assignments.
+
+            It communicates with the backend subscription service (the Customer Portal
+
+            or an on-premise server such as Subscription Asset Manager) and works
+            with
+
+            content management tools such as .
+
+
+
+            The package provides, among other things,  plugins
+
+            to interact with repositories and subscriptions
+
+            from the Red Hat entitlement platform - the subscription-manager and
+
+            product-id plugins.'
+        checktext: 'Verify that Red Hat Enterprise Linux 8 subscription-manager package
+            is installed with the following command:
+
+
+            $ sudo dnf list --installed subscription-manager
+
+
+            subscription-manager.x86_64         1.29.26-3.el9_0
+
+
+            If the "subscription-manager" package is not installed, this is a finding.'
+        fixtext: 'The  subscription-manager  package can be installed with the following
+            command:
+
+
+            $ sudo dnf install subscription-manager'
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Install subscription-manager Package
+definition_location: /home/oscap/content/linux_os/guide/system/software/system-tools/package_subscription-manager_installed/rule.yml
+template:
+    name: package_installed
+    vars:
+        pkgname: subscription-manager
+    backends: {}
+documentation_complete: true

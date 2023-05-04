@@ -1,0 +1,86 @@
+prodtype: ol9,rhel8,rhel9
+description: 'When creating SSH key pairs, always use a passcode.
+
+    <br />
+
+    You can create such keys with the following command:
+
+    <pre>$ sudo ssh-keygen -n [passphrase]</pre>
+
+    Red Hat Enterprise Linux 9, for certificate-based authentication, must enforce
+    authorized access to the corresponding private key.'
+rationale: 'If an unauthorized user obtains access to a private key without a passcode,
+
+    that user would have unauthorized access to any system where the associated
+
+    public key has been installed.'
+severity: medium
+references:
+    srg: SRG-OS-000067-GPOS-00035
+identifiers:
+    cce: CCE-86553-5
+ocil_clause: no ssh private key is accessible without a passcode
+ocil: 'For each private key stored on the system, use the following command:
+
+    <pre>$ sudo ssh-keygen -y -f /path/to/file</pre>
+
+    If the contents of the key are displayed, this is a finding.'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        checktext: 'Verify the SSH private key files have a passcode.
+
+
+            For each private key stored on the system, use the following command:
+
+
+            $ sudo ssh-keygen -y -f /path/to/file
+
+
+            If the contents of the key are displayed, this is a finding.'
+        fixtext: 'Create a new private and public key pair that utilizes a passcode
+            with the following command:
+
+
+            $ sudo ssh-keygen -n [passphrase]'
+        vuldiscussion: 'If the private key is discovered, an attacker can use the
+            key to authenticate as an authorized user and gain access to the network
+            infrastructure.
+
+
+            The cornerstone of the PKI is the private key used to encrypt or digitally
+            sign information.
+
+
+            If the private key is stolen, this will lead to the compromise of the
+            authentication and non-repudiation gained through PKI because the attacker
+            can use the private key to digitally sign documents and pretend to be
+            the authorized user.
+
+
+            Both the holders of a digital certificate and the issuing authority must
+            protect the computers, storage devices, or whatever they use to keep the
+            private keys.'
+        srg_requirement: Red Hat Enterprise Linux 9, for PKI-based authentication,
+            must enforce authorized access to the corresponding private key.
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Verify the SSH Private Key Files Have a Passcode
+definition_location: /home/oscap/content/linux_os/guide/services/ssh/ssh_client/ssh_keys_passphrase_protected/rule.yml
+template: null
+documentation_complete: true

@@ -1,0 +1,79 @@
+prodtype: sle12
+description: 'Verify that the SUSE operating system prevents unauthorized users from
+
+    accessing system command and library files.
+
+
+    Check that all of the audit information files and folders have the correct
+
+    permissions with the following command:
+
+    <pre># sudo chkstat --warn --system</pre>
+
+
+    Set the correct permissions with the following command:
+
+
+    <pre># sudo chkstat --set --system</pre>'
+rationale: 'If the SUSE operating system were to allow any user to make changes to
+
+    software libraries, those changes might be implemented without undergoing
+
+    the appropriate testing and approvals that are part of a robust change
+
+    management process.
+
+
+    This requirement applies to SUSE operating systems with software libraries
+
+    that are accessible and configurable, as in the case of interpreted
+
+    languages. Software libraries also include privileged programs that execute
+
+    with escalated privileges. Only qualified and authorized individuals must
+
+    be allowed to obtain access to information system components to initiate
+
+    changes, including upgrades and modifications.'
+severity: medium
+references:
+    disa: CCI-001499
+    nist: CM-5(6)
+    srg: SRG-OS-000259-GPOS-00100
+    stigid: SLES-12-010880
+identifiers:
+    cce: CCE-83111-5
+ocil_clause: null
+ocil: 'Check that all of the audit information files and folders have the correct
+
+    permissions with the following command:
+
+    <pre># sudo chkstat --warn --system</pre>
+
+
+    If you get any warnings, set the correct permissions with the following command:
+
+
+    <pre># sudo chkstat --set --system</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: OS commands and libraries must have the proper permissions to protect from
+    unauthorized access
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/permissions_local/run_chkstat/rule.yml
+template: null
+documentation_complete: true

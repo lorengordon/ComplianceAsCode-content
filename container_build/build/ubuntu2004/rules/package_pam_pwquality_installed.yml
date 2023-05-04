@@ -1,0 +1,59 @@
+prodtype: rhel7,rhel8,rhel9,ubuntu2004
+description: '
+
+    The <code>libpam-pwquality</code> package can be installed with the following
+    command:
+
+    <pre>
+
+    $ apt-get install libpam-pwquality</pre>'
+rationale: 'Use of a complex password helps to increase the time and resources required
+
+    to compromise the password. Password complexity, or strength, is a measure
+
+    of the effectiveness of a password in resisting attempts at guessing and
+
+    brute-force attacks. "pwquality" enforces complex password construction
+
+    configuration and has the ability to limit brute-force attacks on the system.'
+severity: medium
+references:
+    disa: CCI-000366
+    srg: SRG-OS-000480-GPOS-00225
+    stigid: UBTU-20-010057
+    cis: 5.3.1
+identifiers: {}
+ocil_clause: the package is not installed
+ocil: '
+
+    Run the following command to determine if the <code>libpam-pwquality</code> package
+    is installed:
+
+    <pre>$ dpkg -l  libpam-pwquality</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: package[pam]
+platforms: !!set
+    package[pam]: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    package_pam: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Install pam_pwquality Package
+definition_location: /home/oscap/content/linux_os/guide/system/accounts/accounts-pam/package_pam_pwquality_installed/rule.yml
+template:
+    name: package_installed
+    vars:
+        pkgname: libpam-pwquality
+    backends: {}
+documentation_complete: true

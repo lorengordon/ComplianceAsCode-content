@@ -1,0 +1,39 @@
+# platform = multi_platform_all
+# reboot = true
+# strategy = disable
+# complexity = low
+# disruption = medium
+
+- name: List /etc/sysctl.d/*.conf files
+      
+  find:
+    paths:
+      - "/etc/sysctl.d/"
+      - "/run/sysctl.d/"
+      - "/usr/local/lib/sysctl.d/"
+
+
+      - "/usr/lib/sysctl.d/"
+
+    contains: '^[\s]*fs.protected_hardlinks.*$'
+    patterns: "*.conf"
+    file_type: any
+  register: find_sysctl_d
+
+- name: Comment out any occurrences of fs.protected_hardlinks from config files
+  replace:
+    path: "{{ item.path }}"
+    regexp: '^[\s]*fs.protected_hardlinks'
+    replace: '#fs.protected_hardlinks'
+  loop: "{{ find_sysctl_d.files }}"
+
+
+- name: Ensure sysctl fs.protected_hardlinks is set to 1
+  sysctl:
+    name: "fs.protected_hardlinks"
+    value: "1"
+
+    sysctl_file: "/etc/sysctl.conf"
+
+    state: present
+    reload: yes

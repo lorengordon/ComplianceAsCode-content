@@ -1,0 +1,18 @@
+prodtype: all
+description: 'The X Window System implementation included with the
+
+    system is called X.org.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups:
+- disabling_xwindows
+rules: {}
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: X Window System
+definition_location: /home/oscap/content/linux_os/guide/services/xwindows/group.yml
+documentation_complete: true

@@ -1,0 +1,115 @@
+prodtype: fedora,ol8,ol9,rhcos4,rhel8,rhel9
+description: 'To enable console screen locking in <tt>tmux</tt> terminal multiplexer,
+
+    the <tt>vlock</tt> command must be configured to be used as a locking
+
+    mechanism.
+
+    Add the following line to <tt>/etc/tmux.conf</tt>:
+
+    <pre>set -g lock-command vlock</pre>.
+
+    The console can now be locked with the following key combination:
+
+    <pre>ctrl+b :lock-session</pre>'
+rationale: 'The <tt>tmux</tt> package allows for a session lock to be implemented
+    and configured.
+
+    However, the session lock is implemented by an external command. The <tt>tmux</tt>
+
+    default configuration does not contain an effective session lock.'
+severity: medium
+references:
+    disa: CCI-000056,CCI-000058
+    nist: AC-11(a),AC-11(b),CM-6(a)
+    ospp: FMT_SMF_EXT.1,FMT_MOF_EXT.1,FTA_SSL.1
+    srg: SRG-OS-000028-GPOS-00009,SRG-OS-000030-GPOS-00011
+    stigid: OL08-00-020040
+    stigref: SV-248675r902786_rule
+identifiers: {}
+ocil_clause: the "lock-command" is not set in the global settings to call "vlock"
+ocil: 'Verify Oracle Linux 8 enables the user to initiate a session lock with the
+    following command:
+
+
+    <pre>$ grep lock-command /etc/tmux.conf</pre>
+
+
+    <pre>set -g lock-command vlock</pre>
+
+
+    Then, verify that the /etc/tmux.conf file can be read by other users than root:
+
+
+    <pre>$ sudo ls -al /etc/tmux.conf</pre>'
+oval_external_content: null
+fixtext: 'Configure Oracle Linux 8 to allow a user to initiate a sessions lock by
+    adding the following line to the file "/etc/tmux.conf":
+
+
+    <pre>set -g lock-command vlock</pre>
+
+
+    Then, ensure a correct mode of /etc/tmux.conf using this command:
+
+
+    $ sudo chmod 0644 /etc/tmux.conf'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Oracle Linux 8 must enable a user session lock until that user re-establishes
+    access using established identification and authentication procedures for command
+    line sessions.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Oracle Linux 8 must enable a user session lock until that
+            user re-establishes access using established identification and authentication
+            procedures for command line sessions.
+        vuldiscussion: 'A session lock is a temporary action taken when a user stops
+            work and moves away from the immediate physical vicinity of the information
+            system but does not want to log out because of the temporary nature of
+            the absence.
+
+
+            The session lock is implemented at the point where session activity can
+            be determined. Rather than be forced to wait for a period of time to expire
+            before the user session can be locked, Oracle Linux 8 must provide users
+            with the ability to manually invoke a session lock so users can secure
+            their session if it is necessary to temporarily vacate the immediate physical
+            vicinity.
+
+
+            The "tmux" package allows for a session lock to be implemented and configured.
+            However, the session lock is implemented by an external command. The "tmux"
+            default configuration does not contain an effective session lock.'
+        checktext: 'Verify Oracle Linux 8 enables the user to initiate a session lock
+            with the following command:
+
+
+            $ grep lock-command /etc/tmux.conf
+
+
+            set -g lock-command vlock
+
+
+            If the "lock-command" is not set in the global settings to call "vlock",
+            this is a finding.'
+        fixtext: "Configure Oracle Linux 8 to allow a user to initiate a sessions\
+            \ lock by adding the following line to the file \"/etc/tmux.conf\":\n\n\
+            \ set -g lock-command vlock"
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Configure the tmux Lock Command
+definition_location: /home/oscap/content/linux_os/guide/system/accounts/accounts-physical/screen_locking/console_screen_locking/configure_tmux_lock_command/rule.yml
+template: null
+documentation_complete: true

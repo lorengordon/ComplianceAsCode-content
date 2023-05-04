@@ -1,0 +1,39 @@
+prodtype: sle15
+description: nftables is a replacement for iptables, ip6tables, ebtables and arptables
+rationale: "It is possible to mix iptables and nftables. However, this increases complexity\
+    \ \nand also the chance to introduce errors. For simplicity flush out all iptables\
+    \ \nrules, and ensure it is not loaded."
+severity: medium
+references:
+    cis: 3.5.2.3
+identifiers:
+    cce: CCE-92523-0
+ocil_clause: Your system is configured to use nftables, but iptables rules exist on
+    it
+ocil: "To verify that on your system not iptables rules exist, and no rules will be\
+    \ returned \nrun the following command:\n<pre>$ sudo iptables -L</pre>\nand/or\
+    \ to verify that on your system not ip6tables rules exist, and no rules will be\
+    \ \nreturned run:\n<pre>$ sudo ip6tables -L</pre>\nTo flush iptables run the following\
+    \ command:\n<pre>$ sudo iptables -F</pre>\nand/or to flush ip6tbales run:\n<pre>$\
+    \ sudo ip6tables -F</pre> "
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Ensure iptables are flushed
+definition_location: /home/oscap/content/linux_os/guide/system/network/network-iptables/ensure_iptables_are_flushed/rule.yml
+template: null
+documentation_complete: true

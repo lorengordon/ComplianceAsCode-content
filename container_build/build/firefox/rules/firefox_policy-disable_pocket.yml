@@ -1,0 +1,55 @@
+prodtype: firefox
+description: 'Pocket may be disabled by setting
+
+    <tt>DisablePocket</tt> to <tt>true</tt>
+
+    in the policies file.'
+rationale: 'Pocket is a social bookmarking service for storing, sharing, and discovering
+    web bookmarks.
+
+    Data gathering cloud services such as Pocket are generally disabled in the DoD.'
+severity: medium
+references:
+    disa: CCI-000381
+    nist: CM-7
+    stigid: FFOX-00-000038
+identifiers: {}
+ocil_clause: null
+ocil: 'To verify that Pocket is disabled,
+
+    type the following into the browser address bar:
+
+    <pre>about:policies</pre>
+
+    The output should have the following:
+
+    <pre>"DisablePocket": true</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Disable Firefox Pocket
+definition_location: /home/oscap/content/products/firefox/guide/firefox/firefox_policy-disable_pocket/rule.yml
+template:
+    name: firefox_policy-setting
+    vars:
+        name: Disable Firefox Pocket
+        policies:
+        -   path: policies
+            parameter: DisablePocket
+            value: 'true'
+    backends: {}
+documentation_complete: true

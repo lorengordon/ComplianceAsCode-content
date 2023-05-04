@@ -1,0 +1,63 @@
+prodtype: all
+description: 'To set the runtime status of the <code>fs.suid_dumpable</code> kernel
+    parameter, run the following command: <pre>$ sudo sysctl -w fs.suid_dumpable=0</pre>
+
+    To make sure that the setting is persistent, add the following line to a file
+    in the directory <tt>/etc/sysctl.d</tt>: <pre>fs.suid_dumpable = 0</pre>'
+rationale: 'The core dump of a setuid program is more likely to contain
+
+    sensitive data, as the program itself runs with greater privileges than the
+
+    user who initiated execution of the program.  Disabling the ability for any
+
+    setuid program to write a core file decreases the risk of unauthorized access
+
+    of such data.'
+severity: medium
+references:
+    anssi: BP28(R23)
+    hipaa: 164.308(a)(1)(ii)(D),164.308(a)(3),164.308(a)(4),164.310(b),164.310(c),164.312(a),164.312(e)
+    nist: SI-11(a),SI-11(b)
+    pcidss4: 3.3.1.1,3.3.1.2,3.3.1.3
+    cis: 1.5.1
+identifiers: {}
+ocil_clause: the correct value is not returned
+ocil: 'The runtime status of the <code>fs.suid_dumpable</code> kernel parameter can
+    be queried
+
+    by running the following command:
+
+    <pre>$ sysctl fs.suid_dumpable</pre>
+
+    <code>0</code>.
+
+    '
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Disable Core Dumps for SUID programs
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/restrictions/coredumps/sysctl_fs_suid_dumpable/rule.yml
+template:
+    name: sysctl
+    vars:
+        sysctlvar: fs.suid_dumpable
+        sysctlval: '0'
+        datatype: int
+    backends: {}
+documentation_complete: true

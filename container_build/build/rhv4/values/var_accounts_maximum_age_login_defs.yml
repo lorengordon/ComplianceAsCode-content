@@ -1,0 +1,15 @@
+description: Maximum age of password in days
+type: number
+operator: equals
+interactive: false
+options:
+    365: 365
+    120: 120
+    180: 180
+    60: 60
+    90: 90
+    default: 60
+warnings: []
+title: maximum password age
+definition_location: /home/oscap/content/linux_os/guide/system/accounts/accounts-restrictions/password_expiration/var_accounts_maximum_age_login_defs.var
+documentation_complete: true

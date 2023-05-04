@@ -1,0 +1,33 @@
+prodtype: all
+description: '
+
+    The default iptables configuration does not allow inbound access to any services.
+
+    This modification will allow remote hosts to initiate connections to the IMAP
+    daemon,
+
+    while keeping all other ports on the server in their default protected state.
+
+    To configure <tt>iptables</tt> to allow port 143 traffic, one must edit
+
+    <tt>/etc/sysconfig/iptables</tt> and
+
+    <tt>/etc/sysconfig/ip6tables</tt> (if IPv6 is in use).
+
+    Add the following line, ensuring that it appears before the final LOG and DROP
+    lines for the INPUT chain:
+
+    <pre>-A INPUT -m state --state NEW -p tcp --dport 143 -j ACCEPT</pre>'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules: {}
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Allow IMAP Clients to Access the Server
+definition_location: /home/oscap/content/linux_os/guide/services/imap/configure_dovecot/dovecot_allow_imap_access/group.yml
+documentation_complete: true

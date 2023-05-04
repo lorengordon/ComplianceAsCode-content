@@ -1,0 +1,41 @@
+# platform = multi_platform_all
+# reboot = true
+# strategy = disable
+# complexity = low
+# disruption = medium
+
+- name: List /etc/sysctl.d/*.conf files
+      
+  find:
+    paths:
+      - "/etc/sysctl.d/"
+      - "/run/sysctl.d/"
+      - "/usr/local/lib/sysctl.d/"
+
+
+      - "/usr/lib/sysctl.d/"
+
+    contains: '^[\s]*net.ipv6.conf.default.accept_source_route.*$'
+    patterns: "*.conf"
+    file_type: any
+  register: find_sysctl_d
+
+- name: Comment out any occurrences of net.ipv6.conf.default.accept_source_route from config files
+  replace:
+    path: "{{ item.path }}"
+    regexp: '^[\s]*net.ipv6.conf.default.accept_source_route'
+    replace: '#net.ipv6.conf.default.accept_source_route'
+  loop: "{{ find_sysctl_d.files }}"
+
+
+- (xccdf-var sysctl_net_ipv6_conf_default_accept_source_route_value)
+
+- name: Ensure sysctl net.ipv6.conf.default.accept_source_route is set
+  sysctl:
+    name: "net.ipv6.conf.default.accept_source_route"
+    value: "{{ sysctl_net_ipv6_conf_default_accept_source_route_value }}"
+
+    sysctl_file: "/etc/sysctl.conf"
+
+    state: present
+    reload: yes

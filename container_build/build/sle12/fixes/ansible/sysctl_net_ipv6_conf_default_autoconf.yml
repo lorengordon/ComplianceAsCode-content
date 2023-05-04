@@ -1,0 +1,74 @@
+# platform = multi_platform_all
+# reboot = true
+# strategy = disable
+# complexity = low
+# disruption = medium
+- name: List /etc/sysctl.d/*.conf files
+  find:
+    paths:
+    - /etc/sysctl.d/
+    - /run/sysctl.d/
+    - /usr/lib/sysctl.d/
+    contains: ^[\s]*net.ipv6.conf.default.autoconf.*$
+    patterns: '*.conf'
+    file_type: any
+  register: find_sysctl_d
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-91526-4
+  - disable_strategy
+  - low_complexity
+  - medium_disruption
+  - reboot_required
+  - sysctl_net_ipv6_conf_default_autoconf
+  - unknown_severity
+
+- name: Comment out any occurrences of net.ipv6.conf.default.autoconf from config
+    files
+  replace:
+    path: '{{ item.path }}'
+    regexp: ^[\s]*net.ipv6.conf.default.autoconf
+    replace: '#net.ipv6.conf.default.autoconf'
+  loop: '{{ find_sysctl_d.files }}'
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-91526-4
+  - disable_strategy
+  - low_complexity
+  - medium_disruption
+  - reboot_required
+  - sysctl_net_ipv6_conf_default_autoconf
+  - unknown_severity
+
+- name: Comment out any occurrences of net.ipv6.conf.default.autoconf from /etc/sysctl.conf
+  replace:
+    path: /etc/sysctl.conf
+    regexp: ^[\s]*net.ipv6.conf.default.autoconf
+    replace: '#net.ipv6.conf.default.autoconf'
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-91526-4
+  - disable_strategy
+  - low_complexity
+  - medium_disruption
+  - reboot_required
+  - sysctl_net_ipv6_conf_default_autoconf
+  - unknown_severity
+- (xccdf-var sysctl_net_ipv6_conf_default_autoconf_value)
+
+- name: Ensure sysctl net.ipv6.conf.default.autoconf is set
+  sysctl:
+    name: net.ipv6.conf.default.autoconf
+    value: '{{ sysctl_net_ipv6_conf_default_autoconf_value }}'
+    sysctl_file: /etc/sysctl.d/net_ipv6_conf_default_autoconf.conf
+    state: present
+    reload: true
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-91526-4
+  - disable_strategy
+  - low_complexity
+  - medium_disruption
+  - reboot_required
+  - sysctl_net_ipv6_conf_default_autoconf
+  - unknown_severity

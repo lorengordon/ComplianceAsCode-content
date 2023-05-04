@@ -1,0 +1,36 @@
+<def-group>
+  <definition class="compliance" id="audit_rules_file_deletion_events" version="1">
+    <metadata>
+        <title>Ensure auditd Collects File Deletion Events by User</title>
+        
+    <affected family="unix">
+    <platform>Oracle Linux 7</platform>
+      <platform>Debian 10</platform>
+      <platform>Fedora</platform>
+      <platform>Red Hat Enterprise Linux CoreOS 4</platform>
+      <platform>SUSE Linux Enterprise 12</platform>
+      <platform>Red Hat Enterprise Linux 9</platform>
+      <platform>Red Hat Enterprise Linux 7</platform>
+      <platform>SUSE Linux Enterprise 15</platform>
+      <platform>Alibaba Cloud Linux 2</platform>
+      <platform>Alibaba Cloud Linux 3</platform>
+      <platform>Red Hat Enterprise Linux 8</platform>
+      <platform>UnionTech OS Server 20</platform>
+      <platform>Anolis OS 8</platform>
+      <platform>Oracle Linux 8</platform>
+      <platform>Red Hat Virtualization 4</platform>
+      <platform>Oracle Linux 9</platform>
+      <platform>Debian 11</platform>
+    </affected>
+        <description>Audit files deletion events.</description>
+    </metadata>
+    <criteria operator="AND">
+      <extend_definition comment="audit rmdir" definition_ref="audit_rules_file_deletion_events_rmdir" />
+      <extend_definition comment="audit unlink" definition_ref="audit_rules_file_deletion_events_unlink" />
+      <extend_definition comment="audit unlinkat" definition_ref="audit_rules_file_deletion_events_unlinkat" />
+      <extend_definition comment="audit rename" definition_ref="audit_rules_file_deletion_events_rename" />
+      <extend_definition comment="audit renameat" definition_ref="audit_rules_file_deletion_events_renameat" />
+    </criteria>
+  </definition>
+
+</def-group>

@@ -1,0 +1,19 @@
+prodtype: all
+description: 'The system includes an SNMP daemon that allows for its remote
+
+    monitoring, though it not installed by default. If it was installed and
+
+    activated but is not needed, the software should be disabled and removed.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules: {}
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Disable SNMP Server if Possible
+definition_location: /home/oscap/content/linux_os/guide/services/snmp/disabling_snmp_service/group.yml
+documentation_complete: true

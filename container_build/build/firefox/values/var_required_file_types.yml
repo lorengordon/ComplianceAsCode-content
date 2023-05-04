@@ -1,0 +1,12 @@
+description: 'The default required file types that need to request usage
+
+    confirmation in Firefox.'
+type: string
+operator: equals
+interactive: false
+options:
+    default: application/pdf,application/fdf,application/xfdf,application/lsl,application/lso,application/lss,application/iqy,application/rqy,application/xlk,application/xls,application/xlt,application/pot,application/pps,application/ppt,application/dos,application/dot,application/wks,application/bat,application/ps,application/eps,application/wch,application/wcm,application/wb1,application/wb3,application/rtf,application/doc,application/mdb,application/mde,application/wbk,application/ad,application/adp
+warnings: []
+title: The Default Required Firefox File Types
+definition_location: /home/oscap/content/products/firefox/guide/firefox/var_required_file_types.var
+documentation_complete: true

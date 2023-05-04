@@ -1,0 +1,45 @@
+prodtype: all
+description: 'The default rules can be strengthened. The system
+
+    scripts that activate the firewall rules expect them to be defined
+
+    in configuration files under the <tt>/etc/firewalld/services</tt>
+
+    and <tt>/etc/firewalld/zones</tt> directories.
+
+    <br /><br />
+
+    The following recommendations describe how to strengthen the
+
+    default ruleset configuration file. An alternative to editing this
+
+    configuration file is to create a shell script that makes calls to
+
+    the <tt>firewall-cmd</tt> program to load in rules under the <tt>/etc/firewalld/services</tt>
+
+    and <tt>/etc/firewalld/zones</tt> directories.
+
+    <br /><br />
+
+    Instructions apply to both unless otherwise noted. Language and address
+
+    conventions for regular firewalld rules are used throughout this section.'
+warnings:
+-   general: 'The program <tt>firewall-config</tt>
+
+        allows additional services to penetrate the default firewall rules
+
+        and automatically adjusts the <tt>firewalld</tt> ruleset(s).'
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules: {}
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+title: Strengthen the Default Ruleset
+definition_location: /home/oscap/content/linux_os/guide/system/network/network-firewalld/ruleset_modifications/group.yml
+documentation_complete: true

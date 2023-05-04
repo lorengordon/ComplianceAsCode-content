@@ -1,0 +1,13 @@
+description: The URL for the Default Search provider in Chromium
+type: string
+operator: equals
+interactive: false
+options:
+    bing: https://www.bing.com
+    default: https://www.google.com
+    google: https://www.google.com
+    yahoo: https://www.yahoo.com
+warnings: []
+title: The Default Search provider in Chromium
+definition_location: /home/oscap/content/products/chromium/guide/chromium/var_default_search_provider_name.var
+documentation_complete: true

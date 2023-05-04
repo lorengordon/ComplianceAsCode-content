@@ -1,0 +1,121 @@
+prodtype: alinux2,alinux3,anolis8,fedora,ol7,ol8,ol9,rhel7,rhel8,rhel9,rhv4,sle12,sle15,ubuntu1604,ubuntu1804,uos20
+description: '
+
+    If the system is joined to the ULN
+
+    or a yum server, run the following command to install updates:
+
+    <pre>$ sudo yum update</pre>
+
+    If the system is not configured to use one of these sources, updates (in the form
+    of RPM packages)
+
+    can be manually downloaded from the ULN and installed using <tt>rpm</tt>.
+
+
+    <br /><br />
+
+    NOTE: U.S. Defense systems are required to be patched within 30 days or sooner
+    as local policy
+
+    dictates.'
+rationale: 'Installing software updates is a fundamental mitigation against
+
+    the exploitation of publicly-known vulnerabilities. If the most
+
+    recent security patches and updates are not installed, unauthorized
+
+    users may take advantage of weaknesses in the unpatched software. The
+
+    lack of prompt attention to patching could result in a system compromise.'
+severity: medium
+references:
+    anssi: BP28(R08)
+    cis-csc: 18,20,4
+    cjis: 5.10.4.1
+    cobit5: APO12.01,APO12.02,APO12.03,APO12.04,BAI03.10,DSS05.01,DSS05.02
+    disa: CCI-000366,CCI-001227
+    isa-62443-2009: 4.2.3,4.2.3.12,4.2.3.7,4.2.3.9
+    iso27001-2013: A.12.6.1,A.14.2.3,A.16.1.3,A.18.2.2,A.18.2.3
+    nist: SI-2(5),SI-2(c),CM-6(a)
+    nist-csf: ID.RA-1,PR.IP-12
+    ospp: FMT_MOF_EXT.1
+    pcidss: Req-6.2
+    pcidss4: 6.3.3
+    srg: SRG-OS-000480-GPOS-00227
+    stigid: OL07-00-020260
+    stigref: SV-221720r603260_rule
+identifiers: {}
+ocil_clause: Oracle Linux 7 is in non-compliance with the organizational patching
+    policy
+ocil: 'Verify Oracle Linux 7 security patches and updates are installed and up to
+    date.
+
+    Updates are required to be applied with a frequency determined by organizational
+    policy.
+
+
+
+
+    Typical update frequency may be overridden by Information Assurance Vulnerability
+    Alert (IAVA) notifications from CYBERCOM.'
+oval_external_content: https://linux.oracle.com/security/oval/com.oracle.elsa-all.xml.bz2
+fixtext: Install Oracle Linux 7 patches or updated packages available from Red Hat
+    within 30 days or sooner as local policy dictates.
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Oracle Linux 7 vendor packaged system security patches and updates
+    must be installed and up to date.
+warnings:
+-   general: The OVAL feed of Oracle Linux 7 is not a XML file, which may not be understood
+        by all scanners.
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Oracle Linux 7 vendor packaged system security patches and
+            updates must be installed and up to date.
+        vuldiscussion: 'Installing software updates is a fundamental mitigation against
+
+            the exploitation of publicly-known vulnerabilities. If the most
+
+            recent security patches and updates are not installed, unauthorized
+
+            users may take advantage of weaknesses in the unpatched software. The
+
+            lack of prompt attention to patching could result in a system compromise.'
+        checktext: "Verify Oracle Linux 7 security patches and updates are installed\
+            \ and up to date.\nUpdates are required to be applied with a frequency\
+            \ determined by organizational policy.\n\n\nObtain the list of available\
+            \ package security updates from Oracle. The URL for updates\nis https://linux.oracle.com/errata/.\
+            \ It is important to note that updates provided by Oracle may not be\n\
+            present on the system if the underlying packages are not installed.\n\n\
+            \nCheck that the available package security updates have been installed\
+            \ on the system with the following command:\n\n$ dnf history list | more\n\
+            \n    ID | Command line | Date and time | Action(s) | Altered\n-------------------------------------------------------------------------------\n\
+            \   70 | install aide | 2020-03-05 10:58 | Install | 1\n   69 | update\
+            \ -y | 2020-03-04 14:34 | Update | 18 EE\n   68 | install vlc | 2020-02-21\
+            \ 17:12 | Install | 21\n   67 | update -y | 2020-02-21 17:04 | Update\
+            \ | 7 EE\n\nTypical update frequency may be overridden by Information\
+            \ Assurance Vulnerability Alert (IAVA) notifications from CYBERCOM.\n\n\
+            If the system is in non-compliance with the organizational patching policy,\
+            \ this is a finding."
+        fixtext: 'Install Oracle Linux 7 security patches and updates at the organizationally-defined
+            frequency. If system updates are installed via a centralized repository
+            that is configured on the system, you can install all updates with the
+            following command:
+
+
+            $ sudo dnf update'
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Ensure Software Patches Installed
+definition_location: /home/oscap/content/linux_os/guide/system/software/updating/security_patches_up_to_date/rule.yml
+template: null
+documentation_complete: true

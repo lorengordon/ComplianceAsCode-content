@@ -1,0 +1,52 @@
+<def-group>
+  <definition class="compliance" id="chronyd_run_as_chrony_user" version="1">
+    <metadata>
+        <title>Ensure that chronyd is running under chrony user account</title>
+        
+    <affected family="unix">
+    <platform>Ubuntu 22.04</platform>
+      <platform>SUSE Linux Enterprise 12</platform>
+      <platform>Fedora</platform>
+      <platform>Red Hat Enterprise Linux 9</platform>
+      <platform>Red Hat Enterprise Linux 8</platform>
+      <platform>Alibaba Cloud Linux 2</platform>
+      <platform>Red Hat Enterprise Linux 7</platform>
+      <platform>Ubuntu 20.04</platform>
+      <platform>Alibaba Cloud Linux 3</platform>
+      <platform>SUSE Linux Enterprise 15</platform>
+    </affected>
+        <description>Ensure 'OPTIONS' is configured with value '["]?.*-u[\s]*chrony.*["]?' in /etc/sysconfig/chronyd</description>
+    </metadata>
+    <criteria comment="The respective application or service is configured correctly and configuration file exists"
+    operator="AND">
+    <criteria comment="The respective application or service is configured correctly"
+    operator="OR"><criterion comment="Check the OPTIONS in /etc/sysconfig/chronyd"
+  test_ref="test_chronyd_run_as_chrony_user" />
+    </criteria><criterion comment="test if configuration file /etc/sysconfig/chronyd exists for chronyd_run_as_chrony_user" test_ref="test_chronyd_run_as_chrony_user_config_file_exists" />
+    </criteria>
+  </definition>
+  
+<ind:textfilecontent54_test check="all" check_existence="all_exist"
+  comment="tests the value of OPTIONS setting in the /etc/sysconfig/chronyd file"
+  id="test_chronyd_run_as_chrony_user" version="1">
+  <ind:object object_ref="obj_chronyd_run_as_chrony_user" />
+  <ind:state state_ref="state_chronyd_run_as_chrony_user" />
+</ind:textfilecontent54_test>
+  
+<ind:textfilecontent54_object id="obj_chronyd_run_as_chrony_user" version="1">
+  <ind:filepath>/etc/sysconfig/chronyd</ind:filepath>
+  <ind:pattern operation="pattern match">^[ \t]*OPTIONS=(.+?)[ \t]*(?:$|#)</ind:pattern>
+  <ind:instance operation="greater than or equal" datatype="int">1</ind:instance>
+</ind:textfilecontent54_object>
+  
+<ind:textfilecontent54_state id="state_chronyd_run_as_chrony_user" version="1">
+  <ind:subexpression datatype="string" operation="pattern match">^["]?.*-u[\s]*chrony.*["]?$</ind:subexpression>
+</ind:textfilecontent54_state>
+  <unix:file_test id="test_chronyd_run_as_chrony_user_config_file_exists" check="all" check_existence="all_exist" comment="The configuration file /etc/sysconfig/chronyd exists for chronyd_run_as_chrony_user" version="1">
+    <unix:object object_ref="obj_chronyd_run_as_chrony_user_config_file" />
+  </unix:file_test>
+  <unix:file_object id="obj_chronyd_run_as_chrony_user_config_file" comment="The configuration file /etc/sysconfig/chronyd for chronyd_run_as_chrony_user" version="1">
+    <unix:filepath operation="pattern match">^/etc/sysconfig/chronyd</unix:filepath>
+  </unix:file_object>
+
+</def-group>

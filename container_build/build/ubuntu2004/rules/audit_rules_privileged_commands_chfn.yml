@@ -1,0 +1,78 @@
+prodtype: sle12,sle15,ubuntu2004,ubuntu2204
+description: 'At a minimum, the audit system should collect the execution of
+
+    privileged commands for all users and root. If the <tt>auditd</tt> daemon is
+
+    configured to use the <tt>augenrules</tt> program to read audit rules during
+
+    daemon startup (the default), add a line of the following form to a file with
+
+    suffix <tt>.rules</tt> in the directory <tt>/etc/audit/rules.d</tt>:
+
+    <pre>-a always,exit -F path=/usr/bin/chfn -F perm=x -F auid&gt;=1000 -F auid!=unset
+    -F key=privileged</pre>
+
+    If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt>
+
+    utility to read audit rules during daemon startup, add a line of the following
+
+    form to <tt>/etc/audit/audit.rules</tt>:
+
+    <pre>-a always,exit -F path=/usr/bin/chfn -F perm=x -F auid&gt;=1000 -F auid!=unset
+    -F key=privileged</pre>'
+rationale: 'Without generating audit records that are specific to the security and
+
+    mission needs of the organization, it would be difficult to establish,
+
+    correlate, and investigate the events relating to an incident or identify
+
+    those responsible for one.
+
+
+    Audit records can be generated from various components within the
+
+    information system (e.g., module or policy filter).'
+severity: medium
+references:
+    disa: CCI-000130,CCI-000169,CCI-000172,CCI-002884
+    nist: AU-3,AU-12(a),AU-12(c),MA-4(1)(a)
+    stigid: UBTU-20-010137
+    cis: 4.1.11
+identifiers: {}
+ocil_clause: the command does not return a line, or the line is commented out
+ocil: 'To verify that auditing of privileged command use is configured, run the
+
+    following command:
+
+    <pre>$ sudo grep chfn /etc/audit/audit.rules /etc/audit/rules.d/*</pre>
+
+    It should return a relevant line in the audit rules.'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    package[audit]: null
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+    package_audit: null
+bash_conditional: null
+fixes: {}
+title: Ensure auditd Collects Information on the Use of Privileged Commands - chfn
+definition_location: /home/oscap/content/linux_os/guide/system/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_chfn/rule.yml
+template:
+    name: audit_rules_privileged_commands
+    vars:
+        path: /usr/bin/chfn
+    backends: {}
+documentation_complete: true

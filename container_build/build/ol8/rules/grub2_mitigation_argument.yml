@@ -1,0 +1,103 @@
+prodtype: ol8
+description: 'Determine the default kernel:
+
+    <pre>$ sudo grubby --default-kernel
+
+
+    /boot/vmlinuz-5.4.17-2011.1.2.el8uek.x86_64</pre>
+
+
+    Using the default kernel, verify that Meltdown mitigations are not disabled:
+
+    <pre>$ sudo grubby --info=<i>path-to-default-kernel</i> | grep mitigation</pre>
+
+
+    The mitigation must be set to "on".'
+rationale: 'Hardware vulnerabilities allow programs to steal data that is currently
+    processed on the
+
+    computer. While programs are typically not permitted to read data from other programs,
+    a
+
+    malicious program can exploit Meltdown and Spectre to obtain secrets stored in
+    the memory of
+
+    other running programs. This might include passwords stored in a password manager
+    or browser;
+
+    personal photos, emails, and instant messages; and business-critical documents.'
+severity: medium
+references:
+    disa: CCI-000366
+    nist: CM-6(b),CM-6.1(iv)
+    srg: SRG-OS-000480-GPOS-00227
+    stigid: OL08-00-010424
+    stigref: SV-248593r779345_rule
+identifiers: {}
+ocil_clause: mitigation is not set to on
+ocil: 'Inspect the form of default GRUB 2 command line for the Linux operating system
+
+    in <tt>/etc/default/grub</tt>. If it includes <tt>mitigation=on</tt>,
+
+    then the parameter will be configured for newly installed kernels.
+
+    First check if the GRUB recovery is enabled:
+
+    <pre>$ sudo grep ''GRUB_DISABLE_RECOVERY'' /etc/default/grub</pre>
+
+    If this option is set to true, then check that a line is output by the following
+    command:
+
+    <pre>$ sudo grep ''GRUB_CMDLINE_LINUX_DEFAULT.*mitigation=on.*'' /etc/default/grub</pre>
+
+    If the recovery is disabled, check the line with
+
+    <pre>$ sudo grep ''GRUB_CMDLINE_LINUX.*mitigation=on.*'' /etc/default/grub</pre>.Moreover,
+    command line parameters for currently installed kernels should be checked as well.
+
+    Run the following command:
+
+    <pre>$ sudo grubby --info=ALL | grep args | grep -v ''mitigation=on''</pre>
+
+    The command should not return any output.'
+oval_external_content: null
+fixtext: 'To ensure that <tt>mitigation=on</tt> is added as a kernel command line
+
+    argument to newly installed kernels, add <tt>mitigation=on</tt> to the
+
+    default Grub2 command line for Linux operating systems. Modify the line within
+
+    <tt>/etc/default/grub</tt> as shown below:
+
+    <pre>GRUB_CMDLINE_LINUX="... mitigation=on ..."</pre>
+
+    Run the following command to update command line for already installed kernels:<pre>#
+    grubby --update-kernel=ALL --args="mitigation=on"</pre>'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: grub2
+platforms: !!set
+    grub2: null
+sce_metadata: {}
+inherited_platforms: !!set
+    grub2: null
+cpe_platform_names: !!set
+    grub2: null
+inherited_cpe_platform_names: !!set
+    grub2: null
+bash_conditional: null
+fixes: {}
+title: System Must Avoid Meltdown and Spectre Exploit Vulnerabilities in Modern Processors
+definition_location: /home/oscap/content/linux_os/guide/system/bootloader-grub2/grub2_mitigation_argument/rule.yml
+template:
+    name: grub2_bootloader_argument
+    vars:
+        arg_name: mitigation
+        arg_value: 'on'
+    backends: {}
+documentation_complete: true

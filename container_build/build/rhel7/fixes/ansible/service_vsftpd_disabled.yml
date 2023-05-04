@@ -1,0 +1,74 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = disable
+# complexity = low
+# disruption = low
+- name: Block Disable service vsftpd
+  block:
+
+  - name: Disable service vsftpd
+    block:
+
+    - name: Disable service vsftpd
+      systemd:
+        name: vsftpd.service
+        enabled: 'no'
+        state: stopped
+        masked: 'yes'
+    rescue:
+
+    - name: Intentionally ignored previous 'Disable service vsftpd' failure, service
+        was already disabled
+      meta: noop
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-80244-7
+  - NIST-800-53-CM-6(a)
+  - NIST-800-53-CM-7(a)
+  - NIST-800-53-CM-7(b)
+  - disable_strategy
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+  - service_vsftpd_disabled
+
+- name: Unit Socket Exists - vsftpd.socket
+  command: systemctl list-unit-files vsftpd.socket
+  register: socket_file_exists
+  changed_when: false
+  failed_when: socket_file_exists.rc not in [0, 1]
+  check_mode: false
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-80244-7
+  - NIST-800-53-CM-6(a)
+  - NIST-800-53-CM-7(a)
+  - NIST-800-53-CM-7(b)
+  - disable_strategy
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+  - service_vsftpd_disabled
+
+- name: Disable socket vsftpd
+  systemd:
+    name: vsftpd.socket
+    enabled: 'no'
+    state: stopped
+    masked: 'yes'
+  when:
+  - ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  - '"vsftpd.socket" in socket_file_exists.stdout_lines[1]'
+  tags:
+  - CCE-80244-7
+  - NIST-800-53-CM-6(a)
+  - NIST-800-53-CM-7(a)
+  - NIST-800-53-CM-7(b)
+  - disable_strategy
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+  - service_vsftpd_disabled

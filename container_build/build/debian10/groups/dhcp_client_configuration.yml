@@ -1,0 +1,24 @@
+prodtype: all
+description: 'If DHCP must be used, then certain configuration changes can
+
+    minimize the amount of information it receives and applies from the network,
+
+    and thus the amount of incorrect information a rogue DHCP server could
+
+    successfully distribute.  For more information on configuring dhclient, see the
+
+    <tt>dhclient(8)</tt> and <tt>dhclient.conf(5)</tt> man pages.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- dhcp_client_restrict_options
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Configure DHCP Client if Necessary
+definition_location: /home/oscap/content/linux_os/guide/services/dhcp/dhcp_client_configuration/group.yml
+documentation_complete: true

@@ -1,0 +1,24 @@
+prodtype: all
+description: 'The following general principles motivate much of the advice in this
+
+    guide and should also influence any configuration decisions that are
+
+    not explicitly covered.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups:
+- principle-encrypt-transmitted-data
+- principle-least-privilege
+- principle-minimize-software
+- principle-separate-servers
+- principle-use-security-tools
+rules: {}
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: General Principles
+definition_location: /home/oscap/content/apple_os/intro/general-principles/group.yml
+documentation_complete: true

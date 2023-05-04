@@ -1,0 +1,81 @@
+prodtype: fedora,ol7,ol8,ol9,rhcos4,rhel7,rhel8,rhel9,ubuntu2204
+description: 'The <tt>nosuid</tt> mount option can be used to prevent
+
+    execution of setuid programs in <tt>/var/log/audit</tt>. The SUID and SGID permissions
+
+    should not be required in directories containing audit log files.
+
+    Add the <code>nosuid</code> option to the fourth column of
+
+    <tt>/etc/fstab</tt> for the line which controls mounting of
+
+    <code>/var/log/audit</code>.'
+rationale: 'The presence of SUID and SGID executables should be tightly controlled.
+    Users
+
+    should not be able to execute SUID or SGID binaries from partitions
+
+    designated for audit log files.'
+severity: medium
+references:
+    disa: CCI-001764
+    nerc-cip: CIP-003-8 R5.1.1,CIP-003-8 R5.3,CIP-004-6 R2.3,CIP-007-3 R2.1,CIP-007-3
+        R2.2,CIP-007-3 R2.3,CIP-007-3 R5.1,CIP-007-3 R5.1.1,CIP-007-3 R5.1.2
+    nist: CM-7(a),CM-7(b),CM-6(a),AC-6,AC-6(1),MP-7
+    nist-csf: PR.IP-1,PR.PT-2,PR.PT-3
+    srg: SRG-OS-000368-GPOS-00154
+identifiers: {}
+ocil_clause: the "/var/log/audit" file system does not have the "nosuid" option set
+ocil: "Verify the <tt>nosuid</tt> option is configured for the <tt>/var/log/audit</tt>\
+    \ mount point,\n    run the following command:\n    <pre>$ sudo mount | grep '\\\
+    s/var/log/audit\\s'</pre>\n    <pre>. . . /var/log/audit . . . nosuid . . .</pre>\n"
+oval_external_content: null
+fixtext: Modify "/etc/fstab" to use the "nosuid" option on the "/var/log/audit" directory.
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Oracle Linux 7 must mount /var/log/audit with the nosuid option.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Oracle Linux 7 must mount /var/log/audit with the nosuid
+            option.
+        vuldiscussion: The "nosuid" mount option causes the system to not execute
+            "setuid" and "setgid" files with owner privileges. This option must be
+            used for mounting any file system not containing approved "setuid" and
+            "setguid" files. Executing files from untrusted file systems increases
+            the opportunity for unprivileged users to attain unauthorized administrative
+            access.
+        checktext: 'Verify "/var/log/audit" is mounted with the "nosuid" option:
+
+
+            $ mount | grep /var/log/audit
+
+
+            /dev/mapper/rhel-var-log-audit on /var/log/audit type xfs (rw,nodev,nosuid,noexec,seclabel)
+
+
+            If the "/var/log/audit" file system is mounted without the "nosuid" option,
+            this is a finding.'
+        fixtext: Modify "/etc/fstab" to use the "nosuid" option on the "/var/log/audit"
+            directory.
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Add nosuid Option to /var/log/audit
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/partitions/mount_option_var_log_audit_nosuid/rule.yml
+template:
+    name: mount_option
+    vars:
+        mountpoint: /var/log/audit
+        mountoption: nosuid
+    backends: {}
+documentation_complete: true

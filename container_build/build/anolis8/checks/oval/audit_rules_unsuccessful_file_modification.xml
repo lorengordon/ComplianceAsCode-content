@@ -1,0 +1,37 @@
+<def-group>
+  <definition class="compliance" id="audit_rules_unsuccessful_file_modification" version="1">
+    <metadata>
+        <title>Ensure auditd Collects Unauthorized Access Attempts to Files (unsuccessful)</title>
+        
+    <affected family="unix">
+    <platform>Red Hat Virtualization 4</platform>
+      <platform>Anolis OS 8</platform>
+      <platform>Oracle Linux 9</platform>
+      <platform>Oracle Linux 8</platform>
+      <platform>Red Hat Enterprise Linux 7</platform>
+      <platform>SUSE Linux Enterprise 15</platform>
+      <platform>Red Hat Enterprise Linux 9</platform>
+      <platform>Oracle Linux 7</platform>
+      <platform>Red Hat Enterprise Linux CoreOS 4</platform>
+      <platform>Alibaba Cloud Linux 3</platform>
+      <platform>Red Hat Enterprise Linux 8</platform>
+      <platform>Alibaba Cloud Linux 2</platform>
+      <platform>Debian 11</platform>
+      <platform>Debian 10</platform>
+      <platform>SUSE Linux Enterprise 12</platform>
+      <platform>Fedora</platform>
+    </affected>
+        <description>Audit rules about the unauthorized access attempts to files (unsuccessful) are enabled.</description>
+    </metadata>
+
+    <criteria operator="AND">
+      <extend_definition comment="audit creat" definition_ref="audit_rules_unsuccessful_file_modification_creat" />
+      <extend_definition comment="audit ftruncate" definition_ref="audit_rules_unsuccessful_file_modification_ftruncate" />
+      <extend_definition comment="audit openat" definition_ref="audit_rules_unsuccessful_file_modification_openat" />
+      <extend_definition comment="audit open_by_handle_at" definition_ref="audit_rules_unsuccessful_file_modification_open_by_handle_at" />
+      <extend_definition comment="audit open" definition_ref="audit_rules_unsuccessful_file_modification_open" />
+      <extend_definition comment="audit truncate" definition_ref="audit_rules_unsuccessful_file_modification_truncate" />
+    </criteria>
+  </definition>
+
+</def-group>

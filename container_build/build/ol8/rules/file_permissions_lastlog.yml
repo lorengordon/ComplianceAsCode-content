@@ -1,0 +1,58 @@
+prodtype: ol8
+description: '
+
+    To properly set the permissions of <code>/usr/bin/lastlog</code>, run the command:
+
+    <pre>$ sudo chmod 0750 /usr/bin/lastlog</pre>'
+rationale: 'Unauthorized disclosure of the contents of the /var/log/lastlog file can
+    reveal system data to
+
+    attackers, thus compromising its confidentiality.'
+severity: medium
+references:
+    disa: CCI-001314
+    nist: SI-11(b),SI-11(c),SI-11.1(iv)
+    srg: SRG-OS-000206-GPOS-00084
+    stigid: OL08-00-020262
+    stigref: SV-248705r779681_rule
+identifiers: {}
+ocil_clause: /usr/bin/lastlog does not have unix mode -rwxr-x---
+ocil: 'To check the permissions of <code>/usr/bin/lastlog</code>,
+
+    run the command:
+
+    <pre>$ ls -l /usr/bin/lastlog</pre>
+
+    If properly configured, the output should indicate the following permissions:
+
+    <code>-rwxr-x---</code>'
+oval_external_content: null
+fixtext: ' Change the permissions of the directory "/usr/bin/lastlog/" to "0750" by
+    running the following command:
+
+    $ sudo chmod 0750 /usr/bin/lastlog/'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ' The Oracle Linux 8 /usr/bin/lastlog directory must have mode 0750
+    or less permissive.'
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Verify Permissions on lastlog Command
+definition_location: /home/oscap/content/linux_os/guide/system/accounts/accounts-session/file_permissions_lastlog/rule.yml
+template:
+    name: file_permissions
+    vars:
+        filepath: /usr/bin/lastlog
+        filemode: '0750'
+    backends: {}
+documentation_complete: true

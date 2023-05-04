@@ -1,0 +1,135 @@
+prodtype: fedora,ol7,ol8,ol9,rhcos4,rhel7,rhel8,rhel9,rhv4,sle15
+description: 'SystemD''s <tt>debug-shell</tt> service is intended to
+
+    diagnose SystemD related boot issues with various <tt>systemctl</tt>
+
+    commands. Once enabled and following a system reboot, the root shell
+
+    will be available on <tt>tty9</tt> which is access by pressing
+
+    <tt>CTRL-ALT-F9</tt>. The <tt>debug-shell</tt> service should only be used
+
+    for SystemD related issues and should otherwise be disabled.
+
+    <br /><br />
+
+    By default, the <tt>debug-shell</tt> SystemD service is already disabled.
+
+
+    The <code>debug-shell</code> service can be disabled with the following command:
+
+    <pre>$ sudo systemctl mask --now debug-shell.service</pre>'
+rationale: 'This prevents attackers with physical access from trivially bypassing
+    security
+
+    on the machine through valid troubleshooting configurations and gaining root
+
+    access when the system is rebooted.'
+severity: medium
+references:
+    cui: 3.4.5
+    disa: CCI-000366
+    hipaa: 164.308(a)(1)(ii)(B),164.308(a)(7)(i),164.308(a)(7)(ii)(A),164.310(a)(1),164.310(a)(2)(i),164.310(a)(2)(ii),164.310(a)(2)(iii),164.310(b),164.310(c),164.310(d)(1),164.310(d)(2)(iii)
+    nist: CM-6
+    ospp: FIA_UAU.1
+    srg: SRG-OS-000324-GPOS-00125,SRG-OS-000480-GPOS-00227
+identifiers: {}
+ocil_clause: the "debug-shell" is loaded and not masked
+ocil: 'To check that the <code>debug-shell</code> service is disabled in system boot
+    configuration,
+
+    run the following command:
+
+    <pre>$ sudo systemctl is-enabled <code>debug-shell</code></pre>
+
+    Output should indicate the <code>debug-shell</code> service has either not been
+    installed,
+
+    or has been disabled at all runlevels, as shown in the example below:
+
+    <pre>$ sudo systemctl is-enabled <code>debug-shell</code><br/> disabled</pre>
+
+
+    Run the following command to verify <code>debug-shell</code> is not active (i.e.
+    not running) through current runtime configuration:
+
+    <pre>$ sudo systemctl is-active debug-shell</pre>
+
+
+    If the service is not running the command will return the following output:
+
+    <pre>inactive</pre>
+
+
+    The service will also be masked, to check that the <code>debug-shell</code> is
+    masked, run the following command:
+
+    <pre>$ sudo systemctl show <code>debug-shell</code> | grep "LoadState\|UnitFileState"</pre>
+
+
+    If the service is masked the command will return the following outputs:
+
+
+    <pre>LoadState=masked</pre>
+
+
+    <pre>UnitFileState=masked</pre>'
+oval_external_content: null
+fixtext: The Oracle Linux 7 service debug-shell must be disabled.
+checktext: ''
+vuldiscussion: ''
+srg_requirement: The Oracle Linux 7 service debug-shell must be disabled.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: The Oracle Linux 7 debug-shell systemd service must be disabled.
+        vuldiscussion: The debug-shell requires no authentication and provides root
+            privileges to anyone who has physical access to the machine.  While this
+            feature is disabled by default, masking it adds an additional layer of
+            assurance that it will not be enabled via a dependency in systemd.  This
+            also prevents attackers with physical access from trivially bypassing
+            security on the machine through valid troubleshooting configurations and
+            gaining root access when the system is rebooted.
+        checktext: 'Verify Oracle Linux 7 is configured to mask the debug-shell systemd
+            service with the following command:
+
+
+            $ sudo systemctl status debug-shell.service
+
+
+            debug-shell.service
+
+            Loaded: masked (Reason: Unit debug-shell.service is masked.)
+
+            Active: inactive (dead)
+
+
+            If the "debug-shell.service" is loaded and not masked, this is a finding.'
+        fixtext: 'Configure Oracle Linux 7 to mask the debug-shell systemd service
+            with the following command:
+
+
+            $ sudo systemctl disable --now debug-shell.target
+
+            $ sudo systemctl mask --now debug-shell.target'
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Disable debug-shell SystemD Service
+definition_location: /home/oscap/content/linux_os/guide/system/accounts/accounts-physical/service_debug-shell_disabled/rule.yml
+template:
+    name: service_disabled
+    vars:
+        servicename: debug-shell
+        packagename: systemd
+    backends: {}
+documentation_complete: true

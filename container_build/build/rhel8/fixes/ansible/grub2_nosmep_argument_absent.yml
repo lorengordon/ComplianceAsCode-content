@@ -1,0 +1,30 @@
+# platform = multi_platform_rhel,multi_platform_fedora,multi_platform_ol,multi_platform_rhv,multi_platform_sle
+# reboot = true
+# strategy = restrict
+# complexity = medium
+# disruption = low
+- name: Gather the package facts
+  package_facts:
+    manager: auto
+  tags:
+  - CCE-85989-2
+  - grub2_nosmep_argument_absent
+  - low_disruption
+  - medium_complexity
+  - medium_severity
+  - reboot_required
+  - restrict_strategy
+
+- name: Update grub defaults and the bootloader menu
+  command: /sbin/grubby --update-kernel=ALL --remove-args="nosmep"
+  when:
+  - '"grub2-common" in ansible_facts.packages'
+  - ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-85989-2
+  - grub2_nosmep_argument_absent
+  - low_disruption
+  - medium_complexity
+  - medium_severity
+  - reboot_required
+  - restrict_strategy

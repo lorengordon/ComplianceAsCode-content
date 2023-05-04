@@ -1,0 +1,46 @@
+# platform = multi_platform_all
+# reboot = true
+# strategy = disable
+# complexity = low
+# disruption = medium
+
+- name: List /etc/sysctl.d/*.conf files
+
+  find:
+    paths:
+      - "/etc/sysctl.d/"
+      - "/run/sysctl.d/"
+
+
+      - "/usr/lib/sysctl.d/"
+
+    contains: '^[\s]*net.ipv4.conf.all.log_martians.*$'
+    patterns: "*.conf"
+    file_type: any
+  register: find_sysctl_d
+
+- name: Comment out any occurrences of net.ipv4.conf.all.log_martians from config files
+  replace:
+    path: "{{ item.path }}"
+    regexp: '^[\s]*net.ipv4.conf.all.log_martians'
+    replace: '#net.ipv4.conf.all.log_martians'
+  loop: "{{ find_sysctl_d.files }}"
+
+
+- name: Comment out any occurrences of net.ipv4.conf.all.log_martians from /etc/sysctl.conf
+  replace:
+    path: "/etc/sysctl.conf"
+    regexp: '^[\s]*net.ipv4.conf.all.log_martians'
+    replace: '#net.ipv4.conf.all.log_martians'
+
+- (xccdf-var sysctl_net_ipv4_conf_all_log_martians_value)
+
+- name: Ensure sysctl net.ipv4.conf.all.log_martians is set
+  sysctl:
+    name: "net.ipv4.conf.all.log_martians"
+    value: "{{ sysctl_net_ipv4_conf_all_log_martians_value }}"
+
+    sysctl_file: "/etc/sysctl.d/net_ipv4_conf_all_log_martians.conf"
+
+    state: present
+    reload: yes

@@ -1,0 +1,76 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = configure
+# complexity = low
+# disruption = low
+- name: Ensure owner on directory /lib/ recursively
+  file:
+    path: /lib/
+    state: directory
+    recurse: true
+    owner: '0'
+  tags:
+  - CCE-85735-9
+  - DISA-STIG-SLES-15-010354
+  - NIST-800-53-CM-5(6)
+  - NIST-800-53-CM-5(6).1
+  - configure_strategy
+  - dir_ownership_library_dirs
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Ensure owner on directory /lib64/ recursively
+  file:
+    path: /lib64/
+    state: directory
+    recurse: true
+    owner: '0'
+  tags:
+  - CCE-85735-9
+  - DISA-STIG-SLES-15-010354
+  - NIST-800-53-CM-5(6)
+  - NIST-800-53-CM-5(6).1
+  - configure_strategy
+  - dir_ownership_library_dirs
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Ensure owner on directory /usr/lib/ recursively
+  file:
+    path: /usr/lib/
+    state: directory
+    recurse: true
+    owner: '0'
+  tags:
+  - CCE-85735-9
+  - DISA-STIG-SLES-15-010354
+  - NIST-800-53-CM-5(6)
+  - NIST-800-53-CM-5(6).1
+  - configure_strategy
+  - dir_ownership_library_dirs
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Ensure owner on directory /usr/lib64/ recursively
+  file:
+    path: /usr/lib64/
+    state: directory
+    recurse: true
+    owner: '0'
+  tags:
+  - CCE-85735-9
+  - DISA-STIG-SLES-15-010354
+  - NIST-800-53-CM-5(6)
+  - NIST-800-53-CM-5(6).1
+  - configure_strategy
+  - dir_ownership_library_dirs
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed

@@ -1,0 +1,20 @@
+prodtype: all
+description: "Dovecot provides IMAP and POP3 services. It is not\ninstalled by default.\
+    \ The project page at \n    <a xmlns='http://www.w3.org/1999/xhtml' href='http://www.dovecot.org'>http://www.dovecot.org</a>\n\
+    contains more detailed information about Dovecot\nconfiguration."
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups:
+- configure_dovecot
+- disabling_cyrus-imapd
+- disabling_dovecot
+rules: {}
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: IMAP and POP3 Server
+definition_location: /home/oscap/content/linux_os/guide/services/imap/group.yml
+documentation_complete: true

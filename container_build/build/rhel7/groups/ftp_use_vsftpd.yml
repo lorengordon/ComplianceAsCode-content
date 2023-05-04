@@ -1,0 +1,18 @@
+prodtype: all
+description: 'If your use-case requires FTP service, install and
+
+    set-up vsftpd to provide it.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- package_vsftpd_installed
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Use vsftpd to Provide FTP Service if Necessary
+definition_location: /home/oscap/content/linux_os/guide/services/ftp/ftp_use_vsftpd/group.yml
+documentation_complete: true

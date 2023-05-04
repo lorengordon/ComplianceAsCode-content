@@ -1,0 +1,48 @@
+# platform = multi_platform_rhel,multi_platform_fedora,multi_platform_ol,multi_platform_rhv,multi_platform_ubuntu,multi_platform_sle
+# reboot = true
+# strategy = disable
+# complexity = low
+# disruption = medium
+- name: Ensure kernel module 'iwlmvm' is disabled
+  lineinfile:
+    create: true
+    dest: /etc/modprobe.d/iwlmvm.conf
+    regexp: install\s+iwlmvm
+    line: install iwlmvm /bin/true
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - NIST-800-53-AC-18(3)
+  - NIST-800-53-AC-18(4)
+  - NIST-800-53-AC-18(a)
+  - NIST-800-53-CM-6(a)
+  - NIST-800-53-CM-7(a)
+  - NIST-800-53-CM-7(b)
+  - NIST-800-53-MP-7
+  - disable_strategy
+  - kernel_module_iwlmvm_disabled
+  - low_complexity
+  - medium_disruption
+  - medium_severity
+  - reboot_required
+
+- name: Ensure kernel module 'iwlmvm' is blacklisted
+  lineinfile:
+    create: true
+    dest: /etc/modprobe.d/iwlmvm.conf
+    regexp: ^blacklist iwlmvm$
+    line: blacklist iwlmvm
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - NIST-800-53-AC-18(3)
+  - NIST-800-53-AC-18(4)
+  - NIST-800-53-AC-18(a)
+  - NIST-800-53-CM-6(a)
+  - NIST-800-53-CM-7(a)
+  - NIST-800-53-CM-7(b)
+  - NIST-800-53-MP-7
+  - disable_strategy
+  - kernel_module_iwlmvm_disabled
+  - low_complexity
+  - medium_disruption
+  - medium_severity
+  - reboot_required

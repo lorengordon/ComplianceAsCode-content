@@ -1,0 +1,94 @@
+prodtype: rhel7,rhel8
+description: '
+
+    By default, <tt>firewalld</tt>
+
+    blocks access to the ports used by the web server.
+
+
+
+
+    To configure <code>firewalld</code> to allow <code>http</code> access, run the
+    following command(s):
+
+    <pre>firewall-cmd --permanent --add-service=http</pre>
+
+
+    Then run the following command to load the newly created rule(s):
+
+    <pre>firewall-cmd --reload</pre>
+
+
+
+
+    To configure <code>firewalld</code> to allow <code>https</code> access, run the
+    following command(s):
+
+    <pre>firewall-cmd --permanent --add-service=https</pre>
+
+
+    Then run the following command to load the newly created rule(s):
+
+    <pre>firewall-cmd --reload</pre>'
+rationale: 'Failure to comply with DoD ports, protocols, and services (PPS) requirements
+
+    can result in compromise of enclave boundary protections and/or functionality
+
+    of the AIS.'
+severity: low
+references:
+    stigid: WG610
+identifiers: {}
+ocil_clause: it is not
+ocil: 'Review the web site to determine if HTTP and HTTPs are used in accordance with
+
+    well known ports (e.g., 80 and 443) or those ports and services as registered
+
+    and approved for use by the DoD PPSM.
+
+
+
+
+    To configure <code>firewalld</code> to allow <code>http</code> access, run the
+    following command(s):
+
+    <pre>firewall-cmd --permanent --add-service=http</pre>
+
+
+    Then run the following command to load the newly created rule(s):
+
+    <pre>firewall-cmd --reload</pre>
+
+
+
+
+    To configure <code>firewalld</code> to allow <code>https</code> access, run the
+    following command(s):
+
+    <pre>firewall-cmd --permanent --add-service=https</pre>
+
+
+    Then run the following command to load the newly created rule(s):
+
+    <pre>firewall-cmd --reload</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Configure firewall to Allow Access to the Web Server
+definition_location: /home/oscap/content/linux_os/guide/services/http/securing_httpd/httpd_configure_os_protect_web_server/httpd_configure_firewall/rule.yml
+template: null
+documentation_complete: true

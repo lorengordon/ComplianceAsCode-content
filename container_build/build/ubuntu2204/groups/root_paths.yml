@@ -1,0 +1,53 @@
+prodtype: all
+description: 'The active path of the root account can be obtained by
+
+    starting a new root shell and running:
+
+    <pre># echo $PATH</pre>
+
+    This will produce a colon-separated list of
+
+    directories in the path.
+
+    <br /><br />
+
+    Certain path elements could be considered dangerous, as they could lead
+
+    to root executing unknown or
+
+    untrusted programs, which could contain malicious
+
+    code.
+
+    Since root may sometimes work inside
+
+    untrusted directories, the <tt>.</tt> character, which represents the
+
+    current directory, should never be in the root path, nor should any
+
+    directory which can be written to by an unprivileged or
+
+    semi-privileged (system) user.
+
+    <br /><br />
+
+    It is a good practice for administrators to always execute
+
+    privileged commands by typing the full path to the
+
+    command.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- accounts_root_path_dirs_no_write
+- root_path_no_dot
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Ensure that No Dangerous Directories Exist in Root's Path
+definition_location: /home/oscap/content/linux_os/guide/system/accounts/accounts-session/root_paths/group.yml
+documentation_complete: true

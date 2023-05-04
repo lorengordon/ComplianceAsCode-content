@@ -1,0 +1,39 @@
+# platform = multi_platform_all
+# reboot = true
+# strategy = disable
+# complexity = low
+# disruption = medium
+
+- name: List /etc/sysctl.d/*.conf files
+      
+  find:
+    paths:
+      - "/etc/sysctl.d/"
+      - "/run/sysctl.d/"
+      - "/usr/local/lib/sysctl.d/"
+
+
+      - "/usr/lib/sysctl.d/"
+
+    contains: '^[\s]*user.max_user_namespaces.*$'
+    patterns: "*.conf"
+    file_type: any
+  register: find_sysctl_d
+
+- name: Comment out any occurrences of user.max_user_namespaces from config files
+  replace:
+    path: "{{ item.path }}"
+    regexp: '^[\s]*user.max_user_namespaces'
+    replace: '#user.max_user_namespaces'
+  loop: "{{ find_sysctl_d.files }}"
+
+
+- name: Ensure sysctl user.max_user_namespaces is set to 0
+  sysctl:
+    name: "user.max_user_namespaces"
+    value: "0"
+
+    sysctl_file: "/etc/sysctl.conf"
+
+    state: present
+    reload: yes

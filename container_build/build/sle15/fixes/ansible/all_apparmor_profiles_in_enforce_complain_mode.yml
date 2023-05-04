@@ -1,0 +1,82 @@
+# platform = multi_platform_sle
+# reboot = false
+# strategy = restrict
+# complexity = low
+# disruption = low
+- (xccdf-var var_apparmor_mode)
+
+- name: All AppArmor Profiles are in enforce or complain mode - Ensure all AppArmor
+    Profiles are reloaded
+  ansible.builtin.command: apparmor_parser -q -r /etc/apparmor.d/
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-92548-7
+  - all_apparmor_profiles_in_enforce_complain_mode
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+  - restrict_strategy
+
+- name: All AppArmor Profiles are in enforce or complain mode - Set all AppArmor profiles
+    to enforce mode
+  ansible.builtin.command: aa-enforce /etc/apparmor.d/*
+  when:
+  - ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  - var_apparmor_mode == 'enforce'
+  tags:
+  - CCE-92548-7
+  - all_apparmor_profiles_in_enforce_complain_mode
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+  - restrict_strategy
+
+- name: All AppArmor Profiles are in enforce or complain mode - Set all AppArmor profiles
+    to complain mode
+  ansible.builtin.command: aa-complain /etc/apparmor.d/*
+  when:
+  - ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  - var_apparmor_mode == 'complain'
+  tags:
+  - CCE-92548-7
+  - all_apparmor_profiles_in_enforce_complain_mode
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+  - restrict_strategy
+
+- name: All AppArmor Profiles are in enforce or complain mode - Collect unconfined
+    processes
+  ansible.builtin.command: aa-unconfined
+  register: unconfined_processes
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-92548-7
+  - all_apparmor_profiles_in_enforce_complain_mode
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+  - restrict_strategy
+
+- name: All AppArmor Profiles are in enforce or complain mode - Provide details about
+    unconfined processes
+  ansible.builtin.assert:
+    that:
+    - unconfined_processes.stdout_lines | length > 0
+    success_msg: The process {{ item }} may need to have a profile created or activated
+      for them and then be restarted.
+    fail_msg: ''
+  with_items: '{{ unconfined_processes.stdout_lines }}'
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-92548-7
+  - all_apparmor_profiles_in_enforce_complain_mode
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+  - restrict_strategy

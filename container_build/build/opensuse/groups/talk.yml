@@ -1,0 +1,17 @@
+prodtype: all
+description: 'The talk software makes it possible for users to send and receive messages
+
+    across systems through a terminal session.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules: {}
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Chat/Messaging Services
+definition_location: /home/oscap/content/linux_os/guide/services/obsolete/talk/group.yml
+documentation_complete: true

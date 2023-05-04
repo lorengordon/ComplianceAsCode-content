@@ -1,0 +1,37 @@
+prodtype: rhel7,rhel8
+description: 'The <tt>auth_digest</tt> module provides encrypted authentication sessions.
+
+    If this functionality is unnecessary, comment out the related module:
+
+    <pre>#LoadModule auth_digest_module modules/mod_auth_digest.so</pre>'
+rationale: 'Minimizing the number of loadable modules available to the web server
+    reduces risk
+
+    by limiting the capabilities allowed by the web server.'
+severity: unknown
+references: {}
+identifiers:
+    cce: CCE-80304-9
+ocil_clause: null
+ocil: null
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Disable HTTP Digest Authentication
+definition_location: /home/oscap/content/linux_os/guide/services/http/securing_httpd/httpd_minimize_loadable_modules/httpd_core_modules/httpd_digest_authentication/rule.yml
+template: null
+documentation_complete: true

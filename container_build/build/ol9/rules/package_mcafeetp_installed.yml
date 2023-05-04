@@ -1,0 +1,61 @@
+prodtype: ol7,ol8,ol9,rhel7,rhel8,rhel9,ubuntu2004,ubuntu2204
+description: 'Install McAfee Endpoint Security for Linux antivirus software
+
+    which is provided for DoD systems and uses signatures to search for the
+
+    presence of viruses on the filesystem.
+
+
+    The <code>McAfeeTP</code> package can be installed with the following command:
+
+    <pre>
+
+    $ sudo yum install McAfeeTP</pre>'
+rationale: 'Virus scanning software can be used to detect if a system has been compromised
+    by
+
+    computer viruses, as well as to limit their spread to other systems.'
+severity: medium
+references:
+    disa: CCI-001263,CCI-000366
+    nist: SI-2(2)
+    srg: SRG-OS-000191-GPOS-00080
+identifiers: {}
+ocil_clause: the package is not installed
+ocil: 'Run the following command to determine if the <code>McAfeeTP</code> package
+    is installed: <pre>$ rpm -q McAfeeTP</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings:
+-   general: 'Due to McAfee Endpoint Security for Linux (ENSL) being 3rd party software,
+
+        automated remediation is not available for this configuration check.'
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Install McAfee Endpoint Security for Linux (ENSL)
+definition_location: /home/oscap/content/linux_os/guide/system/software/integrity/endpoint_security_software/mcafee_security_software/mcafee_endpoint_security_software/package_mcafeetp_installed/rule.yml
+template:
+    name: package_installed
+    vars:
+        pkgname: McAfeeTP
+    backends:
+        bash: 'off'
+        ansible: 'off'
+        anaconda: 'off'
+        puppet: 'off'
+        blueprint: 'off'
+documentation_complete: true

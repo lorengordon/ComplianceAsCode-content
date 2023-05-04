@@ -1,0 +1,35 @@
+
+<def-group>
+  <definition class="compliance" id="coredump_disable_storage" version="1">
+    <metadata>
+        <title>Disable storing core dump</title>
+        
+    <affected family="unix">
+    <platform>multi_platform_all</platform>
+    </affected>
+        <description>Ensure 'Storage' is configured with value 'none in section 'Coredump' in /etc/systemd/coredump.conf</description>
+    </metadata>
+    <criteria comment="systemd-coredump is configured correctly"
+    operator="OR"><criterion comment="Check the Storage in /etc/systemd/coredump.conf"
+  test_ref="test_coredump_disable_storage" />
+    </criteria>
+  </definition>
+  
+<ind:textfilecontent54_test check="all" check_existence="all_exist"
+  comment="tests the value of Storage setting in the /etc/systemd/coredump.conf file"
+  id="test_coredump_disable_storage" version="1">
+  <ind:object object_ref="obj_coredump_disable_storage" />
+  <ind:state state_ref="state_coredump_disable_storage" />
+</ind:textfilecontent54_test>
+  
+<ind:textfilecontent54_object id="obj_coredump_disable_storage" version="1">
+  <ind:filepath>/etc/systemd/coredump.conf</ind:filepath>
+  <ind:pattern operation="pattern match">^\s*\[Coredump\].*(?:\n\s*[^[\s].*)*\n^[ \t]*(?i)Storage(?-i)[ \t]*=[ \t]*(.+?)[ \t]*(?:$|#)</ind:pattern>
+  <ind:instance operation="greater than or equal" datatype="int">1</ind:instance>
+</ind:textfilecontent54_object>
+  
+<ind:textfilecontent54_state id="state_coredump_disable_storage" version="1">
+  <ind:subexpression datatype="string" operation="pattern match">^(?i)none(?-i)$</ind:subexpression>
+</ind:textfilecontent54_state>
+
+</def-group>

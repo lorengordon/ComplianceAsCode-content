@@ -1,0 +1,127 @@
+prodtype: fedora,ol7,ol8,ol9,rhcos4,rhel7,rhel8,rhel9,rhv4,sle12,sle15,ubuntu2004,ubuntu2204
+description: "The <tt>maxpoll</tt> should be configured to\n<sub idref=\"var_time_service_set_maxpoll\"\
+    \ /> in <tt>/etc/ntp.conf</tt> or\n<tt>/etc/chrony.conf</tt> to continuously poll\
+    \ time servers. To configure\n<tt>maxpoll</tt> in <tt>/etc/ntp.conf</tt> or <tt>/etc/chrony.conf</tt>\n\
+    add the following after each `server`, `pool` or `peer` entry:\n<pre>maxpoll <sub\
+    \ idref=\"var_time_service_set_maxpoll\" /></pre>\nto <pre>server</pre> directives.\
+    \ If using chrony any <pre>pool</pre> directives\nshould be configured too.\n\
+    If no <tt>server</tt> or <tt>pool</tt> directives are configured, the rule evaluates\n\
+    to pass.\n\n<p>\nNote that if the remediation shipping with this content is being\
+    \ used, the\n<b>MachineConfig</b> shipped does not include reference NTP servers\
+    \ to point\nto. It is up to the admin to set these which will vary depending on\
+    \ the\ncluster's requirements.\n</p>\n\n<p>\nThe aforementioned remediation does\
+    \ include the directory <tt>/etc/chrony.d</tt>\nwhich would allow the creation\
+    \ of configuration files to set these servers.\n</p>\n\nIf we'd like to set a\
+    \ configuration like the following:\n<pre>\npool 2.rhel.pool.ntp.org iburst\n\n\
+    server 0.rhel.pool.ntp.org minpoll 4 maxpoll 10\nserver 1.rhel.pool.ntp.org minpoll\
+    \ 4 maxpoll 10\nserver 2.rhel.pool.ntp.org minpoll 4 maxpoll 10\nserver 3.rhel.pool.ntp.org\
+    \ minpoll 4 maxpoll 10\n</pre>\n\nThis could be done with to the following manifest:\n\
+    \n<pre>\napiVersion: machineconfiguration.openshift.io/v1\nkind: MachineConfig\n\
+    metadata:\n  labels:\n    machineconfiguration.openshift.io/role: master\n  name:\
+    \ 75-master-chrony-servers\nspec:\n  config:\n    ignition:\n      version: 3.1.0\n\
+    \    storage:\n      files:\n      - contents:\n          source: data:,pool%202.rhel.pool.ntp.org%20iburst%0A%0Aserver%200.rhel.pool.ntp.org%20minpoll%204%20maxpoll%2010%0Aserver%201.rhel.pool.ntp.org%20minpoll%204%20maxpoll%2010%0Aserver%202.rhel.pool.ntp.org%20minpoll%204%20maxpoll%2010%0Aserver%203.rhel.pool.ntp.org%20minpoll%204%20maxpoll%2010\n\
+    \        mode: 0600\n        path: /etc/chrony.d/10-rhel-pool-and-servers.conf\n\
+    \        overwrite: true\n</pre>\n\nNote that this needs to be done for each <pre>MachineConfigPool</pre>"
+rationale: 'Inaccurate time stamps make it more difficult to correlate events and
+    can lead to an inaccurate analysis. Determining the correct time a particular
+    event occurred on a system is critical when conducting forensic analysis and investigating
+    system events. Sources outside the configured acceptable allowance (drift) may
+    be inaccurate.
+
+    Synchronizing internal information system clocks provides uniformity of time stamps
+    for information systems with multiple system clocks and systems connected over
+    a network.
+
+    Organizations should consider endpoints that may not have regular access to the
+    authoritative time server (e.g., mobile, teleworking, and tactical endpoints).'
+severity: medium
+references:
+    cis-csc: 1,14,15,16,3,5,6
+    cobit5: APO11.04,BAI03.05,DSS05.04,DSS05.07,MEA02.01
+    disa: CCI-001891,CCI-002046
+    isa-62443-2009: 4.3.3.3.9,4.3.3.5.8,4.3.4.4.7,4.4.2.1,4.4.2.2,4.4.2.4
+    isa-62443-2013: SR 2.10,SR 2.11,SR 2.12,SR 2.8,SR 2.9
+    iso27001-2013: A.12.4.1,A.12.4.2,A.12.4.3,A.12.4.4,A.12.7.1
+    nist: CM-6(a),AU-8(1)(b),AU-12(1)
+    nist-csf: PR.PT-1
+    srg: SRG-OS-000355-GPOS-00143,SRG-OS-000356-GPOS-00144,SRG-OS-000359-GPOS-00146
+identifiers:
+    cce: CCE-82684-2
+ocil_clause: '"maxpoll" has not been set to the value of "<sub idref="var_time_service_set_maxpoll"
+    />", is commented out, or is missing'
+ocil: 'Verify Red Hat Enterprise Linux CoreOS 4 is securely comparing internal information
+    system clocks at a regular interval with an NTP server with the following command:
+
+    <pre>$ sudo grep maxpoll /etc/ntp.conf /etc/chrony.conf</pre>
+
+    <pre>server [ntp.server.name] iburst maxpoll <sub idref="var_time_service_set_maxpoll"
+    /></pre>.'
+oval_external_content: null
+fixtext: 'Configure Red Hat Enterprise Linux CoreOS 4 to securely compare internal
+    information system clocks at a regular interval with an NTP server by adding/modifying
+    the following line in the /etc/chrony.conf file.
+
+
+    server [ntp.server.name] iburst maxpoll <sub idref="var_time_service_set_maxpoll"
+    />'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Red Hat Enterprise Linux CoreOS 4 must securely compare internal
+    information system clocks at least every 24 hours with a server synchronized to
+    an authoritative time source, such as the United States Naval Observatory (USNO)
+    time servers, or a time server designated for the appropriate DoD network (NIPRNet/SIPRNet),
+    and/or the Global Positioning System (GPS).
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Red Hat Enterprise Linux CoreOS 4 must securely compare internal
+            information system clocks at least every 24 hours with a server synchronized
+            to an authoritative time source, such as the United States Naval Observatory
+            (USNO) time servers, or a time server designated for the appropriate DoD
+            network (NIPRNet/SIPRNet), and/or the Global Positioning System (GPS).
+        vuldiscussion: 'Inaccurate time stamps make it more difficult to correlate
+
+            events and can lead to an inaccurate analysis. Determining the correct
+
+            time a particular event occurred on a system is critical when conducting
+
+            forensic analysis and investigating system events. Sources outside the
+
+            configured acceptable allowance (drift) may be inaccurate.'
+        checktext: 'Verify Red Hat Enterprise Linux CoreOS 4 is securely comparing
+            internal information system clocks at a regular interval with an NTP server
+            with the following command:
+
+
+            $ sudo grep maxpoll /etc/ntp.conf /etc/chrony.conf
+
+
+            server [ntp.server.name] iburst maxpoll 10
+
+
+            If "maxpoll" has not been set to the of "10", is commented out, or is
+            missing, this is a finding.'
+        fixtext: 'Configure Red Hat Enterprise Linux CoreOS 4 to securely compare
+            internal information system clocks at a regular interval with an NTP server
+            by adding/modifying the following line in the /etc/chrony.conf file.
+
+
+            server [ntp.server.name] iburst maxpoll 10'
+platform: null
+platforms: !!set
+    package[ntp] or package[chrony]: null
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set
+    package_chrony_or_package_ntp: null
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Configure Time Service Maxpoll Interval
+definition_location: /home/oscap/content/linux_os/guide/services/ntp/chronyd_or_ntpd_set_maxpoll/rule.yml
+template: null
+documentation_complete: true

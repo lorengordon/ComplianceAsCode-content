@@ -1,0 +1,97 @@
+prodtype: fedora,ol8,ol9,rhcos4,rhel8,rhel9
+description: 'The <tt>systemd-coredump.socket</tt> unit is a socket activation of
+
+    the <tt>systemd-coredump@.service</tt> which processes core dumps.
+
+    By masking the unit, core dump processing is disabled.'
+rationale: 'A core dump includes a memory image taken at the time the operating system
+
+    terminates an application. The memory image could contain sensitive data
+
+    and is generally useful only for developers trying to debug problems.'
+severity: medium
+references:
+    disa: CCI-000366
+    nist: SC-7(10)
+    ospp: FMT_SMF_EXT.1
+    srg: SRG-OS-000480-GPOS-00227
+identifiers:
+    cce: CCE-83974-6
+ocil_clause: unit systemd-coredump.socket is not masked or running
+ocil: "To verify that acquiring, saving, and processing core dumps is disabled, run\
+    \ the\nfollowing command:\n<pre>$ systemctl status systemd-coredump.socket</pre>\n\
+    The output should be similar to:\n<pre>\u25CF systemd-coredump.socket\n   Loaded:\
+    \ masked (Reason: Unit systemd-coredump.socket is masked.)\n   Active: inactive\
+    \ (dead) ...\n</pre>"
+oval_external_content: null
+fixtext: 'To disable the systemd-coredump service run the following command:
+
+    $ sudo systemctl disable --now systemd-coredump
+
+    $ sudo systemctl mask --now systemd-coredump'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: The Red Hat Enterprise Linux 9 service systemd-coredump must be disabled.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Red Hat Enterprise Linux 9 must disable acquiring, saving,
+            and processing core dumps.
+        vuldiscussion: 'A core dump includes a memory image taken at the time the
+            operating system
+
+            terminates an application. The memory image could contain sensitive data
+
+            and is generally useful only for developers trying to debug problems.'
+        checktext: 'Verify Red Hat Enterprise Linux 9 is not configured to acquire,
+            save, or process core dumps with the following command:
+
+
+            $ sudo systemctl status systemd-coredump.socket
+
+
+            systemd-coredump.socket
+
+            Loaded: masked (Reason: Unit systemd-coredump.socket is masked.)
+
+            Active: inactive (dead)
+
+
+            If the "systemd-coredump.socket" is loaded and not masked and the need
+            for core dumps is not documented with the Information System Security
+            Officer (ISSO) as an operational requirement, this is a finding.'
+        fixtext: 'Configure the system to disable the systemd-coredump.socket with
+            the following command:
+
+
+            $ sudo systemctl mask --now systemd-coredump.socket
+
+
+            Created symlink /etc/systemd/system/systemd-coredump.socket -> /dev/null
+
+
+            Reload the daemon for this change to take effect.
+
+
+            $ sudo systemctl daemon-reload'
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Disable acquiring, saving, and processing core dumps
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/restrictions/coredumps/service_systemd-coredump_disabled/rule.yml
+template:
+    name: service_disabled
+    vars:
+        servicename: systemd-coredump
+        packagename: systemd
+    backends: {}
+documentation_complete: true

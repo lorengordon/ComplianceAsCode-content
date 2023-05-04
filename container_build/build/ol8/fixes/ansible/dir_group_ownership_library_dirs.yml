@@ -1,0 +1,72 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = configure
+# complexity = low
+# disruption = low
+- name: Ensure group owner on /lib/ recursively
+  file:
+    path: /lib/
+    state: directory
+    recurse: true
+    group: '0'
+  tags:
+  - DISA-STIG-OL08-00-010351
+  - NIST-800-53-CM-5(6)
+  - NIST-800-53-CM-5(6).1
+  - configure_strategy
+  - dir_group_ownership_library_dirs
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Ensure group owner on /lib64/ recursively
+  file:
+    path: /lib64/
+    state: directory
+    recurse: true
+    group: '0'
+  tags:
+  - DISA-STIG-OL08-00-010351
+  - NIST-800-53-CM-5(6)
+  - NIST-800-53-CM-5(6).1
+  - configure_strategy
+  - dir_group_ownership_library_dirs
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Ensure group owner on /usr/lib/ recursively
+  file:
+    path: /usr/lib/
+    state: directory
+    recurse: true
+    group: '0'
+  tags:
+  - DISA-STIG-OL08-00-010351
+  - NIST-800-53-CM-5(6)
+  - NIST-800-53-CM-5(6).1
+  - configure_strategy
+  - dir_group_ownership_library_dirs
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Ensure group owner on /usr/lib64/ recursively
+  file:
+    path: /usr/lib64/
+    state: directory
+    recurse: true
+    group: '0'
+  tags:
+  - DISA-STIG-OL08-00-010351
+  - NIST-800-53-CM-5(6)
+  - NIST-800-53-CM-5(6).1
+  - configure_strategy
+  - dir_group_ownership_library_dirs
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed

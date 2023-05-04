@@ -1,0 +1,53 @@
+prodtype: sle12,sle15,ubuntu2004,ubuntu2204
+description: 'AppArmor profiles define what resources applications are able to access.
+
+    To set all profiles to enforce mode run the following command:
+
+    <pre>$ sudo aa-enforce /etc/apparmor.d/*</pre>
+
+    To list unconfined processes run the following command:
+
+
+    <pre>$ sudo apparmor_status | grep processes</pre>
+
+
+    Any unconfined processes may need to have a profile created or activated
+
+    for them and then be restarted.'
+rationale: 'Security configuration requirements vary from site to site. Some sites
+    may
+
+    mandate a policy that is stricter than the default policy, which is perfectly
+
+    acceptable. This recommendation is intended to ensure that any policies that
+
+    exist on the system are activated.'
+severity: medium
+references:
+    cis: 1.6.1.4
+identifiers: {}
+ocil_clause: null
+ocil: null
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Enforce all AppArmor Profiles
+definition_location: /home/oscap/content/linux_os/guide/system/apparmor/all_apparmor_profiles_enforced/rule.yml
+template: null
+documentation_complete: true

@@ -1,0 +1,49 @@
+prodtype: all
+description: "SELinux is a feature of the Linux kernel which can be\nused to guard\
+    \ against misconfigured or compromised programs.\nSELinux enforces the idea that\
+    \ programs should be limited in what\nfiles they can access and what actions they\
+    \ can take.\n<br /><br />\nThe default SELinux policy, as configured on Red Hat\
+    \ Enterprise Linux 7, has been\nsufficiently developed and debugged that it should\
+    \ be usable on\nalmost any system with minimal configuration and a small\namount\
+    \ of system administrator training. This policy prevents\nsystem services - including\
+    \ most of the common network-visible\nservices such as mail servers, FTP servers,\
+    \ and DNS servers - from\naccessing files which those services have no valid reason\
+    \ to\naccess. This action alone prevents a huge amount of possible damage\nfrom\
+    \ network attacks against services, from trojaned software, and\nso forth.\n<br\
+    \ /><br />\nThis guide recommends that SELinux be enabled using the\ndefault (targeted)\
+    \ policy on every Red Hat Enterprise Linux 7 system, unless that\nsystem has unusual\
+    \ requirements which make a stronger policy\nappropriate.\n\n<br /><br />\nFor\
+    \ more information on SELinux, see <b>\n    <a xmlns='http://www.w3.org/1999/xhtml'\
+    \ href='https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/selinux_users_and_administrators_guide'>https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/selinux_users_and_administrators_guide</a></b>."
+warnings: []
+requires: []
+conflicts: []
+values:
+- var_selinux_policy_name
+- var_selinux_state
+groups:
+- selinux-booleans
+rules:
+- coreos_enable_selinux_kernel_argument
+- grub2_enable_selinux
+- package_libselinux_installed
+- package_mcstrans_removed
+- package_policycoreutils_installed
+- package_setroubleshoot-plugins_removed
+- package_setroubleshoot-server_removed
+- package_setroubleshoot_removed
+- selinux_all_devicefiles_labeled
+- selinux_confinement_of_daemons
+- selinux_context_elevation_for_sudo
+- selinux_policytype
+- selinux_state
+- selinux_user_login_roles
+platform: machine
+platforms: !!set
+    machine: null
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+title: SELinux
+definition_location: /home/oscap/content/linux_os/guide/system/selinux/group.yml
+documentation_complete: true

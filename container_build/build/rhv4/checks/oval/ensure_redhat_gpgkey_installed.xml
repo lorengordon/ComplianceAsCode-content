@@ -1,0 +1,67 @@
+
+
+<def-group>
+  <definition class="compliance" id="ensure_redhat_gpgkey_installed" version="2">
+    <metadata>
+        <title>Ensure Red Hat GPG Key Installed</title>
+        
+    <affected family="unix">
+    <platform>Alibaba Cloud Linux 3</platform>
+      <platform>Red Hat Enterprise Linux 8</platform>
+      <platform>Red Hat Virtualization 4</platform>
+      <platform>Red Hat Enterprise Linux 7</platform>
+      <platform>Red Hat Enterprise Linux CoreOS 4</platform>
+      <platform>Red Hat Enterprise Linux 9</platform>
+      <platform>Anolis OS 8</platform>
+      <platform>UnionTech OS Server 20</platform>
+    </affected>
+        <description>The Red Hat release and auxiliary key packages are required to be installed.</description>
+    </metadata>
+    <criteria comment="Vendor GPG keys" operator="OR">
+      <criteria comment="Red Hat Vendor Keys" operator="AND">
+        <criteria comment="Red Hat Installed" operator="OR">
+          <extend_definition comment="rhv4 installed" definition_ref="installed_OS_is_rhv4" />
+        </criteria>
+        <criterion comment="package gpg-pubkey-fd431d51-4ae0493b is installed"
+        test_ref="test_package_gpgkey-fd431d51-4ae0493b_installed" />
+        <criteria comment="Auxiliary Red Hat Key Installed" operator="OR">
+          <criterion comment="package gpg-pubkey-d4082792-5b32db75 is installed"
+          test_ref="test_package_gpgkey-d4082792-5b32db75_installed" />
+        </criteria>
+      </criteria>
+    </criteria>
+  </definition>
+
+  <!-- First define global "object_package_gpg-pubkey" to be shared (reused) across multiple tests -->
+  <linux:rpminfo_object id="object_package_gpg-pubkey" version="1">
+    <linux:name>gpg-pubkey</linux:name>
+  </linux:rpminfo_object>
+
+  <!-- Perform the particular tests themselves -->
+  <!-- Test for Red Hat release key -->
+  <linux:rpminfo_test check="only one" check_existence="at_least_one_exists"
+  id="test_package_gpgkey-fd431d51-4ae0493b_installed" version="1"
+  comment="Red Hat release key package is installed">
+    <linux:object object_ref="object_package_gpg-pubkey" />
+    <linux:state state_ref="state_package_gpg-pubkey-fd431d51-4ae0493b" />
+  </linux:rpminfo_test>
+
+  <linux:rpminfo_state id="state_package_gpg-pubkey-fd431d51-4ae0493b" version="1">
+    <linux:release>4ae0493b</linux:release>
+    <linux:version>fd431d51</linux:version>
+  </linux:rpminfo_state>
+
+  <!-- Test for Red Hat auxiliary key -->
+  <linux:rpminfo_test check="only one" check_existence="at_least_one_exists"
+  id="test_package_gpgkey-d4082792-5b32db75_installed" version="1"
+  comment="Red Hat auxiliary key package is installed">
+    <linux:object object_ref="object_package_gpg-pubkey" />
+    <linux:state state_ref="state_package_gpg-pubkey-d4082792-5b32db75" />
+  </linux:rpminfo_test>
+
+  <linux:rpminfo_state id="state_package_gpg-pubkey-d4082792-5b32db75" version="1">
+    <linux:release>5b32db75</linux:release>
+    <linux:version>d4082792</linux:version>
+  </linux:rpminfo_state>
+
+</def-group>

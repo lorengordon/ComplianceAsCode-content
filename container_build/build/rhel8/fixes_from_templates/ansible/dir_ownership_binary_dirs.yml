@@ -1,0 +1,96 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = configure
+# complexity = low
+# disruption = low
+
+
+
+
+
+- name: Ensure owner on directory /bin/ recursively
+  file:
+    path: "/bin/"
+    state: directory
+
+    recurse: yes
+
+    owner: "0"
+
+
+
+
+
+
+
+- name: Ensure owner on directory /sbin/ recursively
+  file:
+    path: "/sbin/"
+    state: directory
+
+    recurse: yes
+
+    owner: "0"
+
+
+
+
+
+
+
+- name: Ensure owner on directory /usr/bin/ recursively
+  file:
+    path: "/usr/bin/"
+    state: directory
+
+    recurse: yes
+
+    owner: "0"
+
+
+
+
+
+
+
+- name: Ensure owner on directory /usr/sbin/ recursively
+  file:
+    path: "/usr/sbin/"
+    state: directory
+
+    recurse: yes
+
+    owner: "0"
+
+
+
+
+
+
+
+- name: Ensure owner on directory /usr/local/bin/ recursively
+  file:
+    path: "/usr/local/bin/"
+    state: directory
+
+    recurse: yes
+
+    owner: "0"
+
+
+
+
+
+
+
+- name: Ensure owner on directory /usr/local/sbin/ recursively
+  file:
+    path: "/usr/local/sbin/"
+    state: directory
+
+    recurse: yes
+
+    owner: "0"
+
+
+

@@ -1,0 +1,60 @@
+<def-group>
+  <definition class="compliance" id="harden_sshd_crypto_policy" version="1">
+    <metadata>
+        <title>Harden SSHD Crypto Policy</title>
+        
+    <affected family="unix">
+    <platform>Red Hat Enterprise Linux 8</platform>
+      <platform>SUSE Linux Enterprise 15</platform>
+      <platform>Oracle Linux 7</platform>
+      <platform>Red Hat Enterprise Linux CoreOS 4</platform>
+      <platform>SUSE Linux Enterprise 12</platform>
+      <platform>Red Hat Virtualization 4</platform>
+      <platform>Oracle Linux 8</platform>
+      <platform>Fedora</platform>
+      <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+        <description>Ensure 'CRYPTO_POLICY' is configured with value ''-oCiphers=aes256-ctr,aes128-ctr,aes256-cbc,aes128-cbc -oMACs=hmac-sha2-512,hmac-sha2-256 -oGSSAPIKeyExchange=no -oKexAlgorithms=ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffie-hellman-group14-sha1 -oHostKeyAlgorithms=ssh-rsa,ecdsa-sha2-nistp384,ecdsa-sha2-nistp256 -oPubkeyAcceptedKeyTypes=rsa-sha2-512,rsa-sha2-256,ssh-rsa,ecdsa-sha2-nistp384,ecdsa-sha2-nistp256'' in /etc/crypto-policies/back-ends/opensshserver.config</description>
+    </metadata>
+    <criteria comment="sshd is configured correctly or is not installed"
+    operator="OR"><criteria comment="sshd is not installed" operator="AND">
+        <extend_definition comment="sshd is not required or requirement is unset"
+        definition_ref="sshd_not_required_or_unset" />
+        
+        <extend_definition comment="rpm package openssh-server removed"
+        definition_ref="package_openssh-server_removed" />
+        
+      </criteria><criteria comment="sshd is installed and configured" operator="AND">
+        <extend_definition comment="sshd is required or requirement is unset"
+        definition_ref="sshd_required_or_unset" />
+        
+        <extend_definition comment="rpm package openssh-server installed"
+        definition_ref="package_openssh-server_installed" />
+        
+      
+    <criteria comment="sshd is configured correctly"
+    operator="OR"><criterion comment="Check the CRYPTO_POLICY in /etc/crypto-policies/back-ends/opensshserver.config"
+  test_ref="test_harden_sshd_crypto_policy" />
+    </criteria>
+    </criteria> 
+    </criteria>
+  </definition>
+  
+<ind:textfilecontent54_test check="all" check_existence="all_exist"
+  comment="tests the value of CRYPTO_POLICY setting in the /etc/crypto-policies/back-ends/opensshserver.config file"
+  id="test_harden_sshd_crypto_policy" version="1">
+  <ind:object object_ref="obj_harden_sshd_crypto_policy" />
+  <ind:state state_ref="state_harden_sshd_crypto_policy" />
+</ind:textfilecontent54_test>
+  
+<ind:textfilecontent54_object id="obj_harden_sshd_crypto_policy" version="1">
+  <ind:filepath>/etc/crypto-policies/back-ends/opensshserver.config</ind:filepath>
+  <ind:pattern operation="pattern match">^(?:.*\n)*\s*CRYPTO_POLICY=(.+?)[ \t]*(?:$|#)</ind:pattern>
+  <ind:instance operation="greater than or equal" datatype="int">1</ind:instance>
+</ind:textfilecontent54_object>
+  
+<ind:textfilecontent54_state id="state_harden_sshd_crypto_policy" version="1">
+  <ind:subexpression datatype="string" operation="pattern match">^'-oCiphers=aes256-ctr,aes128-ctr,aes256-cbc,aes128-cbc -oMACs=hmac-sha2-512,hmac-sha2-256 -oGSSAPIKeyExchange=no -oKexAlgorithms=ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffie-hellman-group14-sha1 -oHostKeyAlgorithms=ssh-rsa,ecdsa-sha2-nistp384,ecdsa-sha2-nistp256 -oPubkeyAcceptedKeyTypes=rsa-sha2-512,rsa-sha2-256,ssh-rsa,ecdsa-sha2-nistp384,ecdsa-sha2-nistp256'$</ind:subexpression>
+</ind:textfilecontent54_state>
+
+</def-group>

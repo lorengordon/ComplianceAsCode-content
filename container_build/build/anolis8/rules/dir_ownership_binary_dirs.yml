@@ -1,0 +1,85 @@
+prodtype: all
+description: '<pre>/bin
+
+    /sbin
+
+    /usr/bin
+
+    /usr/sbin
+
+    /usr/local/bin
+
+    /usr/local/sbin</pre>
+
+    All these directories should be owned by the <tt>root</tt> user.
+
+    If any directory <i>DIR</i> in these directories is found
+
+    to be owned by a user other than root, correct its ownership with the
+
+    following command:
+
+    <pre>$ sudo chown root <i>DIR</i></pre>'
+rationale: 'System binaries are executed by privileged users as well as system services,
+
+    and restrictive permissions are necessary to ensure that their
+
+    execution of these programs cannot be co-opted.'
+severity: medium
+references:
+    disa: CCI-001495
+    srg: SRG-OS-000258-GPOS-00099
+identifiers: {}
+ocil_clause: any system executables directories are found to not be owned by root
+ocil: 'System executables are stored in the following directories by default:
+
+    <pre>/bin
+
+    /sbin
+
+    /usr/bin
+
+    /usr/local/bin
+
+    /usr/local/sbin
+
+    /usr/sbin</pre>
+
+    For each of these directories, run the following command to find files
+
+    not owned by root:
+
+    <pre>$ sudo find -L <i>DIR/</i> ! -user root -type d -exec chown root {} \;</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Verify that System Executable Have Root Ownership
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/files/permissions_within_important_dirs/dir_ownership_binary_dirs/rule.yml
+template:
+    name: file_owner
+    vars:
+        filepath:
+        - /bin/
+        - /sbin/
+        - /usr/bin/
+        - /usr/sbin/
+        - /usr/local/bin/
+        - /usr/local/sbin/
+        recursive: 'true'
+        fileuid: '0'
+    backends: {}
+documentation_complete: true

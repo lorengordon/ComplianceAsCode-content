@@ -1,0 +1,118 @@
+prodtype: all
+description: 'Verify the administrators are notified in the event of an audit processing
+    failure.
+
+    Check that the "/etc/aliases" file has a defined value for "root".
+
+    <pre>$ sudo grep "postmaster:\s*root$" /etc/aliases
+
+
+    postmaster: root</pre>'
+rationale: 'It is critical for the appropriate personnel to be aware if a system is
+    at risk of failing to
+
+    process audit logs as required. Without this notification, the security personnel
+    may be
+
+    unaware of an impending failure of the audit capability, and system operation
+    may be adversely
+
+    affected.
+
+
+    Audit processing failures include software/hardware errors, failures in the audit
+    capturing
+
+    mechanisms, and audit storage capacity being reached or exceeded.'
+severity: medium
+references:
+    disa: CCI-000139
+    nist: AU-5(a),AU-5.1(ii)
+    srg: SRG-OS-000046-GPOS-00022
+identifiers: {}
+ocil_clause: the alias is not set or is not root
+ocil: 'Find the list of alias maps used by the Postfix mail server:
+
+    <pre>$ sudo postconf alias_maps</pre>
+
+    Query the Postfix alias maps for an alias for the <i>postmaster</i> user:
+
+    <pre>$ sudo postmap -q postmaster hash:/etc/aliases</pre>
+
+    The output should return root.'
+oval_external_content: null
+fixtext: 'Configure a valid email address as an alias for the root account.
+
+
+    Append the following line to "/etc/aliases":
+
+
+    postmaster: root
+
+
+    Then, run the following command:
+
+
+    $ sudo newaliases'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Oracle Linux 7 must forward mails from postmaster to the root account
+    using a postfix alias
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Oracle Linux 7 must forward mails from postmaster to the
+            root account using a postfix alias
+        vuldiscussion: 'It is critical for the appropriate personnel to be aware if
+            a system is at risk of failing to
+
+            process audit logs as required. Without this notification, the security
+            personnel may be
+
+            unaware of an impending failure of the audit capability, and system operation
+            may be adversely
+
+            affected.
+
+
+            Audit processing failures include software/hardware errors, failures in
+            the audit capturing
+
+            mechanisms, and audit storage capacity being reached or exceeded.'
+        checktext: "Verify that the administrators are notified in the event of an\
+            \ audit processing failure.\n\n Check that the \"/etc/aliases\" file has\
+            \ a defined value for \"root\".\n\n $ sudo grep \"postmaster:\\s*root$\"\
+            \ /etc/aliases\n\n If the command does not return a line, or the line\
+            \ is commented out, ask the system administrator to indicate how they\
+            \ and the ISSO are notified of an audit process failure.\n If there is\
+            \ no evidence of the proper personnel being notified of an audit processing\
+            \ failure, this is a finding."
+        fixtext: 'Configure a valid email address as an alias for the root account.
+
+
+            Append the following line to "/etc/aliases":
+
+
+            postmaster: root
+
+
+            Then, run the following command:
+
+
+            $ sudo newaliases'
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Configure System to Forward All Mail From Postmaster to The Root Account
+definition_location: /home/oscap/content/linux_os/guide/services/mail/postfix_client/postfix_client_configure_mail_alias_postmaster/rule.yml
+template: null
+documentation_complete: true

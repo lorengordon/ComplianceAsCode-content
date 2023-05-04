@@ -1,0 +1,53 @@
+<def-group>
+  <definition class="compliance" id="grub2_nosmep_argument_absent" version="2">
+    <metadata>
+        <title>Ensure SMEP is not disabled during boot</title>
+        
+    <affected family="unix">
+    <platform>Anolis OS 8</platform>
+    </affected>
+        <description>Ensure nosmep is not set in the kernel line in /etc/default/grub.</description>
+    </metadata>
+    <criteria operator="AND">
+      
+      
+      
+      
+      <criteria operator="OR">
+          <criterion test_ref="test_grub2_nosmep_argument_absent"
+          comment="check for absence of nosmep in /etc/default/grub on GRUB_CMDLINE_LINUX" />
+          <criteria operator="AND">
+            <criterion test_ref="test_grub2_nosmep_argument_absent_default"
+            comment="check for absence ofnosmep in /etc/default/grub on GRUB_CMDLINE_LINUX_DEFAULT" />
+            <extend_definition definition_ref="bootloader_disable_recovery_set_to_true"
+            comment="Check GRUB_DISABLE_RECOVERY=true in /etc/default/grub" />
+          </criteria>
+        </criteria>
+    </criteria>
+  </definition>
+  <ind:textfilecontent54_test id="test_grub2_nosmep_argument_absent"
+  comment="check for absence nosmep in /etc/default/grub via GRUB_CMDLINE_LINUX"
+  check="all" check_existence="all_exist" version="1">
+    <ind:object object_ref="object_grub2_nosmep_argument_absent" />
+  </ind:textfilecontent54_test>
+
+  <ind:textfilecontent54_object id="object_grub2_nosmep_argument_absent" version="1">
+    <ind:filepath>/etc/default/grub</ind:filepath>
+    <ind:pattern operation="pattern match">^\s*GRUB_CMDLINE_LINUX="(?!.*\bnosmep\b.*).*"$</ind:pattern>
+    <ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+  </ind:textfilecontent54_object>
+
+  <ind:textfilecontent54_test id="test_grub2_nosmep_argument_absent_default"
+  comment="check for absence nosmep in /etc/default/grub via GRUB_CMDLINE_LINUX_DEFAULT"
+  check="all" check_existence="all_exist" version="1">
+    <ind:object object_ref="object_grub2_nosmep_argument_absent_default" />
+  </ind:textfilecontent54_test>
+
+  <ind:textfilecontent54_object id="object_grub2_nosmep_argument_absent_default"
+  version="1">
+    <ind:filepath>/etc/default/grub</ind:filepath>
+    <ind:pattern operation="pattern match">^\s*GRUB_CMDLINE_LINUX_DEFAULT="(?!.*\bnosmep\b).*"$</ind:pattern>
+    <ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+  </ind:textfilecontent54_object>
+
+</def-group>

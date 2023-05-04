@@ -1,0 +1,21 @@
+prodtype: all
+description: "The Shared System Certificates store contains certificates that\napplications\
+    \ can access for a single certificate repository.\nIf enabled, Firefox can access\
+    \ that single system certificate\nrepository. If the DoD root certificate is also\
+    \ installed into\nthe shared system certificate repository, Firefox will see and\
+    \ \nuse the DoD root certificate as a valid certificate authority."
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- firefox_preferences-dod_root_certificate_installed
+- firefox_preferences-enable_ca_trust
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: The DoD Root Certificate Is Required
+definition_location: /home/oscap/content/products/firefox/guide/firefox/firefox_preferences-dod_root_certificate/group.yml
+documentation_complete: true

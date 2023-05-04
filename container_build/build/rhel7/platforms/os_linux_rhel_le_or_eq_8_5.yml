@@ -1,0 +1,14 @@
+name: os_linux_rhel_le_or_eq_8_5
+original_expression: os_linux[rhel]<=8.5
+xml_content: <ns0:platform xmlns:ns0="http://cpe.mitre.org/language/2.0" id="os_linux_rhel_le_or_eq_8_5"><ns0:logical-test
+    operator="AND" negate="false"><ns0:check-fact-ref system="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+    href="ssg-rhel7-cpe-oval.xml" id-ref="oval:ssg-os_linux_rhel_le_or_eq_8_5:def:1"
+    /></ns0:logical-test></ns0:platform>
+bash_conditional: grep -qP "^ID=[\"']?rhel[\"']?$" "/etc/os-release" && { real="$(grep
+    -P "^VERSION_ID=[\"']?[\w.]+[\"']?$" /etc/os-release | sed "s/^VERSION_ID=[\"']\?\([^\"']\+\)[\"']\?$/\1/")";
+    expected="8.5"; printf "%s\n%s" "$real" "$expected" | sort -VC; }
+ansible_conditional: ansible_distribution == 'RedHat' and ansible_distribution_version
+    is version('8.5', '<=')
+title: ''
+definition_location: /home/oscap/content/build/rhel7/platforms/os_linux_rhel_le_or_eq_8_5.yml
+documentation_complete: true

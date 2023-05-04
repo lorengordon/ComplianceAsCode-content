@@ -1,0 +1,51 @@
+name: cpe:/a:{arg}:{ver_specs_cpe}
+check_id: ''
+bash_conditional: ''
+ansible_conditional: ''
+is_product_cpe: false
+versioned: true
+args:
+    audit:
+        pkgname: auditd
+    chrony:
+        pkgname: chrony
+    gdm:
+        pkgname: gdm3
+    libuser:
+        pkgname: libuser
+    net-snmp:
+        pkgname: snmp
+    nss-pam-ldapd:
+        pkgname: libpam-ldapd
+    ntp:
+        pkgname: ntp
+        title: NTP daemon and utilities
+    pam:
+        pkgname: libpam-runtime
+    polkit:
+        pkgname: polkit
+    postfix:
+        pkgname: postfix
+    shadow-utils:
+        pkgname: login
+    sssd:
+        pkgname: sssd-common
+    sudo:
+        pkgname: sudo
+    systemd:
+        pkgname: systemd
+    tftp-server:
+        pkgname: tftp-server
+    tmux:
+        pkgname: tmux
+    usbguard:
+        pkgname: usbguard
+    yum:
+        pkgname: yum
+    zypper:
+        pkgname: zypper
+title: Package {pkgname} is installed
+definition_location: /home/oscap/content/shared/applicability/package.yml
+template:
+    name: platform_package
+documentation_complete: true

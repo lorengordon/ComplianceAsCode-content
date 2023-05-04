@@ -1,0 +1,31 @@
+<def-group>
+  <definition class="compliance" id="no_user_host_based_files" version="1">
+    <metadata>
+        <title>Remove User Host-Based Authentication Files</title>
+        
+    <affected family="unix">
+    <platform>Red Hat Enterprise Linux 8</platform>
+      <platform>Red Hat Virtualization 4</platform>
+      <platform>Oracle Linux 7</platform>
+      <platform>Red Hat Enterprise Linux 7</platform>
+      <platform>SUSE Linux Enterprise 12</platform>
+      <platform>Oracle Linux 9</platform>
+      <platform>Red Hat Enterprise Linux 9</platform>
+      <platform>SUSE Linux Enterprise 15</platform>
+      <platform>Oracle Linux 8</platform>
+    </affected>
+        <description>There should not be any .shosts files on the system.</description>
+    </metadata>
+    <criteria>
+      <criterion test_ref="test_no_shosts" />
+    </criteria>
+  </definition>
+  <unix:file_test check="all" check_existence="none_exist" comment="look for .shosts in /" id="test_no_shosts" version="1">
+    <unix:object object_ref="object_no_shosts_files_root" />
+  </unix:file_test>
+  <unix:file_object comment="look for any .shosts file on the system" id="object_no_shosts_files_root" version="1">
+    <unix:behaviors recurse="directories" recurse_direction="down" max_depth="-1" recurse_file_system="local" />
+    <unix:path operation="equals">/</unix:path>
+    <unix:filename operation="equals">.shosts</unix:filename>
+  </unix:file_object>
+</def-group>

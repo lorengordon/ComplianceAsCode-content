@@ -1,0 +1,24 @@
+prodtype: all
+description: 'The <tt>auditd</tt> program can perform comprehensive
+
+    monitoring of system activity. This section describes recommended
+
+    configuration settings for comprehensive auditing, but a full
+
+    description of the auditing system''s capabilities is beyond the
+
+    scope of this guide.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- audit_failure_halt
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Configure auditd
+definition_location: /home/oscap/content/apple_os/auditing/configure_auditing/group.yml
+documentation_complete: true

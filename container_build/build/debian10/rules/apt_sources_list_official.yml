@@ -1,0 +1,34 @@
+prodtype: debian10,debian11
+description: Check that official Debian repositories, including security repository,
+    are configured in apt.
+rationale: "The Debian distribution deliver DSA (Debian Security Announce), through\
+    \ the official\n    Debian security repository, to correct various vulnerabilities\
+    \ impacting the Debian\n    packages. Using the official repositories is the best\
+    \ way to ensure that the Debian\n    updates are integrated soon enough."
+severity: unknown
+references:
+    anssi: BP28(R15)
+identifiers: {}
+ocil_clause: null
+ocil: null
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Ensure that official distribution repositories are used
+definition_location: /home/oscap/content/linux_os/guide/services/apt/apt_sources_list_official/rule.yml
+template: null
+documentation_complete: true

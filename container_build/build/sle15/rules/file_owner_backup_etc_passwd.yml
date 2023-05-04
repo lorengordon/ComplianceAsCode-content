@@ -1,0 +1,85 @@
+prodtype: all
+description: ' To properly set the owner of <code>/etc/passwd-</code>, run the command:
+    <pre>$ sudo chown root /etc/passwd- </pre>'
+rationale: 'The <tt>/etc/passwd-</tt> file is a backup file of <tt>/etc/passwd</tt>,
+    and as such,
+
+    it contains information about the users that are configured on the system.
+
+    Protection of this file is critical for system security.'
+severity: medium
+references:
+    disa: CCI-002223
+    nist: AC-6 (1)
+    pcidss: Req-8.7.c
+    pcidss4: 7.2.6
+    srg: SRG-OS-000480-GPOS-00227
+    cis: 6.1.5
+identifiers:
+    cce: CCE-91324-4
+ocil_clause: /etc/passwd- does not have an owner of root
+ocil: 'To check the ownership of <code>/etc/passwd-</code>,
+
+    run the command:
+
+    <pre>$ ls -lL /etc/passwd-</pre>
+
+    If properly configured, the output should indicate the following owner:
+
+    <code>root</code>'
+oval_external_content: null
+fixtext: ' Change the group of the file /etc/passwd- to root by running the following
+    command:
+
+    $ sudo chgrp root /etc/passwd-'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ' The SUSE Linux Enterprise 15 /etc/passwd- file must be group-owned
+    by root.'
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: The SUSE Linux Enterprise 15 /etc/passwd- file must be owned
+            by root.
+        vuldiscussion: 'The "/etc/passwd-" file is a backup file of "/etc/passwd",
+            and as such,
+
+            it contains information about the users that are configured on the system.
+
+            Protection of this file is critical for system security.'
+        checktext: 'Verify the ownership of the "/etc/passwd-" file with the following
+            command:
+
+
+            $ sudo stat -c "%U %n" /etc/passwd-
+
+
+            root /etc/passwd-
+
+
+            If "/etc/passwd-" file does not have an owner of "root", this is a finding.'
+        fixtext: 'Change the owner of the file /etc/passwd- to root by running the
+            following command:
+
+
+            $ sudo chown root /etc/passwd-'
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Verify User Who Owns Backup passwd File
+definition_location: /home/oscap/content/linux_os/guide/system/permissions/files/permissions_important_account_files/file_owner_backup_etc_passwd/rule.yml
+template:
+    name: file_owner
+    vars:
+        filepath: /etc/passwd-
+        fileuid: '0'
+        missing_file_pass: 'true'
+    backends: {}
+documentation_complete: true

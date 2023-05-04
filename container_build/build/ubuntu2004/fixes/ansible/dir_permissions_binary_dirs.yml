@@ -1,0 +1,94 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = configure
+# complexity = low
+# disruption = low
+- name: Set permissions for /bin/ recursively
+  file:
+    path: /bin/
+    state: directory
+    recurse: true
+    mode: u-s,g-ws,o-wt
+  tags:
+  - DISA-STIG-UBTU-20-010423
+  - configure_strategy
+  - dir_permissions_binary_dirs
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Set permissions for /sbin/ recursively
+  file:
+    path: /sbin/
+    state: directory
+    recurse: true
+    mode: u-s,g-ws,o-wt
+  tags:
+  - DISA-STIG-UBTU-20-010423
+  - configure_strategy
+  - dir_permissions_binary_dirs
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Set permissions for /usr/bin/ recursively
+  file:
+    path: /usr/bin/
+    state: directory
+    recurse: true
+    mode: u-s,g-ws,o-wt
+  tags:
+  - DISA-STIG-UBTU-20-010423
+  - configure_strategy
+  - dir_permissions_binary_dirs
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Set permissions for /usr/sbin/ recursively
+  file:
+    path: /usr/sbin/
+    state: directory
+    recurse: true
+    mode: u-s,g-ws,o-wt
+  tags:
+  - DISA-STIG-UBTU-20-010423
+  - configure_strategy
+  - dir_permissions_binary_dirs
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Set permissions for /usr/local/bin/ recursively
+  file:
+    path: /usr/local/bin/
+    state: directory
+    recurse: true
+    mode: u-s,g-ws,o-wt
+  tags:
+  - DISA-STIG-UBTU-20-010423
+  - configure_strategy
+  - dir_permissions_binary_dirs
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Set permissions for /usr/local/sbin/ recursively
+  file:
+    path: /usr/local/sbin/
+    state: directory
+    recurse: true
+    mode: u-s,g-ws,o-wt
+  tags:
+  - DISA-STIG-UBTU-20-010423
+  - configure_strategy
+  - dir_permissions_binary_dirs
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed

@@ -1,0 +1,25 @@
+# platform = multi_platform_all
+# reboot = true
+# strategy = disable
+# complexity = low
+# disruption = medium
+- name: Configure SSH to use System Crypto Policy
+  lineinfile:
+    dest: /etc/sysconfig/sshd
+    state: absent
+    regexp: ^\s*(?i)CRYPTO_POLICY.*$
+  tags:
+  - CCE-91639-5
+  - NIST-800-53-AC-17(2)
+  - NIST-800-53-AC-17(a)
+  - NIST-800-53-CM-6(a)
+  - NIST-800-53-MA-4(6)
+  - NIST-800-53-SC-13
+  - PCI-DSS-Req-2.2
+  - PCI-DSSv4-2.2
+  - configure_ssh_crypto_policy
+  - disable_strategy
+  - low_complexity
+  - medium_disruption
+  - medium_severity
+  - reboot_required

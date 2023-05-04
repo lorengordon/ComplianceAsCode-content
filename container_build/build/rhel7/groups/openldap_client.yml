@@ -1,0 +1,33 @@
+prodtype: all
+description: "This section provides information on which security settings are\nimportant\
+    \ to configure in OpenLDAP clients by manually editing the appropriate\nconfiguration\
+    \ files.  Red Hat Enterprise Linux 7 provides an automated configuration tool\
+    \ called\nauthconfig and a graphical wrapper for authconfig called\n<tt>system-config-authentication</tt>.\
+    \ However, these tools do not provide as\nmuch control over configuration as manual\
+    \ editing of configuration files. The\nauthconfig tools do not allow you to specify\
+    \ locations of SSL certificate\nfiles, which is useful when trying to use SSL\
+    \ cleanly across several protocols.\nInstallation and configuration of OpenLDAP\
+    \ on Red Hat Enterprise Linux 7 is available at\n\n    \n    <a xmlns='http://www.w3.org/1999/xhtml'\
+    \ href='https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system-level_authentication_guide/openldap'>https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system-level_authentication_guide/openldap</a>."
+warnings:
+-   general: 'Before configuring any system to be an
+
+        LDAP client, ensure that a working LDAP server is present on the
+
+        network.'
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- enable_ldap_client
+- ldap_client_start_tls
+- ldap_client_tls_cacertpath
+- package_openldap-clients_removed
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Configure OpenLDAP Clients
+definition_location: /home/oscap/content/linux_os/guide/services/ldap/openldap_client/group.yml
+documentation_complete: true

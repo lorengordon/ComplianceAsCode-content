@@ -1,0 +1,23 @@
+prodtype: all
+description: 'During the boot process, the bootloader is
+
+    responsible for starting the execution of the kernel and passing
+
+    options to it.
+
+    The default Alibaba Cloud Linux 3 boot loader for s390x systems is called zIPL.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules: {}
+platform: s390x_arch
+platforms: !!set
+    s390x_arch: null
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    s390x_arch: null
+title: zIPL bootloader configuration
+definition_location: /home/oscap/content/linux_os/guide/system/bootloader-zipl/group.yml
+documentation_complete: true

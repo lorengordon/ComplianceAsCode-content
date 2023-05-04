@@ -1,0 +1,12 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = disable
+# complexity = low
+# disruption = low
+include remove_openldap2-client
+
+class remove_openldap2-client {
+  package { 'openldap2-client':
+    ensure => 'purged',
+  }
+}

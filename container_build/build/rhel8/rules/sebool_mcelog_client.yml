@@ -1,0 +1,53 @@
+prodtype: rhel7,rhel8,rhel9
+description: 'By default, the SELinux boolean <tt>mcelog_client</tt> is disabled.
+
+    If this setting is enabled, it should be disabled.
+
+
+    To disable the <code>mcelog_client</code> SELinux boolean, run the following command:
+
+    <pre>$ sudo setsebool -P mcelog_client off</pre>'
+rationale: ''
+severity: medium
+references: {}
+identifiers: {}
+ocil_clause: mcelog_client is not disabled
+ocil: '
+
+    Run the following command to determine if the <code>mcelog_client</code> SELinux
+    boolean is disabled:
+
+    <pre>$ getsebool mcelog_client</pre>
+
+    If properly configured, the output should show the following:
+
+    <code>mcelog_client --> off</code>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    not osbuild: null
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    not_osbuild: null
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Disable the mcelog_client SELinux Boolean
+definition_location: /home/oscap/content/linux_os/guide/system/selinux/selinux-booleans/sebool_mcelog_client/rule.yml
+template:
+    name: sebool
+    vars:
+        seboolid: mcelog_client
+    backends: {}
+documentation_complete: true

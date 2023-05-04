@@ -1,0 +1,21 @@
+prodtype: all
+description: 'The <tt>sysctl</tt> utility is used to set
+
+    parameters which affect the operation of the Linux kernel. Kernel parameters
+
+    which affect networking and have security implications are described here.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups:
+- network_host_and_router_parameters
+- network_host_parameters
+rules: {}
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Kernel Parameters Which Affect Networking
+definition_location: /home/oscap/content/linux_os/guide/system/network/network-kernel/group.yml
+documentation_complete: true

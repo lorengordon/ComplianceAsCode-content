@@ -1,0 +1,80 @@
+prodtype: all
+description: 'L1 Terminal Fault (L1TF) is a hardware vulnerability which allows unprivileged
+
+    speculative access to data which is available in the Level 1 Data Cache when
+
+    the page table entry isn''t present.
+
+
+    Select the appropriate mitigation by adding the argument
+
+    <tt>l1tf=<sub idref="var_l1tf_options" /></tt> to the default
+
+    GRUB 2 command line for the Linux operating system.
+
+    Configure the default Grub2 kernel command line to contain l1tf=<sub idref="var_l1tf_options"
+    /> as follows:
+
+    <pre># grub2-editenv - set "$(grub2-editenv - list | grep kernelopts) l1tf=<sub
+    idref="var_l1tf_options" />"</pre>
+
+
+    Since Linux Kernel 4.19 you can check the L1TF vulnerability state with the
+
+    following command:
+
+    <tt>cat /sys/devices/system/cpu/vulnerabilities/l1tf</tt>'
+rationale: 'The L1TF vulnerability allows an attacker to bypass memory access security
+    controls imposed
+
+    by the system or hypervisor. The L1TF vulnerability allows read access to any
+    physical memory
+
+    location that is cached in the L1 Data Cache.'
+severity: high
+references:
+    anssi: BP28(R8)
+identifiers: {}
+ocil_clause: l1tf mitigations are not configured appropriately
+ocil: 'Inspect the form of default GRUB 2 command line for the Linux operating system
+
+    in <tt>/boot/grub2/grubenv</tt>.
+
+    If they include <tt>l1tf=<sub idref="var_l1tf_options" /></tt>, then the parameter
+
+    is configured at boot time.
+
+    <pre>$ sudo grep ''kernelopts.*l1tf=<sub idref="var_l1tf_options" />.*'' GRUBENV_FILE_LOCATION</pre>
+
+    Fill in <tt>GRUBENV_FILE_LOCATION</tt> based on information above.'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings:
+-   performance: Enabling L1TF mitigations may impact performance of the system.
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set
+    grub2: null
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set
+    grub2: null
+bash_conditional: null
+fixes: {}
+title: Configure L1 Terminal Fault mitigations
+definition_location: /home/oscap/content/linux_os/guide/system/bootloader-grub2/grub2_l1tf_argument/rule.yml
+template:
+    name: grub2_bootloader_argument
+    vars:
+        arg_name: l1tf
+        arg_variable: var_l1tf_options
+    backends: {}
+documentation_complete: true

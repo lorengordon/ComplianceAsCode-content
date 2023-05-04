@@ -1,0 +1,18 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = configure
+# complexity = low
+# disruption = low
+- name: Ensure owner on directory /var/log/
+  file:
+    path: /var/log/
+    state: directory
+    owner: '0'
+  tags:
+  - DISA-STIG-UBTU-20-010418
+  - configure_strategy
+  - file_owner_var_log
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed

@@ -1,0 +1,52 @@
+prodtype: firefox
+description: 'Private browsing may be disabled in an administrative policy by setting
+
+    the <tt>DisablePrivateBrowsing</tt> key under <tt>policies</tt> to <tt>true</tt>.'
+rationale: Private browsing allows the user to browse the internet without recording
+    their browsing history/activity. From a forensics perspective, this is unacceptable.
+    Best practice requires that browser history is retained.
+severity: medium
+references:
+    disa: CCI-000381
+    nist: CM-7
+    stigid: FFOX-00-000019
+identifiers: {}
+ocil_clause: null
+ocil: 'To verify that private browsing is disabled
+
+    type the following into the browser address bar:
+
+    <pre>about:policies</pre>
+
+    The output should have the following uder dom.disable_window_move_resize:
+
+    <pre>"DisablePrivateBrowsing": true</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Firefox private browsing must be disabled.
+definition_location: /home/oscap/content/products/firefox/guide/firefox/firefox_policy-private_browsing/rule.yml
+template:
+    name: firefox_policy-setting
+    vars:
+        name: Disable Private Browsing feature
+        policies:
+        -   path: policies
+            parameter: DisablePrivateBrowsing
+            value: 'true'
+    backends: {}
+documentation_complete: true

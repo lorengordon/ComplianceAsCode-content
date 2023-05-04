@@ -1,0 +1,66 @@
+# platform = multi_platform_all
+# reboot = true
+# strategy = disable
+# complexity = low
+# disruption = medium
+- name: List /etc/sysctl.d/*.conf files
+  find:
+    paths:
+    - /etc/sysctl.d/
+    - /run/sysctl.d/
+    - /usr/local/lib/sysctl.d/
+    contains: ^[\s]*fs.protected_hardlinks.*$
+    patterns: '*.conf'
+    file_type: any
+  register: find_sysctl_d
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-81027-5
+  - DISA-STIG-RHEL-08-010374
+  - NIST-800-53-AC-6(1)
+  - NIST-800-53-CM-6(a)
+  - disable_strategy
+  - low_complexity
+  - medium_disruption
+  - medium_severity
+  - reboot_required
+  - sysctl_fs_protected_hardlinks
+
+- name: Comment out any occurrences of fs.protected_hardlinks from config files
+  replace:
+    path: '{{ item.path }}'
+    regexp: ^[\s]*fs.protected_hardlinks
+    replace: '#fs.protected_hardlinks'
+  loop: '{{ find_sysctl_d.files }}'
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-81027-5
+  - DISA-STIG-RHEL-08-010374
+  - NIST-800-53-AC-6(1)
+  - NIST-800-53-CM-6(a)
+  - disable_strategy
+  - low_complexity
+  - medium_disruption
+  - medium_severity
+  - reboot_required
+  - sysctl_fs_protected_hardlinks
+
+- name: Ensure sysctl fs.protected_hardlinks is set to 1
+  sysctl:
+    name: fs.protected_hardlinks
+    value: '1'
+    sysctl_file: /etc/sysctl.conf
+    state: present
+    reload: true
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-81027-5
+  - DISA-STIG-RHEL-08-010374
+  - NIST-800-53-AC-6(1)
+  - NIST-800-53-CM-6(a)
+  - disable_strategy
+  - low_complexity
+  - medium_disruption
+  - medium_severity
+  - reboot_required
+  - sysctl_fs_protected_hardlinks

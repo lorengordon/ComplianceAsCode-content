@@ -1,0 +1,19 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = configure
+# complexity = low
+# disruption = low
+
+
+
+
+
+- name: Ensure owner on directory /etc/cron.daily/
+  file:
+    path: "/etc/cron.daily/"
+    state: directory
+
+    owner: "0"
+
+
+

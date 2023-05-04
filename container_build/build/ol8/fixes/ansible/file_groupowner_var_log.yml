@@ -1,0 +1,18 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = configure
+# complexity = low
+# disruption = low
+- name: Ensure group owner on /var/log/
+  file:
+    path: /var/log/
+    state: directory
+    group: '0'
+  tags:
+  - DISA-STIG-OL08-00-010260
+  - configure_strategy
+  - file_groupowner_var_log
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed

@@ -1,0 +1,46 @@
+prodtype: all
+description: 'Certificates can become compromised, and Chromium should check that
+    the
+
+    certificates in its store are valid by setting <tt>EnableOnlineRevocationChecks</tt>
+
+    to <tt>true</tt> in the Chromium policy file.'
+rationale: 'Certificates are revoked when they have been compromised or are no longer
+    valid,
+
+    and this option protects users from submitting confidential data to a site that
+
+    may be fraudulent or not secure.'
+severity: unknown
+references:
+    stigid: DTBC0037
+identifiers: {}
+ocil_clause: it is not enabled
+ocil: 'To verify that online OCSP/CRL checks are enabled, run the following command:
+
+    <pre>$ grep EnableOnlineRevocationChecks /etc/chromium/policies/managed/*.json</pre>
+
+    The output should contain:
+
+    <pre>"EnableOnlineRevocationChecks": true,</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Enable Online OCSP/CRL Certificate Checks
+definition_location: /home/oscap/content/products/chromium/guide/chromium/chromium_check_cert_revocation/rule.yml
+template: null
+documentation_complete: true

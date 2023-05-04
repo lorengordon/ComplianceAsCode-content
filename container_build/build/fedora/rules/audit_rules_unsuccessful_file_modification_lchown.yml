@@ -1,0 +1,100 @@
+prodtype: fedora,ol7,ol8,rhcos4,rhel7,rhel8,rhel9
+description: 'The audit system should collect unsuccessful file ownership change
+
+    attempts for all users and root.
+
+
+    If the <tt>auditd</tt> daemon is configured
+
+    to use the <tt>augenrules</tt> program to read audit rules during daemon
+
+    startup (the default), add the following lines to a file with suffix
+
+    <tt>.rules</tt> in the directory <tt>/etc/audit/rules.d</tt>.
+
+
+    If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt>
+
+    utility to read audit rules during daemon startup, add the following lines to
+
+    <tt>/etc/audit/audit.rules</tt> file.
+
+
+    <pre>-a always,exit -F arch=b32 -S lchown -F exit=-EACCES -F auid>=1000 -F auid!=unset
+    -F key=unsuccesful-perm-change
+
+    -a always,exit -F arch=b32 -S lchown -F exit=-EPERM -F auid>=1000 -F auid!=unset
+    -F key=unsuccesful-perm-change</pre>
+
+
+    If the system is 64 bit then also add the following lines:
+
+    <pre>-a always,exit -F arch=b64 -S lchown -F exit=-EACCES -F auid>=1000 -F auid!=unset
+    -F key=unsuccesful-perm-change
+
+    -a always,exit -F arch=b64 -S lchown -F exit=-EPERM -F auid>=1000 -F auid!=unset
+    -F key=unsuccesful-perm-change</pre>'
+rationale: 'Unsuccessful attempts to change ownership of files could be an indicator
+    of malicious activity on a system. Auditing
+
+    these events could serve as evidence of potential system compromise.'
+severity: medium
+references:
+    disa: CCI-000172
+    nist: AU-2(d),AU-12(c),CM-6(a)
+identifiers: {}
+ocil_clause: no line is returned
+ocil: 'To determine if the system is configured to audit unsuccessful calls
+
+    to the <code>lchown</code> system call, run the following command:
+
+    <pre space="preserve">$ sudo grep "lchown" /etc/audit.*</pre>
+
+    If the system is configured to audit this activity, it will return a line.
+
+    '
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings:
+-   general: 'Note that these rules can be configured in a
+
+        number of ways while still achieving the desired effect. Here the audit rule
+        checks a
+
+        system call independently of other system calls. Grouping system calls related
+
+        to the same event is more efficient. See the following example:
+
+        <pre>-a always,exit -F arch=b32 -S lchown,fchown,chown,fchownat -F exit=-EACCES
+        -F auid>=1000 -F auid!=unset -F key=unsuccesful-perm-change</pre>'
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    package[audit]: null
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+    package_audit: null
+bash_conditional: null
+fixes: {}
+title: Record Unsuccessful Ownership Changes to Files - lchown
+definition_location: /home/oscap/content/linux_os/guide/system/auditing/auditd_configure_rules/audit_file_modification/audit_rules_unsuccessful_file_modification_lchown/rule.yml
+template:
+    name: audit_rules_unsuccessful_file_modification
+    vars:
+        name: lchown
+        syscall_grouping:
+        - chown
+        - fchown
+        - fchownat
+        - lchown
+    backends: {}
+documentation_complete: true

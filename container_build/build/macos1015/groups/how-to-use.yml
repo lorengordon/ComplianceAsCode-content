@@ -1,0 +1,20 @@
+prodtype: all
+description: Readers should heed the following points when using the guide.
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups:
+- intro-formatting-conventions
+- intro-read-sections-completely
+- intro-reboot-required
+- intro-root-shell-assumed
+- intro-test-non-production
+rules: {}
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: How to Use This Guide
+definition_location: /home/oscap/content/apple_os/intro/how-to-use/group.yml
+documentation_complete: true

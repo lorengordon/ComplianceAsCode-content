@@ -1,0 +1,88 @@
+prodtype: fedora,ol7,ol8,ol9,rhel7,rhel8,rhel9,rhv4,sle12,sle15
+description: 'All local interactive user accounts, upon creation, should be assigned
+    a home directory.
+
+    <br /><br />
+
+    Configure the operating system to assign home directories to all new local interactive
+    users by setting the <tt>CREATE_HOME</tt>
+
+    parameter in <tt>/etc/login.defs</tt> to <tt>yes</tt> as follows:
+
+    <br /><br />
+
+    <pre>CREATE_HOME yes</pre>'
+rationale: 'If local interactive users are not assigned a valid home directory, there
+    is no place
+
+    for the storage and control of files they should own.'
+severity: medium
+references:
+    disa: CCI-000366
+    srg: SRG-OS-000480-GPOS-00227
+    stigid: SLES-15-020110
+    stigref: SV-234880r622137_rule
+identifiers:
+    cce: CCE-85562-7
+ocil_clause: the value for "CREATE_HOME" parameter is not set to "yes", the line is
+    missing, or the line is commented out
+ocil: 'Verify all local interactive users on SUSE Linux Enterprise 15 are assigned
+    a home
+
+    directory upon creation with the following command:
+
+    <pre>$ grep -i create_home /etc/login.defs</pre>
+
+    <pre>CREATE_HOME yes</pre>'
+oval_external_content: null
+fixtext: 'Configure SUSE Linux Enterprise 15 to assign home directories to all new
+    local interactive users by setting the "CREATE_HOME" parameter in "/etc/login.defs"
+    to "yes" as follows.
+
+
+    CREATE_HOME yes'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: All SUSE Linux Enterprise 15 local interactive user accounts must
+    be assigned a home directory upon creation.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: All SUSE Linux Enterprise 15 local interactive user accounts
+            must be assigned a home directory upon creation.
+        vuldiscussion: If local interactive users are not assigned a valid home directory,
+            there is no place for the storage and control of files they should own.
+        checktext: 'Verify all local interactive users on SUSE Linux Enterprise 15
+            are assigned a home directory upon creation with the following command:
+
+
+            $ grep -i create_home /etc/login.defs
+
+
+            CREATE_HOME yes
+
+
+            If the value for "CREATE_HOME" parameter is not set to "yes", the line
+            is missing, or the line is commented out, this is a finding.'
+        fixtext: 'Configure SUSE Linux Enterprise 15 to assign home directories to
+            all new local interactive users by setting the "CREATE_HOME" parameter
+            in "/etc/login.defs" to "yes" as follows.
+
+
+            CREATE_HOME yes'
+platform: package[shadow-utils]
+platforms: !!set
+    package[shadow-utils]: null
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    package_shadow-utils: null
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Ensure Home Directories are Created for New Users
+definition_location: /home/oscap/content/linux_os/guide/system/accounts/accounts-session/accounts_have_homedir_login_defs/rule.yml
+template: null
+documentation_complete: true

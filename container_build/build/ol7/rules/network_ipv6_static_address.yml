@@ -1,0 +1,44 @@
+prodtype: fedora,ol7,ol8,rhel7,rhel8
+description: 'To manually assign an IP address for an interface, edit the
+
+    file <tt>/etc/sysconfig/network-scripts/ifcfg-<i>interface</i></tt>. Add or correct
+    the
+
+    following line (substituting the correct IPv6 address):
+
+    <pre>IPV6ADDR=2001:0DB8::ABCD/64</pre>
+
+    Manually assigning an IP address is preferable to accepting one from routers or
+
+    from the network otherwise. The example address here is an IPv6 address
+
+    reserved for documentation purposes, as defined by RFC3849.'
+rationale: ''
+severity: unknown
+references:
+    disa: CCI-000366
+    ism: 1315,1319
+identifiers: {}
+ocil_clause: null
+ocil: null
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Manually Assign Global IPv6 Address
+definition_location: /home/oscap/content/linux_os/guide/system/network/network-ipv6/configuring_ipv6/network_ipv6_static_address/rule.yml
+template: null
+documentation_complete: true

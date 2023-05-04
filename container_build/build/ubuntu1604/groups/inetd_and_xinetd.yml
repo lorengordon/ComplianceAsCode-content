@@ -1,0 +1,25 @@
+prodtype: all
+description: 'The <tt>xinetd</tt> service acts as a dedicated listener for some
+
+    network services (mostly, obsolete ones) and can be used to provide access
+
+    controls and perform some logging. It has been largely obsoleted by other
+
+    features, and it is not installed by default. The older Inetd service
+
+    is not even available as part of Ubuntu 16.04.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules: {}
+platform: machine
+platforms: !!set
+    machine: null
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine: null
+title: Xinetd
+definition_location: /home/oscap/content/linux_os/guide/services/obsolete/inetd_and_xinetd/group.yml
+documentation_complete: true

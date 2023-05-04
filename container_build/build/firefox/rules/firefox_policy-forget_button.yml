@@ -1,0 +1,51 @@
+prodtype: firefox
+description: 'The update check may be disabled in an administrative policy by setting
+
+    the <tt>DisableForgetButton</tt> key under <tt>policies</tt> to <tt>true</tt>.'
+rationale: There should not be an option for a user to "forget" work they have done.
+    This is required to meet non-repudiation controls.
+severity: medium
+references:
+    disa: CCI-002355
+    nist: AC-24(2)
+    stigid: FFOX-00-000018
+identifiers: {}
+ocil_clause: null
+ocil: 'To verify that users cannot access the forget button,
+
+    type the following into the browser address bar:
+
+    <pre>about:policies</pre>
+
+    The output should have the following:
+
+    <pre>"DisableForgetButon": true</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Firefox must prevent the user from quickly deleting data.
+definition_location: /home/oscap/content/products/firefox/guide/firefox/firefox_policy-forget_button/rule.yml
+template:
+    name: firefox_policy-setting
+    vars:
+        name: Disable Forget button
+        policies:
+        -   path: policies
+            parameter: DisableForgetButton
+            value: 'true'
+    backends: {}
+documentation_complete: true

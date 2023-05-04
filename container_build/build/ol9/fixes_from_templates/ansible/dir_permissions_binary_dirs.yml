@@ -1,0 +1,96 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = configure
+# complexity = low
+# disruption = low
+
+
+
+
+
+- name: Set permissions for /bin/ recursively
+  file:
+    path: "/bin/"
+    state: directory
+
+    recurse: yes
+
+    mode: "u-s,g-ws,o-wt"
+
+
+
+
+
+
+
+- name: Set permissions for /sbin/ recursively
+  file:
+    path: "/sbin/"
+    state: directory
+
+    recurse: yes
+
+    mode: "u-s,g-ws,o-wt"
+
+
+
+
+
+
+
+- name: Set permissions for /usr/bin/ recursively
+  file:
+    path: "/usr/bin/"
+    state: directory
+
+    recurse: yes
+
+    mode: "u-s,g-ws,o-wt"
+
+
+
+
+
+
+
+- name: Set permissions for /usr/sbin/ recursively
+  file:
+    path: "/usr/sbin/"
+    state: directory
+
+    recurse: yes
+
+    mode: "u-s,g-ws,o-wt"
+
+
+
+
+
+
+
+- name: Set permissions for /usr/local/bin/ recursively
+  file:
+    path: "/usr/local/bin/"
+    state: directory
+
+    recurse: yes
+
+    mode: "u-s,g-ws,o-wt"
+
+
+
+
+
+
+
+- name: Set permissions for /usr/local/sbin/ recursively
+  file:
+    path: "/usr/local/sbin/"
+    state: directory
+
+    recurse: yes
+
+    mode: "u-s,g-ws,o-wt"
+
+
+

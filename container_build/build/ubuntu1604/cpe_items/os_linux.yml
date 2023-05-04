@@ -1,0 +1,24 @@
+name: cpe:/o:{arg}:{ver_specs_cpe}
+check_id: ''
+bash_conditional: ''
+ansible_conditional: ''
+is_product_cpe: false
+versioned: true
+args:
+    rhel:
+        os_name: Red Hat Enterprise Linux
+        os_id: rhel
+        os_id_ansible: RedHat
+    fedora:
+        os_name: Fedora
+        os_id: fedora
+        os_id_ansible: Fedora
+    ol:
+        os_name: Oracle Linux
+        os_id: ol
+        os_id_ansible: OracleLinux
+title: Operating System is {arg}
+definition_location: /home/oscap/content/shared/applicability/os_linux.yml
+template:
+    name: platform_os_linux
+documentation_complete: true

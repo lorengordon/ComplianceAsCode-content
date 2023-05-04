@@ -1,0 +1,11 @@
+name: package_gdm
+original_expression: package[gdm]
+xml_content: <ns0:platform xmlns:ns0="http://cpe.mitre.org/language/2.0" id="package_gdm"><ns0:logical-test
+    operator="AND" negate="false"><ns0:check-fact-ref system="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+    href="ssg-ubuntu2204-cpe-oval.xml" id-ref="oval:ssg-package_gdm:def:1" /></ns0:logical-test></ns0:platform>
+bash_conditional: dpkg-query --show --showformat='${db:Status-Status}\n' 'gdm3' 2>/dev/null
+    | grep -q installed
+ansible_conditional: '"gdm3" in ansible_facts.packages'
+title: ''
+definition_location: /home/oscap/content/build/ubuntu2204/platforms/package_gdm.yml
+documentation_complete: true

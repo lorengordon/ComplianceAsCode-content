@@ -1,0 +1,18 @@
+prodtype: all
+description: 'To minimize attack surface, disable vsftpd if at all
+
+    possible.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- package_vsftpd_removed
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Disable vsftpd if Possible
+definition_location: /home/oscap/content/linux_os/guide/services/ftp/disabling_vsftpd/group.yml
+documentation_complete: true

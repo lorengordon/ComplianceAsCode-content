@@ -1,0 +1,78 @@
+prodtype: fedora,ol7,ol8,ol9,rhcos4,rhel7,rhel8,rhel9,rhv4
+description: 'The <code>audispd-plugins</code> package can be installed with the following
+    command:
+
+    <pre>
+
+    $ sudo yum install audispd-plugins</pre>'
+rationale: '<tt>audispd-plugins</tt> provides plugins for the real-time interface
+    to the
+
+    audit subsystem, <tt>audispd</tt>. These plugins can do things like relay events
+
+    to remote machines or analyze events for suspicious behavior.'
+severity: medium
+references:
+    ospp: FMT_SMF_EXT.1
+    srg: SRG-OS-000342-GPOS-00133
+identifiers: {}
+ocil_clause: the package is not installed
+ocil: 'Run the following command to determine if the <code>audispd-plugins</code>
+    package is installed: <pre>$ rpm -q audispd-plugins</pre>'
+oval_external_content: null
+fixtext: ' To install the Red Hat Virtualization 4 package audispd-plugins run the
+    following command:
+
+
+    $ sudo yum install audispd-plugins'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Red Hat Virtualization 4 must off-load audit records onto a different
+    system or media from the system being audited.
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: The Red Hat Virtualization 4 audispd-plugins package must
+            be installed.
+        vuldiscussion: '"audispd-plugins" provides plugins for the real-time interface
+            to the
+
+            audit subsystem, "audispd". These plugins can do things like relay events
+
+            to remote machines or analyze events for suspicious behavior.'
+        fixtext: 'The audispd-plugins package can be installed with the following
+            command:
+
+
+            $ sudo dnf install audispd-plugins'
+        checktext: 'Verify that Red Hat Virtualization 4 has the audispd-plugins package
+            for installed with the following command:
+
+
+            $sudo dnf list --installed audispd-plugins
+
+
+            audispd-plugins.x86_64     3.0.7-101.el9_0.2
+
+
+            If the "audispd-plugins" package is not installed, this is a finding.'
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Install audispd-plugins Package
+definition_location: /home/oscap/content/linux_os/guide/system/auditing/package_audispd-plugins_installed/rule.yml
+template:
+    name: package_installed
+    vars:
+        pkgname: audispd-plugins
+    backends: {}
+documentation_complete: true

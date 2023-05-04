@@ -1,0 +1,40 @@
+prodtype: fedora,rhel7,rhel8
+description: 'If <tt>SplitHosts</tt> is set, Logwatch will separate entries by hostname.
+
+    This makes the report longer but significantly more usable. If it is not
+
+    set, then Logwatch will not report which host generated a given log entry,
+
+    and that information is almost always necessary
+
+    <pre> SplitHosts = yes </pre>'
+rationale: ''
+severity: unknown
+references: {}
+identifiers:
+    cce: CCE-80197-7
+ocil_clause: null
+ocil: null
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Configure Logwatch SplitHosts Line
+definition_location: /home/oscap/content/linux_os/guide/system/logging/configure_logwatch_on_logserver/logwatch_configured_splithosts/rule.yml
+template: null
+documentation_complete: true

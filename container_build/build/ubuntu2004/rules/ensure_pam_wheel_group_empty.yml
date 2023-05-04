@@ -1,0 +1,42 @@
+prodtype: ubuntu2004,ubuntu2204
+description: 'Ensure that the group <sub idref="var_pam_wheel_group_for_su" />
+
+    referenced by the pam_wheel  <tt>group</tt> parameter exists and has no
+
+    members. This ensures that no user can run commands with altered
+
+    privileges through the <tt>su</tt> command.'
+rationale: 'The <tt>su</tt> program allows to run commands with a substitute user
+    and
+
+    group ID. It is commonly used to run commands as the root user. Limiting
+
+    access to such command is considered a good security practice.'
+severity: medium
+references:
+    cis: '5.6'
+identifiers: {}
+ocil_clause: group  exists and has no user members
+ocil: "Run the following command to check if the group \nexists:\n<pre>grep  /etc/group</pre>\n\
+    The output should contain the following line:\n<pre>:x:</pre>"
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Ensure the Group Used by pam_wheel Module Exists on System and is Empty
+definition_location: /home/oscap/content/linux_os/guide/system/accounts/accounts-restrictions/root_logins/ensure_pam_wheel_group_empty/rule.yml
+template: null
+documentation_complete: true

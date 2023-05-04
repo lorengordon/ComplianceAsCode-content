@@ -1,0 +1,173 @@
+prodtype: fedora,ol7,ol8,ol9,rhel7,rhel8,rhel9,sle12,sle15,ubuntu2004,ubuntu2204
+description: 'Verify the system generates an audit record when privileged functions
+    are executed.
+
+
+    If audit is using the "auditctl" tool to load the rules, run the following command:
+
+
+    <pre>$ sudo grep execve /etc/audit/audit.rules</pre>
+
+
+    If audit is using the "augenrules" tool to load the rules, run the following command:
+
+
+    <pre>$ sudo grep -r execve /etc/audit/rules.d</pre>
+
+
+
+    <pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -k setuid</pre>
+
+    <pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -k setuid</pre>
+
+    <pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -k setgid</pre>
+
+    <pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -k setgid</pre>
+
+
+
+    If both the "b32" and "b64" audit rules for "SUID" files are not defined, this
+    is a finding.
+
+    If both the "b32" and "b64" audit rules for "SGID" files are not defined, this
+    is a finding.'
+rationale: 'Misuse of privileged functions, either intentionally or unintentionally
+    by
+
+    authorized users, or by unauthorized external entities that have
+
+    compromised information system accounts, is a serious and ongoing concern
+
+    and can have significant adverse impacts on organizations. Auditing the use
+
+    of privileged functions is one way to detect such misuse and identify the
+
+    risk from insider threats and the advanced persistent threat.'
+severity: medium
+references:
+    disa: CCI-001814,CCI-001882,CCI-001889,CCI-001880,CCI-001881,CCI-001878,CCI-001879,CCI-001875,CCI-001877,CCI-001914,CCI-002233,CCI-002234
+    nist: CM-5(1),AU-7(a),AU-7(b),AU-8(b),AU-12(3),AC-6(9)
+    srg: SRG-OS-000326-GPOS-00126,SRG-OS-000327-GPOS-00127
+    stigid: OL08-00-030000
+    stigref: SV-248722r853794_rule
+identifiers: {}
+ocil_clause: the command does not return all lines, or the lines are commented out
+ocil: 'Verify Oracle Linux 8 audits the execution of privileged functions.
+
+
+    Check if Oracle Linux 8 is configured to audit the execution of the "execve" system
+    call using the following command:
+
+
+    <pre>$ sudo grep execve /etc/audit/audit.rules</pre>
+
+
+    The output should be the following:
+
+
+
+    <pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -k setuid</pre>
+
+    <pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -k setuid</pre>
+
+    <pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -k setgid</pre>
+
+    <pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -k setgid</pre>'
+oval_external_content: null
+fixtext: 'Configure Oracle Linux 8 to audit the execution of the "execve" system call.
+
+
+    Add or update the following rules to "/etc/audit/rules.d/audit.rules":
+
+
+
+    <pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -k setuid</pre>
+
+    <pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -k setuid</pre>
+
+    <pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -k setgid</pre>
+
+    <pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -k setgid</pre>
+
+
+
+    The audit daemon must be restarted for the changes to take effect.'
+checktext: ''
+vuldiscussion: ''
+srg_requirement: Oracle Linux 8 must audit the execution of privileged functions.
+warnings:
+-   general: 'Note that these rules can be configured in a
+
+        number of ways while still achieving the desired effect.'
+conflicts: []
+requires: []
+policy_specific_content:
+    stig:
+        srg_requirement: Oracle Linux 8 must audit uses of the "execve" system call.
+        vuldiscussion: 'Misuse of privileged functions, either intentionally or unintentionally
+            by
+
+            authorized users, or by unauthorized external entities that have
+
+            compromised information system accounts, is a serious and ongoing concern
+
+            and can have significant adverse impacts on organizations. Auditing the
+            use
+
+            of privileged functions is one way to detect such misuse and identify
+            the
+
+            risk from insider threats and the advanced persistent threat.'
+        checktext: 'Verify that Oracle Linux 8 is configured to audit the execution
+            of the "execve" system call with the following command:
+
+
+            $ sudo auditctl -l | grep execve
+
+
+            -a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k execpriv
+
+            -a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k execpriv
+
+            -a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k execpriv
+
+            -a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k execpriv
+
+
+            If the command does not return all lines, or the lines are commented out,
+            this is a finding.'
+        fixtext: 'Configure Oracle Linux 8 to audit the execution of the "execve"
+            system call.
+
+
+            Add or update the following file system rules to "/etc/audit/rules.d/audit.rules":
+
+
+            -a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k execpriv
+
+            -a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k execpriv
+
+            -a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k execpriv
+
+            -a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k execpriv
+
+
+            The audit daemon must be restarted for the changes to take effect.'
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+    package[audit]: null
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set
+    machine: null
+    package_audit: null
+bash_conditional: null
+fixes: {}
+title: Record Events When Privileged Executables Are Run
+definition_location: /home/oscap/content/linux_os/guide/system/auditing/auditd_configure_rules/audit_rules_suid_privilege_function/rule.yml
+template: null
+documentation_complete: true

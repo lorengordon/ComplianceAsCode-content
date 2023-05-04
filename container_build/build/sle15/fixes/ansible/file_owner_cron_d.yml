@@ -1,0 +1,21 @@
+# platform = multi_platform_all
+# reboot = false
+# strategy = configure
+# complexity = low
+# disruption = low
+- name: Ensure owner on directory /etc/cron.d/
+  file:
+    path: /etc/cron.d/
+    state: directory
+    owner: '0'
+  when: ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-91390-5
+  - NIST-800-53-AC-6(1)
+  - NIST-800-53-CM-6(a)
+  - configure_strategy
+  - file_owner_cron_d
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed

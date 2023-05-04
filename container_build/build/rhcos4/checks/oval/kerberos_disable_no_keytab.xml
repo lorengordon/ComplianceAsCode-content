@@ -1,0 +1,29 @@
+<def-group>
+  <definition class="compliance" id="kerberos_disable_no_keytab" version="1">
+    <metadata>
+        <title>Disable Kerberos by removing host keytab</title>
+        
+    <affected family="unix">
+    <platform>Red Hat Enterprise Linux 9</platform>
+      <platform>Red Hat Enterprise Linux 8</platform>
+      <platform>Red Hat Enterprise Linux CoreOS 4</platform>
+      <platform>Oracle Linux 7</platform>
+      <platform>Red Hat Enterprise Linux 7</platform>
+      <platform>Oracle Linux 8</platform>
+    </affected>
+        <description>Check that there is no Kerberos keytab file present in /etc</description>
+    </metadata>
+    <criteria>
+      <criterion test_ref="test_kerberos_disable_no_keytab"
+        comment="Restrict Kerberos operation by removing keytab files" />
+    </criteria>
+  </definition>
+
+  <unix:file_object id="obj_kerberos_disable_no_keytab" version="1" comment="Default Kerberos keytab file">
+    <unix:filepath operation="pattern match">^/etc/.+\.keytab$</unix:filepath>
+  </unix:file_object>
+  <unix:file_test id="test_kerberos_disable_no_keytab" check="all" check_existence="none_exist" version="1"
+    comment="Ensure keytab file does not exist">
+    <unix:object object_ref="obj_kerberos_disable_no_keytab"/>
+  </unix:file_test>
+</def-group>

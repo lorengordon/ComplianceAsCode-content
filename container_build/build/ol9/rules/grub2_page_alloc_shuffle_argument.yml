@@ -1,0 +1,95 @@
+prodtype: ol9,rhel9
+description: 'To enable randomization of the page allocator in the kernel, add the
+
+    <tt>page_alloc.shuffle=1</tt> argument to the default GRUB 2 command line.
+
+    To ensure that <tt>page_alloc.shuffle=1</tt> is added as a kernel command line
+
+    argument to newly installed kernels, add <tt>page_alloc.shuffle=1</tt> to the
+
+    default Grub2 command line for Linux operating systems. Modify the line within
+
+    <tt>/etc/default/grub</tt> as shown below:
+
+    <pre>GRUB_CMDLINE_LINUX="... page_alloc.shuffle=1 ..."</pre>
+
+    Run the following command to update command line for already installed kernels:<pre>#
+    grubby --update-kernel=ALL --args="page_alloc.shuffle=1"</pre>'
+rationale: 'The <tt>CONFIG_SHUFFLE_PAGE_ALLOCATOR</tt> config option is primarily
+
+    focused on improving the average utilization of a direct-mapped
+
+    memory-side-cache. Aside of this performance effect, it also reduces
+
+    predictability of page allocations in situations when the bad actor can
+
+    crash the system and somehow leverage knowledge of (page) allocation order
+
+    right after a fresh reboot, or can control the timing between a
+
+    hot-pluggable memory node (as in NUMA node) and applications allocating
+
+    memory ouf of that node. The <tt>page_alloc.shuffle=1</tt> kernel command
+
+    line parameter then forces this functionality irrespectively of memory cache
+
+    architecture.'
+severity: medium
+references: {}
+identifiers: {}
+ocil_clause: randomization of the page allocator is not enabled in the kernel
+ocil: 'Inspect the form of default GRUB 2 command line for the Linux operating system
+
+    in <tt>/etc/default/grub</tt>. If it includes <tt>page_alloc.shuffle=1</tt>,
+
+    then the parameter will be configured for newly installed kernels.
+
+    First check if the GRUB recovery is enabled:
+
+    <pre>$ sudo grep ''GRUB_DISABLE_RECOVERY'' /etc/default/grub</pre>
+
+    If this option is set to true, then check that a line is output by the following
+    command:
+
+    <pre>$ sudo grep ''GRUB_CMDLINE_LINUX_DEFAULT.*page_alloc.shuffle=1.*'' /etc/default/grub</pre>
+
+    If the recovery is disabled, check the line with
+
+    <pre>$ sudo grep ''GRUB_CMDLINE_LINUX.*page_alloc.shuffle=1.*'' /etc/default/grub</pre>.Moreover,
+    command line parameters for currently installed kernels should be checked as well.
+
+    Run the following command:
+
+    <pre>$ sudo grubby --info=ALL | grep args | grep -v ''page_alloc.shuffle=1''</pre>
+
+    The command should not return any output.'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: machine
+platforms: !!set
+    machine: null
+sce_metadata: {}
+inherited_platforms: !!set
+    grub2: null
+cpe_platform_names: !!set
+    machine: null
+inherited_cpe_platform_names: !!set
+    grub2: null
+bash_conditional: null
+fixes: {}
+title: Enable randomization of the page allocator
+definition_location: /home/oscap/content/linux_os/guide/system/bootloader-grub2/grub2_page_alloc_shuffle_argument/rule.yml
+template:
+    name: grub2_bootloader_argument
+    vars:
+        arg_name: page_alloc.shuffle
+        arg_value: '1'
+    backends: {}
+documentation_complete: true

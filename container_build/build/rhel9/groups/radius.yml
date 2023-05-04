@@ -1,0 +1,22 @@
+prodtype: all
+description: 'Remote Authentication Dial-In User Service (RADIUS) is a networking
+
+    protocol, operating on port 1812 that provides centralized
+
+    Authentication, Authorization, and Accounting (AAA or Triple A)
+
+    management for users who connect and use a network service. '
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- package_freeradius_removed
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Remote Authentication Dial-In User Service (RADIUS)
+definition_location: /home/oscap/content/linux_os/guide/services/radius/group.yml
+documentation_complete: true

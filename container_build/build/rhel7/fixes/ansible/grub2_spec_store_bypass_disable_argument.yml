@@ -1,0 +1,85 @@
+# platform = multi_platform_rhel,multi_platform_fedora,multi_platform_ol,multi_platform_rhv,multi_platform_sle
+# reboot = true
+# strategy = restrict
+# complexity = medium
+# disruption = low
+- name: Gather the package facts
+  package_facts:
+    manager: auto
+  tags:
+  - CCE-90769-1
+  - grub2_spec_store_bypass_disable_argument
+  - low_disruption
+  - medium_complexity
+  - medium_severity
+  - reboot_required
+  - restrict_strategy
+- (xccdf-var var_spec_store_bypass_disable_options)
+
+- name: Check spec_store_bypass_disable argument exists
+  command: grep 'GRUB_CMDLINE_LINUX.*spec_store_bypass_disable=' /etc/default/grub
+  failed_when: false
+  register: argcheck
+  when:
+  - '"grub2-common" in ansible_facts.packages'
+  - ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-90769-1
+  - grub2_spec_store_bypass_disable_argument
+  - low_disruption
+  - medium_complexity
+  - medium_severity
+  - reboot_required
+  - restrict_strategy
+
+- name: Replace existing spec_store_bypass_disable argument
+  replace:
+    path: /etc/default/grub
+    regexp: spec_store_bypass_disable=\w+
+    replace: spec_store_bypass_disable={{ var_spec_store_bypass_disable_options }}
+  when:
+  - '"grub2-common" in ansible_facts.packages'
+  - ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  - argcheck.rc == 0
+  tags:
+  - CCE-90769-1
+  - grub2_spec_store_bypass_disable_argument
+  - low_disruption
+  - medium_complexity
+  - medium_severity
+  - reboot_required
+  - restrict_strategy
+
+- name: Add spec_store_bypass_disable argument
+  replace:
+    path: /etc/default/grub
+    regexp: (GRUB_CMDLINE_LINUX=.*)"
+    replace: \1 spec_store_bypass_disable={{ var_spec_store_bypass_disable_options
+      }}"
+  when:
+  - '"grub2-common" in ansible_facts.packages'
+  - ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  - argcheck.rc != 0
+  tags:
+  - CCE-90769-1
+  - grub2_spec_store_bypass_disable_argument
+  - low_disruption
+  - medium_complexity
+  - medium_severity
+  - reboot_required
+  - restrict_strategy
+
+- name: Update grub defaults and the bootloader menu
+  command: /sbin/grubby --update-kernel=ALL --args="spec_store_bypass_disable={{ var_spec_store_bypass_disable_options
+    }}"
+  when:
+  - '"grub2-common" in ansible_facts.packages'
+  - ansible_virtualization_type not in ["docker", "lxc", "openvz", "podman", "container"]
+  tags:
+  - CCE-90769-1
+  - grub2_spec_store_bypass_disable_argument
+  - low_disruption
+  - medium_complexity
+  - medium_severity
+  - reboot_required
+  - restrict_strategy

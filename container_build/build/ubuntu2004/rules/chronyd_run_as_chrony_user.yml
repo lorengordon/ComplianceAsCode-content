@@ -1,0 +1,53 @@
+prodtype: alinux2,alinux3,fedora,rhel7,rhel8,rhel9,sle12,sle15,ubuntu2004,ubuntu2204
+description: "chrony is a daemon which implements the Network Time Protocol (NTP).\
+    \ It is designed to\nsynchronize system clocks across a variety of systems and\
+    \ use a source that is highly\naccurate. More information on chrony can be found\
+    \ at\n\n    <a xmlns='http://www.w3.org/1999/xhtml' href='http://chrony.tuxfamily.org/'>http://chrony.tuxfamily.org/</a>.\n\
+    Chrony can be configured to be a client and/or a server.\nTo ensure that chronyd\
+    \ is running under chrony user account,\n\n<tt>user</tt> variable in <tt>/etc/chrony/chrony.conf</tt>\
+    \ is set to <tt>_chrony</tt> or is\nabsent:\n<pre>user _chrony</pre>\n\nThis recommendation\
+    \ only applies if chrony is in use on the system."
+rationale: 'If chrony is in use on the system proper configuration is vital to ensuring
+    time synchronization
+
+    is working properly.'
+severity: medium
+references:
+    cis: 2.2.1.3
+identifiers: {}
+ocil_clause: chronyd is not running under chrony user account
+ocil: '
+
+    Run the following command and verify that <tt>user</tt> is set to <tt>_chrony</tt>
+    in <tt>/etc/chrony/chrony.conf</tt>
+
+    or the <tt>user</tt> parameter is absent:
+
+    <pre># grep "^user" /etc/chrony/chrony.conf
+
+    user _chrony</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: package[chrony]
+platforms: !!set
+    package[chrony]: null
+sce_metadata: {}
+inherited_platforms: !!set
+    machine: null
+cpe_platform_names: !!set
+    package_chrony: null
+inherited_cpe_platform_names: !!set
+    machine: null
+bash_conditional: null
+fixes: {}
+title: Ensure that chronyd is running under chrony user account
+definition_location: /home/oscap/content/linux_os/guide/services/ntp/chronyd_run_as_chrony_user/rule.yml
+template: null
+documentation_complete: true

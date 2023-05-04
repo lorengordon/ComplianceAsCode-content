@@ -1,0 +1,52 @@
+prodtype: all
+description: 'An organization might need to use an internal or third party developed
+    extension. Any
+
+    organizationally approved extenstion should be enabled. To enable approved extensions,
+
+    set <tt>ExtensionInstallWhitelist</tt> to <tt><sub idref="var_extension_whitelist"
+    /></tt>
+
+    in the Chromium policy file.
+
+    If there are no approved extensions, <tt>ExtensionInstallWhitelist</tt> should
+    be set to
+
+    <tt><sub idref="var_extension_whitelist" selector="default" /></tt>.'
+rationale: 'The whitelist should only contain organizationally approved extensions.
+    This is to prevent
+
+    a user from accidently whitelisitng a malicious extension.'
+severity: unknown
+references:
+    stigid: DTBC0003
+identifiers: {}
+ocil_clause: approved extensions are not set
+ocil: 'To verify that approved extensions are whitelisted, run the following command:
+
+    <pre>$ grep ExtensionInstallWhitelist /etc/chromium/policies/managed/*.json</pre>
+
+    The output should contain:
+
+    <pre>"ExtensionInstallWhitelist": ["<sub idref="var_extension_whitelist" />"],</pre>'
+oval_external_content: null
+fixtext: ''
+checktext: ''
+vuldiscussion: ''
+srg_requirement: ''
+warnings: []
+conflicts: []
+requires: []
+policy_specific_content: {}
+platform: null
+platforms: !!set {}
+sce_metadata: {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+inherited_cpe_platform_names: !!set {}
+bash_conditional: null
+fixes: {}
+title: Enable Only Approved Extensions
+definition_location: /home/oscap/content/products/chromium/guide/chromium/chromium_extension_whitelist/rule.yml
+template: null
+documentation_complete: true

@@ -1,0 +1,22 @@
+prodtype: all
+description: 'At a minimum, the audit system should collect the execution of
+
+    ACL privileged commands for all users and root.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- audit_rules_execution_chacl
+- audit_rules_execution_chmod
+- audit_rules_execution_setfacl
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set
+    machine: null
+    package[audit]: null
+cpe_platform_names: !!set {}
+title: Record Execution Attempts to Run ACL Privileged Commands
+definition_location: /home/oscap/content/linux_os/guide/system/auditing/auditd_configure_rules/audit_execution_acl_commands/group.yml
+documentation_complete: true

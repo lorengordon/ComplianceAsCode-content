@@ -1,0 +1,23 @@
+prodtype: all
+description: The USBGuard daemon enforces the USB device authorization policy for
+    all USB devices.
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups: {}
+rules:
+- configure_usbguard_auditbackend
+- package_usbguard_installed
+- service_usbguard_enabled
+- usbguard_allow_hid_and_hub
+- usbguard_generate_policy
+platform: not_s390x_arch and machine
+platforms: !!set
+    not_s390x_arch and machine: null
+inherited_platforms: !!set {}
+cpe_platform_names: !!set
+    machine_and_not_s390x_arch: null
+title: USBGuard daemon
+definition_location: /home/oscap/content/linux_os/guide/services/usbguard/group.yml
+documentation_complete: true

@@ -1,0 +1,34 @@
+prodtype: all
+description: 'Both the AIDE (Advanced Intrusion Detection Environment)
+
+    software and the RPM package management system provide
+
+    mechanisms for verifying the integrity of installed software.
+
+    AIDE uses snapshots of file metadata (such as hashes) and compares these
+
+    to current system files in order to detect changes.
+
+    <br /><br />
+
+    The RPM package management system can conduct integrity
+
+    checks by comparing information in its metadata database with
+
+    files installed on the system.'
+warnings: []
+requires: []
+conflicts: []
+values:
+- var_aide_scan_notification_email
+groups:
+- aide
+- rpm_verification
+rules: {}
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Software Integrity Checking
+definition_location: /home/oscap/content/linux_os/guide/system/software/integrity/software-integrity/group.yml
+documentation_complete: true

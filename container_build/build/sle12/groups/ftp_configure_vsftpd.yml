@@ -1,0 +1,22 @@
+prodtype: all
+description: 'The primary vsftpd configuration file is
+
+    <tt>/etc/vsftpd.conf</tt>, if that file exists, or
+
+    <tt>/etc/vsftpd/vsftpd.conf</tt> if it does not.'
+warnings: []
+requires: []
+conflicts: []
+values: {}
+groups:
+- ftp_restrict_users
+rules:
+- ftp_configure_firewall
+- ftp_present_banner
+platform: ''
+platforms: !!set {}
+inherited_platforms: !!set {}
+cpe_platform_names: !!set {}
+title: Configure vsftpd to Provide FTP Service if Necessary
+definition_location: /home/oscap/content/linux_os/guide/services/ftp/ftp_configure_vsftpd/group.yml
+documentation_complete: true
